@@ -46,21 +46,19 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full bg-white py-20 px-4">
+    <section className="w-full bg-white py-20 md:px-4">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-2 mb-6">
+        <div className="font-hedvig text-center mb-16 md:mb-16 sm:mb-12">
+          <div className="flex items-center justify-center gap-2 mb-4">
             <div className="w-2 h-2 bg-teal-700 rounded-full"></div>
-            <span className="text-sm font-medium text-gray-700">FAQ</span>
+            <span className="font-inter text-sm font-medium text-[#1f514c]">FAQ</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-serif text-gray-900 leading-tight">
-            Answers to your most<br />common questions
-          </h2>
+          <h2 className="font-hedvig text-[35px] md:text-[45px] sm:text-[32px] leading-tight text-gray-900 mx-auto max-w-2xl mb-5 px-4">
+Answers to your most common questions          </h2>
         </div>
-
         {/* FAQ Accordion */}
-        <div className="space-y-0">
+        <div className="space-y-0 px-4 md:px-0 max-w-xl mx-auto">
           {faqs.map((faq, index) => {
             const isOpen = openItems.includes(faq.id);
             
@@ -74,14 +72,14 @@ export default function FAQSection() {
                   onClick={() => toggleItem(faq.id)}
                   className="w-full flex items-center justify-between gap-6 text-left py-6 group"
                 >
-                  <h3 className="text-xl md:text-2xl font-normal text-gray-900">
+                  <h3 className="text-xl md:text-base font-normal text-gray-900">
                     {faq.question}
                   </h3>
-                  <div className="flex-shrink-0 w-10 h-10 bg-teal-800 rounded-full flex items-center justify-center text-white">
+                  <div className="flex-shrink-0 w-7 h-7 bg-teal-800 rounded-full flex items-center justify-center text-white">
                     {isOpen ? (
-                      <ChevronUp className="w-5 h-5" strokeWidth={2} />
+                      <ChevronUp className="w-3 h-3" strokeWidth={2} />
                     ) : (
-                      <ChevronDown className="w-5 h-5" strokeWidth={2} />
+                      <ChevronDown className="w-3 h-3" strokeWidth={2} />
                     )}
                   </div>
                 </button>
@@ -100,10 +98,7 @@ export default function FAQSection() {
         </div>
       </div>
 
-      {/* Made in Framer watermark */}
-      <div className="mt-16 text-right max-w-7xl mx-auto text-xs text-gray-400 pr-4">
-        Made in Framer
-      </div>
+  
     </section>
   );
 }

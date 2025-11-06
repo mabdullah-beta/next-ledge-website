@@ -65,7 +65,7 @@ export default function ServicesSlider() {
           <div className="w-2 h-2 bg-teal-600 rounded-full"></div>
           <span className="font-inter text-sm font-medium text-[#1f514c]">Services</span>
         </div>
-        <h1 className="font-hedvig text-[38px] md:text-[45px] sm:text-[32px] font-serif text-gray-900 leading-tight max-w-4xl mx-auto px-4">
+        <h1 className="font-hedvig text-[38px] md:text-[45px] sm:text-[32px]  text-gray-900 leading-tight max-w-4xl mx-auto px-4">
           Reliable expertise to drive your<br className="hidden md:block" /> greatest success
         </h1>
       </div>

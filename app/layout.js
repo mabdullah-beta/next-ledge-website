@@ -9,7 +9,7 @@ const hedvig = Hedvig_Letters_Serif({
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["500"],
+  weight: ["400", "500"],
   variable: "--font-inter",
 });
 

@@ -53,8 +53,8 @@ export default function PricingSection() {
            <div className="w-2 h-2 bg-teal-700 rounded-full"></div>
             <span className="text-sm font-medium text-gray-600">Pricing</span>
           </div>
-          <h2 className="text-[38px] md:text-[45px]  text-gray-900  mx-auto max-w-2xl">
-            Flexible pricing tailored toyour business needs
+          <h2 className="text-[38px] md:text-[45px]  text-gray-900  mx-auto max-w-xl">
+            Flexible pricing tailored to your business needs
           </h2>
         </div>
 

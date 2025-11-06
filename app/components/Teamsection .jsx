@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 const teamMembers = [
   {
@@ -46,10 +46,22 @@ const teamMembers = [
 export default function TeamSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
   
-  // Calculate how many cards can fit (4 visible at once)
-  const cardsToShow = 4;
+  // Detect mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Calculate how many cards can fit (4 on desktop, 1 on mobile)
+  const cardsToShow = isMobile ? 1 : 4;
   const maxIndex = Math.max(0, teamMembers.length - cardsToShow);
 
   // Auto-play effect when section is in view
@@ -103,29 +115,29 @@ export default function TeamSection() {
   };
 
   return (
-    <section ref={sectionRef} className="w-full bg-white py-20 px-4">
+    <section ref={sectionRef} className="w-full bg-white py-20 md:py-20 sm:py-12 md:px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-2 mb-6">
+        <div className="font-hedvig text-center mb-16 md:mb-16 sm:mb-12">
+          <div className="flex items-center justify-center gap-2 mb-4">
             <div className="w-2 h-2 bg-teal-700 rounded-full"></div>
-            <span className="text-sm font-medium text-gray-700">Our team</span>
+            <span className="font-inter text-sm font-medium text-[#1f514c]">our team</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-serif text-gray-900 leading-tight max-w-4xl mx-auto">
-            Meet the experts behind your<br />business success
+          <h2 className="font-hedvig text-[35px] md:text-[45px] sm:text-[32px] leading-tight text-gray-900 mx-auto max-w-2xl mb-5 px-4">
+            Meet the experts behind your business success
           </h2>
         </div>
 
         {/* Team Cards Carousel */}
         <div className="relative overflow-hidden">
-          {/* Gradient Overlays for Edge Fade */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+          {/* Gradient Overlays for Edge Fade - Desktop Only */}
+          <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
           {/* Cards Container */}
-          <div className="overflow-hidden px-4">
+          <div className="overflow-hidden px-4 lg:px-4 sm:px-0">
             <div 
-              className="flex gap-4 transition-transform duration-700 ease-out"
+              className="flex gap-4 lg:gap-4 sm:gap-0 transition-transform duration-700 ease-out"
               style={{
                 transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`
               }}
@@ -133,17 +145,21 @@ export default function TeamSection() {
               {teamMembers.map((member) => (
                 <div
                   key={member.id}
-                  className="flex-shrink-0"
-                  style={{ width: `calc(${100 / cardsToShow}% - ${(4 * (cardsToShow - 1)) / cardsToShow}px)` }}
+                  className="flex-shrink-0 px-2 lg:px-0"
+                  style={{ 
+                    width: isMobile 
+                      ? '100%' 
+                      : `calc(${100 / cardsToShow}% - ${(4 * (cardsToShow - 1)) / cardsToShow}px)` 
+                  }}
                 >
-                  <div className="relative h-[400px] rounded-3xl overflow-hidden group cursor-pointer">
+                  <div className="relative h-[400px] lg:h-[320px] rounded-3xl overflow-hidden group cursor-pointer">
                     {/* Image */}
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 25vw"
+                      sizes="(max-width: 1024px) 100vw, 25vw"
                     />
                     
                     {/* Gradient Overlay */}
@@ -170,26 +186,23 @@ export default function TeamSection() {
           <button
             onClick={handlePrevious}
             disabled={currentIndex === 0}
-            className="w-12 h-12 bg-teal-800 hover:bg-teal-900 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-10 h-10 lg:w-10 lg:h-10 bg-teal-800 hover:bg-teal-900 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95"
             aria-label="Previous member"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ArrowLeft className="w-5 h-5" />
           </button>
 
           <button
             onClick={handleNext}
             disabled={currentIndex === maxIndex}
-            className="w-12 h-12 bg-teal-800 hover:bg-teal-900 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-10 h-10 lg:w-10 lg:h-10 bg-teal-800 hover:bg-teal-900 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95"
             aria-label="Next member"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ArrowRight className="w-5 h-5" />
           </button>
         </div>
-      </div>
 
-      {/* Made in Framer watermark */}
-      <div className="mt-16 text-right max-w-7xl mx-auto text-xs text-gray-400 pr-4">
-        Made in Framer
+   
       </div>
     </section>
   );

@@ -164,10 +164,7 @@ export default function ContactSection() {
         </div>
       </div>
 
-      {/* Made in Framer watermark */}
-      <div className="mt-16 text-right max-w-7xl mx-auto text-xs text-white/40 pr-4">
-        Made in Framer
-      </div>
+  
     </section>
   );
 }
