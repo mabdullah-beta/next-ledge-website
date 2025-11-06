@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ArrowRight, ArrowLeft } from 'lucide-react';
 
 const services = [
   {
@@ -58,20 +58,20 @@ export default function ServicesSlider() {
   const cards = getVisibleCards();
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-12 md:py-12 sm:py-8">
       {/* Header */}
-      <div className="text-center mb-16">
-        <div className="flex items-center justify-center gap-2 mb-6">
+      <div className="text-center mb-16 md:mb-16 sm:mb-10">
+        <div className="flex items-center justify-center gap-2 mb-6 md:mb-6 sm:mb-4">
           <div className="w-2 h-2 bg-teal-600 rounded-full"></div>
-          <span className="text-sm font-medium text-gray-600">Services</span>
+          <span className="font-inter text-sm font-medium text-[#1f514c]">Services</span>
         </div>
-        <h1 className="text-5xl md:text-6xl font-serif text-gray-900 leading-tight max-w-4xl mx-auto">
-          Reliable expertise to drive your<br />greatest success
+        <h1 className="font-hedvig text-[38px] md:text-[45px] sm:text-[32px] font-serif text-gray-900 leading-tight max-w-4xl mx-auto px-4">
+          Reliable expertise to drive your<br className="hidden md:block" /> greatest success
         </h1>
       </div>
 
-      {/* Slider Container */}
-      <div className="relative w-full max-w-[1400px] mt-8">
+      {/* Desktop Slider Container - Hidden on Mobile */}
+      <div className="hidden md:block relative w-full max-w-[1400px] mt-8">
         <div 
           className="relative h-[450px] flex items-center justify-center gap-4"
           style={{ 
@@ -106,7 +106,7 @@ export default function ServicesSlider() {
                 sizes="400px"
                 priority
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-xl font-semibold mb-2">{cards.left.title}</h3>
                 <p className="text-gray-200 text-xs leading-relaxed">{cards.left.description}</p>
@@ -139,7 +139,7 @@ export default function ServicesSlider() {
                 sizes="540px"
                 priority
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                 <h3 className="text-3xl font-semibold mb-3">{cards.center.title}</h3>
                 <p className="text-gray-200 text-sm leading-relaxed">{cards.center.description}</p>
@@ -174,7 +174,7 @@ export default function ServicesSlider() {
                 sizes="400px"
                 priority
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-xl font-semibold mb-2">{cards.right.title}</h3>
                 <p className="text-gray-200 text-xs leading-relaxed">{cards.right.description}</p>
@@ -182,27 +182,91 @@ export default function ServicesSlider() {
             </div>
           </motion.div>
 
-          {/* Navigation Buttons - Positioned at edges of center card */}
+          {/* Navigation Buttons - Desktop */}
           <button
             onClick={handlePrevious}
-            className="absolute left-[calc(50%-300px)] z-40 w-14 h-14 bg-teal-700 hover:bg-teal-800 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
+            className="absolute left-[calc(50%-290px)] z-40 w-10 h-10 bg-teal-700 hover:bg-teal-800 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="w-6 h-6"  />
+            <ArrowLeft className="w-6 h-6" />
           </button>
 
           <button
             onClick={handleNext}
-            className="absolute right-[calc(50%-300px)] z-40 w-14 h-14 bg-teal-700 hover:bg-teal-800 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
+            className="absolute right-[calc(50%-290px)] z-40 w-10 h-10 bg-teal-700 hover:bg-teal-800 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
             aria-label="Next slide"
           >
-            <ChevronRight className="w-6 h-6"  />
+            <ArrowRight size={20} strokeWidth={2.5} />
           </button>
         </div>
       </div>
 
-      {/* Made in Framer watermark */}
-   
+      {/* Mobile Slider Container - Visible only on Mobile */}
+      <div className="md:hidden relative w-full max-w-[600px] mt-8 px-2">
+        <div className="relative">
+          {/* Mobile Card */}
+          <motion.div
+            key={`mobile-${cards.center.id}`}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ 
+              opacity: 1,
+              x: 0
+            }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="w-full"
+          >
+            <div className="relative w-full h-[480px] rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src={cards.center.image}
+                alt={cards.center.title}
+                fill
+                className="object-cover"
+                sizes="100vw"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="text-white text-2xl font-semibold mb-3">{cards.center.title}</h3>
+                <p className="text-gray-200 text-base leading-relaxed">{cards.center.description}</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Mobile Navigation Buttons - At the edges */}
+          <button
+            onClick={handlePrevious}
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 bg-teal-700 hover:bg-teal-800 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 active:scale-95"
+            aria-label="Previous slide"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+
+          <button
+            onClick={handleNext}
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 bg-teal-700 hover:bg-teal-800 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 active:scale-95"
+            aria-label="Next slide"
+          >
+            <ArrowRight className="w-5 h-5" strokeWidth={2.5} />
+          </button>
+        </div>
+
+        {/* Mobile Dots Indicator */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          {services.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex 
+                  ? 'w-8 bg-teal-700' 
+                  : 'w-2 bg-gray-300'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

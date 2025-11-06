@@ -5,8 +5,8 @@ import { Star } from "lucide-react";
 
 export default function TestimonialSection() {
   return (
-    <section className="w-full bg-white py-20 px-4">
-      <div className="max-w-4xl mx-auto text-center">
+    <section className="font-hedvig w-full bg-white py-20 md:px-8 px-2">
+      <div className="max-w-2xl mx-auto text-center">
         {/* Star Rating */}
         <div className="flex items-center justify-center gap-1 mb-8">
           {[1, 2, 3, 4, 5].map((star) => (
@@ -20,9 +20,7 @@ export default function TestimonialSection() {
         {/* Testimonial Text */}
         <h2 className="text-3xl md:text-3xl font-serif text-gray-900 leading-tight mb-12">
           Startex revolutionized our customer
-          <br />
           understanding, boosting retention like
-          <br />
           never before.
         </h2>
 

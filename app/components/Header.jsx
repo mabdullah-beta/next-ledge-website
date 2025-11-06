@@ -41,10 +41,10 @@ const Header = () => {
 
           {/* Desktop Navigation - Centered between logo and button */}
           <div className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
-            <ul className="flex items-center gap-9" role="navigation">
+            <ul className=" front-inter flex items-center gap-9" role="navigation">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-[16px] font-medium text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200">
+                  <Link href={item.href} className="text-[16px]  font-inter font-medium text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200">
                     {item.label}
                   </Link>
                 </li>
@@ -79,7 +79,7 @@ const Header = () => {
                 <Link 
                   href={item.href} 
                   onClick={() => setIsMobileMenuOpen(false)} 
-                  className="block text-center text-[16px] font-semibold text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200 py-4"
+                  className="block text-center text-[16px] font-semibold text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200 py-4  font-inter"
                 >
                   {item.label}
                 </Link>
