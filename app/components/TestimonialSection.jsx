@@ -18,7 +18,7 @@ export default function TestimonialSection() {
         </div>
 
         {/* Testimonial Text */}
-        <h2 className="text-3xl md:text-3xl font-serif text-gray-900 leading-tight mb-12">
+        <h2 className="font-hedvig text-3xl md:text-3xl  text-gray-900 leading-tight mb-12">
           Startex revolutionized our customer
           understanding, boosting retention like
           never before.

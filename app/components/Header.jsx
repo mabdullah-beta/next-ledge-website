@@ -53,10 +53,11 @@ const Header = () => {
           </div>
 
           {/* CTA Button */}
-          <Link href="#contact" className="hidden md:flex bg-[#1f514c] text-white pl-3 pr-2 py-1 rounded-full text-[15px] font-semibold hover:bg-[#17423d] transition-all duration-200 items-center gap-3 whitespace-nowrap" aria-label="Get in touch">
+          <Link href="#contact" className="hidden md:flex bg-[#1f514c] text-white pl-3 pr-2 py-1 rounded-full text-[15px] font-semibold hover:bg-[#17423d] transition-all duration-200 items-center gap-3 whitespace-nowrap group" aria-label="Get in touch">
             Get in touch
-            <span className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#1f514c]">
-              <ArrowRight size={20} strokeWidth={2.5} />
+            <span className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#1f514c] overflow-hidden relative">
+              <ArrowRight size={20} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />
+              <ArrowRight size={20} strokeWidth={2.5} className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
             </span>
           </Link>
 

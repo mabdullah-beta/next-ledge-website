@@ -52,11 +52,12 @@ const Hero = () => {
               <div className="flex flex-wrap items-center gap-5">
                 <Link
                   href="#contact"
-                  className="bg-white text-[#1f514c] pl-3 pr-2 py-0.5 rounded-full text-[15px] font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center gap-3 shadow-sm whitespace-nowrap"
+                  className="bg-white text-[#1f514c] pl-3 pr-2 py-0.5 rounded-full text-[15px] font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center gap-3 shadow-sm whitespace-nowrap group"
                 >
                   Get in touch
-                  <span className="w-9 h-9 bg-[#1f514c] rounded-full flex items-center justify-center text-white">
-                    <ArrowRight size={20} strokeWidth={2.5} />
+                  <span className="w-9 h-9 bg-[#1f514c] rounded-full flex items-center justify-center text-white overflow-hidden relative">
+                    <ArrowRight size={20} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />
+                    <ArrowRight size={20} strokeWidth={2.5} className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
                   </span>
                 </Link>
                 <Link
