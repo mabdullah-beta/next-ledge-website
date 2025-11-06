@@ -46,18 +46,18 @@ export default function BenefitsSection() {
     <section className="w-full bg-white py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="  font-hedvig text-center mb-20">
           <div className="flex items-center justify-center gap-2 mb-6">
             <div className="w-2 h-2 bg-teal-700 rounded-full"></div>
             <span className="text-sm font-medium text-gray-600">Features</span>
           </div>
-          <h2 className="text-5xl md:text-[45px] font-serif text-gray-900 leading-tight max-w-4xl mx-auto">
-            Key benefits that set us apart<br />from other ferns
+          <h2 className="max-w-2xl text-[38px] md:text-[45px]  text-gray-900 leading-tight  mx-auto">
+            Key benefits that set us apart from other ferns
           </h2>
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-0 gap-y-16 max-w-6xl mx-auto mr-8 mt-6">
+        <div className=" font-inter grid grid-cols-1 md:grid-cols-3 gap-x-0 gap-y-16 max-w-6xl mx-auto mr-8 mt-6">
           {benefits.map((benefit) => {
             const Icon = benefit.icon;
             return (
@@ -73,7 +73,7 @@ export default function BenefitsSection() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 text-base leading-relaxed max-w-xs mx-auto">
+                <p className="text-gray-600 text-base leading-relaxed max-w-[280px] mx-auto">
                   {benefit.description}
                 </p>
               </div>

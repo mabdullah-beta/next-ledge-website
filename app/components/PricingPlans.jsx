@@ -48,18 +48,18 @@ export default function PricingSection() {
     <section className="w-full bg-white py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-         <div className="text-center mb-16">
+         <div className="font-hedvig text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
            <div className="w-2 h-2 bg-teal-700 rounded-full"></div>
             <span className="text-sm font-medium text-gray-600">Pricing</span>
           </div>
-          <h2 className="text-[45px] md:text-[45px] font-serif text-gray-900 leading-16 mx-auto">
-            Flexible pricing tailored to<br />your business needs
+          <h2 className="text-[38px] md:text-[45px]  text-gray-900  mx-auto max-w-2xl">
+            Flexible pricing tailored toyour business needs
           </h2>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[850px] mx-auto">
+        <div className="font-inter grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[850px] mx-auto">
           {pricingPlans.map((plan) => (
             <div key={plan.id} className="relative">
               {/* Card */}
