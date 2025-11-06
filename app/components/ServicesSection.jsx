@@ -33,21 +33,24 @@ const services = [
 ];
 
 export default function Slider() {
+  // State: Track current slide index (starts at 1)
   const [currentIndex, setCurrentIndex] = useState(1);
 
+  // Navigation: Go to previous slide with loop
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1));
   };
 
+  // Navigation: Go to next slide with loop
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
   };
 
-  // Get visible cards (current, previous, next)
+  // Calculate which 3 cards to show (left, center, right) for carousel effect
   const getVisibleCards = () => {
     const prevIndex = currentIndex === 0 ? services.length - 1 : currentIndex - 1;
     const nextIndex = currentIndex === services.length - 1 ? 0 : currentIndex + 1;
-    
+
     return {
       left: services[prevIndex],
       center: services[currentIndex],

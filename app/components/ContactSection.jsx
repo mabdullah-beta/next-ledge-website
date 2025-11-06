@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 export default function ContactSection() {
+  // State: Store all form field values
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -14,12 +15,14 @@ export default function ContactSection() {
     message: ''
   });
 
+  // Handler: Process form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Handle form submission
+    // TODO: Add API call or email service integration
   };
 
+  // Handler: Update form data on input change
   const handleChange = (e) => {
     setFormData({
       ...formData,

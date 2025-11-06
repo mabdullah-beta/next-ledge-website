@@ -44,27 +44,31 @@ const teamMembers = [
 ];
 
 export default function TeamSection() {
+  // State: Current carousel position
   const [currentIndex, setCurrentIndex] = useState(0);
+  // State: Controls automatic sliding when section is visible
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  // State: Track if viewport is mobile size
   const [isMobile, setIsMobile] = useState(false);
+  // Ref: Used to track section visibility for auto-play
   const sectionRef = useRef(null);
-  
-  // Detect mobile view
+
+  // Effect: Detect mobile/desktop view and update on resize
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Calculate how many cards can fit (4 on desktop, 1 on mobile)
+  // Calculate visible cards: 4 on desktop, 1 on mobile
   const cardsToShow = isMobile ? 1 : 4;
   const maxIndex = Math.max(0, teamMembers.length - cardsToShow);
 
-  // Auto-play effect when section is in view
+  // Effect: Start/stop auto-play when section enters/leaves viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -74,7 +78,7 @@ export default function TeamSection() {
           setIsAutoPlaying(false);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 } // Trigger when 30% visible
     );
 
     if (sectionRef.current) {
@@ -88,7 +92,7 @@ export default function TeamSection() {
     };
   }, []);
 
-  // Auto-scroll effect
+  // Effect: Auto-scroll carousel every 3 seconds when auto-playing
   useEffect(() => {
     if (!isAutoPlaying) return;
 
@@ -99,18 +103,20 @@ export default function TeamSection() {
         }
         return prev + 1;
       });
-    }, 3000); // Move every 3 seconds
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [isAutoPlaying, maxIndex]);
 
+  // Manual navigation: Go to previous card and stop auto-play
   const handlePrevious = () => {
-    setIsAutoPlaying(false); // Stop auto-play on manual control
+    setIsAutoPlaying(false);
     setCurrentIndex((prev) => Math.max(0, prev - 1));
   };
 
+  // Manual navigation: Go to next card and stop auto-play
   const handleNext = () => {
-    setIsAutoPlaying(false); // Stop auto-play on manual control
+    setIsAutoPlaying(false);
     setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
   };
 

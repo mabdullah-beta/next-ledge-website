@@ -42,6 +42,7 @@ export default function HowItWorksSection() {
           </h2>
           <button className="inline-flex items-center gap-3 bg-teal-800 hover:bg-teal-900 text-white px-1 pl-4 py-1 rounded-full transition-all duration-200 group">
             <span className="font-semibold">Get in touch</span>
+            {/* Arrow animation: Two arrows for slide effect */}
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center overflow-hidden relative">
               <ArrowRight className="w-5 h-5 text-teal-800 transition-transform duration-300 group-hover:translate-x-6" />
               <ArrowRight className="w-5 h-5 text-teal-800 absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />

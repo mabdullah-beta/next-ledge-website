@@ -43,8 +43,10 @@ const faqs = [
 ];
 
 export default function FAQSection() {
-  const [openItems, setOpenItems] = useState([]); // All items closed by default
+  // State: Array of IDs for open accordion items (empty = all closed)
+  const [openItems, setOpenItems] = useState([]);
 
+  // Toggle: Open/close accordion item - allows multiple items open at once
   const toggleItem = (id) => {
     setOpenItems((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]

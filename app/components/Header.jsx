@@ -5,9 +5,12 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 const Header = () => {
+  // State: Track scroll position to add shadow to header
   const [isScrolled, setIsScrolled] = useState(false);
+  // State: Control mobile menu visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Effect: Add scroll listener to change header style when scrolling
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -55,13 +58,14 @@ const Header = () => {
           {/* CTA Button */}
           <Link href="#contact" className="hidden md:flex bg-[#1f514c] text-white pl-3 pr-2 py-1 rounded-full text-[15px] font-semibold hover:bg-[#17423d] transition-all duration-200 items-center gap-3 whitespace-nowrap group" aria-label="Get in touch">
             Get in touch
+            {/* Arrow animation: Two arrows for slide effect - one slides out right, another slides in from left */}
             <span className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#1f514c] overflow-hidden relative">
               <ArrowRight size={20} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />
               <ArrowRight size={20} strokeWidth={2.5} className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
             </span>
           </Link>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button: Hamburger icon that transforms into X */}
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 group" aria-label="Toggle menu" aria-expanded={isMobileMenuOpen}>
             <span className={`block w-6 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
             <span className={`block w-6 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`} />
@@ -72,14 +76,14 @@ const Header = () => {
 
       {/* Mobile Menu Dropdown */}
       <div className={`md:hidden fixed top-[60px] left-0 right-0 bg-white shadow-lg z-40 transform transition-all duration-300 ease-in-out ${isMobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0 pointer-events-none"}`}>
-        {/* Mobile Menu Navigation */}
         <nav className="px-4 py-">
           <ul className="space-y-0">
             {navItems.map((item, index) => (
               <li key={item.label} className={index !== navItems.length - 1 ? "" : ""}>
-                <Link 
-                  href={item.href} 
-                  onClick={() => setIsMobileMenuOpen(false)} 
+                {/* Close menu when link is clicked */}
+                <Link
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className="block text-center text-[16px] font-semibold text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200 py-4  font-inter"
                 >
                   {item.label}
