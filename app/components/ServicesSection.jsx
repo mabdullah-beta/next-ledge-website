@@ -72,7 +72,7 @@ export default function Slider() {
       <div className="text-center mb-16 md:mb-16 sm:mb-10">
         <div className="flex items-center justify-center gap-2 mb-6 md:mb-6 sm:mb-4">
             <div className="w-2 h-2 bg-[#1f514c] rounded-full"></div>
-          <span className=" text-base font-semimedium text-[#1f514c]14c]">Services</span>
+          <span className=" text-base font-semimedium text-[#1f514c]">Services</span>
         </div>
         <h1 className="font-hedvig text-[38px] md:text-[45px] sm:text-[32px]  text-gray-900 leading-tight max-w-4xl mx-auto px-4">
           Reliable expertise to drive your<br className="hidden md:block" /> greatest success
@@ -91,15 +91,14 @@ export default function Slider() {
           {/* Left Card */}
           <motion.div
             key={`left-${cards.left.id}`}
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ 
+            animate={{
               opacity: 0.5,
               x: 0,
               rotateY: -30,
               scale: 0.95,
               z: -100
             }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
             className="w-[380px] h-[380px] shrink-0"
             style={{
               transformStyle: 'preserve-3d',
@@ -126,14 +125,13 @@ export default function Slider() {
           {/* Center Card */}
           <motion.div
             key={`center-${cards.center.id}`}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ 
+            animate={{
               opacity: 1,
               scale: 1,
               rotateY: 0,
               z: 0
             }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
             className="w-[540px] h-[400px] shrink-0"
             style={{
               transformStyle: 'preserve-3d'
@@ -159,15 +157,14 @@ export default function Slider() {
           {/* Right Card */}
           <motion.div
             key={`right-${cards.right.id}`}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ 
+            animate={{
               opacity: 0.5,
               x: 0,
               rotateY: 30,
               scale: 0.95,
               z: -100
             }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
             className="w-[380px] h-[380px] shrink-0"
             style={{
               transformStyle: 'preserve-3d',
@@ -216,12 +213,10 @@ export default function Slider() {
           {/* Mobile Card */}
           <motion.div
             key={`mobile-${cards.center.id}`}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ 
+            animate={{
               opacity: 1,
               x: 0
             }}
-            exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="w-full"
           >
