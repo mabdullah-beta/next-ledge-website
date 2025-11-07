@@ -42,20 +42,20 @@ const Comparison = () => {
       <div className="max-w-5xl mx-auto px-4 md:px-8 sm:px-5">
         <div className="text-center mb-16 md:mb-16 sm:mb-12">
           <div className="flex items-center justify-center gap-2 mb-6 md:mb-6 sm:mb-4">
-            <div className="w-2 h-2 bg-[#1f514c] rounded-full"></div>
-            <span className="font-inter text-base font-semimedium text-[#1f514c]">Why choose us</span>
+            <div className="dot-indicator bg-primary rounded-full"></div>
+            <span className="font-inter text-base font-semimedium text-primary">Why choose us</span>
           </div>
-          <h1 className="font-hedvig text-[45px] md:text-[45px] sm:text-[32px] text-gray-900 leading-tight max-w-2xl mx-auto">
+          <h1 className="font-hedvig text-heading-lg text-gray-900 leading-tight max-w-2xl mx-auto">
             More than accountants — partners in your business journey
 
           </h1>
         </div>
 
         {/* Comparison Grid */}
-        <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 bg-gradient-to-b from-[#fefffd] to-[#f5fef0] border-2 border-[#e8f5e0] rounded-3xl overflow-hidden p-1.5">
+        <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 bg-gradient-to-b from-mint-lightest to-mint-lighter border-2 border-border-mint rounded-3xl overflow-hidden p-1.5">
           
           {/* Left Column - Other Firms */}
-          <div className="font-inter  p-12 md:p-10 sm:p-8 space-y-10 md:space-y-10 sm:space-y-8">
+          <div className="font-inter  p-8 md:p-10 sm:p-8 space-y-10 md:space-y-10 sm:space-y-8">
             <h3 className="text-[28px] md:text-[26px] sm:text-[24px] font-semibold text-black md:mb-9 mb-9">Other Firms</h3>
             
             {otherFirms.map((item, index) => (
@@ -72,18 +72,18 @@ const Comparison = () => {
           </div>
 
           {/* Right Column - With Nexledge */}
-          <div className="bg-white p-12 md:p-10 sm:p-8 space-y-10 md:space-y-10 sm:space-y-8 rounded-3xl">
+          <div className="bg-white p-8 md:p-10 sm:p-8 space-y-10 md:space-y-10 sm:space-y-8 rounded-3xl">
             <h3 className="text-[28px] md:text-[26px] sm:text-[24px] font-semibold text-black md:mb-9 mb-9">With Nexledge</h3>
             
             {withStratex.map((item, index) => (
               <div key={index} className="flex gap-4 items-start">
                 <div className="flex-shrink-0 mt-1">
-                  <div className="w-5 h-5 bg-[#1f514c] rounded-full flex items-center justify-center">
+                  <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
                     <Check size={14} className="text-white" strokeWidth={3} />
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-[20px] md:text-[22px] sm:text-[18px] font-semibold text-black mb-2">{item.title}</h4>
+                  <h4 className="text-[20px] md:text-[22px] sm:text-lg font-semibold text-black mb-2">{item.title}</h4>
                   <p className="text-[16px] md:text-[15px] sm:text-[15px] font-normal text-gray-600 leading-relaxed">{item.description}</p>
                 </div>
               </div>

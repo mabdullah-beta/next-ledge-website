@@ -34,18 +34,18 @@ export default function HowItWorksSection() {
         {/* Header */}
         <div className="text-center mb-20 md:mb-20 sm:mb-12">
           <div className="flex items-center justify-center gap-2 mb-6 md:mb-6 sm:mb-4">
-            <div className="w-2 h-2 bg-teal-700 rounded-full"></div>
-            <span className="font-inter text-sm font-medium text-[#1f514c]">How it works</span>
+            <div className="dot-indicator bg-secondary-light rounded-full"></div>
+            <span className="font-inter text-sm font-medium text-primary">How it works</span>
           </div>
-          <h2 className="font-hedvig text-[35px] md:text-[45px] sm:text-[32px] text-gray-900 leading-tight mb-8 md:mb-8 sm:mb-6 max-w-xl mx-auto px-4">
+          <h2 className="font-hedvig text-heading-lg text-gray-900 leading-tight mb-8 md:mb-8 sm:mb-6 max-w-xl mx-auto px-4">
             A proven process to achieve your biggest goals
           </h2>
-          <button className="inline-flex items-center gap-3 bg-teal-800 hover:bg-teal-900 text-white px-1 pl-4 py-1 rounded-full transition-all duration-200 group">
+          <button className="inline-flex items-center gap-3 bg-secondary hover:bg-secondary-dark text-white px-1 pl-4 py-1 rounded-full transition-all duration-200 group">
             <span className="font-semibold">Get in touch</span>
             {/* Arrow animation: Two arrows for slide effect */}
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center overflow-hidden relative">
-              <ArrowRight className="w-5 h-5 text-teal-800 transition-transform duration-300 group-hover:translate-x-6" />
-              <ArrowRight className="w-5 h-5 text-teal-800 absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
+              <ArrowRight className="w-5 h-5 text-secondary transition-transform duration-300 group-hover:translate-x-6" />
+              <ArrowRight className="w-5 h-5 text-secondary absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
             </div>
           </button>
         </div>
@@ -64,7 +64,7 @@ export default function HowItWorksSection() {
                 <div className="hidden md:block">
                   {/* Number Badge on Timeline - Desktop */}
                   <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                    <div className="w-8 h-8 bg-teal-800 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                    <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
                       {step.id}
                     </div>
                   </div>
@@ -107,7 +107,7 @@ export default function HowItWorksSection() {
                           <h3 className="text-[28px] font-semibold text-gray-900 mb-6">
                             {step.title}
                           </h3>
-                          <p className="antialiased text-base leading-relaxed mb-6 font-semibold text-[#636363]">
+                          <p className="antialiased text-base leading-relaxed mb-6 font-semibold text-body">
                             {step.description}
                           </p>
                           <div className="flex justify-end">
@@ -139,7 +139,7 @@ export default function HowItWorksSection() {
                 <div className="md:hidden pl-16">
                   {/* Number Badge - Mobile (left side with gap from timeline) */}
                   <div className="absolute left-[30px] top-0 -translate-x-1/2 z-10">
-                    <div className="w-8 h-8 bg-teal-800 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                    <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
                       {step.id}
                     </div>
                   </div>

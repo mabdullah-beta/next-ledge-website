@@ -34,10 +34,10 @@ const Header = () => {
           
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" aria-label="Stratex Home">
-            <div className="w-8 h-8 bg-[#1f514c] rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
+            <div className="w-8 h-8 bg-primary rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
               <Image src="/next-ledge.png" alt="Stratex Logo" width={35} height={35} />
             </div>
-            <span className="text-[22px] md:text-[22px] sm:text-[20px] font-normal text-[#1a1a1a] tracking-tight transition-opacity duration-200 group-hover:opacity-80" style={{ fontFamily: "serif" }}>
+            <span className="text-[22px] md:text-[22px] sm:text-[20px] font-normal text-heading tracking-tight transition-opacity duration-200 group-hover:opacity-80" style={{ fontFamily: "serif" }}>
               Nexledge
             </span>
           </Link>
@@ -47,7 +47,7 @@ const Header = () => {
             <ul className=" front-inter flex items-center gap-9" role="navigation">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-[16px]  font-inter font-medium text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200">
+                  <Link href={item.href} className="text-[16px]  font-inter font-medium text-heading hover:opacity-60 transition-opacity duration-200">
                     {item.label}
                   </Link>
                 </li>
@@ -56,10 +56,10 @@ const Header = () => {
           </div>
 
           {/* CTA Button */}
-          <Link href="#contact" className="hidden md:flex bg-[#1f514c] text-white pl-3 pr-2 py-1 rounded-full text-[16px] font-semibold hover:bg-[#17423d] transition-all duration-200 items-center gap-3 whitespace-nowrap group" aria-label="Get in touch">
+          <Link href="#contact" className="hidden md:flex bg-primary text-white pl-3 pr-2 py-1 rounded-full text-[16px] font-semibold hover:bg-primary-dark transition-all duration-200 items-center gap-3 whitespace-nowrap group" aria-label="Get in touch">
             Get in touch
             {/* Arrow animation: Two arrows for slide effect - one slides out right, another slides in from left */}
-            <span className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#1f514c] overflow-hidden relative">
+            <span className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-primary overflow-hidden relative">
               <ArrowRight size={20} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />
               <ArrowRight size={20} strokeWidth={2.5} className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
             </span>
@@ -67,8 +67,8 @@ const Header = () => {
 
           {/* Mobile Menu Button: Hamburger icon that transforms into X */}
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-2 group" aria-label="Toggle menu" aria-expanded={isMobileMenuOpen}>
-            <span className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-heading transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-heading transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`} />
           </button>
         </nav>
       </div>
@@ -83,7 +83,7 @@ const Header = () => {
                 <Link
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-center text-[16px] font-semibold text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200 py-4  font-inter"
+                  className="block text-center text-[16px] font-semibold text-heading hover:opacity-60 transition-opacity duration-200 py-4  font-inter"
                 >
                   {item.label}
                 </Link>

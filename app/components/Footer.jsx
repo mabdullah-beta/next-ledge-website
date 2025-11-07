@@ -6,7 +6,7 @@ import { ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#f5f5f5] border-t border-gray-200">
+    <footer className="w-full bg-gray border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-8 md:px-12 sm:px-5 py-12 md:py-12 sm:py-10">
         {/* Desktop Layout */}
         <div className="hidden md:flex md:justify-between md:gap-24">
@@ -14,21 +14,21 @@ export default function Footer() {
           <div className="flex-shrink-0 max-w-xl ml-4">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-8 bg-[#1f514c] rounded-xl flex items-center justify-center">
-                <Image 
-                  src="/next-ledge.png" 
-                  alt="Stratex Logo" 
-                  width={28} 
-                  height={28} 
+              <div className="w-8 h-8 bg-primary rounded-xl flex items-center justify-center">
+                <Image
+                  src="/next-ledge.png"
+                  alt="Stratex Logo"
+                  width={28}
+                  height={28}
                 />
               </div>
-              <span className="text-[24px] font-normal text-[#1a1a1a] tracking-tight" style={{ fontFamily: 'serif' }}>
+              <span className="text-[24px] font-normal text-heading tracking-tight" style={{ fontFamily: 'serif' }}>
                 Nexledge
               </span>
             </Link>
 
             {/* Description */}
-            <p className="text-[18px] text-[#636363] leading-relaxed mb-8 max-w-72">
+            <p className="text-lg text-body leading-relaxed mb-8 max-w-72">
               Optimize your business strategy with expert consulting solutions
             </p>
 
@@ -39,7 +39,7 @@ export default function Footer() {
           <div className="flex gap-20 mr-20">
             {/* Column 2 - Menu */}
             <div>
-            <h3 className="text-[18px] font-semibold text-gray-900 mb-6">Menu</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-6">Menu</h3>
             <ul className="space-y-4">
               <li>
                 <Link href="#services" className="text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
@@ -76,7 +76,7 @@ export default function Footer() {
 
             {/* Column 3 - Follow us */}
             <div>
-            <h3 className="text-[18px] font-semibold text-gray-900 mb-6">Follow us:</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-6">Follow us:</h3>
             <ul className="space-y-4">
               <li>
                 <Link href="https://instagram.com" target="_blank" className="text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
@@ -98,7 +98,7 @@ export default function Footer() {
 
             {/* Column 4 - Contact */}
             <div>
-            <h3 className="text-[18px] font-semibold text-gray-900 mb-6">Contact</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-6">Contact</h3>
             <ul className="space-y-4">
               <li>
                 <a href="mailto:insert.supply@gmail.com" className="text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
@@ -125,15 +125,15 @@ export default function Footer() {
           {/* Logo and Description */}
           <div>
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-[#1f514c] rounded-xl flex items-center justify-center">
-                <Image 
-                  src="https://framerusercontent.com/images/AUOOfMLqx3UrCzpH7eIka9rF8.svg" 
-                  alt="Stratex Logo" 
-                  width={20} 
-                  height={20} 
+              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+                <Image
+                  src="https://framerusercontent.com/images/AUOOfMLqx3UrCzpH7eIka9rF8.svg"
+                  alt="Stratex Logo"
+                  width={20}
+                  height={20}
                 />
               </div>
-              <span className="text-[26px] font-normal text-[#1a1a1a] tracking-tight" style={{ fontFamily: 'serif' }}>
+              <span className="text-[26px] font-normal text-heading tracking-tight" style={{ fontFamily: 'serif' }}>
                 Stratex
               </span>
             </Link>

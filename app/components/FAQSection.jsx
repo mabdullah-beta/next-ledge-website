@@ -59,12 +59,12 @@ export default function FAQSection() {
         {/* Header */}
         <div className="font-hedvig text-center mb-16 md:mb-16 sm:mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-2 h-2 bg-teal-700 rounded-full"></div>
-            <span className="font-inter text-sm font-medium text-[#1f514c]">
+            <div className="dot-indicator bg-secondary-light rounded-full"></div>
+            <span className="font-inter text-sm font-medium text-primary">
               FAQ
             </span>
           </div>
-          <h2 className="font-hedvig text-[35px] md:text-[45px] sm:text-[32px] leading-tight text-gray-900 mx-auto max-w-2xl mb-5 px-4">
+          <h2 className="font-hedvig text-heading-lg leading-tight text-gray-900 mx-auto max-w-2xl mb-5 px-4">
             Answers to your most common questions{" "}
           </h2>
         </div>
@@ -85,10 +85,10 @@ export default function FAQSection() {
                   onClick={() => toggleItem(faq.id)}
                   className=" antialiased w-full flex items-center justify-between gap-2 text-left py-4 group"
                 >
-                  <h3 className="antialiased  md:text-[18px] font-normal text-gray-900">
+                  <h3 className="antialiased  md:text-lg font-normal text-gray-900">
                     {faq.question}
                   </h3>
-                  <div className="flex-shrink-0 w-6 h-6 bg-teal-800 rounded-full flex items-center justify-center text-white transition-transform duration-500">
+                  <div className="flex-shrink-0 w-6 h-6 bg-secondary rounded-full flex items-center justify-center text-white transition-transform duration-500">
                     <ChevronDown
                       className={`w-3 h-3 transition-transform duration-1000 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
                       strokeWidth={2}

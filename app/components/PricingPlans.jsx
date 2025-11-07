@@ -11,7 +11,7 @@ const pricingPlans = [
     period: '/Month',
     buttonText: 'Request Consultation',
     buttonStyle: 'border-2 border-gray-300 bg-white text-gray-900 hover:bg-gray-50',
-    bgColor: '#fcfffb',
+    bgColor: 'bg-cream',
     features: [
       'Personalized strategy sessions',
       'Essential business analytics',
@@ -28,8 +28,8 @@ const pricingPlans = [
     price: '$299',
     period: '/Month',
     buttonText: 'Get Started',
-    buttonStyle: 'bg-teal-800 text-white hover:bg-teal-900',
-    bgColorHeader: '#eeffe5',
+    buttonStyle: 'bg-secondary text-white hover:bg-secondary-dark',
+    bgColorHeader: 'bg-mint-light',
     bgColorFeatures: '#ffffff',
     isPopular: true,
     features: [
@@ -50,10 +50,10 @@ export default function PricingPlans() {
         {/* Header */}
          <div className="font-hedvig text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
-           <div className="w-2 h-2 bg-teal-700 rounded-full"></div>
+           <div className="dot-indicator bg-secondary-light rounded-full"></div>
             <span className="text-sm font-medium text-gray-600">Pricing</span>
           </div>
-          <h2 className=" font-hedvig text-[35px] md:text-[45px]  text-gray-900  mx-auto max-w-2xl">
+          <h2 className="font-hedvig text-heading-lg text-gray-900 mx-auto max-w-2xl">
             Flexible pricing tailored to your business needs
           </h2>
         </div>
@@ -63,13 +63,12 @@ export default function PricingPlans() {
           {pricingPlans.map((plan) => (
             <div key={plan.id} className="relative">
               {/* Card */}
-              <div 
-                className="rounded-3xl overflow-hidden shadow-lg border border-gray-200"
-                style={
-                  plan.id === 'premium' 
-                    ? { background: 'linear-gradient(to bottom, #efffe5 0%, #ffffff 100%)' }
-                    : { backgroundColor: plan.bgColor }
-                }
+              <div
+                className={`rounded-3xl overflow-hidden shadow-lg border border-gray-200 ${
+                  plan.id === 'premium'
+                    ? 'bg-gradient-to-b from-mint-light to-white'
+                    : plan.bgColor
+                }`}
               >
                 {/* Header Section */}
                 <div className="p-8 pb-6">
@@ -79,7 +78,7 @@ export default function PricingPlans() {
                       {plan.name}
                     </h3>
                     {plan.isPopular && (
-                      <span className="inline-flex items-center gap-1 px-3 py-1 bg-teal-800 text-white text-xs font-medium rounded-full">
+                      <span className="inline-flex items-center gap-1 px-3 py-1 bg-secondary text-white text-xs font-medium rounded-full">
                         <Sparkles className="w-3 h-3" />
                         Popular
                       </span>
@@ -87,7 +86,7 @@ export default function PricingPlans() {
                   </div>
 
                   {/* Description */}
-                  <p className=" text-gray-700 text-[18px] mb-4 leading-relaxed antialiased">
+                  <p className=" text-gray-700 text-lg mb-4 leading-relaxed antialiased">
                     {plan.description}
                   </p>
 

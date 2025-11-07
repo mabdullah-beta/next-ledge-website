@@ -71,10 +71,10 @@ export default function Slider() {
       {/* Header */}
       <div className="text-center mb-16 md:mb-16 sm:mb-10">
         <div className="flex items-center justify-center gap-2 mb-6 md:mb-6 sm:mb-4">
-            <div className="w-2 h-2 bg-[#1f514c] rounded-full"></div>
-          <span className=" text-base font-semimedium text-[#1f514c]">Services</span>
+            <div className="dot-indicator bg-primary rounded-full"></div>
+          <span className=" text-base font-semimedium text-primary">Services</span>
         </div>
-        <h1 className="font-hedvig text-[38px] md:text-[45px] sm:text-[32px]  text-gray-900 leading-tight max-w-4xl mx-auto px-4">
+        <h1 className="font-hedvig text-heading-lg text-gray-900 leading-tight max-w-4xl mx-auto px-4">
           Reliable expertise to drive your<br className="hidden md:block" /> greatest success
         </h1>
       </div>
@@ -191,7 +191,7 @@ export default function Slider() {
           {/* Navigation Buttons - Desktop */}
           <button
             onClick={handlePrevious}
-            className="absolute left-[calc(50%-290px)] z-40 w-10 h-10 bg-teal-700 hover:bg-teal-800 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
+            className="absolute left-[calc(50%-290px)] z-40 w-10 h-10 bg-secondary-light hover:bg-secondary text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
             aria-label="Previous slide"
           >
             <ArrowLeft className="w-6 h-6" />
@@ -199,7 +199,7 @@ export default function Slider() {
 
           <button
             onClick={handleNext}
-            className="absolute right-[calc(50%-290px)] z-40 w-10 h-10 bg-teal-700 hover:bg-teal-800 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
+            className="absolute right-[calc(50%-290px)] z-40 w-10 h-10 bg-secondary-light hover:bg-secondary text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
             aria-label="Next slide"
           >
             <ArrowRight size={20} strokeWidth={2.5} />
@@ -240,7 +240,7 @@ export default function Slider() {
           {/* Mobile Navigation Buttons - At the edges */}
           <button
             onClick={handlePrevious}
-            className="absolute -left-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 bg-teal-700 hover:bg-teal-800 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 active:scale-95"
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 bg-secondary-light hover:bg-secondary text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 active:scale-95"
             aria-label="Previous slide"
           >
             <ArrowLeft className="w-5 h-5" />
@@ -248,7 +248,7 @@ export default function Slider() {
 
           <button
             onClick={handleNext}
-            className="absolute -right-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 bg-teal-700 hover:bg-teal-800 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 active:scale-95"
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 bg-secondary-light hover:bg-secondary text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 active:scale-95"
             aria-label="Next slide"
           >
             <ArrowRight className="w-5 h-5" strokeWidth={2.5} />
@@ -262,8 +262,8 @@ export default function Slider() {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex 
-                  ? 'w-8 bg-teal-700' 
+                index === currentIndex
+                  ? 'w-8 bg-secondary-light'
                   : 'w-2 bg-gray-300'
               }`}
               aria-label={`Go to slide ${index + 1}`}

@@ -24,7 +24,7 @@ const Hero = () => {
     >
       <div className="max-w-full mx-auto px-5 md:px-30 sm:px-5">
         <div
-          className={`relative bg-[#1f514c] rounded-4xl md:rounded-4xl sm:rounded-3xl overflow-hidden transition-all duration-1000 ease-out ${
+          className={`relative bg-primary rounded-4xl md:rounded-4xl sm:rounded-3xl overflow-hidden transition-all duration-1000 ease-out ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
@@ -62,14 +62,14 @@ const Hero = () => {
                 >
                   Get in touch
                   {/* Arrow animation: Two arrows for slide effect */}
-                  <span className="w-8 h-8 bg-[#1f514c] rounded-full flex items-center justify-center text-white overflow-hidden relative">
+                  <span className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white overflow-hidden relative">
                     <ArrowRight size={18} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />
                     <ArrowRight size={18} strokeWidth={2.5} className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
                   </span>
                 </Link>
                 <Link
                   href="#services"
-                  className="font-inter bg-transparent text-white  py-3.5 rounded-full text-[18px] font-semibold hover:bg-white/10 transition-all duration-200 border border-transparent whitespace-nowrap"
+                  className="font-inter bg-transparent text-white  py-3.5 rounded-full text-lg font-semibold hover:bg-white/10 transition-all duration-200 border border-transparent whitespace-nowrap"
                 >
                   What we do
                 </Link>

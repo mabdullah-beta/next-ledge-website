@@ -42,9 +42,9 @@ export default function TestimonialSection() {
             <h3 className="text-xl font-semibold text-gray-900 mb-1">
               Muzamal Hussain
             </h3>
-            <div className="flex items-center gap-2 bg-[#f0ffe7] px-3 py-1 rounded-xl">
-              <span className="flex items-center gap-2 text-[10px] text-[#1f514c]">
-                
+            <div className="flex items-center gap-2 bg-mint px-3 py-1 rounded-xl">
+              <span className="flex items-center gap-2 text-[10px] text-primary">
+
                 High conversion  <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>2x sales
               </span>
             </div>
