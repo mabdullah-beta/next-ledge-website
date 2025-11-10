@@ -143,7 +143,7 @@ export default function TeamSection() {
           {/* Cards Container */}
           <div className="overflow-hidden px-4 lg:px-4 sm:px-0">
             <div 
-              className="flex gap-4 lg:gap-4 sm:gap-0 transition-transform duration-700 ease-out"
+              className="flex gap-8 lg:gap-8 sm:gap-0 transition-transform duration-700 ease-out"
               style={{
                 transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`
               }}
@@ -155,10 +155,10 @@ export default function TeamSection() {
                   style={{ 
                     width: isMobile 
                       ? '100%' 
-                      : `calc(${100 / cardsToShow}% - ${(4 * (cardsToShow - 1)) / cardsToShow}px)` 
+                      : `calc(${100 / cardsToShow}% - ${(32 * (cardsToShow - 1)) / cardsToShow}px)` 
                   }}
                 >
-                  <div className="relative h-[400px] lg:h-[320px] rounded-3xl overflow-hidden group cursor-pointer">
+                  <div className="relative h-[400px] rounded-3xl overflow-hidden group cursor-pointer">
                     {/* Image */}
                     <Image
                       src={member.image}

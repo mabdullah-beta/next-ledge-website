@@ -40,15 +40,18 @@ const services = [
 
 export default function Slider() {
   // State: Track current slide index (starts at 1)
-  const [currentIndex, setCurrentIndex] = useState(1);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState('next');
 
   // Navigation: Go to previous slide with loop
   const handlePrevious = () => {
+    setDirection('prev');
     setCurrentIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1));
   };
 
   // Navigation: Go to next slide with loop
   const handleNext = () => {
+    setDirection('next');
     setCurrentIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
   };
 
@@ -65,6 +68,29 @@ export default function Slider() {
   };
 
   const cards = getVisibleCards();
+
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction === 'next' ? 200 : -200,
+      opacity: 0,
+      scale: 0.9,
+      rotateY: direction === 'next' ? -20 : 20,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      rotateY: 0,
+      zIndex: 1,
+    },
+    exit: (direction) => ({
+      x: direction === 'next' ? -200 : 200,
+      opacity: 0,
+      scale: 0.9,
+      rotateY: direction === 'next' ? 20 : -20,
+      zIndex: 0,
+    }),
+  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-12 md:py-12 sm:py-8" id="services">
@@ -89,105 +115,102 @@ export default function Slider() {
             perspectiveOrigin: 'center center'
           }}
         >
-          {/* Left Card */}
-          <motion.div
-            key={`left-${cards.left.id}`}
-            animate={{
-              opacity: 0.5,
-              x: 0,
-              rotateY: -30,
-              scale: 0.95,
-              z: -100
-            }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="w-[380px] h-[380px] shrink-0"
-            style={{
-              transformStyle: 'preserve-3d',
-              filter: 'blur(1.5px)'
-            }}
-          >
-            <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl cursor-pointer">
-              <Image
-                src={cards.left.image}
-                alt={cards.left.title}
-                fill
-                className="object-cover"
-                sizes="400px"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-xl font-semibold mb-2">{cards.left.title}</h3>
-                <p className="text-gray-200 text-xs leading-relaxed">{cards.left.description}</p>
-              </div>
-            </div>
-          </motion.div>
+          <AnimatePresence initial={false} custom={direction}>
 
-          {/* Center Card */}
-          <motion.div
-            key={`center-${cards.center.id}`}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              rotateY: 0,
-              z: 0
-            }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="w-[540px] h-[400px] shrink-0"
-            style={{
-              transformStyle: 'preserve-3d'
-            }}
-          >
-            <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl cursor-pointer">
-              <Image
-                src={cards.center.image}
-                alt={cards.center.title}
-                fill
-                className="object-cover"
-                sizes="540px"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                <h3 className="text-2xl font-semibold mb-3">{cards.center.title}</h3>
-                <p className="text-gray-200 text-sm leading-relaxed">{cards.center.description}</p>
+            {/* Left Card */}
+            <motion.div
+              key={`left-${cards.left.id}`}
+              initial={{ opacity: 0, x: -100, rotateY: -45, scale: 0.9 }}
+              animate={{
+                opacity: 0.5,
+                x: -450,
+                rotateY: -20,
+                scale: 0.9,
+                filter: 'blur(1.5px)',
+              }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              className="absolute w-[380px] h-[380px] shrink-0"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              
+              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src={cards.left.image}
+                  alt={cards.left.title}
+                  fill
+                  className="object-cover"
+                  sizes="400px"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-xl font-semibold mb-2">{cards.left.title}</h3>
+                  <p className="text-gray-200 text-xs leading-relaxed">{cards.left.description}</p>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Right Card */}
-          <motion.div
-            key={`right-${cards.right.id}`}
-            animate={{
-              opacity: 0.5,
-              x: 0,
-              rotateY: 30,
-              scale: 0.95,
-              z: -100
-            }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="w-[380px] h-[380px] shrink-0"
-            style={{
-              transformStyle: 'preserve-3d',
-              filter: 'blur(1.5px)'
-            }}
-          >
-            <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl cursor-pointer">
-              <Image
-                src={cards.right.image}
-                alt={cards.right.title}
-                fill
-                className="object-cover"
-                sizes="400px"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-xl font-semibold mb-1">{cards.right.title}</h3>
-                <p className="text-gray-200 text-xs leading-relaxed">{cards.right.description}</p>
+            {/* Center Card */}
+            <motion.div
+              key={`center-${cards.center.id}`}
+              variants={slideVariants}
+              custom={direction}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              className="absolute w-[540px] h-[400px] shrink-0"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src={cards.center.image}
+                  alt={cards.center.title}
+                  fill
+                  className="object-cover"
+                  sizes="540px"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <h3 className="text-2xl font-semibold mb-3">{cards.center.title}</h3>
+                  <p className="text-gray-200 text-sm leading-relaxed">{cards.center.description}</p>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* Right Card */}
+            <motion.div
+              key={`right-${cards.right.id}`}
+              initial={{ opacity: 0, x: 100, rotateY: 45, scale: 0.9 }}
+              animate={{
+                opacity: 0.5,
+                x: 450,
+                rotateY: 20,
+                scale: 0.9,
+                filter: 'blur(1.5px)',
+              }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              className="absolute w-[380px] h-[380px] shrink-0"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src={cards.right.image}
+                  alt={cards.right.title}
+                  fill
+                  className="object-cover"
+                  sizes="400px"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-xl font-semibold mb-1">{cards.right.title}</h3>
+                  <p className="text-gray-200 text-xs leading-relaxed">{cards.right.description}</p>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
           {/* Navigation Buttons - Desktop */}
           <button
