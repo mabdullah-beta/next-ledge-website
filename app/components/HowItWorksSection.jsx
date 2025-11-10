@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 const steps = [
   {
@@ -26,6 +28,161 @@ const steps = [
     imagePosition: 'left' // Image on left, content on right
   }
 ];
+
+function StepItem({ step, index }) {
+  const stepRef = useRef(null);
+  const isInView = useInView(stepRef, { once: true, amount: 0.3 });
+
+  return (
+    <div ref={stepRef} className="relative">
+      {/* Timeline Line Segment - only between steps, not after the last one */}
+      {index < steps.length - 1 && (
+        <div className="absolute left-[30px] md:left-1/2 top-[calc(50%+28px)] w-px h-[calc(100%+4.5rem)] md:h-[calc(100%+6.5rem)] bg-gray-300 md:-translate-x-1/2"></div>
+      )}
+      
+      {/* Desktop Layout */}
+      <div className="hidden md:block">
+        {/* Number Badge on Timeline - Desktop */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+          <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+            {step.id}
+          </div>
+        </div>
+
+        {/* Content Row - Desktop */}
+        <div className="grid grid-cols-2 gap-12 items-center">
+          {step.imagePosition === 'left' ? (
+            <>
+              {/* Image on Left - Animated */}
+              <motion.div 
+                className="pr-12"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <div className="relative w-[80%] h-[295px] rounded-3xl overflow-hidden shadow-xl ml-auto">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    fill
+                    className="object-cover"
+                    sizes="50vw"
+                  />
+                </div>
+              </motion.div>
+
+              {/* Content on Right - Animated */}
+              <motion.div 
+                className="pl-16"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+              >
+                <h3 className="text-[28px] font-semibold text-gray-900 mb-6 tracking-tight">
+                  {step.title}
+                </h3>
+                <p className="antialiased text-gray-700 text-base leading-relaxed mb-6">
+                  {step.description}
+                </p>
+                <button className="inline-flex items-center gap-2 text-gray-900 font-bold hover:gap-3 transition-all">
+                  Discover More
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </motion.div>
+            </>
+          ) : (
+            <>
+              {/* Content on Left - Animated */}
+              <motion.div 
+                className="pr-16 text-right"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <h3 className="text-[28px] font-semibold text-gray-900 mb-6">
+                  {step.title}
+                </h3>
+                <p className="antialiased text-base leading-relaxed mb-6 font-semibold text-body">
+                  {step.description}
+                </p>
+                <div className="flex justify-end">
+                  <button className="inline-flex items-center gap-2 text-gray-900 font-semibold hover:gap-3 transition-all">
+                    Discover More
+                    <ArrowRight className="w-5 h-5 rotate-180" />
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Image on Right - Animated */}
+              <motion.div 
+                className="pl-12"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+              >
+                <div className="relative w-[80%] h-[295px] rounded-3xl overflow-hidden shadow-xl">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    fill
+                    className="object-cover"
+                    sizes="50vw"
+                  />
+                </div>
+              </motion.div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="md:hidden pl-16">
+        {/* Number Badge - Mobile */}
+        <div className="absolute left-[30px] top-0 -translate-x-1/2 z-10">
+          <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+            {step.id}
+          </div>
+        </div>
+
+        {/* Image First - Mobile - Animated */}
+        <motion.div 
+          className="mb-8 mt-16"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <div className="relative w-full h-[320px] rounded-3xl overflow-hidden shadow-xl">
+            <Image
+              src={step.image}
+              alt={step.title}
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+        </motion.div>
+
+        {/* Content Below Image - Mobile - Animated */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+        >
+          <h3 className="text-[28px] font-semibold text-gray-900 mb-3">
+            {step.title}
+          </h3>
+          <p className="antialiased text-gray-600 text-base leading-relaxed mb-5">
+            {step.description}
+          </p>
+          <button className="inline-flex items-center gap-2 text-gray-900 font-bold hover:gap-3 transition-all">
+            Discover More
+            <ArrowRight className="w-5 h-5" />
+          </button>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
 
 export default function HowItWorksSection() {
   return (
@@ -55,123 +212,7 @@ export default function HowItWorksSection() {
           {/* Steps */}
           <div className="space-y-24 md:space-y-32">
             {steps.map((step, index) => (
-              <div key={step.id} className="relative">
-                {/* Timeline Line Segment - only between steps, not after the last one */}
-                {index < steps.length - 1 && (
-                  <div className="absolute left-[30px] md:left-1/2 top-[calc(50%+28px)] w-px h-[calc(100%+4.5rem)] md:h-[calc(100%+6.5rem)] bg-gray-300 md:-translate-x-1/2"></div>
-                )}
-                {/* Desktop Layout */}
-                <div className="hidden md:block">
-                  {/* Number Badge on Timeline - Desktop */}
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                    <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
-                      {step.id}
-                    </div>
-                  </div>
-
-                  {/* Content Row - Desktop */}
-                  <div className="grid grid-cols-2 gap-12 items-center">
-                    {step.imagePosition === 'left' ? (
-                      <>
-                        {/* Image on Left */}
-                        <div className="pr-12">
-                          <div className="relative w-[80%] h-[295px] rounded-3xl overflow-hidden shadow-xl ml-auto">
-                            <Image
-                              src={step.image}
-                              alt={step.title}
-                              fill
-                              className="object-cover"
-                              sizes="50vw"
-                            />
-                          </div>
-                        </div>
-
-                        {/* Content on Right */}
-                        <div className="pl-16">
-                          <h3 className="text-[28px] font-semibold text-gray-900 mb-6 tracking-tight">
-                            {step.title}
-                          </h3>
-                          <p className="antialiased text-gray-700 text-base leading-relaxed mb-6">
-                            {step.description}
-                          </p>
-                          <button className="inline-flex items-center gap-2 text-gray-900 font-bold hover:gap-3 transition-all">
-                            Discover More
-                            <ArrowRight className="w-5 h-5" />
-                          </button>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        {/* Content on Left */}
-                        <div className="pr-16 text-right">
-                          <h3 className="text-[28px] font-semibold text-gray-900 mb-6">
-                            {step.title}
-                          </h3>
-                          <p className="antialiased text-base leading-relaxed mb-6 font-semibold text-body">
-                            {step.description}
-                          </p>
-                          <div className="flex justify-end">
-                            <button className="inline-flex items-center gap-2 text-gray-900 font-semibold hover:gap-3 transition-all">
-                              Discover More
-                              <ArrowRight className="w-5 h-5 rotate-180" />
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Image on Right */}
-                        <div className="pl-12">
-                          <div className="relative w-[80%] h-[295px] rounded-3xl overflow-hidden shadow-xl">
-                            <Image
-                              src={step.image}
-                              alt={step.title}
-                              fill
-                              className="object-cover"
-                              sizes="50vw"
-                            />
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                {/* Mobile Layout */}
-                <div className="md:hidden pl-16">
-                  {/* Number Badge - Mobile (left side with gap from timeline) */}
-                  <div className="absolute left-[30px] top-0 -translate-x-1/2 z-10">
-                    <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
-                      {step.id}
-                    </div>
-                  </div>
-
-                  {/* Image First - Mobile */}
-                  <div className="mb-8 mt-16">
-                    <div className="relative w-full h-[320px] rounded-3xl overflow-hidden shadow-xl">
-                      <Image
-                        src={step.image}
-                        alt={step.title}
-                        fill
-                        className="object-cover"
-                        sizes="100vw"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Content Below Image - Mobile */}
-                  <div>
-                    <h3 className="text-[28px] font-semibold text-gray-900 mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="antialiased text-gray-600 text-base leading-relaxed mb-5">
-                      {step.description}
-                    </p>
-                    <button className="inline-flex items-center gap-2 text-gray-900 font-bold hover:gap-3 transition-all">
-                      Discover More
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <StepItem key={step.id} step={step} index={index} />
             ))}
           </div>
         </div>

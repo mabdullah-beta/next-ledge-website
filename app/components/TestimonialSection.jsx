@@ -2,30 +2,53 @@
 
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function TestimonialSection() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
   return (
-    <section className="font-hedvig w-full bg-white py-20 md:px-8 px-2">
+    <section 
+      ref={sectionRef}
+      className="font-hedvig w-full bg-white py-20 md:px-8 px-2"
+    >
       <div className="max-w-2xl mx-auto text-center">
-        {/* Star Rating */}
-        <div className="flex items-center justify-center gap-1 mb-8">
+        {/* Star Rating - Animates first */}
+        <motion.div 
+          className="flex items-center justify-center gap-1 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           {[1, 2, 3, 4, 5].map((star) => (
             <Star key={star} className="w-5 h-5 fill-black text-black" />
           ))}
           <span className="ml-3 text-lg font-normal text-gray-900">
             Rated 4.9/5
           </span>
-        </div>
+        </motion.div>
 
-        {/* Testimonial Text */}
-        <h2 className="font-hedvig text-3xl md:text-3xl  text-gray-900 leading-tight mb-12">
+        {/* Testimonial Text - Animates second */}
+        <motion.h2 
+          className="font-hedvig text-3xl md:text-3xl text-gray-900 leading-tight mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
           Startex revolutionized our customer
           understanding, boosting retention like
           never before.
-        </h2>
+        </motion.h2>
 
-        {/* Author Info */}
-        <div className="flex items-center justify-center gap-4">
+        {/* Author Info - Animates third */}
+        <motion.div 
+          className="flex items-center justify-center gap-4"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+        >
           {/* Avatar */}
           <div className="relative w-16 h-16 rounded-2xl overflow-hidden">
             <Image
@@ -44,12 +67,11 @@ export default function TestimonialSection() {
             </h3>
             <div className="flex items-center gap-2 bg-mint px-3 py-1 rounded-xl">
               <span className="flex items-center gap-2 text-[10px] text-primary">
-
                 High conversion  <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>2x sales
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

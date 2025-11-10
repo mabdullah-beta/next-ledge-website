@@ -1,6 +1,8 @@
 'use client';
 
 import { Check, Sparkles } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 const pricingPlans = [
   {
@@ -44,13 +46,16 @@ const pricingPlans = [
 ];
 
 export default function PricingPlans() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+
   return (
-    <section className="w-full bg-white py-20 px-4">
+    <section ref={sectionRef} className="w-full bg-white py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-         <div className="font-hedvig text-center mb-16">
+        <div className="font-hedvig text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
-           <div className="dot-indicator bg-secondary-light rounded-full"></div>
+            <div className="dot-indicator bg-secondary-light rounded-full"></div>
             <span className="text-sm font-medium text-gray-600">Pricing</span>
           </div>
           <h2 className="font-hedvig text-heading-lg text-gray-900 mx-auto max-w-2xl">
@@ -60,8 +65,18 @@ export default function PricingPlans() {
 
         {/* Pricing Cards */}
         <div className="font-inter grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[850px] mx-auto">
-          {pricingPlans.map((plan) => (
-            <div key={plan.id} className="relative">
+          {pricingPlans.map((plan, index) => (
+            <motion.div 
+              key={plan.id} 
+              className="relative"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ 
+                duration: 0.5, 
+                ease: "easeOut",
+                delay: index * 0.15
+              }}
+            >
               {/* Card */}
               <div
                 className={`rounded-3xl overflow-hidden shadow-lg border border-gray-200 ${
@@ -86,13 +101,13 @@ export default function PricingPlans() {
                   </div>
 
                   {/* Description */}
-                  <p className=" text-gray-700 text-lg mb-4 leading-relaxed antialiased">
+                  <p className="text-gray-700 text-lg mb-4 leading-relaxed antialiased">
                     {plan.description}
                   </p>
 
                   {/* Price */}
-                  <div className=" flex items-baseline mb-4">
-                    <span className="font-hedvig  text-[35px] md:text-[45px]  font-bold text-gray-900">
+                  <div className="flex items-baseline mb-4">
+                    <span className="font-hedvig text-[35px] md:text-[45px] font-bold text-gray-900">
                       {plan.price}
                     </span>
                     <span className="text-xl text-gray-600 ml-2">
@@ -122,12 +137,10 @@ export default function PricingPlans() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-
-    
     </section>
   );
 }

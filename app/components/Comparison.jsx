@@ -1,8 +1,12 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { Check } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 
 const Comparison = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
   const otherFirms = [
     {
       title: "One-size-fits-all service",
@@ -38,8 +42,13 @@ const Comparison = () => {
   ];
 
   return (
-    <section className="font-inter relative py-10 md:py-20 sm:py-16 bg-white" aria-label="Comparison Section">
+    <section 
+      ref={sectionRef}
+      className="font-inter relative py-10 md:py-20 sm:py-16 bg-white" 
+      aria-label="Comparison Section"
+    >
       <div className="max-w-5xl mx-auto px-4 md:px-8 sm:px-5">
+        {/* Header - No animation */}
         <div className="text-center mb-16 md:mb-16 sm:mb-12">
           <div className="flex items-center justify-center gap-2 mb-6 md:mb-6 sm:mb-4">
             <div className="dot-indicator bg-primary rounded-full"></div>
@@ -47,15 +56,19 @@ const Comparison = () => {
           </div>
           <h1 className="font-hedvig text-heading-lg text-gray-900 leading-tight max-w-2xl mx-auto">
             More than accountants — partners in your business journey
-
           </h1>
         </div>
 
-        {/* Comparison Grid */}
-        <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 bg-gradient-to-b from-mint-lightest to-mint-lighter border-2 border-border-mint rounded-3xl overflow-hidden p-1.5">
+        {/* Comparison Grid - Slower animation with strong easeOut */}
+        <motion.div 
+          className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 bg-gradient-to-b from-mint-lightest to-mint-lighter border-2 border-border-mint rounded-3xl overflow-hidden p-1.5"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+        >
           
           {/* Left Column - Other Firms */}
-          <div className="font-inter  p-8 md:p-10 sm:p-8 space-y-10 md:space-y-10 sm:space-y-8">
+          <div className="font-inter p-8 md:p-10 sm:p-8 space-y-10 md:space-y-10 sm:space-y-8">
             <h3 className="text-[28px] md:text-[26px] sm:text-[24px] font-semibold text-black md:mb-9 mb-9">Other Firms</h3>
             
             {otherFirms.map((item, index) => (
@@ -89,7 +102,7 @@ const Comparison = () => {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

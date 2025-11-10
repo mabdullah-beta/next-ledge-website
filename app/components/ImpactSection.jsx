@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 const stats = [
   { id: 1, value: '$7M+', label: 'Revenue', position: 'left-top' },
@@ -12,8 +14,11 @@ const stats = [
 ];
 
 export default function ImpactSection() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
   return (
-    <section className="w-full bg-white py-20 px-4 overflow-hidden">
+    <section ref={sectionRef} className="w-full bg-white py-20 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="font-hedvig text-center mb-16 md:mb-16 sm:mb-12">
@@ -31,8 +36,13 @@ export default function ImpactSection() {
 
         {/* Stats with Image */}
         <div className="relative max-w-5xl mx-auto mt-20 mr-12">
-          {/* Mobile Stats - Above Image */}
-          <div className="lg:hidden mb-8 space-y-6 px-4">
+          {/* Mobile Stats - Above Image - Animated */}
+          <motion.div 
+            className="lg:hidden mb-8 space-y-6 px-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+          >
             {/* Row 1 */}
             <div className="grid grid-cols-2 gap-8">
               {/* $7M+ Revenue */}
@@ -86,10 +96,15 @@ export default function ImpactSection() {
                 <span className="text-gray-900 font-medium text-base">Consultants</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Central Image */}
-          <div className="relative w-[full] max-w-md mx-auto">
+          {/* Central Image - Animated first */}
+          <motion.div 
+            className="relative w-[full] max-w-md mx-auto"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <div className="relative w-[380px] h-[480px] rounded-3xl overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop"
@@ -100,14 +115,19 @@ export default function ImpactSection() {
                 priority
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Floating Stats Badges with Lines - Desktop Only */}
-          {/* Left Side Stats - Shared container with number and label */}
+          {/* Left Side Stats - Animated from left */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 hidden lg:block w-full">
             <div className="relative">
               {/* $7M+ Revenue - Top */}
-              <div className="absolute left-8 top-[-140px] flex items-center">
+              <motion.div 
+                className="absolute left-8 top-[-140px] flex items-center"
+                initial={{ opacity: 0, x: -50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+              >
                 <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
                   <div className="bg-secondary rounded-full px-3 py-1">
                     <span className="text-white font-bold text-base">$7M+</span>
@@ -116,10 +136,15 @@ export default function ImpactSection() {
                 </div>
                 {/* Connecting Line */}
                 <div className="w-20 h-px bg-gray-300"></div>
-              </div>
+              </motion.div>
 
               {/* 72% Growth - Middle */}
-              <div className="absolute left-4 top-0 flex items-center">
+              <motion.div 
+                className="absolute left-4 top-0 flex items-center"
+                initial={{ opacity: 0, x: -50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+              >
                 <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
                   <div className="bg-secondary rounded-full px-3 py-1">
                     <span className="text-white font-bold text-base">72%</span>
@@ -128,10 +153,15 @@ export default function ImpactSection() {
                 </div>
                 {/* Connecting Line */}
                 <div className="w-28 h-px bg-gray-300"></div>
-              </div>
+              </motion.div>
 
               {/* 65% Skills - Bottom */}
-              <div className="absolute left-14 top-[140px] flex items-center">
+              <motion.div 
+                className="absolute left-14 top-[140px] flex items-center"
+                initial={{ opacity: 0, x: -50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
+              >
                 <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
                   <div className="bg-secondary rounded-full px-3 py-1">
                     <span className="text-white font-bold text-base">65%</span>
@@ -140,15 +170,20 @@ export default function ImpactSection() {
                 </div>
                 {/* Connecting Line */}
                 <div className="w-24 h-px bg-gray-300"></div>
-              </div>
+              </motion.div>
             </div>
           </div>
 
-          {/* Right Side Stats - Shared container with label and number */}
+          {/* Right Side Stats - Animated from right */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block w-full">
             <div className="relative">
               {/* 78% Impact - Top */}
-              <div className="absolute right-20 top-[-140px] flex items-center">
+              <motion.div 
+                className="absolute right-20 top-[-140px] flex items-center"
+                initial={{ opacity: 0, x: 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+              >
                 {/* Connecting Line */}
                 <div className="w-32 h-px bg-gray-300"></div>
                 <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
@@ -156,12 +191,16 @@ export default function ImpactSection() {
                     <span className="text-white font-bold text-base">78%</span>
                   </div>
                   <span className="text-black font-medium text-base">Impact</span>
-
                 </div>
-              </div>
+              </motion.div>
 
               {/* 1% Designers - Middle */}
-              <div className="absolute right-20 top-0 flex items-center">
+              <motion.div 
+                className="absolute right-20 top-0 flex items-center"
+                initial={{ opacity: 0, x: 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+              >
                 {/* Connecting Line */}
                 <div className="w-28 h-px bg-gray-300"></div>
                 <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
@@ -169,12 +208,16 @@ export default function ImpactSection() {
                     <span className="text-white font-bold text-base">1%</span>
                   </div>
                   <span className="text-black font-medium text-base">Designers</span>
-
                 </div>
-              </div>
+              </motion.div>
 
               {/* 10+ Consultants - Bottom */}
-              <div className="absolute right-26 top-[140px] flex items-center">
+              <motion.div 
+                className="absolute right-26 top-[140px] flex items-center"
+                initial={{ opacity: 0, x: 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
+              >
                 {/* Connecting Line */}
                 <div className="w-20 h-px bg-gray-300"></div>
                 <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
@@ -182,9 +225,8 @@ export default function ImpactSection() {
                     <span className="text-white font-bold text-base">10+</span>
                   </div>
                   <span className="text-black font-medium text-base">Consultants</span>
-
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
