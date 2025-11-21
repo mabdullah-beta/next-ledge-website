@@ -88,10 +88,10 @@ function StepItem({ step, index }) {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
               >
-                <h3 className="text-[28px] font-semibold text-gray-900 mb-6 tracking-tight">
+                <h3 className="text-[28px] font-semibold text-gray-900 mb-3 tracking-tight">
                   {step.title}
                 </h3>
-                <h4 className='text-[17px] font-semibold text-gray-900 mb-6 tracking-tight'>
+                <h4 className='text-[16px] font-semibold text-primary mb-6 tracking-tight w-fit'>
                   {step.abt}
                 </h4>
                 <p className="antialiased text-gray-700 text-base leading-relaxed mb-6">
@@ -115,7 +115,7 @@ function StepItem({ step, index }) {
                 <h3 className="text-[28px] font-semibold text-gray-900 mb-6">
                   {step.title}
                 </h3>
-                <h4 className='text-[17px] font-semibold text-gray-900 mb-6 tracking-tight'>
+                <h4 className='text-[16px] font-semibold text-primary mb-6 tracking-tight'>
                   {step.abt}
                 </h4>
                 <p className="antialiased text-base leading-relaxed mb-6 font-semibold text-body">
