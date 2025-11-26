@@ -16,60 +16,64 @@ const Hero = () => {
 
   return (
     <section
-      className="relative pt-20 pb-10 md:pt-[90px] md:pb-20 sm:pt-[90px] sm:pb-10 bg-white"
+      className="relative pt-16 pb-8 md:pt-24 md:pb-16 lg:pt-[90px] lg:pb-20 bg-white"
       aria-label="Hero Section"
     >
-      <div className="max-w-full mx-auto px-5 md:px-30 sm:px-5">
+      <div className="max-w-full mx-auto px-4 sm:px-6 md:px-10 lg:px-20 xl:px-30">
         {/* Background container - loads immediately */}
-        <div className="relative bg-primary rounded-4xl md:rounded-4xl sm:rounded-3xl overflow-hidden">
-          <div className="grid lg:grid-cols-2 gap-0 items-center min-h-[600px] md:min-h-[600px] sm:min-h-auto">
+        <div className="relative bg-primary rounded-2xl sm:rounded-3xl md:rounded-4xl overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-0 items-center">
 
             {/* Left Content - Scale up animation */}
             <motion.div
-              className="px-6 py-0 md:px-12 md:py-20 flex flex-col justify-center z-10"
+              className="px-5 py-8 sm:px-8 sm:py-10 md:px-10 md:py-16 lg:px-12 lg:py-20 flex flex-col justify-center z-10 order-1 lg:order-1"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
             >
-              <div className="inline-flex items-center gap-2.5 mb-7 md:mb-10 pt-9 md:pt-10">
+              {/* Rating Badge */}
+              <div className="inline-flex items-center gap-2 sm:gap-2.5 mb-5 sm:mb-7 md:mb-8 lg:mb-10">
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
-                      className="w-5 h-5 text-white fill-current"
+                      className="w-4 h-4 sm:w-5 sm:h-5 text-white fill-current"
                       viewBox="0 0 20 20"
                     >
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-                <span className="text-[15px] font-normal text-white">
+                <span className="text-sm sm:text-[15px] font-normal text-white">
                   Rated 4.9/5
                 </span>
               </div>
 
-              <h1 className="font-hedvig text-[43px] lg:text-[49px] md:text-[48px] sm:text-[36px] font-normal text-white leading-[1.15] tracking-tight mb-4 md:mb-6 sm:mb-5">
+              {/* Heading */}
+              <h1 className="font-hedvig text-[28px] sm:text-[36px] md:text-[42px] lg:text-[49px] font-normal text-white leading-[1.2] sm:leading-[1.15] tracking-tight mb-4 sm:mb-5 md:mb-6">
                 Modern accounting. Real insight. Future growth.
               </h1>
 
-              <p className="font-inter text-[18px] lg:text-[19px] md:text-[17px] sm:text-[16px] font-normal text-white/80 leading-relaxed mb-5 md:mb-7 sm:mb-8 max-w-[520px]">
-                Nexledge combines professional bookkeeping with smart IT solutions. We make your administration efficient, your numbers meaningful, and your business ready for what’s next.
+              {/* Description */}
+              <p className="font-inter text-[15px] sm:text-[16px] md:text-[17px] lg:text-[19px] font-normal text-white/80 leading-relaxed mb-6 sm:mb-7 md:mb-8 max-w-[520px]">
+                Nexledge combines professional bookkeeping with smart IT solutions. We make your administration efficient, your numbers meaningful, and your business ready for what's next.
               </p>
 
-              <div className="flex flex-wrap items-center gap-5">
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 md:gap-5">
                 <Link
                   href="#contact"
-                  className="bg-white text-black pl-3 pr-1 py-0.5 rounded-full text-[16px] font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center gap-3 shadow-sm whitespace-nowrap group"
+                  className="bg-white text-black pl-4 pr-1.5 py-1 rounded-full text-[15px] sm:text-[16px] font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center justify-between sm:justify-start gap-3 shadow-sm group w-full sm:w-auto"
                 >
-                  Get in touch
-                  <span className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white overflow-hidden relative">
+                  <span>Get in touch</span>
+                  <span className="w-8 h-8 sm:w-9 sm:h-9 bg-primary rounded-full flex items-center justify-center text-white overflow-hidden relative flex-shrink-0">
                     <ArrowRight size={18} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />
                     <ArrowRight size={18} strokeWidth={2.5} className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
                   </span>
                 </Link>
                 <Link
                   href="#services"
-                  className="font-inter bg-transparent px-5 text-white py-2 rounded-full text-lg font-semibold hover:bg-white/10 transition-all duration-200 border border-transparent whitespace-nowrap"
+                  className="font-inter bg-transparent px-5 text-white py-2.5 sm:py-2 rounded-full text-[15px] sm:text-[16px] md:text-lg font-semibold hover:bg-white/10 transition-all duration-200 border border-white/20 hover:border-white/30 text-center w-full sm:w-auto"
                 >
                   What we do
                 </Link>
@@ -78,12 +82,12 @@ const Hero = () => {
 
             {/* Right Image - Scale up animation */}
             <motion.div
-              className="relative h-full min-h-[600px] md:min-h-[600px] sm:min-h-[400px] lg:block sm:block p-5 md:p-6 sm:p-4 flex justify-end items-center"
+              className="relative h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] lg:block p-4 sm:p-5 md:p-6 flex justify-end items-center order-2 lg:order-2"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2, ease: "easeOut", delay: 0.10 }}
             >
-              <div className="relative w-full md:w-[80%] h-full rounded-3xl md:rounded-3xl sm:rounded-2xl overflow-hidden ml-auto">
+              <div className="relative w-full lg:w-[85%] xl:w-[80%] h-full rounded-2xl sm:rounded-2xl md:rounded-3xl overflow-hidden lg:ml-auto">
                 <Image
                   src="/image.png"
                   alt="Business consulting professional"

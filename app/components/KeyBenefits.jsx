@@ -55,32 +55,32 @@ export default function KeyBenefits() {
   const isSecondRowInView = useInView(secondRowRef, { once: true, amount: 0.3 });
 
   return (
-    <section className="w-full bg-white py-20 px-4">
+    <section className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header - No animation */}
-        <div className="font-hedvig text-center mb-20">
-          <div className="flex items-center justify-center gap-2 mb-6">
+        {/* Header */}
+        <div className="font-hedvig text-center mb-12 sm:mb-16 md:mb-20">
+          <div className="flex items-center justify-center gap-2 mb-4 sm:mb-5 md:mb-6">
             <div className="dot-indicator bg-primary rounded-full"></div>
-            <span className="font-inter text-base font-semimedium text-primary">Features</span>
+            <span className="font-inter text-sm sm:text-base font-semimedium text-primary">Features</span>
           </div>
-          <h2 className="font-hedvig max-w-2xl text-heading-lg text-gray-900 leading-tight mx-auto">
+          <h2 className="font-hedvig max-w-2xl text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 leading-tight mx-auto px-4">
             Key benefits that set us apart from other firms
           </h2>
         </div>
 
         {/* Benefits Grid */}
-        <div className="font-inter max-w-6xl mx-auto space-y-16">
+        <div className="font-inter max-w-6xl mx-auto space-y-10 sm:space-y-12 md:space-y-16">
           {/* First Row - Elements render left to right */}
           <div
             ref={firstRowRef}
-            className="grid grid-cols-1 md:grid-cols-3 gap-x-0 gap-y-16"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 md:gap-x-8 gap-y-10 sm:gap-y-12 md:gap-y-16"
           >
             {firstRow.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
                 <motion.div
                   key={benefit.id}
-                  className="text-center"
+                  className="text-center px-2"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isFirstRowInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                   transition={{
@@ -90,17 +90,17 @@ export default function KeyBenefits() {
                   }}
                 >
                   {/* Icon */}
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-primary rounded-2xl mb-6">
-                    <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
+                  <div className="inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl mb-4 sm:mb-5 md:mb-6">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[22px] font-medium text-gray-900 mb-3">
+                  <h3 className="text-[19px] sm:text-[20px] md:text-[22px] font-medium text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
                     {benefit.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 text-base leading-relaxed max-w-[280px] mx-auto">
+                  <p className="text-gray-600 text-[14px] sm:text-[15px] md:text-base leading-relaxed max-w-[320px] sm:max-w-[280px] mx-auto">
                     {benefit.description}
                   </p>
                 </motion.div>
@@ -111,14 +111,14 @@ export default function KeyBenefits() {
           {/* Second Row - Elements render left to right */}
           <div
             ref={secondRowRef}
-            className="grid grid-cols-1 md:grid-cols-3 gap-x-0 gap-y-16"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 md:gap-x-8 gap-y-10 sm:gap-y-12 md:gap-y-16"
           >
             {secondRow.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
                 <motion.div
                   key={benefit.id}
-                  className="text-center"
+                  className="text-center px-2"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isSecondRowInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                   transition={{
@@ -128,17 +128,17 @@ export default function KeyBenefits() {
                   }}
                 >
                   {/* Icon */}
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-primary rounded-2xl mb-6">
-                    <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
+                  <div className="inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl mb-4 sm:mb-5 md:mb-6">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[22px] font-medium text-gray-900 mb-3">
+                  <h3 className="text-[19px] sm:text-[20px] md:text-[22px] font-medium text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
                     {benefit.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 text-base leading-relaxed max-w-[280px] mx-auto">
+                  <p className="text-gray-600 text-[14px] sm:text-[15px] md:text-base leading-relaxed max-w-[320px] sm:max-w-[280px] mx-auto">
                     {benefit.description}
                   </p>
                 </motion.div>

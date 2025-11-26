@@ -44,60 +44,72 @@ const Comparison = () => {
   return (
     <section 
       ref={sectionRef}
-      className="font-inter relative py-10 md:py-20 sm:py-16 bg-white" 
+      className="font-inter relative py-12 sm:py-16 md:py-20 lg:py-24 bg-white" 
       aria-label="Comparison Section"
     >
-      <div className="max-w-5xl mx-auto px-4 md:px-8 sm:px-5">
-        {/* Header - No animation */}
-        <div className="text-center mb-16 md:mb-16 sm:mb-12">
-          <div className="flex items-center justify-center gap-2 mb-6 md:mb-6 sm:mb-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
+        {/* Header */}
+        <div className="text-center mb-10 sm:mb-12 md:mb-14 lg:mb-16">
+          <div className="flex items-center justify-center gap-2 mb-4 sm:mb-5 md:mb-6">
             <div className="dot-indicator bg-primary rounded-full"></div>
-            <span className="font-inter text-base font-semimedium text-primary">Why choose us</span>
+            <span className="font-inter text-sm sm:text-base font-semimedium text-primary">Why choose us</span>
           </div>
-          <h1 className="font-hedvig text-heading-lg text-gray-900 leading-tight max-w-2xl mx-auto">
+          <h1 className="font-hedvig text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 leading-tight max-w-2xl mx-auto px-4">
             More than accountants — partners in your business journey
           </h1>
         </div>
 
-        {/* Comparison Grid - Slower animation with strong easeOut */}
+        {/* Comparison Grid */}
         <motion.div
-          className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 bg-gradient-to-b from-primary-light/5 to-primary-light/20 border-2 border-primary/20 rounded-3xl overflow-hidden p-1.5"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-gradient-to-b from-primary-light/5 to-primary-light/20 border-2 border-primary/20 rounded-2xl sm:rounded-3xl overflow-hidden p-1 sm:p-1.5"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
         >
           
           {/* Left Column - Other Firms */}
-          <div className="font-inter p-8 md:p-10 sm:p-8 space-y-10 md:space-y-10 sm:space-y-8">
-            <h3 className="text-[28px] md:text-[26px] sm:text-[24px] font-semibold text-black md:mb-9 mb-9">Other Firms</h3>
+          <div className="font-inter p-6 sm:p-8 md:p-9 lg:p-10 space-y-6 sm:space-y-8 md:space-y-9 lg:space-y-10">
+            <h3 className="text-[22px] sm:text-[24px] md:text-[26px] lg:text-[28px] font-semibold text-black mb-6 sm:mb-7 md:mb-8 lg:mb-9">
+              Other Firms
+            </h3>
             
             {otherFirms.map((item, index) => (
-              <div key={index} className="flex gap-4 items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <Check size={20} className="text-gray-400" strokeWidth={2} />
+              <div key={index} className="flex gap-3 sm:gap-4 items-start">
+                <div className="flex-shrink-0 mt-0.5 sm:mt-1">
+                  <Check size={18} className="text-gray-400 sm:w-5 sm:h-5" strokeWidth={2} />
                 </div>
-                <div>
-                  <h4 className="text-[20px] md:text-[22px] sm:text-[18px] font-semibold text-black mb-2">{item.title}</h4>
-                  <p className="text-[16px] md:text-[15px] sm:text-[15px] font-normal text-gray-600 leading-relaxed">{item.description}</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-[17px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-semibold text-black mb-1.5 sm:mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-[14px] sm:text-[15px] md:text-[16px] font-normal text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Right Column - With Nexledge */}
-          <div className="bg-white p-8 md:p-10 sm:p-8 space-y-10 md:space-y-10 sm:space-y-8 rounded-3xl">
-            <h3 className="text-[28px] md:text-[26px] sm:text-[24px] font-semibold text-black md:mb-9 mb-9">With Nexledge</h3>
+          <div className="bg-white p-6 sm:p-8 md:p-9 lg:p-10 space-y-6 sm:space-y-8 md:space-y-9 lg:space-y-10 rounded-2xl sm:rounded-3xl">
+            <h3 className="text-[22px] sm:text-[24px] md:text-[26px] lg:text-[28px] font-semibold text-black mb-6 sm:mb-7 md:mb-8 lg:mb-9">
+              With Nexledge
+            </h3>
             
             {withStratex.map((item, index) => (
-              <div key={index} className="flex gap-4 items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                    <Check size={14} className="text-white" strokeWidth={3} />
+              <div key={index} className="flex gap-3 sm:gap-4 items-start">
+                <div className="flex-shrink-0 mt-0.5 sm:mt-1">
+                  <div className="w-[18px] h-[18px] sm:w-5 sm:h-5 bg-primary rounded-full flex items-center justify-center">
+                    <Check size={12} className="text-white sm:w-[14px] sm:h-[14px]" strokeWidth={3} />
                   </div>
                 </div>
-                <div>
-                  <h4 className="text-[20px] md:text-[22px] sm:text-lg font-semibold text-black mb-2">{item.title}</h4>
-                  <p className="text-[16px] md:text-[15px] sm:text-[15px] font-normal text-gray-600 leading-relaxed">{item.description}</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-[17px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-semibold text-black mb-1.5 sm:mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-[14px] sm:text-[15px] md:text-[16px] font-normal text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}

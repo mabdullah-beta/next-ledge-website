@@ -18,83 +18,83 @@ export default function ImpactSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
   return (
-    <section ref={sectionRef} className="w-full bg-white py-20 px-4 overflow-hidden">
+    <section ref={sectionRef} className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="font-hedvig text-center mb-16 md:mb-16 sm:mb-12">
-          <div className="flex items-center justify-center gap-2 mb-4">
+        <div className="font-hedvig text-center mb-12 sm:mb-14 md:mb-16">
+          <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
             <div className="dot-indicator bg-primary rounded-full"></div>
-            <span className="font-inter text-base font-semimedium text-primary">impact</span>
+            <span className="font-inter text-sm sm:text-base font-semimedium text-primary">impact</span>
           </div>
-          <h2 className="font-hedvig text-heading-lg leading-tight text-gray-900 mx-auto max-w-2xl mb-5">
+          <h2 className="font-hedvig text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg leading-tight text-gray-900 mx-auto max-w-2xl mb-4 sm:mb-5 px-4">
             Real results that drive lasting impact for everyone
           </h2>
-          <p className="font-inter text-base md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="font-inter text-[15px] sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
             We deliver tailored strategies, innovative solutions and dedicated support to drive lasting growth
           </p>
         </div>
 
         {/* Stats with Image */}
-        <div className="relative max-w-5xl mx-auto mt-20 mr-0 md:mr-28">
+        <div className="relative max-w-5xl mx-auto mt-12 sm:mt-16 md:mt-20 lg:mr-28">
           
-          {/* Mobile Stats - Above Image - Animated */}
+          {/* Mobile/Tablet Stats - Above Image - Animated */}
           <motion.div 
-            className="lg:hidden mb-8 space-y-6 px-4"
+            className="lg:hidden mb-8 sm:mb-10 space-y-4 sm:space-y-6 px-2 sm:px-4"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
           >
             {/* Row 1 */}
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8">
               {/* $7M+ Revenue */}
-              <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
-                <div className="bg-primary text-white px-2 py-1 rounded-full">
-                  <span className="font-bold text-base">$7M+</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-gray-light rounded-full px-2 sm:px-3 py-1 text-sm sm:text-base">
+                <div className="bg-primary text-white px-2 py-0.5 sm:py-1 rounded-full">
+                  <span className="font-bold text-xs sm:text-sm md:text-base">$7M+</span>
                 </div>
-                <span className="text-gray-900 font-medium text-base">Revenue</span>
+                <span className="text-gray-900 font-medium text-xs sm:text-sm md:text-base">Revenue</span>
               </div>
               {/* 78% Impact */}
-              <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
-                <div className="bg-primary text-white px-3 py-1 rounded-full">
-                  <span className="font-bold text-base">78%</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-gray-light rounded-full px-2 sm:px-3 py-1 text-sm sm:text-base">
+                <div className="bg-primary text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
+                  <span className="font-bold text-xs sm:text-sm md:text-base">78%</span>
                 </div>
-                <span className="text-gray-900 font-medium text-base">Impact</span>
+                <span className="text-gray-900 font-medium text-xs sm:text-sm md:text-base">Impact</span>
               </div>
             </div>
 
             {/* Row 2 */}
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8">
               {/* 72% Growth */}
-              <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
-                <div className="bg-primary text-white px-3 py-1 rounded-full">
-                  <span className="font-bold text-base">72%</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-gray-light rounded-full px-2 sm:px-3 py-1 text-sm sm:text-base">
+                <div className="bg-primary text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
+                  <span className="font-bold text-xs sm:text-sm md:text-base">72%</span>
                 </div>
-                <span className="text-gray-900 font-medium text-base">Growth</span>
+                <span className="text-gray-900 font-medium text-xs sm:text-sm md:text-base">Growth</span>
               </div>
               {/* 1% Designers */}
-              <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
-                <div className="bg-primary text-white px-3 py-1 rounded-full">
-                  <span className="font-bold text-base">1%</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-gray-light rounded-full px-2 sm:px-3 py-1 text-sm sm:text-base">
+                <div className="bg-primary text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
+                  <span className="font-bold text-xs sm:text-sm md:text-base">1%</span>
                 </div>
-                <span className="text-gray-900 font-medium text-base">Designers</span>
+                <span className="text-gray-900 font-medium text-xs sm:text-sm md:text-base">Designers</span>
               </div>
             </div>
 
             {/* Row 3 */}
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8">
               {/* 65% Skills */}
-              <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
-                <div className="bg-primary text-white px-3 py-1 rounded-full">
-                  <span className="font-bold text-base">65%</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-gray-light rounded-full px-2 sm:px-3 py-1 text-sm sm:text-base">
+                <div className="bg-primary text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
+                  <span className="font-bold text-xs sm:text-sm md:text-base">65%</span>
                 </div>
-                <span className="text-gray-900 font-medium text-base">Skills</span>
+                <span className="text-gray-900 font-medium text-xs sm:text-sm md:text-base">Skills</span>
               </div>
               {/* 10+ Consultants */}
-              <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
-                <div className="bg-primary text-white px-3 py-1 rounded-full">
-                  <span className="font-bold text-base">10+</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 bg-gray-light rounded-full px-2 sm:px-3 py-1 text-sm sm:text-base">
+                <div className="bg-primary text-white px-2 py-0.5 sm:py-1 rounded-full">
+                  <span className="font-bold text-xs sm:text-sm md:text-base">10+</span>
                 </div>
-                <span className="text-gray-900 font-medium text-base">Consultants</span>
+                <span className="text-gray-900 font-medium text-xs sm:text-sm md:text-base">Consultants</span>
               </div>
             </div>
           </motion.div>
@@ -106,13 +106,13 @@ export default function ImpactSection() {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="relative w-[380px] h-[480px] rounded-3xl overflow-hidden">
+            <div className="relative w-full sm:w-[340px] md:w-[380px] h-[400px] sm:h-[440px] md:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden mx-auto">
               <Image
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop"
                 alt="Professional consultant"
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 448px"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 340px, 380px"
                 priority
               />
             </div>
@@ -129,7 +129,7 @@ export default function ImpactSection() {
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
               >
-                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
+                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1">
                   <div className="bg-primary rounded-full px-3 py-1">
                     <span className="text-white font-bold text-base">$7M+</span>
                   </div>
@@ -146,7 +146,7 @@ export default function ImpactSection() {
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
               >
-                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
+                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1">
                   <div className="bg-primary rounded-full px-3 py-1">
                     <span className="text-white font-bold text-base">72%</span>
                   </div>
@@ -163,7 +163,7 @@ export default function ImpactSection() {
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
               >
-                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
+                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1">
                   <div className="bg-primary rounded-full px-3 py-1">
                     <span className="text-white font-bold text-base">65%</span>
                   </div>
@@ -187,7 +187,7 @@ export default function ImpactSection() {
               >
                 {/* Connecting Line */}
                 <div className="w-32 h-px bg-gray-300"></div>
-                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
+                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1">
                   <div className="bg-primary rounded-full px-3 py-1">
                     <span className="text-white font-bold text-base">78%</span>
                   </div>
@@ -204,7 +204,7 @@ export default function ImpactSection() {
               >
                 {/* Connecting Line */}
                 <div className="w-28 h-px bg-gray-300"></div>
-                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
+                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1">
                    <div className="bg-primary rounded-full px-3 py-1">
                     <span className="text-white font-bold text-base">1%</span>
                   </div>
@@ -221,7 +221,7 @@ export default function ImpactSection() {
               >
                 {/* Connecting Line */}
                 <div className="w-20 h-px bg-gray-300"></div>
-                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1 ">
+                <div className="flex items-center gap-2 bg-gray-light rounded-full px-3 py-1">
                    <div className="bg-primary rounded-full px-3 py-1">
                     <span className="text-white font-bold text-base">10+</span>
                   </div>

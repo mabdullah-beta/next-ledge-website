@@ -49,16 +49,21 @@ const services = [
 export default function ServicesCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const update = () => setIsMobile(window.innerWidth < 1024);
+    const update = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 640);
+      setIsTablet(width >= 640 && width < 1024);
+    };
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const cardsToShow = isMobile ? 1 : 3;
+  const cardsToShow = isMobile ? 1 : isTablet ? 2 : 3;
   const maxIndex = Math.max(0, services.length - cardsToShow);
 
   // Autoplay
@@ -71,17 +76,21 @@ export default function ServicesCarousel() {
   }, [maxIndex]);
 
   return (
-    <section ref={sectionRef} className="w-full bg-white py-20 md:px-4" id="services">
+    <section 
+      ref={sectionRef} 
+      className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8" 
+      id="services"
+    >
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
+        <div className="text-center mb-10 sm:mb-12 md:mb-14 lg:mb-16">
+          <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
             <div className="dot-indicator bg-primary rounded-full"></div>
-            <span className="text-base font-semibold text-primary">Our Services</span>
+            <span className="text-sm sm:text-base font-semibold text-primary">Our Services</span>
           </div>
 
-          <h2 className="font-hedvig text-heading-lg text-gray-900 max-w-3xl mx-auto leading-tight">
+          <h2 className="font-hedvig text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 max-w-3xl mx-auto leading-tight px-4">
             Reliable expertise to drive your greatest success
           </h2>
         </div>
@@ -89,14 +98,16 @@ export default function ServicesCarousel() {
         {/* Carousel */}
         <div className="relative overflow-hidden">
 
-          {/* Soft Fading Edges */}
-          <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
-          <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
+          {/* Soft Fading Edges - Only on desktop */}
+          <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-12 xl:w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
+          <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-12 xl:w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
 
           {/* Cards */}
-          <div className="overflow-hidden px-4">
+          <div className={`overflow-hidden ${isMobile ? 'px-0' : 'px-2 md:px-4'}`}>
             <div
-              className="flex gap-8 transition-transform duration-700 ease-out"
+              className={`flex transition-transform duration-700 ease-out ${
+                isMobile ? 'gap-0' : 'gap-5 md:gap-6 lg:gap-8'
+              }`}
               style={{
                 transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`,
               }}
@@ -106,10 +117,14 @@ export default function ServicesCarousel() {
                   key={service.id}
                   className="flex-shrink-0"
                   style={{
-                    width: isMobile ? '100%' : `calc(${100 / cardsToShow}% - 24px)`,
+                    width: isMobile 
+                      ? '100%' 
+                      : isTablet 
+                        ? 'calc(50% - 10px)' 
+                        : `calc(${100 / cardsToShow}% - 21px)`,
                   }}
                 >
-                  <div className="h-[420px] rounded-3xl overflow-hidden shadow-xl relative group cursor-pointer bg-white">
+                  <div className="h-[380px] sm:h-[400px] md:h-[420px] lg:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl relative group cursor-pointer bg-white">
                     <Image
                       src={service.image}
                       alt={service.title}
@@ -118,12 +133,14 @@ export default function ServicesCarousel() {
                     />
 
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
 
                     {/* Text */}
-                    <div className="absolute bottom-0 p-6 text-white">
-                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                      <p className="text-white/80 text-sm leading-relaxed">
+                    <div className="absolute bottom-0 p-4 sm:p-5 md:p-6 text-white">
+                      <h3 className="text-[17px] sm:text-[18px] md:text-[19px] lg:text-xl font-semibold mb-2 leading-snug">
+                        {service.title}
+                      </h3>
+                      <p className="text-white/85 text-[13px] sm:text-[14px] md:text-sm leading-relaxed line-clamp-4 sm:line-clamp-none">
                         {service.description}
                       </p>
                     </div>
@@ -131,6 +148,22 @@ export default function ServicesCarousel() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center gap-2 mt-6 sm:mt-8">
+            {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === index 
+                    ? 'w-8 bg-primary' 
+                    : 'w-2 bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
           </div>
 
         </div>
