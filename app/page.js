@@ -28,7 +28,7 @@ export default function Home() {
       <HowItWorksSection />
       <ImpactSection />
       {/* <TeamSection /> */}
-      <FlowchartSection />
+      {/* <FlowchartSection /> */}
       <FAQSection />
       <ChatWidget />
       <ContactSection />
