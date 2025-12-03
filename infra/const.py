@@ -2,7 +2,6 @@ FINANCE_LINKS = [
     # Accounting & Reporting
     "https://www.rjnet.nl",
     "https://www.ifrs.org",
-    "https://www.ifrs.org",
     "https://www.esma.europa.eu",
     "https://www.afm.nl",
     "https://www.sec.gov",
