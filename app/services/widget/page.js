@@ -8,6 +8,7 @@ import Lottie from "lottie-react";
 import botAnimation from "@/public/animations/Fox-Programmer.json";
 
 const ChatWidget = () => {
+
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
         {
@@ -41,6 +42,7 @@ const ChatWidget = () => {
         setLoading(true);
 
         try {
+
             const agentId = process.env.NEXT_PUBLIC_AGENT_ID || process.env.AGENT_ID || "";
 
             const res = await fetch(`/api/chatbot/${agentId}`, {
@@ -99,7 +101,7 @@ const ChatWidget = () => {
             {/* Chat card */}
             {isOpen && (
                 <div className="fixed bottom-30 right-6 w-[360px] max-w-[calc(100%-2rem)] z-50">
-                    <div className="rounded-3xl bg-white text-slate-900 shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
+                    <div className="rounded-3xl bg-white text-slate-900 shadow-xl border border-slate-200 flex flex-col overflow-hidden">
                         {/* Header */}
                         <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100">
                             <div className="font-semibold text-sm">Ask Super AI</div>
@@ -153,7 +155,7 @@ const ChatWidget = () => {
 
                         {/* Input bar */}
                         <div className="px-4 pb-4 pt-1">
-                            <div className="flex items-center gap-2 rounded-full bg-slate-50 border border-slate-200 px-3 py-1.5">
+                            <div className="flex items-center gap-2 rounded-xl bg-slate-50 border border-slate-200 px-3 py-1.5">
                                 <Input
                                     className="border-none bg-transparent shadow-none px-0 text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
                                     placeholder="How else can I help?"

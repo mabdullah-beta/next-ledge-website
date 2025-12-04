@@ -20,69 +20,6 @@ export async function OPTIONS() {
   return new Response(null, { status: 200, headers: corsHeaders });
 }
 
-// GET endpoint for metadata
-export async function GET(request, { params }) {
-  try {
-
-    // Identify user by IP
-    const ip =
-      request.headers.get("x-forwarded-for") ||
-      request.headers.get("x-real-ip") ||
-      "unknown";
-
-    // Apply rate limiting
-    const { success } = await chatLimiter.limit(ip);
-
-    if (!success) {
-      return NextResponse.json(
-        { success: false, message: "You're sending messages too fast. Try again later!" },
-        { status: 429 }
-      );
-    }
-
-    const { agentId } = await params;
-
-    if (!agentId) {
-      return NextResponse.json(
-        { error: 'Agent ID is required' },
-        { status: 400, headers: corsHeaders }
-      );
-    }
-
-    const agentInfo = await query(
-      'SELECT company_name, company_details FROM Agent WHERE id = $1',
-      [agentId]
-    );
-
-    if (agentInfo.rows.length === 0) {
-      return NextResponse.json(
-        { error: 'Chatbot not found' },
-        { status: 404, headers: corsHeaders }
-      );
-    }
-
-    const agent = agentInfo.rows[0];
-
-    return NextResponse.json(
-      {
-        id: agentId,
-        name: `${agent.company_name} Assistant`,
-        description: `Ready to help with ${agent.company_name} questions`,
-        companyName: agent.company_name,
-        companyDetails: agent.company_details,
-      },
-      { status: 200, headers: corsHeaders }
-    );
-
-  } catch (error) {
-    console.error('Error fetching chatbot metadata:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch chatbot metadata' },
-      { status: 500, headers: corsHeaders }
-    );
-  }
-}
-
 // POST endpoint for chat responses
 export async function POST(request, { params }) {
   try {
@@ -172,13 +109,6 @@ export async function POST(request, { params }) {
     }, { status: 500, headers: corsHeaders });
   }
 }
-
-// Utility functions
-
-// Function to create standardized error responses
-const createErrorResponse = (error, status = 500) =>
-  NextResponse.json({ error, debug: { timestamp: new Date().toISOString() } },
-    { status, headers: corsHeaders });
 
 // Function to calculate cosine similarity between two vectors
 const cosineSimilarity = (vecA, vecB) => {
