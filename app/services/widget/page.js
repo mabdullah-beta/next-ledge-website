@@ -54,62 +54,78 @@ const ChatWidget = () => {
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
 
-            // Handle streaming response
-            const reader = res.body.getReader();
-            const decoder = new TextDecoder();
-            let assistantMessage = "";
-            let isFirstChunk = true;
+            // Check content type to determine if it's streaming or JSON
+            const contentType = res.headers.get('content-type');
 
-            // Add empty assistant message that we'll update
-            setMessages(prev => [
-                ...prev,
-                { role: "assistant", content: "" }
-            ]);
+            if (contentType?.includes('application/json')) {
+                // Handle JSON response (e.g., no documents case)
+                const data = await res.json();
+                setMessages(prev => [
+                    ...prev,
+                    {
+                        role: "assistant",
+                        content: data.response || "I couldn't generate a response.",
+                    },
+                ]);
+                setLoading(false);
+            } else {
+                // Handle streaming response
+                const reader = res.body.getReader();
+                const decoder = new TextDecoder();
+                let assistantMessage = "";
+                let isFirstChunk = true;
 
-            // Stop loading indicator once streaming starts
-            setLoading(false);
+                // Add empty assistant message that we'll update
+                setMessages(prev => [
+                    ...prev,
+                    { role: "assistant", content: "" }
+                ]);
 
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
+                // Stop loading indicator once streaming starts
+                setLoading(false);
 
-                const chunk = decoder.decode(value, { stream: true });
-                const lines = chunk.split('\n');
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
 
-                for (const line of lines) {
-                    if (line.startsWith('data: ')) {
-                        const data = line.slice(6);
+                    const chunk = decoder.decode(value, { stream: true });
+                    const lines = chunk.split('\n');
 
-                        if (data === '[DONE]') {
-                            break;
-                        }
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = line.slice(6);
 
-                        try {
-                            const parsed = JSON.parse(data);
+                            if (data === '[DONE]') {
+                                break;
+                            }
 
-                            // First chunk contains metadata (sources, debug)
-                            if (isFirstChunk && parsed.sources) {
-                                isFirstChunk = false;
+                            try {
+                                const parsed = JSON.parse(data);
+
+                                // First chunk contains metadata (sources, debug)
+                                if (isFirstChunk && parsed.sources) {
+                                    isFirstChunk = false;
+                                    continue;
+                                }
+
+                                // Subsequent chunks contain content
+                                if (parsed.content) {
+                                    assistantMessage += parsed.content;
+
+                                    // Update the last message with accumulated content
+                                    setMessages(prev => {
+                                        const newMessages = [...prev];
+                                        newMessages[newMessages.length - 1] = {
+                                            role: "assistant",
+                                            content: assistantMessage
+                                        };
+                                        return newMessages;
+                                    });
+                                }
+                            } catch (e) {
+                                // Skip invalid JSON
                                 continue;
                             }
-
-                            // Subsequent chunks contain content
-                            if (parsed.content) {
-                                assistantMessage += parsed.content;
-
-                                // Update the last message with accumulated content
-                                setMessages(prev => {
-                                    const newMessages = [...prev];
-                                    newMessages[newMessages.length - 1] = {
-                                        role: "assistant",
-                                        content: assistantMessage
-                                    };
-                                    return newMessages;
-                                });
-                            }
-                        } catch (e) {
-                            // Skip invalid JSON
-                            continue;
                         }
                     }
                 }
