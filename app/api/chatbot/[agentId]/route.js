@@ -104,6 +104,9 @@ export async function POST(request, { params }) {
   }
 }
 
+// Similarity threshold: only use chunks with similarity >= 0.4
+const SIMILARITY_THRESHOLD = 0.4;
+
 // Function to calculate cosine similarity between two vectors
 const cosineSimilarity = (vecA, vecB) => {
   if (!vecA?.length || !vecB?.length || vecA.length !== vecB.length) return 0;
@@ -124,11 +127,30 @@ const cosineSimilarity = (vecA, vecB) => {
 const searchStrategies = {
   // pgvector database search strategy
   async pgvector(queryEmbedding, agentId) {
+    // pgvector uses distance (0-2), where distance = 1 - similarity
+    // For 0.4 similarity threshold, max distance = 1 - 0.4 = 0.6
+    const maxDistance = 1 - SIMILARITY_THRESHOLD;
+
     const result = await query(`
-      SELECT chunk_text, document_name, metadata, (embeddings <=> $1::vector) as distance
-      FROM DocumentChunks WHERE agent_id = $2 
-      ORDER BY embeddings <=> $1::vector LIMIT 5
-    `, [JSON.stringify(queryEmbedding), agentId]);
+      SELECT
+        chunk_text,
+        document_name,
+        metadata,
+        distance,
+        (1 - distance) as similarity
+      FROM (
+        SELECT
+          chunk_text,
+          document_name,
+          metadata,
+          (embeddings <=> $1::vector) as distance
+        FROM DocumentChunks
+        WHERE agent_id = $2
+      ) AS chunks_with_distance
+      WHERE distance <= $3
+      ORDER BY distance
+      LIMIT 5
+    `, [JSON.stringify(queryEmbedding), agentId, maxDistance]);
     return { chunks: result, method: 'pgvector' };
   },
 
@@ -149,6 +171,7 @@ const searchStrategies = {
         } catch { return null; }
       })
       .filter(Boolean)
+      .filter(chunk => chunk.similarity >= SIMILARITY_THRESHOLD) // Only keep chunks with similarity >= 0.4
       .sort((a, b) => a.distance - b.distance)
       .slice(0, 5);
 
