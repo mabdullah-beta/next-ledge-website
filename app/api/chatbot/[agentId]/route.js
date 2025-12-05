@@ -43,11 +43,11 @@ export async function POST(request, { params }) {
 
     const lastMessage = messages[messages.length - 1];
 
-    // Fetch agent information
-    const agentInfo = await query(
-      'SELECT company_name, company_details FROM Agent WHERE id = $1',
-      [agentId]
-    );
+    // Run agent fetch and embedding generation in parallel for better performance
+    const [agentInfo, queryEmbedding] = await Promise.all([
+      query('SELECT company_name, company_details FROM Agent WHERE id = $1', [agentId]),
+      embeddings.embedQuery(lastMessage.content)
+    ]);
 
     if (!agentInfo.rows.length) {
       return NextResponse.json(
@@ -58,45 +58,39 @@ export async function POST(request, { params }) {
 
     const agent = agentInfo.rows[0];
 
-    // Check if any documents exist
-    const chunkCount = await query(
-      'SELECT COUNT(*) as count FROM DocumentChunks WHERE agent_id = $1',
-      [agentId]
-    );
-    const totalChunks = parseInt(chunkCount.rows[0].count);
+    // Find similar chunks
+    const { chunks: similarChunks, method: searchMethod } = await findSimilarChunks(queryEmbedding, agentId);
 
-    if (totalChunks === 0) {
+    // Check if any documents exist
+    if (!similarChunks.rows || similarChunks.rows.length === 0) {
       return NextResponse.json({
         response: "I don't have any documents uploaded for this company yet. Please upload some documents first so I can help answer questions based on them.",
         sources: [],
-        debug: { agentId, totalChunks: 0, issue: "No documents found" }
+        debug: { agentId, chunksFound: 0, issue: "No documents found" }
       }, { status: 200, headers: corsHeaders });
     }
 
-    // Generate embedding and find similar chunks
-    const queryEmbedding = await embeddings.embedQuery(lastMessage.content);
-    const { chunks: similarChunks, method: searchMethod } = await findSimilarChunks(queryEmbedding, agentId);
-
-    // Build context and generate response
+    // Build context and generate streaming response
     const context = buildContext(similarChunks.rows);
-    const response = await generateResponse(agent, context, messages);
+    const sources = [...new Set(similarChunks.rows.map(chunk => chunk.document_name))];
 
-    if (!response) {
-      throw new Error('No response from OpenAI');
-    }
+    // Create a streaming response
+    const stream = await generateStreamingResponse(agent, context, messages, sources, {
+      agentId,
+      chunksFound: similarChunks.rows.length,
+      searchMethod,
+      contextLength: context.length,
+      hasContext: context.length > 0
+    });
 
-    return NextResponse.json({
-      response,
-      sources: [...new Set(similarChunks.rows.map(chunk => chunk.document_name))],
-      debug: {
-        agentId,
-        totalChunks,
-        chunksFound: similarChunks.rows.length,
-        searchMethod,
-        contextLength: context.length,
-        hasContext: context.length > 0
-      }
-    }, { status: 200, headers: corsHeaders });
+    return new Response(stream, {
+      headers: {
+        ...corsHeaders,
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive',
+      },
+    });
 
   } catch (error) {
     console.error('Chatbot API Error:', error);
@@ -189,12 +183,12 @@ const buildContext = (chunks) => chunks.length > 0
   ? chunks.map(chunk => `Document: ${chunk.document_name}\n${chunk.chunk_text}`).join('\n\n---\n\n')
   : '';
 
-// Function to generate AI response using OpenAI
-const generateResponse = async (agent, context, messages) => {
+// Function to generate streaming AI response using OpenAI
+const generateStreamingResponse = async (agent, context, messages, sources, debug) => {
   const systemMessage = {
     role: 'system',
     content: `You are an AI assistant for ${agent.company_name}.
-    
+
 Company Details: ${agent.company_details}
 
 Context from documents:
@@ -203,12 +197,38 @@ ${context}
 Instructions: Answer using the specific document information provided. Be detailed and helpful. Only say you lack information if the context truly doesn't contain relevant details.`
   };
 
-  const completion = await openai.chat.completions.create({
+  const stream = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     messages: [systemMessage, ...messages.slice(-10)],
     max_tokens: 800,
-    temperature: 0.7,
+    temperature: 0.4,
+    stream: true,
   });
 
-  return completion.choices[0]?.message?.content;
+  const encoder = new TextEncoder();
+
+  return new ReadableStream({
+    async start(controller) {
+      try {
+        // Send initial metadata
+        const metadata = JSON.stringify({ sources, debug }) + '\n';
+        controller.enqueue(encoder.encode(`data: ${metadata}\n\n`));
+
+        // Stream the response chunks
+        for await (const chunk of stream) {
+          const content = chunk.choices[0]?.delta?.content || '';
+          if (content) {
+            const data = JSON.stringify({ content }) + '\n';
+            controller.enqueue(encoder.encode(`data: ${data}\n\n`));
+          }
+        }
+
+        // Send done signal
+        controller.enqueue(encoder.encode('data: [DONE]\n\n'));
+        controller.close();
+      } catch (error) {
+        controller.error(error);
+      }
+    },
+  });
 };

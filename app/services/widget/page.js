@@ -42,7 +42,6 @@ const ChatWidget = () => {
         setLoading(true);
 
         try {
-
             const agentId = process.env.NEXT_PUBLIC_AGENT_ID || process.env.AGENT_ID || "";
 
             const res = await fetch(`/api/chatbot/${agentId}`, {
@@ -51,15 +50,71 @@ const ChatWidget = () => {
                 body: JSON.stringify({ messages: updatedMessages }),
             });
 
-            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
 
+            // Handle streaming response
+            const reader = res.body.getReader();
+            const decoder = new TextDecoder();
+            let assistantMessage = "";
+            let isFirstChunk = true;
+
+            // Add empty assistant message that we'll update
             setMessages(prev => [
                 ...prev,
-                {
-                    role: "assistant",
-                    content: data.response ?? "I couldn’t generate a response.",
-                },
+                { role: "assistant", content: "" }
             ]);
+
+            // Stop loading indicator once streaming starts
+            setLoading(false);
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                const lines = chunk.split('\n');
+
+                for (const line of lines) {
+                    if (line.startsWith('data: ')) {
+                        const data = line.slice(6);
+
+                        if (data === '[DONE]') {
+                            break;
+                        }
+
+                        try {
+                            const parsed = JSON.parse(data);
+
+                            // First chunk contains metadata (sources, debug)
+                            if (isFirstChunk && parsed.sources) {
+                                isFirstChunk = false;
+                                continue;
+                            }
+
+                            // Subsequent chunks contain content
+                            if (parsed.content) {
+                                assistantMessage += parsed.content;
+
+                                // Update the last message with accumulated content
+                                setMessages(prev => {
+                                    const newMessages = [...prev];
+                                    newMessages[newMessages.length - 1] = {
+                                        role: "assistant",
+                                        content: assistantMessage
+                                    };
+                                    return newMessages;
+                                });
+                            }
+                        } catch (e) {
+                            // Skip invalid JSON
+                            continue;
+                        }
+                    }
+                }
+            }
+
         } catch (error) {
             console.error(error);
             setMessages(prev => [
@@ -69,7 +124,6 @@ const ChatWidget = () => {
                     content: "Sorry, something went wrong. Please try again.",
                 },
             ]);
-        } finally {
             setLoading(false);
         }
     };
