@@ -7,6 +7,9 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   experimental: {},
+  images: {
+    domains: ['images.unsplash.com'],
+  },
 };
 
 export default nextConfig;
