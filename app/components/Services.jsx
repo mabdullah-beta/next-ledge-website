@@ -76,9 +76,9 @@ export default function ServicesCarousel() {
   }, [maxIndex]);
 
   return (
-    <section 
-      ref={sectionRef} 
-      className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8" 
+    <section
+      ref={sectionRef}
+      className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8"
       id="services"
     >
       <div className="max-w-7xl mx-auto">
@@ -105,9 +105,8 @@ export default function ServicesCarousel() {
           {/* Cards */}
           <div className={`overflow-hidden ${isMobile ? 'px-0' : 'px-2 md:px-4'}`}>
             <div
-              className={`flex transition-transform duration-700 ease-out ${
-                isMobile ? 'gap-0' : 'gap-5 md:gap-6 lg:gap-8'
-              }`}
+              className={`flex transition-transform duration-700 ease-out ${isMobile ? 'gap-0' : 'gap-5 md:gap-6 lg:gap-8'
+                }`}
               style={{
                 transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`,
               }}
@@ -117,10 +116,10 @@ export default function ServicesCarousel() {
                   key={service.id}
                   className="flex-shrink-0"
                   style={{
-                    width: isMobile 
-                      ? '100%' 
-                      : isTablet 
-                        ? 'calc(50% - 10px)' 
+                    width: isMobile
+                      ? '100%'
+                      : isTablet
+                        ? 'calc(50% - 10px)'
                         : `calc(${100 / cardsToShow}% - 21px)`,
                   }}
                 >
@@ -156,11 +155,10 @@ export default function ServicesCarousel() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  currentIndex === index 
-                    ? 'w-8 bg-primary' 
+                className={`h-2 rounded-full transition-all duration-300 ${currentIndex === index
+                    ? 'w-8 bg-primary'
                     : 'w-2 bg-gray-300 hover:bg-gray-400'
-                }`}
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

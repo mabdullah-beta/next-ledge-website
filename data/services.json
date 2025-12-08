@@ -1,0 +1,121 @@
+[
+    {
+        "id": 1,
+        "title": "Accounting & Financial Administration",
+        "description": "Accurate, compliant, and always up to date. We handle your bookkeeping, VAT returns, annual reports, and all other administrative tasks with precision. But we go beyond the basics — helping you understand your numbers so you can see how healthy your business really is.",
+        "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop",
+        "content": "Our team ensures that every aspect of your financial management is handled with precision, consistency, and full compliance with all regulations. From maintaining accurate records and managing VAT filings to preparing detailed annual statements, we take care of the technical details so you can focus on growing your business. Beyond just managing the numbers, we analyze your financial data to provide actionable insights, helping you understand where your business is thriving and where improvements can be made. Our goal is to transform complex financial information into practical knowledge, ensuring that your business is not only compliant but also positioned for long-term success and resilience.",
+        "highlights": [
+            {
+                "title": "Full Compliance",
+                "text": "Stay up-to-date with all tax regulations and filing requirements"
+            },
+            {
+                "title": "Real-time Insights",
+                "text": "Access to current financial data anytime, anywhere"
+            },
+            {
+                "title": "Proactive Support",
+                "text": "Regular reviews and strategic financial guidance"
+            }
+        ],
+        "faqs": [
+            {
+                "question": "What specific tasks do you handle under bookkeeping and VAT returns?",
+                "answer": "We manage day-to-day bookkeeping including recording transactions, reconciling bank statements, and preparing VAT returns for submission to tax authorities. We also handle annual financial statements, payroll administration, and ensure all records comply with current regulations."
+            },
+            {
+                "question": "How do you help me understand my business's financial health beyond basic reporting?",
+                "answer": "We analyze your financial data to identify trends, profitability drivers, and potential risks. We provide regular reviews where we explain key performance indicators (KPIs), cash flow patterns, and operational efficiency metrics in simple terms, helping you make informed decisions."
+            },
+            {
+                "question": "What makes your approach different from standard accounting services?",
+                "answer": "We combine technical compliance with strategic insight. While ensuring accuracy and regulatory adherence, we focus on educating you about your finances. We translate complex data into actionable business intelligence, serving as both compliance experts and strategic partners in your growth."
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Automation & IT Integration",
+        "description": "Efficiency through smart technology. We analyse where automation and IT can simplify your financial processes, save time, and reduce manual work. Our focus is to help you stay up to date with developments in AI and digital tools — so your business runs smoother and becomes more data-driven.",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+        "content": "Harnessing the power of modern technology, we help businesses streamline their financial operations by identifying areas where automation and IT solutions can make the biggest impact. By carefully evaluating your existing processes, we pinpoint repetitive tasks that can be automated, reducing human error and freeing up valuable time for your team to focus on strategic initiatives. With our support, your business not only becomes faster and more accurate in its financial operations but also gains actionable insights from real-time data, enabling informed decision-making and more strategic planning.",
+        "faqs": [
+            {
+                "question": "What kind of financial processes can typically be automated?",
+                "answer": "We automate repetitive tasks such as invoice processing, expense management, bank reconciliations, financial report generation, and payment reminders. This reduces manual entry, minimizes errors, and frees up your team for higher-value work."
+            },
+            {
+                "question": "How do you determine which IT solutions are right for my business?",
+                "answer": "We start with a thorough analysis of your current workflows, pain points, and business goals. We then recommend tailored solutions—such as cloud accounting software, AP/AR automation tools, or AI-powered analytics platforms—that integrate with your existing systems and scale with your growth."
+            },
+            {
+                "question": "Can you help implement new digital tools, and what support do you provide afterward?",
+                "answer": "Yes, we manage the entire implementation process, including setup, data migration, and staff training. Post-implementation, we offer ongoing technical support, regular system reviews, and updates on new features or relevant AI advancements to ensure your tools remain effective and up-to-date."
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Financial Insights & Reporting",
+        "description": "Clarity that drives better decisions. We turn financial data into clear insights through visual reporting and performance dashboards. With the right information at the right time, you can monitor your business health and make decisions with confidence.",
+        "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
+        "content": "We transform complex financial data into meaningful insights that empower you to make smarter, more informed decisions. By leveraging interactive visual reports and intuitive performance dashboards, we present your business metrics in a way that is easy to understand and act upon. With timely, accurate, and visually clear information at your fingertips, you can plan strategically, allocate resources effectively, and set achievable growth goals. Our focus is to turn data into actionable knowledge, ensuring that every decision you make is backed by insights, not guesswork, and positioning your business for sustained success and confidence in its financial future.",
+        "faqs": [
+            {
+                "question": "What types of dashboards and visual reports do you provide?",
+                "answer": "We create custom dashboards that display real-time KPIs such as revenue trends, profit margins, cash flow status, and operational expenses. These include interactive charts, graphs, and scorecards that can be accessed anytime via secure online platforms."
+            },
+            {
+                "question": "How often will I receive these insights, and can they be tailored to my specific goals?",
+                "answer": "Reports can be scheduled weekly, monthly, or quarterly based on your needs. We tailor each dashboard to focus on the metrics that matter most to your business—whether it's tracking sales performance, monitoring project profitability, or assessing budget adherence."
+            },
+            {
+                "question": "How do these insights translate into better decision-making for my business?",
+                "answer": "By presenting complex data in an intuitive visual format, we help you quickly identify opportunities, spot potential issues, and measure progress toward goals. This enables you to allocate resources more effectively, adjust strategies in real-time, and make confident, data-driven decisions."
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Budgeting & Forecasting",
+        "description": "Plan today with tomorrow in mind. We help you build realistic budgets, create financial forecasts, and explore different growth scenarios — so you're prepared for what's ahead.",
+        "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
+        "content": "We guide you in preparing for the future by creating budgets and financial plans that are both realistic and adaptable. By carefully analyzing your current financial situation, we help you project income, expenses, and cash flow in a way that aligns with your business goals. With detailed forecasts and actionable strategies, you gain a clear understanding of how your decisions today can impact your business tomorrow. Ultimately, we aim to provide you with a financial roadmap that reduces uncertainty, enhances confidence, and equips your business to thrive in any future scenario.",
+        "faqs": [
+            {
+                "question": "How do you create a realistic budget for a business with fluctuating revenue?",
+                "answer": "We analyze historical data, seasonal trends, and market conditions to build flexible budgets. Using rolling forecasts and scenario planning, we adjust projections regularly based on actual performance, ensuring your budget remains relevant and actionable even with revenue variability."
+            },
+            {
+                "question": "What scenarios do you typically model in financial forecasts?",
+                "answer": "We model best-case, worst-case, and most-likely scenarios based on factors like market expansion, cost changes, new investments, or economic shifts. This helps you prepare for different outcomes, manage risks, and identify growth opportunities under varying conditions."
+            },
+            {
+                "question": "How can forecasting help with long-term business planning?",
+                "answer": "Forecasting provides a forward-looking view of your cash flow, profitability, and funding needs. It helps you plan for major investments, assess financing options, set achievable growth targets, and ensure you have the resources to seize opportunities while navigating potential challenges."
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Advisory & Business Support",
+        "description": "Your partner in every stage of growth. We work alongside you to analyse results, discuss challenges, and identify opportunities. Our goal is to give you the clarity and confidence to take the next step — backed by data, not guesswork.",
+        "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop",
+        "content": "We stand by your side at every stage of your business journey, providing guidance and support as you navigate growth and change. By carefully reviewing your performance data, we help you identify strengths, uncover weaknesses, and recognize opportunities that might otherwise go unnoticed. Our team collaborates with you to tackle challenges, brainstorm solutions, and develop strategies that align with your goals and vision. Rather than relying on assumptions, we base every recommendation on solid data and thorough analysis, giving you the confidence to make informed decisions. With our partnership, you gain not just a service provider, but a trusted advisor who is invested in your growth and committed to helping your business thrive.",
+        "faqs": [
+            {
+                "question": "What does your ongoing advisory support include?",
+                "answer": "Our support includes regular strategy sessions, performance reviews, and operational analysis. We help you interpret financial results, address challenges like cash flow constraints or pricing strategies, and develop action plans to achieve short-term and long-term objectives."
+            },
+            {
+                "question": "How do you help identify new opportunities for growth?",
+                "answer": "We analyze your financial data, market position, and operational efficiency to uncover untapped potential—such as new revenue streams, cost-saving areas, or operational improvements. We then collaborate with you to evaluate and prioritize these opportunities based on your goals and resources."
+            },
+            {
+                "question": "In what ways do you act as a strategic partner rather than just a service provider?",
+                "answer": "We become an extension of your team, investing time to understand your vision and challenges. We provide proactive recommendations, challenge assumptions with data, and support key decisions—from expansion and hiring to funding and exit planning—ensuring every step is grounded in financial clarity and strategic insight."
+            }
+        ]
+    }
+]

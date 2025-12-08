@@ -7,16 +7,26 @@
   --font-weight-inter: 500;
 
   /* Typography - Text Sizes - Use as: text-heading-lg, text-heading-md, etc */
-  --font-size-heading-lg: 45px;        /* Main section headings (desktop) */
-  --font-size-heading-lg-mobile: 36px; /* Main section headings (mobile) */
-  --font-size-heading-md: 38px;        /* Secondary headings */
-  --font-size-heading-sm: 28px;        /* Smaller headings */
-  --font-size-subheading: 20px;        /* Card/section subheadings */
-  --font-size-card-title: 22px;        /* Feature/benefit card titles */
-  --font-size-body-lg: 18px;           /* Large body text */
-  --font-size-body: 16px;              /* Normal body text - navigation, links, forms */
-  --font-size-sm: 15px;                /* Small UI text */
-  --font-size-xs: 10px;                /* Badges, micro text */
+  --font-size-heading-lg: 45px;
+  /* Main section headings (desktop) */
+  --font-size-heading-lg-mobile: 36px;
+  /* Main section headings (mobile) */
+  --font-size-heading-md: 38px;
+  /* Secondary headings */
+  --font-size-heading-sm: 28px;
+  /* Smaller headings */
+  --font-size-subheading: 20px;
+  /* Card/section subheadings */
+  --font-size-card-title: 22px;
+  /* Feature/benefit card titles */
+  --font-size-body-lg: 18px;
+  /* Large body text */
+  --font-size-body: 16px;
+  /* Normal body text - navigation, links, forms */
+  --font-size-sm: 15px;
+  /* Small UI text */
+  --font-size-xs: 10px;
+  /* Badges, micro text */
 
   /* Primary Brand Colors - Use as: bg-primary, text-primary, border-primary */
   --color-primary: #1E3A8A;
@@ -29,19 +39,27 @@
   --color-heading: #1a1a1a;
   --color-body: #636363;
 
- 
+
 
   /* Component Sizes - Use as: icon-sm, icon-md, icon-lg, dot-indicator */
-  --size-dot-indicator: 0.5rem;   /* 8px - Section label dots */
-  --size-icon-sm: 1.25rem;        /* 20px - Small icons, arrows */
-  --size-icon-md: 2rem;           /* 32px - Standard icons, buttons */
-  --size-button-lg: 2.5rem;       /* 40px - Navigation buttons */
-  --size-icon-lg: 3rem;           /* 48px - Feature icons */
+  --size-dot-indicator: 0.5rem;
+  /* 8px - Section label dots */
+  --size-icon-sm: 1.25rem;
+  /* 20px - Small icons, arrows */
+  --size-icon-md: 2rem;
+  /* 32px - Standard icons, buttons */
+  --size-button-lg: 2.5rem;
+  /* 40px - Navigation buttons */
+  --size-icon-lg: 3rem;
+  /* 48px - Feature icons */
 
   /* Border Radius - Use as: radius-badge, radius-input, radius-card */
-  --radius-badge: 0.75rem;        /* 12px - Small badges, logos */
-  --radius-input: 1rem;           /* 16px - Form inputs, small cards */
-  --radius-card: 1.5rem;          /* 24px - Cards, images, containers */
+  --radius-badge: 0.75rem;
+  /* 12px - Small badges, logos */
+  --radius-input: 1rem;
+  /* 16px - Form inputs, small cards */
+  --radius-card: 1.5rem;
+  /* 24px - Cards, images, containers */
 }
 
 .font-inter {
@@ -143,13 +161,27 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes float-delayed {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 .animate-float {
@@ -162,7 +194,8 @@
 }
 
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   width: 100%;
   position: relative;
@@ -181,8 +214,8 @@ section {
 }
 
 /* Ensure images and content don't cause overflow */
-img, 
-video, 
+img,
+video,
 iframe {
   max-width: 100%;
   height: auto;
@@ -196,13 +229,3 @@ iframe {
     width: 100%;
   }
 }
-
-
-
-
-
-
-
-
-
-

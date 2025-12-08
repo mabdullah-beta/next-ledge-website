@@ -4,7 +4,6 @@ import Comparison from "./components/Comparison";
 import Slider from "./components/Services";
 import TestimonialSection from "./components/Testimonial";
 import KeyBenefits from "./components/KeyBenefits";
-import PricingPlans from "./components/Pricing";
 import HowItWorksSection from "./components/HowItWorks";
 import ImpactSection from "./components/Impact";
 // import TeamSection from "./components/Team";
@@ -24,7 +23,6 @@ export default function Home() {
       <Slider />
       <TestimonialSection />
       <KeyBenefits />
-      {/* <PricingPlans/> */}
       <HowItWorksSection />
       <ImpactSection />
       {/* <TeamSection /> */}
