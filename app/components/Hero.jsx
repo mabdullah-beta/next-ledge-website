@@ -56,7 +56,7 @@ const Hero = () => {
 
               {/* Description */}
               <p className="font-inter text-[15px] sm:text-[16px] md:text-[17px] lg:text-[19px] font-normal text-white/80 leading-relaxed mb-6 sm:mb-7 md:mb-8 max-w-[520px]">
-                Nexledge combineert professionele boekhouding met slimme IT oplossingen. We maken je administratie efficiënt, je cijfers duidelijk, en je bedrijf klaar voor de volgende stap.
+                SalFin combineert professionele boekhouding met slimme IT oplossingen. We maken je administratie efficiënt, je cijfers duidelijk, en je bedrijf klaar voor de volgende stap.
               </p>
 
               {/* CTA Buttons */}

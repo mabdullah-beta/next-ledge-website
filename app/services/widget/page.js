@@ -6,6 +6,7 @@ import { Send, X } from "lucide-react";
 import Lottie from "lottie-react";
 
 import botAnimation from "@/public/animations/Fox-Programmer.json";
+import Image from "next/image";
 // import botClosedAnimation from "@/public/animations/Fox-Closed.json"; // <-- add closed animation
 
 const ChatWidget = () => {
@@ -14,7 +15,7 @@ const ChatWidget = () => {
     const [messages, setMessages] = useState([
         {
             role: "assistant",
-            content: "Hi! I’m your AI assistant. How can I help you today?",
+            content: "Hi! I’m your finance fox. Ask me anything!",
         },
     ]);
 
@@ -193,9 +194,19 @@ const ChatWidget = () => {
         <>
             {/* Floating greeting message */}
             {!isOpen && showGreeting && (
-                <div className="fixed bottom-10 right-24 bg-white shadow-lg p-3 rounded-xl text-sm 
-                    border border-slate-200 animate-fade-in z-[200] max-w-[230px]">
-                    Hi👋 I'm your financial agent
+                <div className="fixed bottom-32 -right-10 bg-white shadow-lg p-3 rounded-2xl text-sm 
+                    border border-slate-200 animate-fade-in z-[200] max-w-[230px] transform -translate-x-1/2">
+                    <div className="relative">
+                        Hi 👋 I'm your finance fox. Ask me anything!
+                        {/* Thought bubble tail */}
+                        
+                        <div className="absolute -bottom-4 left-1/2 transform -translate-x-3">
+                            <div className="w-2 h-2 bg-white border-b border-r border-slate-200 transform rotate-45"></div>
+                        </div>
+                        <div className="absolute -bottom-6 left-1/2 transform -translate-x-2">
+                            <div className="w-1.5 h-1.5 bg-white border-b border-r border-slate-200 transform rotate-45"></div>
+                        </div>
+                    </div>
                 </div>
             )}
 
@@ -208,7 +219,7 @@ const ChatWidget = () => {
                     setIsOpen(!isOpen);
                     if (!isOpen) setShowGreeting(false);
                 }}
-                className="fox-launcher fixed bottom-2 right-2 h-28 w-28 hover:scale-105 transition-all duration-300 z-[250]"
+                className="fox-launcher cursor-pointer fixed bottom-2 right-2 h-36 w-36 hover:scale-105 transition-all duration-300 z-[250]"
             >
                 <Lottie
                     animationData={isOpen ? botAnimation : botAnimation}
@@ -220,11 +231,11 @@ const ChatWidget = () => {
             {/* Chat widget */}
             {isOpen && (
                 <div ref={widgetRef} className="fixed bottom-24 right-6 w-[360px] max-w-[95%] z-[150]">
-                    <div className="rounded-3xl bg-white shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
+                    <div className="rounded-2xl bg-white shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
                         {/* Header */}
                         <div className="flex items-center justify-between px-4 py-2 border-b border-slate-100 bg-slate-50">
                             <div className="font-semibold text-sm">
-                                Ask Super AI
+                                Finance Fox
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
@@ -248,13 +259,21 @@ const ChatWidget = () => {
                                         >
                                             {/* Assistant avatar */}
                                             {msg.role !== "user" && (
-                                                <div className="mt-1 h-7 w-7 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500" />
+                                                <div className="mt-1 h-8 w-8 rounded-full overflow-hidden flex items-center justify-center">
+                                                    <Image
+                                                        src="/fox.png"
+                                                        alt="Finance Fox"
+                                                        width={50}
+                                                        height={50}
+                                                        className="rounded-full"
+                                                    />
+                                                </div>
                                             )}
 
                                             <div
-                                                className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed max-w-[80%] shadow-sm
+                                                className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed max-w-[80%]
                                                 ${msg.role === "user"
-                                                        ? "bg-blue-50 text-blue-900"
+                                                        ? "bg-blue-100 text-blue-900"
                                                         : "bg-slate-100 text-slate-900"
                                                     }`}
                                             >
@@ -264,9 +283,9 @@ const ChatWidget = () => {
                                     ))}
 
                                     {loading && (
-                                        <div className="flex items-center gap-2 text-xs text-slate-500">
+                                        <div className="flex animate-pulse items-center gap-2 text-xs text-slate-500">
                                             <div className="h-2 w-2 rounded-full bg-slate-400 animate-bounce" />
-                                            <span>Assistant is typing…</span>
+                                            <span>Finance Fox is thinking…</span>
                                         </div>
                                     )}
                                 </div>
@@ -275,7 +294,7 @@ const ChatWidget = () => {
 
                         {/* Input Bar */}
                         <div className="px-4 pb-4 pt-1">
-                            <div className="flex items-end gap-2 rounded-xl bg-slate-50 border border-slate-200 px-3 py-2">
+                            <div className="flex items-center gap-2 rounded-xl bg-slate-50 border border-slate-200 px-3 py-2">
                                 <textarea
                                     ref={textareaRef}
                                     placeholder="Ask something…"

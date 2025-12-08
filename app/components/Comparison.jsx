@@ -33,7 +33,7 @@ const Comparison = () => {
     },
     {
       title: "Gedreven door technologie en inzicht",
-      description: "Bij Nexledge gebruiken we IT, AI en automatisering om kansen te herkennen, efficiëntie te verbeteren en je meer controle te geven. We vinden dat onze klanten goed geïnformeerd moeten blijven en voordeel moeten hebben van de nieuwste tools die de toekomst van bedrijven vormgeven.",
+      description: "Bij SalFin gebruiken we IT, AI en automatisering om kansen te herkennen, efficiëntie te verbeteren en je meer controle te geven. We vinden dat onze klanten goed geïnformeerd moeten blijven en voordeel moeten hebben van de nieuwste tools die de toekomst van bedrijven vormgeven.",
     },
     {
       title: "Transparante prijzen",
@@ -90,10 +90,10 @@ const Comparison = () => {
             ))}
           </div>
 
-          {/* Right Column - With Nexledge */}
+          {/* Right Column - With SalFin */}
           <div className="bg-white p-6 sm:p-8 md:p-9 lg:p-10 space-y-6 sm:space-y-8 md:space-y-9 lg:space-y-10 rounded-2xl sm:rounded-3xl">
             <h3 className="text-[22px] sm:text-[24px] md:text-[26px] lg:text-[28px] font-semibold text-black mb-6 sm:mb-7 md:mb-8 lg:mb-9">
-              Met Nexledge
+              Met SalFin
             </h3>
 
             {withStratex.map((item, index) => (

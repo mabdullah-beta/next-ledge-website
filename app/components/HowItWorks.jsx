@@ -34,7 +34,7 @@ const steps = [
     id: '04',
     title: 'Groeien met vertrouwen',
     abt: 'Van cijfers naar strategie',
-    description: 'Met duidelijke cijfers en slimme financiële inzichten helpen we je stevige, strategische keuzes te maken. Of je nu wilt opschalen, investeren of efficiënter wilt werken, Nexledge geeft je de helderheid om vooruit te komen.',
+    description: 'Met duidelijke cijfers en slimme financiële inzichten helpen we je stevige, strategische keuzes te maken. Of je nu wilt opschalen, investeren of efficiënter wilt werken, SalFin geeft je de helderheid om vooruit te komen.',
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imagePosition: 'right'
   }
