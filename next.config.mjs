@@ -1,4 +1,4 @@
-// next.config.js
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -6,9 +6,7 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  // Leave experimental empty unless you need specific flags;
-  // removing unknown experimental flags reduces breakage on upgrade.
   experimental: {},
 };
 
-module.exports = nextConfig;
+export default nextConfig;
