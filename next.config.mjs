@@ -1,17 +1,14 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'framerusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-    ],
+  reactStrictMode: true,
+  poweredByHeader: false,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
+  // Leave experimental empty unless you need specific flags;
+  // removing unknown experimental flags reduces breakage on upgrade.
+  experimental: {},
 };
 
-export default nextConfig;
+module.exports = nextConfig;
