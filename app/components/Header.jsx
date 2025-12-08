@@ -21,9 +21,9 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { label: "Services", href: "#services" },
-    { label: "Features", href: "#features" },
-    { label: "How it work", href: "#how-it-works" },
+    { label: "Diensten", href: "#diensten" },
+    { label: "Functies", href: "#functies" },
+    { label: "Hoe het werkt", href: "#hoe-het-werkt" },
   ];
 
   return (
@@ -34,12 +34,9 @@ const Header = () => {
           {/* Logo */}
           <Link href="/" className="flex cursor-pointer items-center gap-3 group" aria-label="Stratex Home">
 
-            <div className="w-10 bg-primary/10 rounded-lg h-10 flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
-              <Image src="/next-ledge.png" alt="Stratex Logo" width={45} height={45} />
+            <div className="h-12 flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
+              <Image src="/logo.png" alt="SalFin Logo" width={120} height={120} />
             </div>
-            <span className="text-[22px] font-hedvig md:text-[22px] sm:text-[20px] font-normal text-heading tracking-tight transition-opacity duration-200 group-hover:opacity-80">
-              Nexledge
-            </span>
           </Link>
 
 
@@ -58,7 +55,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <Link href="#contact" className="hidden md:flex bg-primary text-white pl-3 pr-2 py-1 rounded-full text-[16px] font-semibold hover:bg-primary-dark transition-all duration-200 items-center gap-3 whitespace-nowrap group" aria-label="Get in touch">
-            Get in touch
+            Neem contact op
             {/* Arrow animation: Two arrows for slide effect - one slides out right, another slides in from left */}
             <span className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-primary overflow-hidden relative">
               <ArrowRight size={20} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />

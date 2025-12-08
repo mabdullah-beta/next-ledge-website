@@ -24,7 +24,7 @@ export default function Home() {
       <Slider />
       <TestimonialSection />
       <KeyBenefits />
-      {/* <PricingPlans/> */}
+      {/* <PricingPlans /> */}
       <HowItWorksSection />
       <ImpactSection />
       {/* <TeamSection /> */}
