@@ -27,89 +27,89 @@ export default function Footer() {
 
             {/* Description */}
             <p className="text-base sm:text-lg antialiased font-inter mt-5 sm:mt-6 text-body leading-relaxed mb-6 sm:mb-8 max-w-72">
-              Optimize your business strategy with expert consulting solutions
+              Optimaliseer je bedrijfsstrategie met deskundige adviesoplossingen
             </p>
 
-          
+
           </div>
 
           {/* Columns 2, 3, 4 - Menu sections */}
           <div className="flex gap-12 md:gap-16 lg:gap-20 md:mr-10 lg:mr-20">
             {/* Column 2 - Menu */}
             <div>
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-5 sm:mb-6">Menu</h3>
-            <ul className="space-y-3 sm:space-y-4">
-              <li>
-                <Link href="#services" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="#features" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link href="#pricing" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link href="#how-it-work" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
-                  How it work
-                </Link>
-              </li>
-              <li>
-                <Link href="#team" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
-                  Team
-                </Link>
-              </li>
-            </ul>
-          </div>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-5 sm:mb-6">Menu</h3>
+              <ul className="space-y-3 sm:space-y-4">
+                <li>
+                  <Link href="#services" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                    Diensten
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#features" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                    Functies
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#pricing" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                    Prijzen
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#how-it-work" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                    Hoe het werkt
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#team" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                    Team
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
             {/* Column 3 - Follow us */}
             <div>
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-5 sm:mb-6">Follow us:</h3>
-            <ul className="space-y-3 sm:space-y-4">
-              <li>
-                <Link href="https://instagram.com" target="_blank" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
-                  Instagram
-                </Link>
-              </li>
-              <li>
-                <Link href="https://linkedin.com" target="_blank" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
-                  Linkedin
-                </Link>
-              </li>
-              <li>
-                <Link href="https://twitter.com" target="_blank" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
-                  Twitter
-                </Link>
-              </li>
-            </ul>
-          </div>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-5 sm:mb-6">Follow us:</h3>
+              <ul className="space-y-3 sm:space-y-4">
+                <li>
+                  <Link href="https://instagram.com" target="_blank" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                    Instagram
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://linkedin.com" target="_blank" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                    Linkedin
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://twitter.com" target="_blank" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                    Twitter
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
             {/* Column 4 - Contact */}
             <div>
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-5 sm:mb-6">Contact</h3>
-            <ul className="space-y-3 sm:space-y-4">
-              <li>
-                <a href="mailto:insert.supply@gmail.com" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
-                  Insert.supply@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="tel:+123456789" className="text-[14px] sm:text-[15px] text-gray-500 hover:text-gray-900 transition-colors">
-                  +123 456 789
-                </a>
-              </li>
-              <li>
-                <span className="text-[15px] sm:text-[16px] text-gray-500">
-                  California, USA
-                </span>
-              </li>
-            </ul>
-          </div>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-5 sm:mb-6">Contact</h3>
+              <ul className="space-y-3 sm:space-y-4">
+                <li>
+                  <a href="mailto:insert.supply@gmail.com" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                    Insert.supply@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+123456789" className="text-[14px] sm:text-[15px] text-gray-500 hover:text-gray-900 transition-colors">
+                    +123 456 789
+                  </a>
+                </li>
+                <li>
+                  <span className="text-[15px] sm:text-[16px] text-gray-500">
+                    Californië, VS
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -119,7 +119,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2.5 sm:gap-3 mb-5 sm:mb-6">
               <div className="w-8 h-8 sm:w-9 sm:h-9 bg-primary rounded-xl flex items-center justify-center">
-                 <Image
+                <Image
                   src="/next-ledge.png"
                   alt="Nexledge Logo"
                   width={28}
@@ -133,7 +133,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-[15px] sm:text-[16px] text-gray-600 leading-relaxed mb-5 sm:mb-6">
-              Optimize your business strategy with expert consulting solutions
+              Optimaliseer je bedrijfsstrategie met deskundige adviesoplossingen
             </p>
 
           </div>
@@ -144,22 +144,22 @@ export default function Footer() {
             <ul className="space-y-3 sm:space-y-4">
               <li>
                 <Link href="#services" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
-                  Services
+                  Diensten
                 </Link>
               </li>
               <li>
                 <Link href="#features" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
-                  Features
+                  Functies
                 </Link>
               </li>
               <li>
                 <Link href="#pricing" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
-                  Pricing
+                  Prijzen
                 </Link>
               </li>
               <li>
                 <Link href="#how-it-work" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
-                  How it work
+                  Hoe het werkt
                 </Link>
               </li>
               <li>
@@ -208,7 +208,7 @@ export default function Footer() {
               </li>
               <li>
                 <span className="text-[15px] sm:text-[16px] text-gray-600">
-                  California, USA
+                  Californië, VS
                 </span>
               </li>
             </ul>

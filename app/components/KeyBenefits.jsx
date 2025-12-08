@@ -3,43 +3,42 @@
 import { MessageCircle, Cloud, Globe, Database, Headphones, Zap } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-
 const benefits = [
   {
     id: 1,
     icon: MessageCircle,
-    title: 'Flexible consultations',
-    description: 'Easy access to administrative support whenever you need clarity or guidance.'
+    title: 'Flexibele consultaties',
+    description: 'Eenvoudige toegang tot administratieve ondersteuning wanneer je duidelijkheid of begeleiding nodig hebt.'
   },
   {
     id: 2,
     icon: Cloud,
-    title: 'Tailored administrative solutions',
-    description: 'Workflows and setups adapted to your business needs, from day-to-day bookkeeping to structured financial processes.'
+    title: 'Maatwerk administratieve oplossingen',
+    description: 'Workflows en instellingen afgestemd op de behoeften van jouw bedrijf, van dagelijkse boekhouding tot gestructureerde financiële processen.'
   },
   {
     id: 3,
     icon: Globe,
-    title: 'Practical financial insights',
-    description: 'Clear explanations and organized overviews that help you understand your numbers and stay in control.'
+    title: 'Praktische financiële inzichten',
+    description: 'Duidelijke uitleg en overzichtelijke weergaven die je helpen je cijfers te begrijpen en de controle te houden.'
   },
   {
     id: 4,
     icon: Database,
-    title: 'Data & control strategies',
-    description: 'Well-structured reporting that supports better oversight and helps you make informed decisions.'
+    title: 'Data en controle strategieën',
+    description: 'Goed gestructureerde rapportages die beter overzicht bieden en je helpen weloverwogen beslissingen te nemen.'
   },
   {
     id: 5,
     icon: Headphones,
-    title: 'Ongoing administrative support',
-    description: 'Consistent follow-up and communication throughout the year, so your administration remains organized and up-to-date.'
+    title: 'Doorlopende administratieve ondersteuning',
+    description: 'Consistente opvolging en communicatie gedurende het hele jaar zodat je administratie georganiseerd en up to date blijft.'
   },
   {
     id: 6,
     icon: Zap,
-    title: 'Efficient automation & IT support',
-    description: 'Implementation of useful tools and automations that help streamline your administrative work and reduce manual tasks.'
+    title: 'Efficiënte automatisering en IT ondersteuning',
+    description: 'Implementatie van handige tools en automatiseringen die je administratieve werk stroomlijnen en handmatige taken verminderen.'
   }
 ];
 
@@ -61,10 +60,10 @@ export default function KeyBenefits() {
         <div className="font-hedvig text-center mb-12 sm:mb-16 md:mb-20">
           <div className="flex items-center justify-center gap-2 mb-4 sm:mb-5 md:mb-6">
             <div className="dot-indicator bg-primary rounded-full"></div>
-            <span className="font-inter text-sm sm:text-base font-semimedium text-primary">Features</span>
+            <span className="font-inter text-sm sm:text-base font-semimedium text-primary">Functies</span>
           </div>
           <h2 className="font-hedvig max-w-2xl text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 leading-tight mx-auto px-4">
-            Key benefits that set us apart from other firms
+            Belangrijkste voordelen die ons onderscheiden van andere kantoren
           </h2>
         </div>
 

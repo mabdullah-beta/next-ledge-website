@@ -9,42 +9,42 @@ const Comparison = () => {
 
   const otherFirms = [
     {
-      title: "One-size-fits-all service",
-      description: "Standard bookkeeping with little room for tailored advice or forward thinking.",
+      title: "Service die voor iedereen hetzelfde is",
+      description: "Standaard boekhouding met weinig ruimte voor maatgericht advies of vooruitdenken.",
     },
     {
-      title: "Reactive support",
-      description: "Help comes only when you ask — not when you truly need guidance.",
+      title: "Reactieve ondersteuning",
+      description: "Hulp komt pas wanneer je erom vraagt, niet wanneer je echt begeleiding nodig hebt.",
     },
     {
-      title: "Unclear pricing",
-      description: "Unexpected add-ons that make budgeting harder.",
+      title: "Onduidelike prijzen",
+      description: "Onverwachte extra kosten die het lastig maken om te budgetteren.",
     },
   ];
 
   const withStratex = [
     {
-      title: "Personalized accounting",
-      description: "Every business is different. We shape your administration around your goals and way of working.",
+      title: "Persoonlijke boekhouding",
+      description: "Elk bedrijf is anders. We richten je administratie in op basis van jouw doelen en manier van werken.",
     },
     {
-      title: "Proactive support",
-      description: "We go beyond the numbers — helping you understand your figures and plan with confidence.",
+      title: "Persoonlijke boekhouding",
+      description: "We gaan verder dan de cijfers en helpen je je resultaten te begrijpen en met vertrouwen te plannen.",
     },
     {
-      title: "Driven by technology and insight",
-      description: "At Nexledge, we use IT, AI, and automation to spot opportunities, improve efficiency, and give you better control. We believe our clients should stay informed and benefit from the latest tools that shape the future of business.",
+      title: "Gedreven door technologie en inzicht",
+      description: "Bij Nexledge gebruiken we IT, AI en automatisering om kansen te herkennen, efficiëntie te verbeteren en je meer controle te geven. We vinden dat onze klanten goed geïnformeerd moeten blijven en voordeel moeten hebben van de nieuwste tools die de toekomst van bedrijven vormgeven.",
     },
     {
-      title: "Transparent pricing",
-      description: "Fair, clear, and straightforward — no hidden surprises.",
+      title: "Transparante prijzen",
+      description: "Eerlijk, duidelijk en overzichtelijk, zonder verborgen verrassingen.",
     },
   ];
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="font-inter relative py-12 sm:py-16 md:py-20 lg:py-24 bg-white" 
+      className="font-inter relative py-12 sm:py-16 md:py-20 lg:py-24 bg-white"
       aria-label="Comparison Section"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
@@ -52,10 +52,10 @@ const Comparison = () => {
         <div className="text-center mb-10 sm:mb-12 md:mb-14 lg:mb-16">
           <div className="flex items-center justify-center gap-2 mb-4 sm:mb-5 md:mb-6">
             <div className="dot-indicator bg-primary rounded-full"></div>
-            <span className="font-inter text-sm sm:text-base font-semimedium text-primary">Why choose us</span>
+            <span className="font-inter text-sm sm:text-base font-semimedium text-primary">Waarom voor ons kiezen</span>
           </div>
           <h1 className="font-hedvig text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 leading-tight max-w-2xl mx-auto px-4">
-            More than accountants — partners in your business journey
+            Meer dan accountants, partners in je zakelijke reis
           </h1>
         </div>
 
@@ -66,13 +66,13 @@ const Comparison = () => {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
         >
-          
+
           {/* Left Column - Other Firms */}
           <div className="font-inter p-6 sm:p-8 md:p-9 lg:p-10 space-y-6 sm:space-y-8 md:space-y-9 lg:space-y-10">
             <h3 className="text-[22px] sm:text-[24px] md:text-[26px] lg:text-[28px] font-semibold text-black mb-6 sm:mb-7 md:mb-8 lg:mb-9">
-              Other Firms
+              Andere kantoren
             </h3>
-            
+
             {otherFirms.map((item, index) => (
               <div key={index} className="flex gap-3 sm:gap-4 items-start">
                 <div className="flex-shrink-0 mt-0.5 sm:mt-1">
@@ -93,9 +93,9 @@ const Comparison = () => {
           {/* Right Column - With Nexledge */}
           <div className="bg-white p-6 sm:p-8 md:p-9 lg:p-10 space-y-6 sm:space-y-8 md:space-y-9 lg:space-y-10 rounded-2xl sm:rounded-3xl">
             <h3 className="text-[22px] sm:text-[24px] md:text-[26px] lg:text-[28px] font-semibold text-black mb-6 sm:mb-7 md:mb-8 lg:mb-9">
-              With Nexledge
+              Met Nexledge
             </h3>
-            
+
             {withStratex.map((item, index) => (
               <div key={index} className="flex gap-3 sm:gap-4 items-start">
                 <div className="flex-shrink-0 mt-0.5 sm:mt-1">

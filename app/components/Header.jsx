@@ -21,9 +21,9 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { label: "Services", href: "#services" },
-    { label: "Features", href: "#features" },
-    { label: "How it work", href: "#how-it-works" },
+    { label: "Diensten", href: "#diensten" },
+    { label: "Functies", href: "#functies" },
+    { label: "Hoe het werkt", href: "#hoe-het-werkt" },
   ];
 
   return (
@@ -58,7 +58,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <Link href="#contact" className="hidden md:flex bg-primary text-white pl-3 pr-2 py-1 rounded-full text-[16px] font-semibold hover:bg-primary-dark transition-all duration-200 items-center gap-3 whitespace-nowrap group" aria-label="Get in touch">
-            Get in touch
+            Neem contact op
             {/* Arrow animation: Two arrows for slide effect - one slides out right, another slides in from left */}
             <span className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-primary overflow-hidden relative">
               <ArrowRight size={20} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />

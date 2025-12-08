@@ -8,32 +8,33 @@ import { useRef } from 'react';
 const steps = [
   {
     id: '01',
-    title: 'Simple & efficient',
-    abt: 'Easy and seamless scheduling',
-    description: 'Effortlessly schedule a consultation to discuss your goals, needs, and challenges. We listen, analyze your situation, and identify where automation and optimization can make the biggest impact—so we can start quickly and effectively.',
+    title: 'Eenvoudig en efficiënt',
+    abt: 'Makkelijke en soepele planning',
+    description: 'Plan moeiteloos een consult om je doelen, behoeften en uitdagingen te bespreken. We luisteren, analyseren je situatie en bepalen waar automatisering en optimalisatie de grootste impact kunnen hebben zodat we snel en effectief kunnen starten.',
     image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
     imagePosition: 'left'
   },
   {
     id: '02',
-    title: 'Automating where it matters',
-    abt: 'Less manual work, more clarity',
-    description: "Automation doesn't mean losing the human touch. We stay closely involved, provide proactive advice, and think along with you during important decisions. You'll have a dedicated expert who truly understands your business.",
+    title: 'Automatiseren waar het telt',
+    abt: 'Minder handmatig werk, meer duidelijkheid',
+    description: "Automatisering betekent niet dat de menselijke betrokkenheid verdwijnt. We blijven nauw betrokken, geven proactief advies en denken met je mee bij belangrijke beslissingen. Je krijgt een vaste expert die jouw bedrijf echt begrijpt.",
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
     imagePosition: 'right'
   },
   {
     id: '03',
-    title: 'Personal guidance',
-    abt: 'Always an expert by your side',
-    description: 'From implementation to optimization, we provide ongoing guidance and adjustments to ensure long-term growth for you',
+    title: 'Persoonlijke begeleiding',
+    abt: 'Altijd een expert aan je zijde',
+    description: 'Van implementatie tot optimalisatie bieden we doorlopende begeleiding en aanpassingen om langdurige groei voor jou te verzekeren.',
     image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop',
     imagePosition: 'left'
-  }, {
+  },
+  {
     id: '04',
-    title: 'Growing with confidence',
-    abt: 'Turning numbers into strategy',
-    description: 'With clear numbers and smart financial insights, we help you make confident, strategic decisions. Whether you want to scale, invest, or improve efficiency, Nexledge gives you the clarity to move forward.',
+    title: 'Groeien met vertrouwen',
+    abt: 'Van cijfers naar strategie',
+    description: 'Met duidelijke cijfers en slimme financiële inzichten helpen we je stevige, strategische keuzes te maken. Of je nu wilt opschalen, investeren of efficiënter wilt werken, Nexledge geeft je de helderheid om vooruit te komen.',
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imagePosition: 'right'
   }
@@ -98,7 +99,7 @@ function StepItem({ step, index }) {
                   {step.description}
                 </p>
                 <button className="inline-flex items-center gap-2 text-gray-900 font-bold hover:gap-3 transition-all text-sm lg:text-base">
-                  Discover More
+                  Ontdek meer
                   <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
                 </button>
               </motion.div>
@@ -123,7 +124,7 @@ function StepItem({ step, index }) {
                 </p>
                 <div className="flex justify-end">
                   <button className="inline-flex items-center gap-2 text-gray-900 font-semibold hover:gap-3 transition-all text-sm lg:text-base">
-                    Discover More
+                    Ontdek meer
                     <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 rotate-180" />
                   </button>
                 </div>
@@ -194,7 +195,7 @@ function StepItem({ step, index }) {
             {step.description}
           </p>
           <button className="inline-flex items-center gap-2 text-gray-900 font-bold hover:gap-3 transition-all text-sm sm:text-base">
-            Discover More
+            Ontdek meer
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </motion.div>
@@ -211,13 +212,13 @@ export default function HowItWorksSection() {
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4 md:mb-6">
             <div className="dot-indicator bg-primary rounded-full"></div>
-            <span className="font-inter text-sm sm:text-base font-semimedium text-primary">How it works</span>
+            <span className="font-inter text-sm sm:text-base font-semimedium text-primary">Hoe het werkt</span>
           </div>
           <h2 className="font-hedvig text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 leading-tight mb-6 sm:mb-7 md:mb-8 max-w-xl mx-auto px-4">
-            A proven process to achieve your biggest goals
+            Een bewezen proces om je grootste doelen te bereiken
           </h2>
           <button className="inline-flex items-center gap-2 sm:gap-3 bg-primary text-white px-1 pl-3 sm:pl-4 py-0.5 sm:py-1 rounded-full transition-all duration-200 group">
-            <span className="font-semibold text-sm sm:text-base">Get in touch</span>
+            <span className="font-semibold text-sm sm:text-base">Neem contact op</span>
             {/* Arrow animation: Two arrows for slide effect */}
             <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center overflow-hidden relative">
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary transition-transform duration-300 group-hover:translate-x-6" />
