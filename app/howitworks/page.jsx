@@ -4,6 +4,7 @@ import workSteps from "../../data/work.json";
 import Image from "next/image";
 import { FadeUp } from "../components/MotionWrapper";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function WorkPage() {
     return (
@@ -118,21 +119,36 @@ export default function WorkPage() {
                                 <p className="text-white/90 mb-8 max-w-md mx-auto">
                                     Ready to experience our proven process?
                                 </p>
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <a
-                                        href="/contact"
-                                        className="inline-flex items-center justify-center bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition"
+
+                                {/* CTA Buttons */}
+                                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-5">
+                                    <Link
+                                        href="/#contact"
+                                        className="bg-white text-black pl-4 pr-1.5 py-1 rounded-full text-[15px] sm:text-[16px] font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center justify-center gap-3 shadow-sm group w-full sm:w-auto"
                                     >
-                                        Begin Now
-                                        <ArrowRight className="ml-2 h-4 w-4" />
-                                    </a>
-                                    <a
-                                        href="/services"
-                                        className="inline-flex items-center justify-center bg-white/20 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/30 transition"
+                                        <span>Begin Now</span>
+                                        <span className="w-8 h-8 sm:w-9 sm:h-9 bg-primary rounded-full flex items-center justify-center text-white overflow-hidden relative flex-shrink-0">
+                                            <ArrowRight
+                                                size={18}
+                                                strokeWidth={2.5}
+                                                className="transition-transform duration-300 group-hover:translate-x-6"
+                                            />
+                                            <ArrowRight
+                                                size={18}
+                                                strokeWidth={2.5}
+                                                className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0"
+                                            />
+                                        </span>
+                                    </Link>
+
+                                    <Link
+                                        href="/#services"
+                                        className="font-inter bg-transparent px-5 py-2.5 sm:py-2 rounded-full text-[15px] sm:text-[16px] md:text-lg font-semibold text-white border border-white/20 hover:bg-white/10 hover:border-white/30 transition-all duration-200 text-center w-full sm:w-auto"
                                     >
                                         Learn More
-                                    </a>
+                                    </Link>
                                 </div>
+
                             </div>
                         </div>
                     </FadeUp>

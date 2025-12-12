@@ -6,7 +6,70 @@ import featuresData from "../../../data/features.json";
 import Image from "next/image";
 import { FadeUp } from "../../components/MotionWrapper";
 import { useState, useEffect } from "react";
-import { CheckCircle2, Plus, Minus, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import {
+    Clock,
+    MessageCircle,
+    ShieldCheck,
+    CheckCircle2,
+    Layers,
+    Settings,
+    Link2,
+    BarChart3,
+    TrendingUp,
+    Activity,
+    Database,
+    Lock,
+    FileCheck,
+    Shield,
+    Users,
+    RefreshCw,
+    CalendarClock,
+    Zap,
+    Cpu,
+    Workflow,
+    Wrench,
+    LineChart,
+    Plus, Minus, ArrowRight
+} from "lucide-react"
+import FAQSection from "@/app/components/FAQ";
+
+export const iconMap = {
+    // Consultation Services
+    Clock,
+    MessageCircle,
+    ShieldCheck,
+
+    // Custom / Tailored Solutions
+    Layers,
+    Settings,
+    Link2,
+    CheckCircle2,
+
+    // Analytics & Financial Insights
+    BarChart3,
+    TrendingUp,
+    Activity,
+    LineChart,
+
+    // Data & Control / Governance
+    Database,
+    Lock,
+    FileCheck,
+    Shield,
+
+    // Ongoing Support
+    Users,
+    RefreshCw,
+    CalendarClock,
+
+    // Automation & IT
+    Zap,
+    Cpu,
+    Workflow,
+    Wrench
+}
+
 
 export default function FeaturePageClient({ id }) {
     const [feature, setFeature] = useState(null);
@@ -35,17 +98,17 @@ export default function FeaturePageClient({ id }) {
             <Header />
 
             {/* Hero Section - Artistic */}
-            <section className="relative py-28 overflow-hidden">
+            <section className="relative py-28 overflow-hidden bg-primary">
                 {/* Gradient Blobs */}
-                <div className="absolute top-0 left-0 w-72 h-72 bg-primary/20 blur-3xl rounded-full"></div>
-                <div className="absolute bottom-0 right-0 w-72 h-72 bg-primary-light/20 blur-3xl rounded-full"></div>
+                {/* <div className="absolute top-0 left-0 w-72 h-72 bg-white/5 blur-3xl rounded-full"></div>
+                <div className="absolute bottom-0 right-0 w-72 h-72 bg-white/10 blur-3xl rounded-full"></div> */}
 
                 <div className="max-w-5xl mx-auto px-6 text-center relative">
                     <FadeUp>
-                        <h1 className="text-5xl md:text-6xl font-hedvig font-semibold text-gray-900">
+                        <h1 className="text-5xl md:text-6xl font-hedvig font-semibold text-gray-100">
                             {feature.title}
                         </h1>
-                        <p className="text-lg md:text-xl text-gray-600 mt-6 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-lg md:text-xl text-gray-300 mt-6 max-w-2xl mx-auto leading-relaxed">
                             {feature.shortDescription}
                         </p>
                     </FadeUp>
@@ -105,20 +168,30 @@ export default function FeaturePageClient({ id }) {
             {feature.highlights && (
                 <section className="max-w-5xl mx-auto px-6 mb-24">
                     <FadeUp>
-                        <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">
-                            Key Benefits
+                        <h2 className="font-hedvig max-w-2xl text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 leading-tight mx-auto px-4 text-center mb-8">
+                            Key benefits
                         </h2>
 
                         <div className="grid md:grid-cols-3 gap-6">
-                            {feature.highlights.map((h, i) => (
-                                <div
-                                    key={i}
-                                    className="p-6 border bg-white rounded-xl shadow-md hover:shadow-xl transition"
-                                >
-                                    <CheckCircle2 className="text-primary h-6 w-6 mb-3" />
-                                    <p className="text-gray-700 leading-relaxed">{h}</p>
-                                </div>
-                            ))}
+                            {feature.highlights.map((h, i) => {
+                                const Icon = iconMap[h?.icon] || CheckCircle2
+                                return (
+                                    <div key={i} className="flex justify-center">
+
+                                        <div className="text-center px-2 w-full max-w-sm">
+                                            <div className="inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl mb-4 sm:mb-5">
+
+                                                <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
+                                            </div>
+                                            <h3 className="text-[18px] sm:text-[20px] lg:text-[22px] font-medium text-gray-900 mb-2 sm:mb-3">
+                                                {h.text}
+                                            </h3>                                    </div>
+
+                                    </div>
+
+                                )
+                            }
+                            )}
                         </div>
                     </FadeUp>
                 </section>
@@ -126,38 +199,9 @@ export default function FeaturePageClient({ id }) {
 
             {/* FAQ - modern accordion */}
             {feature.faqs && (
-                <section className="max-w-3xl mx-auto px-6 mb-24">
-                    <FadeUp>
-                        <h2 className="text-3xl font-bold mb-10 text-center text-gray-900">
-                            FAQs
-                        </h2>
+                <section className="max-w-3xl mx-auto px-6 mb-18">
+                    <FAQSection faqs={feature.faqs} title="FAQs" allowEyebrow={false} allowMultipleOpen={false} />
 
-                        <div className="space-y-4">
-                            {feature.faqs.map((faq, index) => (
-                                <div key={index} className="border rounded-xl overflow-hidden">
-                                    <button
-                                        onClick={() => toggleFaq(index)}
-                                        className="w-full px-6 py-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100"
-                                    >
-                                        <span className="font-medium text-gray-900 text-lg">
-                                            {faq.question}
-                                        </span>
-                                        {openFaqIndex === index ? (
-                                            <Minus className="h-5 w-5 text-gray-600" />
-                                        ) : (
-                                            <Plus className="h-5 w-5 text-gray-600" />
-                                        )}
-                                    </button>
-
-                                    {openFaqIndex === index && (
-                                        <div className="px-6 py-4 bg-white border-t text-gray-700">
-                                            {faq.answer}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    </FadeUp>
                 </section>
             )}
 
@@ -173,12 +217,28 @@ export default function FeaturePageClient({ id }) {
                             Ready to bring {feature.title} to your business?
                         </p>
 
-                        <a
-                            href="/contact"
-                            className="inline-flex items-center bg-white text-black px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition"
-                        >
-                            Contact Us <ArrowRight className="ml-2 h-5 w-5" />
-                        </a>
+                        {/* CTA Buttons */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-5">
+                            <Link
+                                href="/#contact"
+                                className="bg-white text-black pl-4 pr-1.5 py-1 rounded-full text-[15px] sm:text-[16px] font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center justify-center gap-3 shadow-sm group w-full sm:w-auto"
+                            >
+                                <span>Get in touch</span>
+                                <span className="w-8 h-8 sm:w-9 sm:h-9 bg-primary rounded-full flex items-center justify-center text-white overflow-hidden relative flex-shrink-0">
+                                    <ArrowRight
+                                        size={18}
+                                        strokeWidth={2.5}
+                                        className="transition-transform duration-300 group-hover:translate-x-6"
+                                    />
+                                    <ArrowRight
+                                        size={18}
+                                        strokeWidth={2.5}
+                                        className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0"
+                                    />
+                                </span>
+                            </Link>
+
+                        </div>
                     </div>
                 </FadeUp>
             </section>

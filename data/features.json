@@ -1,333 +1,331 @@
 {
-    "features": [
+  "features": [
+    {
+      "id": 1,
+      "slug": "flexible-consultations",
+      "title": "Flexible Consultations",
+      "shortDescription": "Easy access to administrative support whenever you need clarity or guidance.",
+      "description": "Get expert administrative support on your schedule with multiple consultation options.",
+      "longContent": "At Nexledge, we believe that access to expert guidance should be convenient and tailored to your schedule. Our flexible consultation model breaks down the barriers between you and the administrative insights you need to make confident decisions. We understand that business questions don't always follow a 9-to-5 schedule, which is why we offer multiple channels for communication and support. Whether you're facing an urgent compliance question, planning a new financial strategy, or simply need clarification on your current reports, our team is available through multiple channels designed for modern business needs.",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "icon": "MessageCircle",
+      "category": "Consultation Services",
+      "highlights": [
+        { "text": "On-demand expert access", "icon": "Clock" },
+        { "text": "Multiple communication channels", "icon": "MessageCircle" },
+        { "text": "No long-term commitments required", "icon": "ShieldCheck" }
+      ],
+      "features": [
+        "24/7 chat support for urgent questions",
+        "Scheduled video consultations",
+        "Comprehensive email consultations"
+      ],
+      "faqs": [
         {
-            "id": 1,
-            "slug": "flexible-consultations",
-            "title": "Flexible Consultations",
-            "shortDescription": "Easy access to administrative support whenever you need clarity or guidance.",
-            "description": "Get expert administrative support on your schedule with multiple consultation options.",
-            "longContent": "At Nexledge, we believe that access to expert guidance should be convenient and tailored to your schedule. Our flexible consultation model breaks down the barriers between you and the administrative insights you need to make confident decisions. We understand that business questions don't always follow a 9-to-5 schedule, which is why we offer multiple channels for communication and support. Whether you're facing an urgent compliance question, planning a new financial strategy, or simply need clarification on your current reports, our team is available through multiple channels designed for modern business needs.",
-            "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "icon": "MessageCircle",
-            "category": "Consultation Services",
-            "highlights": [
-                "On-demand expert access",
-                "Multiple communication channels",
-                "No long-term commitments required"
-            ],
-            "features": [
-                "24/7 chat support for urgent questions",
-                "Scheduled video consultations",
-                "Comprehensive email consultations"
-            ],
-            "faqs": [
-                {
-                    "question": "How quickly can I schedule a consultation?",
-                    "answer": "We offer same-day scheduling for urgent matters and typically have availability within 24 hours for standard consultations."
-                },
-                {
-                    "question": "What communication channels do you support?",
-                    "answer": "We offer video calls, voice calls, chat messaging, and email consultations."
-                }
-            ],
-            "stats": [
-                {
-                    "value": "98%",
-                    "label": "Client satisfaction rate"
-                },
-                {
-                    "value": "< 2 hours",
-                    "label": "Average response time"
-                }
-            ],
-            "relatedFeatures": [
-                2,
-                5
-            ]
+          "id": 1,
+          "question": "How quickly can I schedule a consultation?",
+          "answer": "We offer same-day scheduling for urgent matters and typically have availability within 24 hours for standard consultations."
         },
         {
-            "id": 2,
-            "slug": "tailored-administrative-solutions",
-            "title": "Tailored Administrative Solutions",
-            "shortDescription": "Workflows and setups adapted to your business needs, from day-to-day bookkeeping to structured financial processes.",
-            "description": "We create customized administrative systems and workflows specifically designed for your business operations, ensuring efficiency and compliance at every level.",
-            "longContent": "Every business has unique administrative needs, and generic solutions often create more problems than they solve. Our tailored administrative solutions begin with a comprehensive analysis of your current processes, pain points, and business objectives. We then design and implement customized systems that address your specific requirements while maintaining scalability for future growth.\n\nOur approach combines industry best practices with innovative thinking to create administrative workflows that are both efficient and compliant. ",
-            "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop&auto=format",
-            "category": "Custom Solutions",
-            "highlights": [
-                "Business-specific workflow design",
-                "Scalable system architecture",
-                "Seamless integration with existing tools"
-            ],
-            "features": [
-                "Complete process analysis and optimization",
-                "Custom workflow design and implementation",
-                "Integration with existing software and tools",
-                "Industry-specific compliance frameworks",
-                "Ongoing system maintenance and updates"
-            ],
-            "faqs": [
-                {
-                    "question": "How do you ensure the solutions fit our specific needs?",
-                    "answer": "We begin with a detailed discovery phase where we analyze your current processes, identify pain points, and understand your business objectives. Our solutions are then designed based on this analysis, with multiple checkpoints for your feedback throughout the implementation process."
-                },
-                {
-                    "question": "Can your solutions integrate with our existing software?",
-                    "answer": "Yes, we specialize in creating solutions that integrate seamlessly with existing tools. We work with a wide range of accounting software, CRM systems, project management tools, and custom applications to ensure smooth interoperability."
-                },
-                {
-                    "question": "What ongoing support do you provide after implementation?",
-                    "answer": "We provide comprehensive training for your team, detailed documentation, and ongoing technical support. We also offer regular system reviews and updates to ensure your solutions continue to meet your evolving business needs."
-                }
-            ],
-            "stats": [
-                {
-                    "value": "70%",
-                    "label": "Average efficiency improvement"
-                },
-                {
-                    "value": "100%",
-                    "label": "Compliance guarantee"
-                },
-                {
-                    "value": "30 days",
-                    "label": "Typical implementation timeline"
-                }
-            ],
-            "relatedBenefits": [
-                1,
-                3,
-                6
-            ]
-        },
-        {
-            "id": 3,
-            "slug": "practical-financial-insights",
-            "title": "Practical Financial Insights",
-            "shortDescription": "Clear explanations and organized overviews that help you understand your numbers and stay in control.",
-            "description": "Transform complex financial data into actionable insights through clear visualizations and straightforward explanations that empower your decision-making.",
-            "longContent": "Financial data can be overwhelming, but it doesn't have to be. Our practical financial insights service transforms complex numbers into clear, actionable information that you can use to make informed business decisions. We go beyond basic reporting to provide context, analysis, and recommendations that are specific to your business situation.\n\nWe use advanced data visualization techniques to present financial information in intuitive formats that highlight trends, identify opportunities, and flag potential issues.",
-            "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=800&fit=crop&auto=format",
-            "category": "Analytics & Reporting",
-            "highlights": [
-                "Interactive financial dashboards",
-                "Actionable data interpretations",
-                "Real-time performance tracking"
-            ],
-            "features": [
-                "Interactive dashboard development",
-                "Custom financial report creation",
-                "Trend analysis and forecasting",
-                "Performance benchmarking",
-                "Executive summary preparation"
-            ],
-            "faqs": [
-                {
-                    "question": "How often will I receive financial insights?",
-                    "answer": "We provide insights on a schedule that matches your business needs—typically weekly, monthly, or quarterly. We also offer real-time dashboards that you can access anytime for up-to-date information."
-                },
-                {
-                    "question": "Can you explain technical financial concepts in simple terms?",
-                    "answer": "Absolutely. Our experts are skilled at translating complex financial data into clear, understandable language. We focus on practical implications and actionable recommendations rather than technical jargon."
-                },
-                {
-                    "question": "Do you provide industry-specific benchmarks?",
-                    "answer": "Yes, we incorporate relevant industry benchmarks and performance indicators to help you understand how your business compares to peers and identify areas for improvement."
-                }
-            ],
-            "stats": [
-                {
-                    "value": "40%",
-                    "label": "Faster decision making"
-                },
-                {
-                    "value": "95%",
-                    "label": "Client understanding improvement"
-                },
-                {
-                    "value": "Real-time",
-                    "label": "Data availability"
-                }
-            ],
-            "relatedBenefits": [
-                2,
-                4
-            ]
-        },
-        {
-            "id": 4,
-            "slug": "data-control-strategies",
-            "title": "Data & Control Strategies",
-            "shortDescription": "Well-structured reporting that supports better oversight and helps you make informed decisions.",
-            "description": "Implement comprehensive data management and control systems that provide complete visibility and governance over your financial operations.",
-            "longContent": "In today's data-driven business environment, effective control over financial information is essential for risk management and strategic decision-making. Our data and control strategies service provides structured frameworks for managing, securing, and leveraging your financial data with confidence.\n\nWe develop comprehensive data governance systems that ensure accuracy, consistency, and security across all your financial information. Our strategies include establishing clear data ownership, implementing robust validation processes, and creating audit trails that provide complete transparency into your financial operations.",
-            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&auto=format",
-            "category": "Governance & Compliance",
-            "highlights": [
-                "Comprehensive data governance",
-                "Automated control systems",
-                "Regulatory compliance assurance"
-            ],
-            "features": [
-                "Data governance framework development",
-                "Automated control implementation",
-                "Compliance monitoring and reporting",
-                "Risk assessment and mitigation",
-                "Audit preparation and support"
-            ],
-            "faqs": [
-                {
-                    "question": "How do you ensure our data remains secure?",
-                    "answer": "We implement multiple layers of security including access controls, encryption, audit trails, and regular security assessments. We follow industry best practices and comply with relevant data protection regulations to ensure your information remains secure."
-                },
-                {
-                    "question": "Can your systems help with regulatory compliance?",
-                    "answer": "Yes, our control strategies are designed to ensure compliance with relevant financial regulations. We incorporate compliance requirements into our control frameworks and provide documentation to support regulatory audits."
-                },
-                {
-                    "question": "How quickly can we implement these control strategies?",
-                    "answer": "Implementation timelines vary based on the complexity of your operations, but we typically implement core control frameworks within 4-6 weeks, with more comprehensive systems taking 8-12 weeks to fully deploy and optimize."
-                }
-            ],
-            "stats": [
-                {
-                    "value": "99.9%",
-                    "label": "Data accuracy rate"
-                },
-                {
-                    "value": "100%",
-                    "label": "Compliance success"
-                },
-                {
-                    "value": "Zero",
-                    "label": "Major control failures"
-                }
-            ],
-            "relatedBenefits": [
-                3,
-                5
-            ]
-        },
-        {
-            "id": 5,
-            "slug": "ongoing-administrative-support",
-            "title": "Ongoing Administrative Support",
-            "shortDescription": "Consistent follow-up and communication throughout the year, so your administration remains organized and up-to-date.",
-            "description": "Receive continuous administrative assistance with dedicated support, regular reviews, and proactive maintenance of your financial systems.",
-            "longContent": "Administrative excellence requires consistent attention and maintenance. Our ongoing administrative support ensures that your financial systems, processes, and documentation remain current, compliant, and optimized throughout the year—not just during tax season or annual reviews.\n\nWe assign a dedicated account manager who becomes intimately familiar with your business operations and serves as your primary point of contact. This continuity ensures that we understand your evolving needs and can provide increasingly valuable support over time.",
-            "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=800&fit=crop&auto=format",
-            "category": "Continuous Support",
-            "highlights": [
-                "Dedicated account management",
-                "Proactive system monitoring",
-                "Regular performance reviews"
-            ],
-            "features": [
-                "Dedicated account manager",
-                "Regular business reviews",
-                "Proactive system maintenance",
-                "Continuous process optimization",
-                "Quarterly strategy sessions"
-            ],
-            "faqs": [
-                {
-                    "question": "What does 'ongoing support' include?",
-                    "answer": "Our ongoing support includes regular check-ins, system monitoring, proactive maintenance, continuous process improvement, and being available to address questions or issues as they arise. It's comprehensive support that evolves with your business needs."
-                },
-                {
-                    "question": "How quickly can I get help when I need it?",
-                    "answer": "With our ongoing support, you have direct access to your dedicated account manager who typically responds within 1-2 hours during business hours. For urgent matters, we offer priority support with immediate response options."
-                },
-                {
-                    "question": "Can you handle seasonal fluctuations in administrative workload?",
-                    "answer": "Absolutely. We scale our support to match your business cycles, providing additional resources during peak periods like tax season, year-end closing, or expansion phases, and maintaining efficient support during quieter periods."
-                }
-            ],
-            "stats": [
-                {
-                    "value": "24/7",
-                    "label": "Support availability"
-                },
-                {
-                    "value": "< 2 hours",
-                    "label": "Average response time"
-                },
-                {
-                    "value": "98%",
-                    "label": "Issue resolution rate"
-                }
-            ],
-            "relatedBenefits": [
-                1,
-                6
-            ]
-        },
-        {
-            "id": 6,
-            "slug": "efficient-automation-it-support",
-            "title": "Efficient Automation & IT Support",
-            "shortDescription": "Implementation of useful tools and automations that help streamline your administrative work and reduce manual tasks.",
-            "description": "Leverage technology to automate repetitive tasks, integrate systems, and optimize your administrative workflows for maximum efficiency.",
-            "longContent": "Manual administrative tasks consume valuable time and increase the risk of errors. Our efficient automation and IT support service identifies opportunities to leverage technology for automating routine processes, integrating disparate systems, and optimizing your overall administrative workflow.\n\nWe begin with a comprehensive process analysis to identify automation opportunities that will deliver the greatest return on investment. We then design and implement tailored automation solutions that address your specific pain points—whether it's automating invoice processing, streamlining reporting, or integrating accounting software with other business systems.",
-            "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=800&fit=crop&auto=format",
-            "category": "Technology Solutions",
-            "highlights": [
-                "Process automation implementation",
-                "System integration expertise",
-                "Ongoing technical support"
-            ],
-            "features": [
-                "Process automation design and implementation",
-                "System integration and API development",
-                "Workflow optimization",
-                "Technical troubleshooting and support",
-                "Performance monitoring and optimization"
-            ],
-            "faqs": [
-                {
-                    "question": "What types of processes can be automated?",
-                    "answer": "We can automate a wide range of administrative processes including invoice processing, expense management, report generation, data entry, reconciliation tasks, compliance monitoring, and communication workflows. We assess each process individually to determine automation potential."
-                },
-                {
-                    "question": "How much time can automation save?",
-                    "answer": "Typically, our automation solutions save 20-70% of time spent on manual administrative tasks, depending on the specific processes. Some clients have reported saving up to 40 hours per week across their administrative functions."
-                },
-                {
-                    "question": "Do you provide training for new automated systems?",
-                    "answer": "Yes, we provide comprehensive training for your team, including hands-on sessions, detailed documentation, and ongoing support to ensure everyone can use the new systems effectively and confidently."
-                }
-            ],
-            "stats": [
-                {
-                    "value": "60%",
-                    "label": "Average time savings"
-                },
-                {
-                    "value": "99.5%",
-                    "label": "Automation accuracy"
-                },
-                {
-                    "value": "100+",
-                    "label": "Processes automated"
-                }
-            ],
-            "relatedBenefits": [
-                2,
-                5
-            ]
+          "id": 2,
+          "question": "What communication channels do you support?",
+          "answer": "We offer video calls, voice calls, chat messaging, and email consultations."
         }
-    ],
-    "meta": {
-        "totalBenefits": 6,
-        "categories": [
-            "Consultation Services",
-            "Custom Solutions",
-            "Analytics & Reporting",
-            "Governance & Compliance",
-            "Continuous Support",
-            "Technology Solutions"
-        ],
-        "updated": "2024-01-15",
-        "version": "1.0"
+      ],
+      "stats": [
+        {
+          "value": "98%",
+          "label": "Client satisfaction rate"
+        },
+        {
+          "value": "< 2 hours",
+          "label": "Average response time"
+        }
+      ],
+      "relatedFeatures": [2, 5]
+    },
+    {
+      "id": 2,
+      "slug": "tailored-administrative-solutions",
+      "title": "Tailored Administrative Solutions",
+      "shortDescription": "Workflows and setups adapted to your business needs, from day-to-day bookkeeping to structured financial processes.",
+      "description": "We create customized administrative systems and workflows specifically designed for your business operations, ensuring efficiency and compliance at every level.",
+      "longContent": "Every business has unique administrative needs, and generic solutions often create more problems than they solve. Our tailored administrative solutions begin with a comprehensive analysis of your current processes, pain points, and business objectives. We then design and implement customized systems that address your specific requirements while maintaining scalability for future growth.\n\nOur approach combines industry best practices with innovative thinking to create administrative workflows that are both efficient and compliant. ",
+      "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop&auto=format",
+      "category": "Custom Solutions",
+      "highlights": [
+        { "text": "Business-specific workflow design", "icon": "Layers" },
+        { "text": "Scalable system architecture", "icon": "Settings" },
+        { "text": "Seamless integration with existing tools", "icon": "Link2" }
+      ],
+      "features": [
+        "Complete process analysis and optimization",
+        "Custom workflow design and implementation",
+        "Integration with existing software and tools",
+        "Industry-specific compliance frameworks",
+        "Ongoing system maintenance and updates"
+      ],
+      "faqs": [
+        {
+          "id": 1,
+          "question": "How do you ensure the solutions fit our specific needs?",
+          "answer": "We begin with a detailed discovery phase where we analyze your current processes, identify pain points, and understand your business objectives. Our solutions are then designed based on this analysis, with multiple checkpoints for your feedback throughout the implementation process."
+        },
+        {
+          "id": 2,
+          "question": "Can your solutions integrate with our existing software?",
+          "answer": "Yes, we specialize in creating solutions that integrate seamlessly with existing tools. We work with a wide range of accounting software, CRM systems, project management tools, and custom applications to ensure smooth interoperability."
+        },
+        {
+          "id": 3,
+          "question": "What ongoing support do you provide after implementation?",
+          "answer": "We provide comprehensive training for your team, detailed documentation, and ongoing technical support. We also offer regular system reviews and updates to ensure your solutions continue to meet your evolving business needs."
+        }
+      ],
+      "stats": [
+        {
+          "value": "70%",
+          "label": "Average efficiency improvement"
+        },
+        {
+          "value": "100%",
+          "label": "Compliance guarantee"
+        },
+        {
+          "value": "30 days",
+          "label": "Typical implementation timeline"
+        }
+      ],
+      "relatedBenefits": [1, 3, 6]
+    },
+    {
+      "id": 3,
+      "slug": "practical-financial-insights",
+      "title": "Practical Financial Insights",
+      "shortDescription": "Clear explanations and organized overviews that help you understand your numbers and stay in control.",
+      "description": "Transform complex financial data into actionable insights through clear visualizations and straightforward explanations that empower your decision-making.",
+      "longContent": "Financial data can be overwhelming, but it doesn't have to be. Our practical financial insights service transforms complex numbers into clear, actionable information that you can use to make informed business decisions. We go beyond basic reporting to provide context, analysis, and recommendations that are specific to your business situation.\n\nWe use advanced data visualization techniques to present financial information in intuitive formats that highlight trends, identify opportunities, and flag potential issues.",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=800&fit=crop&auto=format",
+      "category": "Analytics & Reporting",
+      "highlights": [
+        { "text": "Interactive financial dashboards", "icon": "BarChart3" },
+        { "text": "Actionable data interpretations", "icon": "TrendingUp" },
+        { "text": "Real-time performance tracking", "icon": "Activity" }
+      ],
+      "features": [
+        "Interactive dashboard development",
+        "Custom financial report creation",
+        "Trend analysis and forecasting",
+        "Performance benchmarking",
+        "Executive summary preparation"
+      ],
+      "faqs": [
+        {
+          "id": 1,
+          "question": "How often will I receive financial insights?",
+          "answer": "We provide insights on a schedule that matches your business needs—typically weekly, monthly, or quarterly. We also offer real-time dashboards that you can access anytime for up-to-date information."
+        },
+        {
+          "id": 2,
+          "question": "Can you explain technical financial concepts in simple terms?",
+          "answer": "Absolutely. Our experts are skilled at translating complex financial data into clear, understandable language. We focus on practical implications and actionable recommendations rather than technical jargon."
+        },
+        {
+          "id": 3,
+          "question": "Do you provide industry-specific benchmarks?",
+          "answer": "Yes, we incorporate relevant industry benchmarks and performance indicators to help you understand how your business compares to peers and identify areas for improvement."
+        }
+      ],
+      "stats": [
+        {
+          "value": "40%",
+          "label": "Faster decision making"
+        },
+        {
+          "value": "95%",
+          "label": "Client understanding improvement"
+        },
+        {
+          "value": "Real-time",
+          "label": "Data availability"
+        }
+      ],
+      "relatedBenefits": [2, 4]
+    },
+    {
+      "id": 4,
+      "slug": "data-control-strategies",
+      "title": "Data & Control Strategies",
+      "shortDescription": "Well-structured reporting that supports better oversight and helps you make informed decisions.",
+      "description": "Implement comprehensive data management and control systems that provide complete visibility and governance over your financial operations.",
+      "longContent": "In today's data-driven business environment, effective control over financial information is essential for risk management and strategic decision-making. Our data and control strategies service provides structured frameworks for managing, securing, and leveraging your financial data with confidence.\n\nWe develop comprehensive data governance systems that ensure accuracy, consistency, and security across all your financial information. Our strategies include establishing clear data ownership, implementing robust validation processes, and creating audit trails that provide complete transparency into your financial operations.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&auto=format",
+      "category": "Governance & Compliance",
+      "highlights": [
+        { "text": "Comprehensive data governance", "icon": "Database" },
+        { "text": "Automated control systems", "icon": "Lock" },
+        { "text": "Regulatory compliance assurance", "icon": "FileCheck" }
+      ],
+      "features": [
+        "Data governance framework development",
+        "Automated control implementation",
+        "Compliance monitoring and reporting",
+        "Risk assessment and mitigation",
+        "Audit preparation and support"
+      ],
+      "faqs": [
+        {
+          "id": 1,
+          "question": "How do you ensure our data remains secure?",
+          "answer": "We implement multiple layers of security including access controls, encryption, audit trails, and regular security assessments. We follow industry best practices and comply with relevant data protection regulations to ensure your information remains secure."
+        },
+        {
+          "id": 2,
+          "question": "Can your systems help with regulatory compliance?",
+          "answer": "Yes, our control strategies are designed to ensure compliance with relevant financial regulations. We incorporate compliance requirements into our control frameworks and provide documentation to support regulatory audits."
+        },
+        {
+          "id": 3,
+          "question": "How quickly can we implement these control strategies?",
+          "answer": "Implementation timelines vary based on the complexity of your operations, but we typically implement core control frameworks within 4-6 weeks, with more comprehensive systems taking 8-12 weeks to fully deploy and optimize."
+        }
+      ],
+      "stats": [
+        {
+          "value": "99.9%",
+          "label": "Data accuracy rate"
+        },
+        {
+          "value": "100%",
+          "label": "Compliance success"
+        },
+        {
+          "value": "Zero",
+          "label": "Major control failures"
+        }
+      ],
+      "relatedBenefits": [3, 5]
+    },
+    {
+      "id": 5,
+      "slug": "ongoing-administrative-support",
+      "title": "Ongoing Administrative Support",
+      "shortDescription": "Consistent follow-up and communication throughout the year, so your administration remains organized and up-to-date.",
+      "description": "Receive continuous administrative assistance with dedicated support, regular reviews, and proactive maintenance of your financial systems.",
+      "longContent": "Administrative excellence requires consistent attention and maintenance. Our ongoing administrative support ensures that your financial systems, processes, and documentation remain current, compliant, and optimized throughout the year—not just during tax season or annual reviews.\n\nWe assign a dedicated account manager who becomes intimately familiar with your business operations and serves as your primary point of contact. This continuity ensures that we understand your evolving needs and can provide increasingly valuable support over time.",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=800&fit=crop&auto=format",
+      "category": "Continuous Support",
+      "highlights": [
+        { "text": "Dedicated account management", "icon": "Users" },
+        { "text": "Proactive system monitoring", "icon": "RefreshCw" },
+        { "text": "Regular performance reviews", "icon": "CalendarClock" }
+      ],
+      "features": [
+        "Dedicated account manager",
+        "Regular business reviews",
+        "Proactive system maintenance",
+        "Continuous process optimization",
+        "Quarterly strategy sessions"
+      ],
+      "faqs": [
+        {
+          "id": 1,
+          "question": "What does 'ongoing support' include?",
+          "answer": "Our ongoing support includes regular check-ins, system monitoring, proactive maintenance, continuous process improvement, and being available to address questions or issues as they arise. It's comprehensive support that evolves with your business needs."
+        },
+        {
+          "id": 2,
+          "question": "How quickly can I get help when I need it?",
+          "answer": "With our ongoing support, you have direct access to your dedicated account manager who typically responds within 1-2 hours during business hours. For urgent matters, we offer priority support with immediate response options."
+        },
+        {
+          "id": 3,
+          "question": "Can you handle seasonal fluctuations in administrative workload?",
+          "answer": "Absolutely. We scale our support to match your business cycles, providing additional resources during peak periods like tax season, year-end closing, or expansion phases, and maintaining efficient support during quieter periods."
+        }
+      ],
+      "stats": [
+        {
+          "value": "24/7",
+          "label": "Support availability"
+        },
+        {
+          "value": "< 2 hours",
+          "label": "Average response time"
+        },
+        {
+          "value": "98%",
+          "label": "Issue resolution rate"
+        }
+      ],
+      "relatedBenefits": [1, 6]
+    },
+    {
+      "id": 6,
+      "slug": "efficient-automation-it-support",
+      "title": "Efficient Automation & IT Support",
+      "shortDescription": "Implementation of useful tools and automations that help streamline your administrative work and reduce manual tasks.",
+      "description": "Leverage technology to automate repetitive tasks, integrate systems, and optimize your administrative workflows for maximum efficiency.",
+      "longContent": "Manual administrative tasks consume valuable time and increase the risk of errors. Our efficient automation and IT support service identifies opportunities to leverage technology for automating routine processes, integrating disparate systems, and optimizing your overall administrative workflow.\n\nWe begin with a comprehensive process analysis to identify automation opportunities that will deliver the greatest return on investment. We then design and implement tailored automation solutions that address your specific pain points—whether it's automating invoice processing, streamlining reporting, or integrating accounting software with other business systems.",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=800&fit=crop&auto=format",
+      "category": "Technology Solutions",
+      "highlights": [
+        { "text": "Process automation implementation", "icon": "Zap" },
+        { "text": "System integration expertise", "icon": "Workflow" },
+        { "text": "Ongoing technical support", "icon": "Wrench" }
+      ],
+      "features": [
+        "Process automation design and implementation",
+        "System integration and API development",
+        "Workflow optimization",
+        "Technical troubleshooting and support",
+        "Performance monitoring and optimization"
+      ],
+      "faqs": [
+        {
+          "id": 1,
+          "question": "What types of processes can be automated?",
+          "answer": "We can automate a wide range of administrative processes including invoice processing, expense management, report generation, data entry, reconciliation tasks, compliance monitoring, and communication workflows. We assess each process individually to determine automation potential."
+        },
+        {
+          "id": 2,
+          "question": "How much time can automation save?",
+          "answer": "Typically, our automation solutions save 20-70% of time spent on manual administrative tasks, depending on the specific processes. Some clients have reported saving up to 40 hours per week across their administrative functions."
+        },
+        {
+          "id": 3,
+          "question": "Do you provide training for new automated systems?",
+          "answer": "Yes, we provide comprehensive training for your team, including hands-on sessions, detailed documentation, and ongoing support to ensure everyone can use the new systems effectively and confidently."
+        }
+      ],
+      "stats": [
+        {
+          "value": "60%",
+          "label": "Average time savings"
+        },
+        {
+          "value": "99.5%",
+          "label": "Automation accuracy"
+        },
+        {
+          "value": "100+",
+          "label": "Processes automated"
+        }
+      ],
+      "relatedBenefits": [2, 5]
     }
+  ],
+  "meta": {
+    "totalBenefits": 6,
+    "categories": [
+      "Consultation Services",
+      "Custom Solutions",
+      "Analytics & Reporting",
+      "Governance & Compliance",
+      "Continuous Support",
+      "Technology Solutions"
+    ],
+    "updated": "2024-01-15",
+    "version": "1.0"
+  }
 }

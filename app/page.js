@@ -12,6 +12,7 @@ import ContactSection from "./components/Contact";
 import Footer from "./components/Footer";
 import FlowchartSection from "./components/Flowchart";
 import ChatWidget from "./services/widget/page";
+import { defaultFaqs } from "@/data/Faqs";
 
 
 export default function Home() {
@@ -27,7 +28,7 @@ export default function Home() {
       <ImpactSection />
       {/* <TeamSection /> */}
       <FlowchartSection />
-      <FAQSection />
+      <FAQSection faqs={defaultFaqs} />
       <ChatWidget />
       <ContactSection />
       <Footer />
