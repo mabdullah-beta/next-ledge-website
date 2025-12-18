@@ -9,40 +9,40 @@ import Footer from "../components/Footer"
 const pricingPlans = [
     {
         id: 'standard',
-        name: 'Standard',
-        description: 'Perfect for small teams looking to streamline consulting processes',
-        price: '$99',
-        period: '/Month',
-        buttonText: 'Request Consultation',
+        name: 'Standaard',
+        description: 'Ideaal voor kleine teams die hun adviesprocessen willen stroomlijnen',
+        price: '€99',
+        period: '/Maand',
+        buttonText: 'Consult aanvragen',
         buttonStyle: 'border-2 border-gray-300 bg-white text-gray-900 hover:bg-gray-50',
         bgColor: 'bg-cream',
         features: [
-            'Personalized strategy sessions',
-            'Essential business analytics',
-            'Core reporting tools',
-            'Up to 5 team members',
-            'Dedicated email support',
-            'Customizable workflow insights'
+            'Persoonlijke strategische sessies',
+            'Essentiële bedrijfsanalyses',
+            'Basis rapportagetools',
+            'Tot 5 teamleden',
+            'Toegewijde e-mailondersteuning',
+            'Aanpasbare workflow-inzichten'
         ]
     },
     {
         id: 'premium',
         name: 'Premium',
-        description: 'Designed for growing consulting firms needing insights & support.',
-        price: '$299',
-        period: '/Month',
-        buttonText: 'Get Started',
+        description: 'Ontworpen voor groeiende adviesbureaus die diepgaand inzicht en ondersteuning nodig hebben.',
+        price: '€299',
+        period: '/Maand',
+        buttonText: 'Aan de slag',
         buttonStyle: 'bg-primary text-white hover:bg-secondary-dark',
         bgColorHeader: 'bg-mint-light',
         bgColorFeatures: '#ffffff',
         isPopular: true,
         features: [
-            'Unlimited strategy consultations',
-            'Advanced business analytics',
-            'Up to 10 team members',
-            'Comprehensive reporting suite',
-            'Up to 10 team members',
-            'Priority email & chat support'
+            'Onbeperkte strategische consultaties',
+            'Geavanceerde bedrijfsanalyses',
+            'Tot 10 teamleden',
+            'Uitgebreide rapportagesuite',
+            'Tot 10 teamleden',
+            'Prioritaire e-mail- en chatondersteuning'
         ]
     }
 ];
@@ -60,10 +60,10 @@ export default function PricingPlans() {
                     <div className="font-hedvig text-center mb-16">
                         <div className="flex items-center justify-center gap-2 mb-4">
                             <div className="dot-indicator bg-primary rounded-full"></div>
-                            <span className="text-base font-medium text-primary">Pricing</span>
+                            <span className="text-base font-medium text-primary">Prijzen</span>
                         </div>
                         <h2 className="font-hedvig text-heading-lg text-gray-900 mx-auto max-w-2xl">
-                            Flexible pricing tailored to your business needs
+                            Flexibele prijzen afgestemd op jouw bedrijfsbehoeften
                         </h2>
                     </div>
 
@@ -98,7 +98,7 @@ export default function PricingPlans() {
                                             {plan.isPopular && (
                                                 <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary text-white text-xs font-medium rounded-full">
                                                     <Sparkles className="w-3 h-3" />
-                                                    Popular
+                                                    Populair
                                                 </span>
                                             )}
                                         </div>
