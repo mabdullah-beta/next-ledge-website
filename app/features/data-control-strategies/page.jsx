@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import Image from "next/image";
 import { FadeUp } from "../../components/MotionWrapper";
 import Link from "next/link";
-import { Database, Lock, FileCheck, ArrowRight } from "lucide-react";
+import { Database, Lock, FileCheck, ArrowRight, Shield, BarChart3, Users, CheckCircle } from "lucide-react";
 import FAQSection from "@/app/components/FAQ";
 
 export default function DataControlStrategiesPage() {
@@ -13,104 +13,253 @@ export default function DataControlStrategiesPage() {
         <div className="min-h-screen flex flex-col mt-20">
             <Header />
 
-            {/* Hero Section - Artistic */}
-            <section className="relative py-28 overflow-hidden bg-primary">
-                <div className="max-w-5xl mx-auto px-6 text-center relative">
+            {/* Hero Section - Enhanced */}
+            <section className="relative py-32 overflow-hidden bg-gradient-to-br from-primary to-primary-light">
+                <div className="absolute inset-0 bg-black/5"></div>
+                <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
                     <FadeUp>
-                        <h1 className="text-5xl md:text-6xl font-hedvig font-semibold text-gray-100">
+                        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+                            <Shield className="w-4 h-4 text-white" />
+                            <span className="text-sm font-medium text-white">Veilige & Compliant</span>
+                        </div>
+                        <h1 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[49px] font-hedvig font-normal text-white leading-[1.2] sm:leading-[1.15] tracking-tight mb-4 sm:mb-5 md:mb-6">
                             Data- & controlestrategieën
                         </h1>
-                        <p className="text-lg md:text-xl text-gray-300 mt-6 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-[15px] sm:text-[16px] md:text-[17px] lg:text-[19px] font-inter font-normal text-white/80 leading-relaxed mt-6 max-w-3xl mx-auto">
                             Goed gestructureerde rapportages die beter overzicht bieden en helpen bij het nemen van
                             weloverwogen beslissingen.
                         </p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+                            <Link
+                                href="/#contact"
+                                className="bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center gap-3 shadow-lg"
+                            >
+                                <span>Start vandaag</span>
+                                <ArrowRight size={20} />
+                            </Link>
+                            <div className="flex items-center gap-2 text-white/80">
+                                <CheckCircle size={16} />
+                                <span className="text-sm">Implementatie binnen 4-6 weken</span>
+                            </div>
+                        </div>
                     </FadeUp>
                 </div>
+                <div className="absolute -bottom-1 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
             </section>
 
-            {/* About Section (Portfolio Style) */}
-            <section className="max-w-5xl mx-auto px-6 mt-10 mb-24">
+            {/* Statistics Section */}
+            <section className="max-w-6xl mx-auto px-6 -mt-10 mb-20">
                 <FadeUp>
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <h2 className="text-3xl font-bold text-gray-900 font-hedvig">
-                                Wat we hebben gerealiseerd
-                            </h2>
-
-                            <p className="mt-6 text-gray-600 leading-relaxed">
-                                We implementeren uitgebreide systemen voor datamanagement en controle die volledige
-                                transparantie en governance bieden over je financiële processen.
-                            </p>
-
-                            <p className="mt-4 text-gray-600 leading-relaxed whitespace-pre-line">
-                                In de huidige datagedreven bedrijfsomgeving is effectieve controle over financiële
-                                informatie essentieel voor risicobeheersing en strategische besluitvorming. Onze
-                                data- en controlestrategieën bieden gestructureerde kaders om je financiële data
-                                veilig, overzichtelijk en met vertrouwen te beheren en te benutten.
-
-                                We ontwikkelen uitgebreide datagovernancesystemen die zorgen voor nauwkeurigheid,
-                                consistentie en veiligheid binnen al je financiële informatie. Onze aanpak omvat het
-                                vastleggen van duidelijke data-eigenaarschap, het implementeren van robuuste
-                                validatieprocessen en het opzetten van audit trails die volledige transparantie bieden
-                                in je financiële activiteiten.
-                            </p>
-                        </div>
-
-                        <div className="relative">
-                            <div className="absolute -top-10 -left-10 w-40 h-40 blur-2xl rounded-full"></div>
-                            <div className="absolute -bottom-10 -right-10 w-40 h-40 blur-2xl rounded-full"></div>
-
-                            <Image
-                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&auto=format"
-                                width={500}
-                                height={400}
-                                className="rounded-xl shadow-xl object-cover"
-                                alt="feature visual"
-                            />
+                    <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                        <div className="grid md:grid-cols-3 gap-8 text-center">
+                            <div>
+                                <div className="text-4xl font-bold text-primary mb-2">99.9%</div>
+                                <div className="text-gray-600">Data nauwkeurigheid</div>
+                            </div>
+                            <div>
+                                <div className="text-4xl font-bold text-primary mb-2">4-6</div>
+                                <div className="text-gray-600">Weken implementatie</div>
+                            </div>
+                            <div>
+                                <div className="text-4xl font-bold text-primary mb-2">24/7</div>
+                                <div className="text-gray-600">Monitoring & controle</div>
+                            </div>
                         </div>
                     </div>
                 </FadeUp>
             </section>
 
-            {/* Highlights - creative grid */}
-            <section className="max-w-5xl mx-auto px-6 mb-24">
+            {/* About Section (Portfolio Style) */}
+            <section className="max-w-6xl mx-auto px-6 mb-24">
                 <FadeUp>
-                    <h2 className="font-hedvig max-w-2xl text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 leading-tight mx-auto px-4 text-center mb-8">
-                        Belangrijkste voordelen
-                    </h2>
+                    <div className="grid md:grid-cols-2 gap-20 items-center">
+                        <div>
+                            <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
+                                <Database className="w-4 h-4 text-primary" />
+                                <span className="text-sm font-medium text-primary">Data Governance</span>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 font-hedvig mb-6">
+                                Volledige controle over je financiële data
+                            </h2>
 
-                    <div className="grid md:grid-cols-3 gap-6">
-                        <div className="flex justify-center">
-                            <div className="text-center px-2 w-full max-w-sm">
-                                <div className="inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl mb-4 sm:mb-5">
-                                    <Database className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
+                            <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                                We implementeren uitgebreide systemen voor datamanagement en controle die volledige
+                                transparantie en governance bieden over je financiële processen.
+                            </p>
+
+                            <div className="space-y-4 mb-8">
+                                <div className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900 mb-1">Geautomatiseerde validatie</h4>
+                                        <p className="text-gray-600 text-sm">Robuuste validatieprocessen voor 99.9% nauwkeurigheid</p>
+                                    </div>
                                 </div>
-                                <h3 className="text-[18px] sm:text-[20px] lg:text-[22px] font-medium text-gray-900">
-                                    Uitgebreide datagovernance
-                                </h3>
+                                <div className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900 mb-1">Audit trails</h4>
+                                        <p className="text-gray-600 text-sm">Volledige transparantie in alle financiële activiteiten</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900 mb-1">Compliance monitoring</h4>
+                                        <p className="text-gray-600 text-sm">Voldoet aan alle relevante wet- en regelgeving</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="flex justify-center">
-                            <div className="text-center px-2 w-full max-w-sm">
-                                <div className="inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl mb-4 sm:mb-5">
-                                    <Lock className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
+                        <div className="relative">
+                            <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 blur-3xl rounded-full"></div>
+                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-200/50 blur-3xl rounded-full"></div>
+
+                            <div className="relative bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-2xl">
+                                <Image
+                                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&auto=format"
+                                    width={500}
+                                    height={400}
+                                    className="rounded-xl shadow-lg object-cover w-full"
+                                    alt="Data control dashboard"
+                                />
+                                <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-lg">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                        <span className="text-sm font-medium text-gray-700">Live monitoring</span>
+                                    </div>
                                 </div>
-                                <h3 className="text-[18px] sm:text-[20px] lg:text-[22px] font-medium text-gray-900">
-                                    Geautomatiseerde controlesystemen
-                                </h3>
                             </div>
                         </div>
+                    </div>
+                </FadeUp>
+            </section>
 
-                        <div className="flex justify-center">
-                            <div className="text-center px-2 w-full max-w-sm">
-                                <div className="inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl mb-4 sm:mb-5">
-                                    <FileCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
+            {/* Process Steps */}
+            <section className="bg-gray-50 py-20">
+                <div className="max-w-6xl mx-auto px-6">
+                    <FadeUp>
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl md:text-5xl font-hedvig font-bold text-gray-900 mb-4">
+                                Hoe we jouw data beveiligen
+                            </h2>
+                            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                                Een gestructureerde aanpak in 4 stappen voor maximale controle
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div className="text-center">
+                                <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span className="text-2xl font-bold text-primary">1</span>
                                 </div>
-                                <h3 className="text-[18px] sm:text-[20px] lg:text-[22px] font-medium text-gray-900">
-                                    Borging van wet- en regelgeving
-                                </h3>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">Analyse</h3>
+                                <p className="text-gray-600 text-sm">Uitgebreide evaluatie van huidige datastromen en risico's</p>
                             </div>
+                            <div className="text-center">
+                                <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span className="text-2xl font-bold text-primary">2</span>
+                                </div>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">Ontwerp</h3>
+                                <p className="text-gray-600 text-sm">Maatwerk governance framework specifiek voor jouw organisatie</p>
+                            </div>
+                            <div className="text-center">
+                                <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span className="text-2xl font-bold text-primary">3</span>
+                                </div>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">Implementatie</h3>
+                                <p className="text-gray-600 text-sm">Gefaseerde uitrol met training en ondersteuning</p>
+                            </div>
+                            <div className="text-center">
+                                <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span className="text-2xl font-bold text-primary">4</span>
+                                </div>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">Monitoring</h3>
+                                <p className="text-gray-600 text-sm">Continue bewaking en optimalisatie van alle processen</p>
+                            </div>
+                        </div>
+                    </FadeUp>
+                </div>
+            </section>
+
+            {/* Enhanced Benefits */}
+            <section className="max-w-6xl mx-auto px-6 py-20">
+                <FadeUp>
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-hedvig font-bold text-gray-900 mb-4">
+                            Waarom kiezen voor onze data- & controlestrategieën?
+                        </h2>
+                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                            Profiteer van bewezen expertise en geavanceerde technologie voor optimale databeveiliging
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <div className="bg-primary/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+                                <Database className="w-7 h-7 text-primary" />
+                            </div>
+                            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                                Uitgebreide datagovernance
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                Volledige controle over data-eigenaarschap, toegangsbeheer en kwaliteitsborging met geautomatiseerde workflows.
+                            </p>
+                            <ul className="space-y-2 text-sm text-gray-600">
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="w-4 h-4 text-green-500" />
+                                    <span>Geautomatiseerde data validatie</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="w-4 h-4 text-green-500" />
+                                    <span>Real-time kwaliteitsmonitoring</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <div className="bg-primary/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+                                <Lock className="w-7 h-7 text-primary" />
+                            </div>
+                            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                                Geautomatiseerde controlesystemen
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                Intelligente controlemechanismen die afwijkingen detecteren en automatisch corrigerende maatregelen nemen.
+                            </p>
+                            <ul className="space-y-2 text-sm text-gray-600">
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="w-4 h-4 text-green-500" />
+                                    <span>24/7 geautomatiseerde monitoring</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="w-4 h-4 text-green-500" />
+                                    <span>Proactieve risicodetectie</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            <div className="bg-primary/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+                                <FileCheck className="w-7 h-7 text-primary" />
+                            </div>
+                            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                                Borging van wet- en regelgeving
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                Automatische compliance-checks en rapportages die voldoen aan alle relevante wet- en regelgeving.
+                            </p>
+                            <ul className="space-y-2 text-sm text-gray-600">
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="w-4 h-4 text-green-500" />
+                                    <span>GDPR & AVG compliant</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <CheckCircle className="w-4 h-4 text-green-500" />
+                                    <span>Geautomatiseerde audit trails</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </FadeUp>

@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import Image from "next/image";
 import { FadeUp } from "../../components/MotionWrapper";
 import Link from "next/link";
-import { Layers, Settings, Link2, CheckCircle2, ArrowRight } from "lucide-react";
+import { Layers, Settings, Link2, CheckCircle2, ArrowRight, Puzzle, CheckCircle, Cog } from "lucide-react";
 import FAQSection from "@/app/components/FAQ";
 
 export default function TailoredAdministrativeSolutionsPage() {
@@ -13,58 +13,124 @@ export default function TailoredAdministrativeSolutionsPage() {
         <div className="min-h-screen flex flex-col mt-20">
             <Header />
 
-            {/* Hero Section - Artistic */}
-            <section className="relative py-28 overflow-hidden bg-primary">
-                <div className="max-w-5xl mx-auto px-6 text-center relative">
+            {/* Hero Section - Enhanced */}
+            <section className="relative py-32 overflow-hidden bg-linear-to-br from-primary to-primary-light">
+                <div className="absolute inset-0 bg-black/5"></div>
+                <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
                     <FadeUp>
-                        <h1 className="text-5xl md:text-6xl font-hedvig font-semibold text-gray-100">
+                        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+                            <Puzzle className="w-4 h-4 text-white" />
+                            <span className="text-sm font-medium text-white">Maatwerk Oplossingen</span>
+                        </div>
+                        <h1 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[49px] font-hedvig font-normal text-white leading-[1.2] sm:leading-[1.15] tracking-tight mb-4 sm:mb-5 md:mb-6">
                             Op maat gemaakte administratieve oplossingen
                         </h1>
-                        <p className="text-lg md:text-xl text-gray-300 mt-6 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-[15px] sm:text-[16px] md:text-[17px] lg:text-[19px] font-inter font-normal text-white/80 leading-relaxed mt-6 max-w-3xl mx-auto">
                             Werkprocessen en systemen afgestemd op jouw bedrijfsbehoeften, van dagelijkse boekhouding
                             tot gestructureerde financiële processen.
                         </p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+                            <Link
+                                href="/#contact"
+                                className="bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center gap-3 shadow-lg"
+                            >
+                                <span>Ontwerp oplossing</span>
+                                <ArrowRight size={20} />
+                            </Link>
+                            <div className="flex items-center gap-2 text-white/80">
+                                <Cog className="w-4 h-4" />
+                                <span className="text-sm">100% op maat gemaakt</span>
+                            </div>
+                        </div>
                     </FadeUp>
                 </div>
+                <div className="absolute -bottom-1 left-0 right-0 h-20 bg-linear-to-t from-white to-transparent"></div>
+            </section>
+
+            {/* Statistics Section */}
+            <section className="max-w-6xl mx-auto px-6 -mt-10 mb-20">
+                <FadeUp>
+                    <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                        <div className="grid md:grid-cols-3 gap-8 text-center">
+                            <div>
+                                <div className="text-4xl font-bold text-primary mb-2">100%</div>
+                                <div className="text-gray-600">Op maat gemaakt</div>
+                            </div>
+                            <div>
+                                <div className="text-4xl font-bold text-primary mb-2">6-8</div>
+                                <div className="text-gray-600">Weken implementatie</div>
+                            </div>
+                            <div>
+                                <div className="text-4xl font-bold text-primary mb-2">Schaalbaar</div>
+                                <div className="text-gray-600">Voor groei</div>
+                            </div>
+                        </div>
+                    </div>
+                </FadeUp>
             </section>
 
             {/* About Section (Portfolio Style) */}
-            <section className="max-w-5xl mx-auto px-6 mb-24 mt-10">
+            <section className="max-w-6xl mx-auto px-6 mb-24">
                 <FadeUp>
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
+                    <div className="grid md:grid-cols-2 gap-20 items-center">
                         <div>
-                            <h2 className="text-3xl font-bold text-gray-900 font-hedvig">
-                                Wat we hebben gerealiseerd
+                            <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
+                                <Layers className="w-4 h-4 text-primary" />
+                                <span className="text-sm font-medium text-primary">Custom Solutions</span>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 font-hedvig mb-6">
+                                Jouw unieke bedrijf verdient unieke oplossingen
                             </h2>
 
-                            <p className="mt-6 text-gray-600 leading-relaxed">
+                            <p className="text-lg text-gray-600 leading-relaxed mb-6">
                                 Wij ontwikkelen op maat gemaakte administratieve systemen en workflows die specifiek
                                 zijn ontworpen voor jouw bedrijfsvoering, met efficiëntie en compliance op elk niveau.
                             </p>
 
-                            <p className="mt-4 text-gray-600 leading-relaxed whitespace-pre-line">
-                                Elk bedrijf heeft unieke administratieve behoeften, en standaardoplossingen zorgen
-                                vaak voor meer problemen dan ze oplossen. Onze op maat gemaakte administratieve
-                                oplossingen starten met een grondige analyse van je huidige processen, knelpunten en
-                                bedrijfsdoelstellingen. Vervolgens ontwerpen en implementeren we systemen die precies
-                                aansluiten op jouw specifieke eisen, met behoud van schaalbaarheid voor toekomstige groei.
-
-                                Onze aanpak combineert best practices uit de sector met innovatieve inzichten om
-                                administratieve workflows te creëren die zowel efficiënt als compliant zijn.
-                            </p>
+                            <div className="space-y-4 mb-8">
+                                <div className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 shrink-0" />
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900 mb-1">Bedrijfsspecifiek ontwerp</h4>
+                                        <p className="text-gray-600 text-sm">Workflows die perfect aansluiten bij jouw processen</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 shrink-0" />
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900 mb-1">Schaalbare architectuur</h4>
+                                        <p className="text-gray-600 text-sm">Groeit mee met je bedrijf en toekomstige behoeften</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 shrink-0" />
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900 mb-1">Naadloze integratie</h4>
+                                        <p className="text-gray-600 text-sm">Verbindt met al je bestaande tools en systemen</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="relative">
-                            <div className="absolute -top-10 -left-10 w-40 h-40 blur-2xl rounded-full"></div>
-                            <div className="absolute -bottom-10 -right-10 w-40 h-40 blur-2xl rounded-full"></div>
+                            <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 blur-3xl rounded-full"></div>
+                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-200/50 blur-3xl rounded-full"></div>
 
-                            <Image
-                                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop&auto=format"
-                                width={500}
-                                height={400}
-                                className="rounded-xl shadow-xl object-cover"
-                                alt="feature visual"
-                            />
+                            <div className="relative bg-linear-to-br from-gray-50 to-white p-8 rounded-2xl shadow-2xl">
+                                <Image
+                                    src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=800&fit=crop&auto=format"
+                                    width={500}
+                                    height={400}
+                                    className="rounded-xl shadow-lg object-cover w-full"
+                                    alt="Tailored administrative solutions"
+                                />
+                                <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-lg">
+                                    <div className="flex items-center gap-2">
+                                        <Settings className="w-4 h-4 text-primary" />
+                                        <span className="text-sm font-medium text-gray-700">Custom built</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </FadeUp>

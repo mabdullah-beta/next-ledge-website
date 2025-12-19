@@ -182,7 +182,7 @@ const Header = () => {
           </ul>
 
           {/* CTA Button */}
-          <Link href="#contact" className="hidden md:flex bg-primary text-white pl-3 pr-2 py-1 rounded-full text-[16px] font-semibold hover:bg-primary-dark transition-all duration-200 items-center gap-3 whitespace-nowrap group" aria-label="Get in touch">
+          <Link href="/#contact" className="hidden md:flex bg-primary text-white pl-3 pr-2 py-1 rounded-full text-[16px] font-semibold hover:bg-primary-dark transition-all duration-200 items-center gap-3 whitespace-nowrap group" aria-label="Get in touch">
             Neem contact op
             {/* Arrow animation: Two arrows for slide effect - one slides out right, another slides in from left */}
             <span className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-primary overflow-hidden relative">
@@ -235,7 +235,7 @@ const Header = () => {
             ))}
 
             <Link
-              href="#contact"
+              href="/#contact"
               onClick={handleItemClick}
               className="mt-6 flex justify-center items-center gap-2 bg-primary text-white py-4 rounded-xl font-bold"
             >

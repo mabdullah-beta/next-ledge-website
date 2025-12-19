@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock, Users, TrendingUp } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const steps = [
   {
@@ -12,7 +12,9 @@ const steps = [
     abt: 'Makkelijke en soepele planning',
     description: 'Plan moeiteloos een consult om je doelen, behoeften en uitdagingen te bespreken. We luisteren, analyseren je situatie en bepalen waar automatisering en optimalisatie de grootste impact kunnen hebben zodat we snel en effectief kunnen starten.',
     image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
-    imagePosition: 'left'
+    imagePosition: 'left',
+    icon: Clock,
+    benefits: ['Snelle intake', 'Duidelijke planning', 'Persoonlijk advies']
   },
   {
     id: '02',
@@ -20,7 +22,9 @@ const steps = [
     abt: 'Minder handmatig werk, meer duidelijkheid',
     description: "Automatisering betekent niet dat de menselijke betrokkenheid verdwijnt. We blijven nauw betrokken, geven proactief advies en denken met je mee bij belangrijke beslissingen. Je krijgt een vaste expert die jouw bedrijf echt begrijpt.",
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
-    imagePosition: 'right'
+    imagePosition: 'right',
+    icon: CheckCircle,
+    benefits: ['Slimme automatisering', 'Menselijke expertise', 'Proactief advies']
   },
   {
     id: '03',
@@ -28,7 +32,9 @@ const steps = [
     abt: 'Altijd een expert aan je zijde',
     description: 'Van implementatie tot optimalisatie bieden we doorlopende begeleiding en aanpassingen om langdurige groei voor jou te verzekeren.',
     image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop',
-    imagePosition: 'left'
+    imagePosition: 'left',
+    icon: Users,
+    benefits: ['Vaste contactpersoon', 'Continue optimalisatie', 'Langdurige groei']
   },
   {
     id: '04',
@@ -36,13 +42,83 @@ const steps = [
     abt: 'Van cijfers naar strategie',
     description: 'Met duidelijke cijfers en slimme financiële inzichten helpen we je stevige, strategische keuzes te maken. Of je nu wilt opschalen, investeren of efficiënter wilt werken, SalFin geeft je de helderheid om vooruit te komen.',
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    imagePosition: 'right'
+    imagePosition: 'right',
+    icon: TrendingUp,
+    benefits: ['Strategische inzichten', 'Datagedreven beslissingen', 'Duurzame groei']
   }
 ];
 
-function StepItem({ step, index }) {
+// Progress Indicator Component
+function ProgressIndicator({ currentStep, totalSteps }) {
+  return (
+    <div className="flex items-center justify-center mb-12 md:mb-16">
+      <div className="flex items-center gap-3">
+        {Array.from({ length: totalSteps }, (_, index) => (
+          <div key={index} className="flex items-center">
+            <motion.div
+              className={`w-3 h-3 rounded-full transition-all duration-500 ${
+                index < currentStep 
+                  ? 'bg-primary shadow-lg' 
+                  : index === currentStep 
+                    ? 'bg-primary-light shadow-md' 
+                    : 'bg-gray-300'
+              }`}
+              initial={{ scale: 0.8 }}
+              animate={{ 
+                scale: index === currentStep ? 1.2 : 1,
+                transition: { duration: 0.3 }
+              }}
+            />
+            {index < totalSteps - 1 && (
+              <div className={`w-8 h-0.5 mx-2 transition-all duration-500 ${
+                index < currentStep ? 'bg-primary' : 'bg-gray-300'
+              }`} />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Benefits List Component
+function BenefitsList({ benefits, isVisible }) {
+  return (
+    <motion.div
+      className="mt-6 space-y-3"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
+    >
+      {benefits.map((benefit, index) => (
+        <motion.div
+          key={index}
+          className="flex items-center gap-3"
+          initial={{ opacity: 0, x: -20 }}
+          animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+          transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+        >
+          <div className="w-2 h-2 bg-primary rounded-full shrink-0" />
+          <span className="text-sm-custom text-body font-medium">{benefit}</span>
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+}
+
+function StepItem({ step, index, onInView }) {
   const stepRef = useRef(null);
-  const isInView = useInView(stepRef, { once: true, amount: 0.3 });
+  const isInView = useInView(stepRef, { 
+    once: false, 
+    amount: 0.4,
+    callback: (inView) => {
+      if (inView) {
+        onInView(index);
+      }
+    }
+  });
+  
+  const IconComponent = step.icon;
 
   return (
     <div ref={stepRef} className="relative">
@@ -53,11 +129,26 @@ function StepItem({ step, index }) {
 
       {/* Desktop Layout */}
       <div className="hidden md:block">
-        {/* Number Badge on Timeline - Desktop */}
+        {/* Enhanced Number Badge with Icon - Desktop */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-          <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
-            {step.id}
-          </div>
+          <motion.div
+            className="relative"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            {/* Outer ring */}
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl border-4 border-primary/10">
+              {/* Inner circle with icon */}
+              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                <IconComponent className="w-5 h-5 text-white" />
+              </div>
+              {/* Step number badge */}
+              <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xs">{step.id}</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Content Row - Desktop */}
@@ -89,44 +180,66 @@ function StepItem({ step, index }) {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
               >
-                <h3 className="text-[24px] lg:text-[28px] font-semibold text-gray-900 mb-2 lg:mb-3 tracking-tight">
-                  {step.title}
-                </h3>
-                <h4 className='text-[15px] lg:text-[16px] font-semibold text-primary mb-4 lg:mb-6 tracking-tight w-fit'>
-                  {step.abt}
-                </h4>
-                <p className="antialiased text-gray-700 text-[15px] lg:text-base leading-relaxed mb-5 lg:mb-6">
-                  {step.description}
-                </p>
-                <button className="inline-flex items-center gap-2 text-gray-900 font-bold hover:gap-3 transition-all text-sm lg:text-base">
-                  Ontdek meer
-                  <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
-                </button>
+                <div className="bg-white/80 backdrop-blur-sm rounded-radius-card p-6 lg:p-8 shadow-lg border border-gray-100">
+                  <h3 className="font-hedvig text-heading-sm text-heading mb-3 tracking-tight">
+                    {step.title}
+                  </h3>
+                  <h4 className='text-body-base font-semibold text-primary mb-4 tracking-tight'>
+                    {step.abt}
+                  </h4>
+                  <p className="antialiased text-body text-body-base leading-relaxed mb-6">
+                    {step.description}
+                  </p>
+                  
+                  <BenefitsList benefits={step.benefits} isVisible={isInView} />
+                  
+                  <motion.button 
+                    className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-light transition-all duration-300 font-semibold text-sm-custom mt-6 group"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Ontdek meer
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </motion.button>
+                </div>
               </motion.div>
             </>
           ) : (
             <>
               {/* Content on Left - Animated */}
               <motion.div
-                className="pr-12 lg:pr-16 text-right"
+                className="pr-12 lg:pr-16"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <h3 className="text-[24px] lg:text-[28px] font-semibold text-gray-900 mb-4 lg:mb-6">
-                  {step.title}
-                </h3>
-                <h4 className='text-[15px] lg:text-[16px] font-semibold text-primary mb-4 lg:mb-6 tracking-tight'>
-                  {step.abt}
-                </h4>
-                <p className="antialiased text-[15px] lg:text-base leading-relaxed mb-5 lg:mb-6 font-semibold text-body">
-                  {step.description}
-                </p>
-                <div className="flex justify-end">
-                  <button className="inline-flex items-center gap-2 text-gray-900 font-semibold hover:gap-3 transition-all text-sm lg:text-base">
-                    Ontdek meer
-                    <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 rotate-180" />
-                  </button>
+                <div className="bg-white/80 backdrop-blur-sm rounded-radius-card p-6 lg:p-8 shadow-lg border border-gray-100 text-right">
+                  <h3 className="font-hedvig text-heading-sm text-heading mb-3 tracking-tight">
+                    {step.title}
+                  </h3>
+                  <h4 className='text-body-base font-semibold text-primary mb-4 tracking-tight'>
+                    {step.abt}
+                  </h4>
+                  <p className="antialiased text-body text-body-base leading-relaxed mb-6">
+                    {step.description}
+                  </p>
+                  
+                  <div className="flex justify-end">
+                    <div className="text-left">
+                      <BenefitsList benefits={step.benefits} isVisible={isInView} />
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-end mt-6">
+                    <motion.button 
+                      className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-light transition-all duration-300 font-semibold text-sm-custom group"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <ArrowRight className="w-4 h-4 group-hover:-translate-x-1 transition-transform rotate-180" />
+                      Ontdek meer
+                    </motion.button>
+                  </div>
                 </div>
               </motion.div>
 
@@ -154,11 +267,26 @@ function StepItem({ step, index }) {
 
       {/* Mobile Layout */}
       <div className="md:hidden pl-10 sm:pl-14">
-        {/* Number Badge - Mobile */}
+        {/* Enhanced Number Badge - Mobile */}
         <div className="absolute left-[22px] sm:left-[26px] top-0 -translate-x-1/2 z-10">
-          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm shadow-lg">
-            {step.id}
-          </div>
+          <motion.div
+            className="relative"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            {/* Outer ring */}
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl border-3 border-primary/10">
+              {/* Inner circle with icon */}
+              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <IconComponent className="w-4 h-4 text-white" />
+              </div>
+              {/* Step number badge */}
+              <div className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-primary-light rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xs">{step.id}</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Image First - Mobile - Animated */}
@@ -185,19 +313,28 @@ function StepItem({ step, index }) {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
         >
-          <h3 className="text-[22px] sm:text-[26px] font-semibold text-gray-900 mb-2 sm:mb-3">
-            {step.title}
-          </h3>
-          <h4 className='text-[14px] sm:text-[15px] font-semibold text-primary mb-3 sm:mb-4 tracking-tight'>
-            {step.abt}
-          </h4>
-          <p className="antialiased text-gray-600 text-[14px] sm:text-base leading-relaxed mb-4 sm:mb-5">
-            {step.description}
-          </p>
-          <button className="inline-flex items-center gap-2 text-gray-900 font-bold hover:gap-3 transition-all text-sm sm:text-base">
-            Ontdek meer
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-          </button>
+          <div className="bg-white/80 backdrop-blur-sm rounded-radius-card p-5 sm:p-6 shadow-lg border border-gray-100">
+            <h3 className="font-hedvig text-card-title sm:text-heading-sm text-heading mb-2 sm:mb-3 tracking-tight">
+              {step.title}
+            </h3>
+            <h4 className='text-sm-custom sm:text-body-base font-semibold text-primary mb-3 sm:mb-4 tracking-tight'>
+              {step.abt}
+            </h4>
+            <p className="antialiased text-body text-sm-custom sm:text-body-base leading-relaxed mb-4 sm:mb-5">
+              {step.description}
+            </p>
+            
+            <BenefitsList benefits={step.benefits} isVisible={isInView} />
+            
+            <motion.button 
+              className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full hover:bg-primary-light transition-all duration-300 font-semibold text-sm-custom mt-5 group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Ontdek meer
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </div>
@@ -205,34 +342,65 @@ function StepItem({ step, index }) {
 }
 
 export default function HowItWorksSection() {
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const handleStepInView = (stepIndex) => {
+    setCurrentStep(stepIndex);
+  };
+
   return (
-    <section className="tracking-tight font-inter w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section className="tracking-tight font-inter w-full bg-linear-to-br from-gray-50 to-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary-light/5 rounded-full blur-3xl" />
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
-          <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4 md:mb-6">
+          <motion.div 
+            className="flex items-center justify-center gap-2 mb-3 sm:mb-4 md:mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <div className="dot-indicator bg-primary rounded-full"></div>
-            <span className="font-inter text-sm sm:text-base font-semimedium text-primary">Hoe het werkt</span>
-          </div>
-          <h2 className="font-hedvig text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 leading-tight mb-6 sm:mb-7 md:mb-8 max-w-xl mx-auto px-4">
+            <span className="font-inter text-sm-custom sm:text-body-base font-semibold text-primary">Hoe het werkt</span>
+          </motion.div>
+          
+          <motion.h2 
+            className="font-hedvig text-heading-lg-mobile md:text-heading-lg text-heading leading-tight mb-6 sm:mb-7 md:mb-8 max-w-2xl mx-auto px-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             Een bewezen proces om je grootste doelen te bereiken
-          </h2>
-          <button className="inline-flex items-center gap-2 sm:gap-3 bg-primary text-white px-1 pl-3 sm:pl-4 py-0.5 sm:py-1 rounded-full transition-all duration-200 group">
-            <span className="font-semibold text-sm sm:text-base">Neem contact op</span>
-            {/* Arrow animation: Two arrows for slide effect */}
-            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center overflow-hidden relative">
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary transition-transform duration-300 group-hover:translate-x-6" />
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
+          </motion.h2>
+          
+          <motion.button 
+            className="inline-flex items-center gap-2 sm:gap-3 bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 group shadow-lg hover:shadow-xl hover:bg-primary-light"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="font-semibold text-sm-custom sm:text-body-base">Neem contact op</span>
+            <div className="w-6 h-6 sm:w-7 sm:h-7 bg-white rounded-full flex items-center justify-center">
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:translate-x-0.5 transition-transform" />
             </div>
-          </button>
+          </motion.button>
         </div>
+
+        {/* Progress Indicator */}
+        <ProgressIndicator currentStep={currentStep} totalSteps={steps.length} />
 
         {/* Steps with Timeline */}
         <div className="relative max-w-6xl mx-auto">
-          {/* Steps */}
           <div className="space-y-16 sm:space-y-20 md:space-y-32">
             {steps.map((step, index) => (
-              <StepItem key={step.id} step={step} index={index} />
+              <StepItem key={step.id} step={step} index={index} onInView={handleStepInView} />
             ))}
           </div>
         </div>

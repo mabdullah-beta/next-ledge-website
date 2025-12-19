@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import { FadeUp } from "../../components/MotionWrapper";
-import { ArrowRight, Star, TimerIcon, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Star, TimerIcon, ShieldCheck, CheckCircle2, CheckCircle, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import FAQSection from "@/app/components/FAQ";
 
@@ -14,30 +14,39 @@ export default function FinancialInsightsReportingPage() {
             <Header />
 
             <main className="flex-1">
-                {/* Hero Section */}
-                <div className="bg-primary py-16">
-                    <div className="max-w-6xl mx-auto px-4">
+                {/* Hero Section - Enhanced */}
+                <section className="relative py-32 overflow-hidden bg-linear-to-br from-primary to-primary-light">
+                    <div className="absolute inset-0 bg-black/5"></div>
+                    <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
                         <FadeUp>
-                            <div className="text-center space-y-6 max-w-3xl mx-auto">
-                                <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm font-medium text-primary mb-2 shadow-sm">
-                                    <span className="w-2 h-2 rounded-full bg-primary mr-2"></span>
-                                    Onze diensten
+                            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+                                <BarChart3 className="w-4 h-4 text-white" />
+                                <span className="text-sm font-medium text-white">Data Insights</span>
+                            </div>
+                            <h1 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[49px] font-hedvig font-normal text-white leading-[1.2] sm:leading-[1.15] tracking-tight mb-4 sm:mb-5 md:mb-6">
+                                Financiële inzichten & rapportage
+                            </h1>
+                            <p className="text-[15px] sm:text-[16px] md:text-[17px] lg:text-[19px] font-inter font-normal text-white/80 leading-relaxed mt-6 max-w-3xl mx-auto">
+                                Helderheid die betere beslissingen mogelijk maakt. Visuele rapportages en 
+                                prestatiedashboards voor optimale bedrijfsmonitoring.
+                            </p>
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+                                <Link
+                                    href="/#contact"
+                                    className="bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center gap-3 shadow-lg"
+                                >
+                                    <span>Ontdek inzichten</span>
+                                    <ArrowRight size={20} />
+                                </Link>
+                                <div className="flex items-center gap-2 text-white/80">
+                                    <CheckCircle size={16} />
+                                    <span className="text-sm">Real-time dashboards</span>
                                 </div>
-
-                                <h1 className="text-5xl md:text-6xl font-bold font-hedvig text-white leading-tight">
-                                    Financiële inzichten & rapportage
-                                </h1>
-
-                                <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-inter leading-relaxed">
-                                    Helderheid die betere beslissingen mogelijk maakt. We vertalen financiële data naar
-                                    duidelijke inzichten via visuele rapportages en prestatiedashboards. Met de juiste
-                                    informatie op het juiste moment kun je de gezondheid van je bedrijf monitoren en
-                                    met vertrouwen beslissingen nemen.
-                                </p>
                             </div>
                         </FadeUp>
                     </div>
-                </div>
+                    <div className="absolute -bottom-1 left-0 right-0 h-20 bg-linear-to-t from-white to-transparent"></div>
+                </section>
 
                 {/* Main Content */}
                 <div className="max-w-6xl mx-auto px-4 py-16">
