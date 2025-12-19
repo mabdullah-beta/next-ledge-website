@@ -51,7 +51,7 @@ const steps = [
 // Progress Indicator Component
 function ProgressIndicator({ currentStep, totalSteps }) {
   return (
-    <div className="flex items-center justify-center mb-12 md:mb-16">
+    <div className="flex items-center justify-center mb-12 md:mb-16" id='howitworks'>
       <div className="flex items-center gap-3">
         {Array.from({ length: totalSteps }, (_, index) => (
           <div key={index} className="flex items-center">
@@ -138,7 +138,7 @@ function StepItem({ step, index, onInView }) {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             {/* Outer ring */}
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl border-4 border-primary/10">
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center border-4 border-primary/10">
               {/* Inner circle with icon */}
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                 <IconComponent className="w-5 h-5 text-white" />
@@ -162,7 +162,7 @@ function StepItem({ step, index, onInView }) {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <div className="relative w-[85%] lg:w-[80%] h-[240px] lg:h-[295px] rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl ml-auto">
+                <div className="relative w-[85%] lg:w-[80%] h-[240px] lg:h-[295px] rounded-2xl lg:rounded-3xl overflow-hidden ml-auto">
                   <Image
                     src={step.image}
                     alt={step.title}
@@ -180,7 +180,7 @@ function StepItem({ step, index, onInView }) {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
               >
-                <div className="bg-white/80 backdrop-blur-sm rounded-radius-card p-6 lg:p-8 shadow-lg border border-gray-100">
+                <div className="bg-white/80 backdrop-blur-sm rounded-radius-card p-6 lg:p-8">
                   <h3 className="font-hedvig text-heading-sm text-heading mb-3 tracking-tight">
                     {step.title}
                   </h3>
@@ -193,14 +193,7 @@ function StepItem({ step, index, onInView }) {
                   
                   <BenefitsList benefits={step.benefits} isVisible={isInView} />
                   
-                  <motion.button 
-                    className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-light transition-all duration-300 font-semibold text-sm-custom mt-6 group"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Ontdek meer
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
+                 
                 </div>
               </motion.div>
             </>
@@ -213,7 +206,7 @@ function StepItem({ step, index, onInView }) {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <div className="bg-white/80 backdrop-blur-sm rounded-radius-card p-6 lg:p-8 shadow-lg border border-gray-100 text-right">
+                <div className="bg-white/80 backdrop-blur-sm rounded-radius-card p-6 lg:p-8 text-right">
                   <h3 className="font-hedvig text-heading-sm text-heading mb-3 tracking-tight">
                     {step.title}
                   </h3>
@@ -230,16 +223,6 @@ function StepItem({ step, index, onInView }) {
                     </div>
                   </div>
                   
-                  <div className="flex justify-end mt-6">
-                    <motion.button 
-                      className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-light transition-all duration-300 font-semibold text-sm-custom group"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <ArrowRight className="w-4 h-4 group-hover:-translate-x-1 transition-transform rotate-180" />
-                      Ontdek meer
-                    </motion.button>
-                  </div>
                 </div>
               </motion.div>
 

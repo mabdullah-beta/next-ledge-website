@@ -85,7 +85,7 @@ const Header = () => {
     { label: "Diensten", hasDropdown: true, dropdownType: "services" },
     { label: "Features", hasDropdown: true, dropdownType: "features" },
     // { label: "Prijzen", href: "/Pricing" },
-    { label: "Hoe het werkt", href: "/howitworks" },
+    { label: "Hoe het werkt", href: "/#howitworks" },
   ];
 
   useEffect(() => {
