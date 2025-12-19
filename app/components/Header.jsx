@@ -94,56 +94,11 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (!isMobileMenuOpen) return;
-
-    const handleClickOutside = (event) => {
-      if (headerRef.current && !headerRef.current.contains(event.target)) {
-        setIsMobileMenuOpen(false);
-        setIsServicesOpen(false);
-        setIsFeaturesOpen(false);
-      }
-    };
-
-    const timer = setTimeout(() => {
-      document.addEventListener("click", handleClickOutside);
-    }, 50);
-
-    return () => {
-      clearTimeout(timer);
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [isMobileMenuOpen]);
-
-  const closeAllDropdowns = () => {
-    if (isMobileMenuOpen) return;
-    setIsServicesOpen(false);
-    setIsFeaturesOpen(false);
-  };
-
-  const handleMobileMenuToggle = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    if (isMobileMenuOpen) {
-      setIsServicesOpen(false);
-      setIsFeaturesOpen(false);
-    }
-  };
-
-  const handleMobileDropdownToggle = (type) => {
-    if (type === "services") {
-      setIsServicesOpen((p) => !p);
-      setIsFeaturesOpen(false);
-    } else {
-      setIsFeaturesOpen((p) => !p);
-      setIsServicesOpen(false);
-    }
-  };
-
-  const handleItemClick = () => {
-    setIsMobileMenuOpen(false);
-    setIsServicesOpen(false);
-    setIsFeaturesOpen(false);
-  };
+  const navItems = [
+    { label: "Diensten", href: "#diensten" },
+    { label: "Functies", href: "#functies" },
+    { label: "Hoe het werkt", href: "#hoe-het-werkt" },
+  ];
 
   return (
     <header
@@ -155,11 +110,11 @@ const Header = () => {
       <div className="max-w-full mx-auto px-5 md:px-12">
         <nav className="h-20 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-              <Image src="/next-ledge.png" alt="Nexledge Logo" width={45} height={45} />
+          <Link href="/" className="flex cursor-pointer items-center gap-3 group" aria-label="Stratex Home">
+
+            <div className="h-12 flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
+              <Image src="/logo.png" alt="SalFin Logo" width={120} height={120} />
             </div>
-            <span className="text-[22px] font-hedvig text-heading">Nexledge</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -202,18 +157,19 @@ const Header = () => {
                   <Link href={item.href} className="font-medium text-heading hover:text-primary">
                     {item.label}
                   </Link>
-                )}
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* CTA */}
-          <Link
-            href="#contact"
-            className="hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-semibold"
-          >
+          {/* CTA Button */}
+          <Link href="#contact" className="hidden md:flex bg-primary text-white pl-3 pr-2 py-1 rounded-full text-[16px] font-semibold hover:bg-primary-dark transition-all duration-200 items-center gap-3 whitespace-nowrap group" aria-label="Get in touch">
             Neem contact op
-            <ArrowRight size={18} />
+            {/* Arrow animation: Two arrows for slide effect - one slides out right, another slides in from left */}
+            <span className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-primary overflow-hidden relative">
+              <ArrowRight size={20} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />
+              <ArrowRight size={20} strokeWidth={2.5} className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
+            </span>
           </Link>
 
           {/* Mobile toggle */}

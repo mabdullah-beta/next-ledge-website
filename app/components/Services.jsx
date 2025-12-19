@@ -6,41 +6,41 @@ import Image from 'next/image';
 const services = [
   {
     id: 1,
-    title: 'Accounting & Financial Administration',
+    title: 'Boekhouding en Financiële Administratie',
     description:
-      'Accurate, compliant, and always up to date. We handle your bookkeeping, VAT returns, annual reports, and all other administrative tasks with precision. But we go beyond the basics — helping you understand your numbers so you can see how healthy your business really is.',
+      'Nauwkeurig, volgens de regels en altijd up to date. We verzorgen je boekhouding, btw aangiften, jaarrekeningen en alle andere administratieve taken met precisie. We gaan verder dan de basis en helpen je je cijfers te begrijpen zodat je ziet hoe gezond je bedrijf echt is.',
     image:
       'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop',
   },
   {
     id: 2,
-    title: 'Automation & IT Integration',
+    title: 'Automatisering en IT Integratie',
     description:
-      'Efficiency through smart technology. We analyse where automation and IT can simplify your financial processes, save time, and reduce manual work. Our focus is to help you stay up to date with developments in AI and digital tools — so your business runs smoother and becomes more data-driven.',
+      'Efficiëntie door slimme technologie. We analyseren waar automatisering en IT je financiële processen kunnen vereenvoudigen, tijd kunnen besparen en handmatig werk kunnen verminderen. Ons doel is om je bij te laten blijven met ontwikkelingen in AI en digitale tools zodat je bedrijf soepeler draait en meer datagedreven wordt.',
     image:
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
   },
   {
     id: 3,
-    title: 'Financial Insights & Reporting',
+    title: 'Financiële Inzichten en Rapportage',
     description:
-      'Clarity that drives better decisions. We turn financial data into clear insights through visual reporting and performance dashboards. With the right information at the right time, you can monitor your business health and make decisions with confidence.',
+      'Duidelijkheid die betere beslissingen stimuleert. We maken van financiële data heldere inzichten via visuele rapportages en prestatie dashboards. Met de juiste informatie op het juiste moment kun je de gezondheid van je bedrijf volgen en met vertrouwen beslissingen nemen.',
     image:
       'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
   },
   {
     id: 4,
-    title: 'Budgeting & Forecasting',
+    title: 'Budgettering en Forecasting',
     description:
-      'Plan today with tomorrow in mind. We help you build realistic budgets, create financial forecasts, and explore different growth scenarios — so you\'re prepared for what\'s ahead.',
+      'Plan vandaag met morgen in gedachten. We helpen je realistische budgetten op te stellen, financiële prognoses te maken en verschillende groeiscenario’s te verkennen zodat je voorbereid bent op wat komt.',
     image:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
   },
   {
     id: 5,
-    title: 'Advisory & Business Support',
+    title: 'Advies en Bedrijfsondersteuning',
     description:
-      'Your partner in every stage of growth. We work alongside you to analyse results, discuss challenges, and identify opportunities. Our goal is to give you the clarity and confidence to take the next step — backed by data, not guesswork.',
+      'Je partner in elke groeifase. We werken met je samen om resultaten te analyseren, uitdagingen te bespreken en kansen te identificeren. Ons doel is om je duidelijkheid en vertrouwen te geven om de volgende stap te zetten, ondersteund door data in plaats van giswerk.',
     image:
       'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
   },
@@ -87,11 +87,11 @@ export default function ServicesCarousel() {
         <div className="text-center mb-10 sm:mb-12 md:mb-14 lg:mb-16">
           <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
             <div className="dot-indicator bg-primary rounded-full"></div>
-            <span className="text-sm sm:text-base font-semibold text-primary">Our Services</span>
+            <span className="text-sm sm:text-base font-semibold text-primary">Onze diensten</span>
           </div>
 
           <h2 className="font-hedvig text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 max-w-3xl mx-auto leading-tight px-4">
-            Reliable expertise to drive your greatest success
+            Betrouwbare expertise die jouw succes versterkt
           </h2>
         </div>
 

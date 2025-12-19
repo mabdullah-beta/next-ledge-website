@@ -10,14 +10,14 @@ export default function TestimonialSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="font-hedvig w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8"
       id="testimonial"
     >
       <div className="max-w-2xl mx-auto text-center">
         {/* Star Rating - Animates first */}
-        <motion.div 
+        <motion.div
           className="flex items-center justify-center gap-1 mb-6 sm:mb-7 md:mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -27,24 +27,24 @@ export default function TestimonialSection() {
             <Star key={star} className="w-4 h-4 sm:w-5 sm:h-5 fill-black text-black" />
           ))}
           <span className="ml-2 sm:ml-3 text-base sm:text-lg font-normal text-gray-900">
-            Rated 4.9/5
+            Beoordeeld met 4,9 van 5
           </span>
         </motion.div>
 
         {/* Testimonial Text - Animates second */}
-        <motion.h2 
+        <motion.h2
           className="font-hedvig text-[22px] sm:text-[26px] md:text-[30px] lg:text-3xl text-gray-900 leading-tight mb-8 sm:mb-10 md:mb-12 px-2"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
-          Nextledge revolutionized our customer
-          understanding, boosting retention like
-          never before.
+          Nextledge heeft ons klantinzicht compleet
+          vernieuwd en onze retentie sterker
+          gemaakt dan ooit.
         </motion.h2>
 
         {/* Author Info - Animates third */}
-        <motion.div 
+        <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
@@ -68,7 +68,7 @@ export default function TestimonialSection() {
             </h3>
             <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1 sm:py-1.5 rounded-xl">
               <span className="flex items-center gap-2 text-[10px] sm:text-[11px] text-primary font-medium">
-                High conversion  <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>2x sales
+                Hoge conversie <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>2 keer meer verkoop
               </span>
             </div>
           </div>

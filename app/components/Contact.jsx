@@ -31,17 +31,17 @@ export default function ContactSection() {
     <section className="w-full bg-primary px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-12" id="contact">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-6 sm:gap-8 lg:gap-4 items-center">
-          
+
           {/* Left Side - Form */}
           <div className='px-0 sm:px-4 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16 lg:py-20'>
             {/* Header - Centered on mobile, left-aligned on desktop */}
             <div className="mb-8 sm:mb-10 md:mb-12 text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4 sm:mb-5 md:mb-6">
                 <div className="w-2 h-2 bg-white rounded-full"></div>
-                <span className="text-xs sm:text-sm font-medium text-white/80">Contact us</span>
+                <span className="text-xs sm:text-sm font-medium text-white/80">Neem contact met ons op</span>
               </div>
               <h2 className="font-hedvig text-[28px] sm:text-[32px] md:text-[36px] lg:text-[38px] text-white leading-tight max-w-sm mx-auto lg:mx-0">
-                Get in touch with our experts team
+                Neem contact op met ons expertenteam
               </h2>
             </div>
 
@@ -53,7 +53,7 @@ export default function ContactSection() {
                   <input
                     type="text"
                     name="fullName"
-                    placeholder="Full Name"
+                    placeholder="Volledige naam"
                     value={formData.fullName}
                     onChange={handleChange}
                     className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white focus:outline focus:outline-white transition-colors"
@@ -64,7 +64,7 @@ export default function ContactSection() {
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email Address"
+                    placeholder="E-mailadres"
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white focus:outline focus:outline-white transition-colors"
@@ -79,7 +79,7 @@ export default function ContactSection() {
                   <input
                     type="date"
                     name="date"
-                    placeholder="dd/mm/yyyy"
+                    placeholder="dd/mm/jjjj"
                     value={formData.date}
                     onChange={handleChange}
                     className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white focus:outline focus:outline-white transition-colors font-medium"
@@ -103,11 +103,11 @@ export default function ContactSection() {
                     }}
                     required
                   >
-                    <option value="" style={{ color: '#ffffff' }}>Service...</option>
-                    <option value="consulting" style={{ color: '#ffffff' }}>Business Consulting</option>
-                    <option value="strategy" style={{ color: '#ffffff' }}>Strategy Development</option>
-                    <option value="analytics" style={{ color: '#ffffff' }}>Data Analytics</option>
-                    <option value="transformation" style={{ color: '#ffffff' }}>Digital Transformation</option>
+                    <option value="" style={{ color: '#ffffff' }}>Dienst...</option>
+                    <option value="consulting" style={{ color: '#ffffff' }}>Bedrijfsadvies</option>
+                    <option value="strategy" style={{ color: '#ffffff' }}>Strategie ontwikkeling</option>
+                    <option value="analytics" style={{ color: '#ffffff' }}>Data analyse</option>
+                    <option value="transformation" style={{ color: '#ffffff' }}>Digitale transformatie</option>
                   </select>
                 </div>
               </div>
@@ -130,10 +130,10 @@ export default function ContactSection() {
                   required
                 >
                   <option value="" style={{ color: '#ffffff' }}>Budget...</option>
-                  <option value="5k-10k" style={{ color: '#ffffff' }}>$5,000 - $10,000</option>
-                  <option value="10k-25k" style={{ color: '#ffffff' }}>$10,000 - $25,000</option>
-                  <option value="25k-50k" style={{ color: '#ffffff' }}>$25,000 - $50,000</option>
-                  <option value="50k+" style={{ color: '#ffffff' }}>$50,000+</option>
+                  <option value="5k-10k" style={{ color: '#ffffff' }}>$5,000 tot $10,000</option>
+                  <option value="10k-25k" style={{ color: '#ffffff' }}>$10,000 tot $25,000</option>
+                  <option value="25k-50k" style={{ color: '#ffffff' }}>$25,000 tot $50,000</option>
+                  <option value="50k+" style={{ color: '#ffffff' }}>$50,000 of meer</option>
                 </select>
               </div>
 
@@ -141,7 +141,7 @@ export default function ContactSection() {
               <div>
                 <textarea
                   name="message"
-                  placeholder="How Can We Help?"
+                  placeholder="Hoe kunnen we helpen?"
                   value={formData.message}
                   onChange={handleChange}
                   rows="4"
@@ -155,7 +155,7 @@ export default function ContactSection() {
                   type="submit"
                   className="w-full sm:w-auto inline-flex cursor-pointer items-center justify-center sm:justify-start gap-2 sm:gap-3 bg-primary-light/30 text-white font-semibold pl-4 sm:pl-5 md:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full hover:bg-secondary-dark transition-colors text-sm sm:text-base"
                 >
-                  <span>Submit your Form</span>
+                  <span>Verstuur je formulier</span>
                   <span className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-primary flex-shrink-0">
                     <ArrowRight size={18} className="sm:w-5 sm:h-5" strokeWidth={2.5} />
                   </span>

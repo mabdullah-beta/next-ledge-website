@@ -204,9 +204,9 @@ export async function POST(request) {
             success: processedChunks > 0,
             chunks: processedChunks,
             failedChunks: failedChunks.length,
-            fileSize: `${(file.size / 1024 / 1024).toFixed(2)}MB`, // Formatted file size
+            fileSize: `${(file.size / 1024 / 1024).toFixed(2)}MB`,
             fileType: file.type,
-            errors: failedChunks.length > 0 ? failedChunks : undefined // Error details if any
+            errors: failedChunks.length > 0 ? failedChunks : undefined
           });
 
         } catch (fileError) {
