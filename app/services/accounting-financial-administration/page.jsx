@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import { FadeUp } from "../../components/MotionWrapper";
-import { ArrowRight, ChevronRight, Star, TimerIcon, ShieldCheck, CheckCircle2, Calculator, FileText, TrendingUp, Users, Database, Zap } from "lucide-react";
+import { ArrowRight, ChevronRight, Star, TimerIcon, ShieldCheck, CheckCircle2, Calculator, FileText, TrendingUp, Users, Database, Zap, DollarSign, BarChart3, Settings, FileSpreadsheet, Building2, Wrench } from "lucide-react";
 import Link from "next/link";
 import FAQSection from "@/app/components/FAQ";
 
@@ -122,23 +122,23 @@ export default function AccountingFinancialAdministrationPage() {
                             <FadeUp delay={0.1}>
                                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center mb-12">
                                     {[
-                                        { name: "QuickBooks", logo: "https://img.icons8.com/color/96/quickbooks.png" },
-                                        { name: "Xero", logo: "https://img.icons8.com/color/96/xero.png" },
-                                        { name: "SAP", logo: "https://img.icons8.com/color/96/sap.png" },
-                                        { name: "Sage", logo: "https://img.icons8.com/color/96/sage.png" },
-                                        { name: "Excel", logo: "https://img.icons8.com/color/96/microsoft-excel-2019.png" },
-                                        { name: "Exact", logo: "https://img.icons8.com/color/96/calculator.png" }
-                                    ].map((software, index) => (
-                                        <div key={index} className="flex items-center justify-center p-4 rounded-xl bg-white hover:bg-gray-50 transition-colors duration-200 shadow-sm">
-                                            <Image
-                                                src={software.logo}
-                                                alt={software.name}
-                                                width={60}
-                                                height={60}
-                                                className="max-w-full h-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                                            />
-                                        </div>
-                                    ))}
+                                        { name: "QuickBooks", icon: DollarSign, color: "text-green-600" },
+                                        { name: "Xero", icon: BarChart3, color: "text-blue-600" },
+                                        { name: "SAP", icon: Building2, color: "text-blue-700" },
+                                        { name: "Sage", icon: Settings, color: "text-green-700" },
+                                        { name: "Excel", icon: FileSpreadsheet, color: "text-green-600" },
+                                        { name: "Exact", icon: Calculator, color: "text-blue-600" }
+                                    ].map((software, index) => {
+                                        const Icon = software.icon;
+                                        return (
+                                            <div key={index} className="flex flex-col items-center justify-center p-4 rounded-xl bg-white hover:bg-gray-50 transition-colors duration-200 shadow-sm">
+                                                <div className={`w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center mb-2 hover:bg-gray-200 transition-colors duration-300`}>
+                                                    <Icon className={`w-6 h-6 ${software.color} hover:scale-110 transition-transform duration-300`} />
+                                                </div>
+                                                <span className="text-xs font-medium text-gray-700">{software.name}</span>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </FadeUp>
 

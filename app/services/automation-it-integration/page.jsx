@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import { FadeUp } from "../../components/MotionWrapper";
-import { ArrowRight, Star, TimerIcon, ShieldCheck, CheckCircle2, BarChart3, TrendingUp, Database, Zap, Users, Target, Award, Lightbulb } from "lucide-react";
+import { ArrowRight, Star, TimerIcon, ShieldCheck, CheckCircle2, BarChart3, TrendingUp, Database, Zap, Users, Target, Award, Lightbulb, FileSpreadsheet, PieChart, Activity, Building2, Settings, LineChart } from "lucide-react";
 import Link from "next/link";
 import FAQSection from "@/app/components/FAQ";
 
@@ -121,30 +121,23 @@ export default function AutomationITIntegrationPage() {
                         <FadeUp delay={0.1}>
                             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
                                 {[
-                                    { name: "Microsoft Power BI", logo: "https://img.icons8.com/color/96/power-bi.png" },
-                                    { name: "Tableau", logo: "https://img.icons8.com/color/96/tableau-software.png" },
-                                    { name: "Microsoft Excel", logo: "https://img.icons8.com/color/96/microsoft-excel-2019.png" },
-                                    { name: "Google Analytics", logo: "https://img.icons8.com/color/96/google-analytics.png" },
-                                    { name: "Salesforce", logo: "https://img.icons8.com/color/96/salesforce.png" },
-                                    { name: "SAP", logo: "https://img.icons8.com/color/96/sap.png" }
-                                ].map((partner, index) => (
-                                    <div key={index} className="flex items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
-                                        <Image
-                                            src={partner.logo}
-                                            alt={partner.name}
-                                            width={80}
-                                            height={80}
-                                            className="max-w-full h-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                                            onError={(e) => {
-                                                e.currentTarget.style.display = 'none';
-                                                e.currentTarget.nextSibling.style.display = 'block';
-                                            }}
-                                        />
-                                        <div className="hidden text-center">
-                                            <span className="text-sm font-medium text-gray-700">{partner.name}</span>
+                                    { name: "Microsoft Power BI", icon: BarChart3, color: "text-yellow-600" },
+                                    { name: "Tableau", icon: PieChart, color: "text-blue-600" },
+                                    { name: "Microsoft Excel", icon: FileSpreadsheet, color: "text-green-600" },
+                                    { name: "Google Analytics", icon: Activity, color: "text-orange-600" },
+                                    { name: "Salesforce", icon: LineChart, color: "text-blue-700" },
+                                    { name: "SAP", icon: Building2, color: "text-blue-800" }
+                                ].map((partner, index) => {
+                                    const Icon = partner.icon;
+                                    return (
+                                        <div key={index} className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
+                                            <div className={`w-14 h-14 rounded-xl bg-white flex items-center justify-center mb-2 shadow-sm hover:shadow-md transition-all duration-300`}>
+                                                <Icon className={`w-7 h-7 ${partner.color} hover:scale-110 transition-transform duration-300`} />
+                                            </div>
+                                            <span className="text-xs font-medium text-gray-700 text-center">{partner.name}</span>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </FadeUp>
                     </div>
