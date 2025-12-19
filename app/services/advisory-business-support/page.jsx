@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import { FadeUp } from "../../components/MotionWrapper";
-import { ArrowRight, Star, TimerIcon, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Star, TimerIcon, ShieldCheck, CheckCircle2, Target, TrendingUp, Users, Lightbulb, BarChart3, Briefcase, Award, Zap } from "lucide-react";
 import Link from "next/link";
 import FAQSection from "@/app/components/FAQ";
 
@@ -29,10 +29,11 @@ export default function AdvisoryBusinessSupportPage() {
                                 </h1>
 
                                 <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-inter leading-relaxed">
-                                    Jouw partner in elke fase van groei. We werken naast je om resultaten te analyseren,
-                                    uitdagingen te bespreken en kansen te identificeren. Ons doel is om je de
-                                    helderheid en het vertrouwen te geven om de volgende stap te zetten — gebaseerd op
-                                    data, niet op aannames.
+                                    Strategische business consulting voor duurzame groei. Wij bieden executive advisory, 
+                                    financial planning, market analysis en operational excellence consulting. Van startup 
+                                    tot scale-up - onze data-driven approach en proven methodologies helpen u strategische 
+                                    beslissingen te nemen, risico's te mitigeren en sustainable competitive advantage 
+                                    te creëren voor long-term business success.
                                 </p>
                             </div>
                         </FadeUp>
@@ -97,6 +98,70 @@ export default function AdvisoryBusinessSupportPage() {
                             />
                         </div>
                     </FadeUp>
+
+                    {/* Strategic Consulting Services Section */}
+                    <div className="bg-gray-50 -mx-4 px-4 py-16 mb-20">
+                        <div className="max-w-6xl mx-auto">
+                            <FadeUp>
+                                <div className="text-center mb-12">
+                                    <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-sm font-medium text-primary mb-4">
+                                        <Briefcase className="w-4 h-4 mr-2" />
+                                        Strategic Consulting
+                                    </div>
+                                    <h2 className="text-3xl font-bold text-gray-900 mb-4 font-hedvig">
+                                        Executive Advisory Services
+                                    </h2>
+                                    <p className="text-gray-600 max-w-2xl mx-auto">
+                                        Comprehensive business consulting voor C-level executives en ondernemers
+                                    </p>
+                                </div>
+                            </FadeUp>
+
+                            <FadeUp delay={0.1}>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                                    {[
+                                        {
+                                            title: "Strategic Planning",
+                                            description: "Long-term business strategy development, market positioning en competitive analysis",
+                                            icon: Target,
+                                            features: ["SWOT Analysis", "Market Research", "Strategic Roadmaps", "KPI Framework"]
+                                        },
+                                        {
+                                            title: "Financial Advisory",
+                                            description: "CFO-level financial guidance, investment planning en capital structure optimization",
+                                            icon: TrendingUp,
+                                            features: ["Financial Modeling", "Investment Analysis", "Risk Assessment", "Valuation Services"]
+                                        },
+                                        {
+                                            title: "Operational Excellence",
+                                            description: "Process optimization, organizational development en performance management",
+                                            icon: Zap,
+                                            features: ["Process Mapping", "Efficiency Analysis", "Change Management", "Performance Metrics"]
+                                        }
+                                    ].map((service, index) => {
+                                        const Icon = service.icon;
+                                        return (
+                                            <div key={index} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                                                <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-xl mb-4">
+                                                    <Icon className="w-6 h-6 text-primary" />
+                                                </div>
+                                                <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                                                <p className="text-gray-600 mb-4">{service.description}</p>
+                                                <ul className="space-y-2">
+                                                    {service.features.map((feature, idx) => (
+                                                        <li key={idx} className="flex items-center text-sm text-gray-600">
+                                                            <CheckCircle2 className="w-4 h-4 text-primary mr-2 shrink-0" />
+                                                            {feature}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </FadeUp>
+                        </div>
+                    </div>
 
                     {/* Content */}
                     <FadeUp delay={0.2}>

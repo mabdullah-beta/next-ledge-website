@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import { FadeUp } from "../../components/MotionWrapper";
-import { ArrowRight, ChevronRight, Star, TimerIcon, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ChevronRight, Star, TimerIcon, ShieldCheck, CheckCircle2, Calculator, FileText, TrendingUp, Users, Database, Zap } from "lucide-react";
 import Link from "next/link";
 import FAQSection from "@/app/components/FAQ";
 
@@ -29,10 +29,11 @@ export default function AccountingFinancialAdministrationPage() {
                                 </h1>
 
                                 <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-inter leading-relaxed">
-                                    Nauwkeurig, compliant en altijd up-to-date. Wij verzorgen je boekhouding,
-                                    btw-aangiften, jaarrekeningen en alle andere administratieve taken met precisie.
-                                    Maar we gaan verder dan de basis — we helpen je je cijfers te begrijpen, zodat je
-                                    kunt zien hoe gezond je bedrijf werkelijk is.
+                                    Professionele boekhouding met strategische meerwaarde. Wij verzorgen complete 
+                                    financiële administratie, VAT compliance, jaarrekeningen en salarisverwerking 
+                                    via moderne accounting software. Van QuickBooks tot Xero integraties - wij 
+                                    transformeren uw financiële data in bruikbare business intelligence voor 
+                                    optimale bedrijfsvoering en groei.
                                 </p>
                             </div>
                         </FadeUp>
@@ -97,6 +98,198 @@ export default function AccountingFinancialAdministrationPage() {
                                     },
                                 ]}
                             />
+                        </div>
+                    </FadeUp>
+
+                    {/* Accounting Software & Tools Section */}
+                    <div className="bg-gray-50 -mx-4 px-4 py-16 mb-20">
+                        <div className="max-w-6xl mx-auto">
+                            <FadeUp>
+                                <div className="text-center mb-12">
+                                    <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-sm font-medium text-primary mb-4">
+                                        <Calculator className="w-4 h-4 mr-2" />
+                                        Software & Integraties
+                                    </div>
+                                    <h2 className="text-3xl font-bold text-gray-900 mb-4 font-hedvig">
+                                        Professionele Accounting Software
+                                    </h2>
+                                    <p className="text-gray-600 max-w-2xl mx-auto">
+                                        We werken met toonaangevende accounting platforms voor optimale efficiency en accuracy
+                                    </p>
+                                </div>
+                            </FadeUp>
+
+                            <FadeUp delay={0.1}>
+                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center mb-12">
+                                    {[
+                                        { name: "QuickBooks", logo: "https://img.icons8.com/color/96/quickbooks.png" },
+                                        { name: "Xero", logo: "https://img.icons8.com/color/96/xero.png" },
+                                        { name: "SAP", logo: "https://img.icons8.com/color/96/sap.png" },
+                                        { name: "Sage", logo: "https://img.icons8.com/color/96/sage.png" },
+                                        { name: "Excel", logo: "https://img.icons8.com/color/96/microsoft-excel-2019.png" },
+                                        { name: "Exact", logo: "https://img.icons8.com/color/96/calculator.png" }
+                                    ].map((software, index) => (
+                                        <div key={index} className="flex items-center justify-center p-4 rounded-xl bg-white hover:bg-gray-50 transition-colors duration-200 shadow-sm">
+                                            <Image
+                                                src={software.logo}
+                                                alt={software.name}
+                                                width={60}
+                                                height={60}
+                                                className="max-w-full h-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </FadeUp>
+
+                            <FadeUp delay={0.2}>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    {[
+                                        {
+                                            title: "Cloud Accounting",
+                                            description: "Real-time toegang tot uw financiële data via moderne cloud platforms",
+                                            icon: Database,
+                                            features: ["24/7 Toegankelijkheid", "Automatische Backups", "Multi-user Access"]
+                                        },
+                                        {
+                                            title: "Automated Processing",
+                                            description: "Geautomatiseerde factuurverwerking en bankreconciliatie voor efficiency",
+                                            icon: Zap,
+                                            features: ["OCR Scanning", "Auto-categorisatie", "Smart Matching"]
+                                        },
+                                        {
+                                            title: "Integration Services",
+                                            description: "Naadloze koppeling met uw bestaande business systemen",
+                                            icon: TrendingUp,
+                                            features: ["API Koppelingen", "Data Synchronisatie", "Custom Workflows"]
+                                        }
+                                    ].map((service, index) => {
+                                        const Icon = service.icon;
+                                        return (
+                                            <div key={index} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                                                <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-xl mb-4">
+                                                    <Icon className="w-6 h-6 text-primary" />
+                                                </div>
+                                                <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                                                <p className="text-gray-600 mb-4">{service.description}</p>
+                                                <ul className="space-y-2">
+                                                    {service.features.map((feature, idx) => (
+                                                        <li key={idx} className="flex items-center text-sm text-gray-600">
+                                                            <CheckCircle2 className="w-4 h-4 text-primary mr-2 shrink-0" />
+                                                            {feature}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </FadeUp>
+                        </div>
+                    </div>
+
+                    {/* Compliance & Services Section */}
+                    <FadeUp delay={0.3}>
+                        <div className="mb-20">
+                            <div className="text-center mb-12">
+                                <h2 className="text-3xl font-bold text-gray-900 mb-4 font-hedvig">
+                                    Compliance & Specialized Services
+                                </h2>
+                                <p className="text-gray-600 max-w-3xl mx-auto">
+                                    Complete naleving van Nederlandse wet- en regelgeving met gespecialiseerde dienstverlening
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                                <div className="space-y-6">
+                                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Core Compliance Services</h3>
+                                    {[
+                                        {
+                                            title: "VAT & Tax Compliance",
+                                            description: "Complete BTW-aangiften, voorlopige aanslagen en jaarlijkse belastingaangiften",
+                                            tools: ["BTW-software", "Belastingdienst API", "Compliance Monitoring"]
+                                        },
+                                        {
+                                            title: "Annual Financial Statements",
+                                            description: "Professionele jaarrekeningen volgens Nederlandse accounting standards",
+                                            tools: ["RJ Richtlijnen", "XBRL Taxonomie", "Audit Trail"]
+                                        },
+                                        {
+                                            title: "Payroll Administration",
+                                            description: "Complete salarisadministratie met UWV en belastingdienst rapportage",
+                                            tools: ["Loonheffingen", "Pensioenfonds", "Verzekeringen"]
+                                        }
+                                    ].map((service, index) => (
+                                        <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                            <h4 className="text-lg font-bold text-gray-900 mb-3">{service.title}</h4>
+                                            <p className="text-gray-600 mb-4">{service.description}</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {service.tools.map((tool, idx) => (
+                                                    <span key={idx} className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
+                                                        {tool}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="space-y-6">
+                                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Value-Added Services</h3>
+                                    <div className="bg-primary rounded-2xl p-8 text-white">
+                                        <div className="flex items-center mb-4">
+                                            <FileText className="w-8 h-8 mr-3" />
+                                            <h4 className="text-xl font-bold">Financial Health Analysis</h4>
+                                        </div>
+                                        <p className="text-white/90 mb-6">
+                                            Maandelijkse financiële health checks met KPI analysis, 
+                                            cash flow forecasting en performance benchmarking.
+                                        </p>
+                                        <ul className="space-y-2 text-white/90">
+                                            <li className="flex items-center">
+                                                <CheckCircle2 className="w-4 h-4 mr-2 shrink-0" />
+                                                Liquidity & Solvency Analysis
+                                            </li>
+                                            <li className="flex items-center">
+                                                <CheckCircle2 className="w-4 h-4 mr-2 shrink-0" />
+                                                Profitability & Efficiency Metrics
+                                            </li>
+                                            <li className="flex items-center">
+                                                <CheckCircle2 className="w-4 h-4 mr-2 shrink-0" />
+                                                Industry Benchmarking
+                                            </li>
+                                            <li className="flex items-center">
+                                                <CheckCircle2 className="w-4 h-4 mr-2 shrink-0" />
+                                                Strategic Recommendations
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="bg-linear-to-br from-gray-50 to-white rounded-2xl p-6">
+                                        <h4 className="text-lg font-bold text-gray-900 mb-4">Specialized Expertise</h4>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            {[
+                                                { name: "E-commerce", icon: Users },
+                                                { name: "SaaS/Tech", icon: Database },
+                                                { name: "Manufacturing", icon: Zap },
+                                                { name: "Professional Services", icon: Star },
+                                                { name: "Real Estate", icon: TrendingUp },
+                                                { name: "Non-Profit", icon: ShieldCheck }
+                                            ].map((specialty, index) => {
+                                                const Icon = specialty.icon;
+                                                return (
+                                                    <div key={index} className="flex items-center space-x-3">
+                                                        <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                                                            <Icon className="w-4 h-4 text-primary" />
+                                                        </div>
+                                                        <span className="text-gray-700 font-medium text-sm">{specialty.name}</span>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </FadeUp>
 

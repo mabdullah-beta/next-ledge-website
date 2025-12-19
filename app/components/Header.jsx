@@ -84,7 +84,7 @@ const Header = () => {
   const navItems = [
     { label: "Diensten", hasDropdown: true, dropdownType: "services" },
     { label: "Features", hasDropdown: true, dropdownType: "features" },
-    { label: "Prijzen", href: "/Pricing" },
+    // { label: "Prijzen", href: "/Pricing" },
     { label: "Hoe het werkt", href: "/howitworks" },
   ];
 
@@ -94,11 +94,30 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { label: "Diensten", href: "#diensten" },
-    { label: "Functies", href: "#functies" },
-    { label: "Hoe het werkt", href: "#hoe-het-werkt" },
-  ];
+  // Helper functions
+  const closeAllDropdowns = () => {
+    setIsServicesOpen(false);
+    setIsFeaturesOpen(false);
+  };
+
+  const handleItemClick = () => {
+    setIsMobileMenuOpen(false);
+    closeAllDropdowns();
+  };
+
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleMobileDropdownToggle = (dropdownType) => {
+    if (dropdownType === "services") {
+      setIsServicesOpen(!isServicesOpen);
+      setIsFeaturesOpen(false);
+    } else {
+      setIsFeaturesOpen(!isFeaturesOpen);
+      setIsServicesOpen(false);
+    }
+  };
 
   return (
     <header
@@ -157,10 +176,10 @@ const Header = () => {
                   <Link href={item.href} className="font-medium text-heading hover:text-primary">
                     {item.label}
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+                )}
+              </li>
+            ))}
+          </ul>
 
           {/* CTA Button */}
           <Link href="#contact" className="hidden md:flex bg-primary text-white pl-3 pr-2 py-1 rounded-full text-[16px] font-semibold hover:bg-primary-dark transition-all duration-200 items-center gap-3 whitespace-nowrap group" aria-label="Get in touch">

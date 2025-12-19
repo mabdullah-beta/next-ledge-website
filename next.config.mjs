@@ -17,6 +17,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.icons8.com',
+      }
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
