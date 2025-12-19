@@ -6,7 +6,7 @@ import { ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="w-full font-inter bg-gray border-t border-gray-200">
+    <footer className="w-full font-inter bg-gray">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-12 md:py-14">
         {/* Desktop Layout */}

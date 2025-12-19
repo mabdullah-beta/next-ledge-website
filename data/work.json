@@ -1,0 +1,62 @@
+[
+  {
+    "id": "01",
+    "title": "Eenvoudig & Efficiënt",
+    "subtitle": "Een gestroomlijnde start, afgestemd op jouw bedrijf",
+    "tagline": "Eenvoudig en soepel plannen",
+    "description": "Jouw traject begint met een eenvoudig, vrijblijvend gesprek waarin we jouw doelen, uitdagingen en huidige werkwijze in kaart brengen. We verdiepen ons in je processen, identificeren knelpunten en beoordelen waar automatisering en optimalisatie direct impact kunnen maken. Deze stap zorgt voor volledige duidelijkheid, zodat de richting die we inslaan aansluit bij de resultaten die jij wilt bereiken. Of je nu streeft naar soepelere processen, minder handmatig werk of beter financieel inzicht — dit gesprek vormt de basis voor een langdurige samenwerking gericht op efficiëntie.",
+    "benefits": [
+      "Geen complexe onboarding, maar een eenvoudige start",
+      "Duidelijk inzicht in de volgende stappen",
+      "Identificatie van automatiseringen met de grootste impact",
+      "Tijd besparen door onnodige technische complexiteit te vermijden"
+    ],
+    "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop",
+    "imagePosition": "left"
+  },
+  {
+    "id": "02",
+    "title": "Automatiseren Waar Het Telt",
+    "subtitle": "Strategische automatisering die je workflow ondersteunt — niet vervangt",
+    "tagline": "Minder handmatig werk, meer overzicht",
+    "description": "Zodra we jouw workflow in kaart hebben gebracht, beginnen we met het automatiseren van taken die veel tijd kosten maar weinig waarde toevoegen. Het gaat hierbij niet om het vervangen van mensen, maar om het versterken van hun werk. We maken gebruik van moderne automatiseringstools, integraties en gestroomlijnde frameworks om repetitief werk te verminderen en menselijke fouten te elimineren. Tijdens het hele proces houden we je betrokken met transparante communicatie en gezamenlijke besluitvorming. Zo begrijp je altijd hoe elke automatisering bijdraagt aan slimmer schalen en efficiënter werken.",
+    "benefits": [
+      "Vermindert repetitieve en handmatige taken",
+      "Zorgt voor overzicht door vereenvoudigde processen",
+      "Meer tijd om te focussen op groei en strategie",
+      "Technisch sterke basis voor duurzame schaalbaarheid"
+    ],
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
+    "imagePosition": "right"
+  },
+  {
+    "id": "03",
+    "title": "Persoonlijke Begeleiding",
+    "subtitle": "Een vaste expert die je bij elke stap ondersteunt",
+    "tagline": "Altijd een expert aan je zijde",
+    "description": "We leveren niet alleen oplossingen — we blijven je begeleiden gedurende het hele traject. Onze aanpak richt zich op continue optimalisatie op basis van jouw veranderende behoeften. Of het nu gaat om het verfijnen van automatiseringen, het aanpassen van workflows of het introduceren van nieuwe systemen, wij bieden persoonlijke ondersteuning die past bij jouw groeifase. Met proactieve communicatie en regelmatige check-ins zorgen we ervoor dat alles in lijn blijft met jouw visie. Je hebt altijd iemand die jouw bedrijf door en door kent en strategisch meedenkt wanneer dat het meest nodig is.",
+    "benefits": [
+      "Consistente één-op-één ondersteuning",
+      "Regelmatige optimalisaties op basis van daadwerkelijk gebruik",
+      "Begeleiding bij het inzetten van nieuwe technologieën en tools",
+      "Zekerheid doordat je bij elke stap wordt ondersteund"
+    ],
+    "image": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop",
+    "imagePosition": "left"
+  },
+  {
+    "id": "04",
+    "title": "Groei Met Vertrouwen",
+    "subtitle": "Gebruik heldere cijfers om strategische beslissingen te nemen",
+    "tagline": "Cijfers omzetten in strategie",
+    "description": "Wanneer je processen en automatiseringen soepel draaien, richten we ons op duurzame groei. Met behulp van geavanceerde rapportages, financiële inzichten en operationele dashboards helpen we je om jouw bedrijf vanuit alle invalshoeken te begrijpen. Dankzij schone data, visuele helderheid en concrete inzichten krijg je het vertrouwen om strategische beslissingen te nemen — of je nu wilt opschalen, diensten uitbreiden, investeren of prestaties optimaliseren. Deze fase stelt je in staat om een toekomst op te bouwen waarin je bedrijf voorspelbaar en duurzaam groeit.",
+    "benefits": [
+      "Heldere financiële en operationele inzichten",
+      "Datagedreven begeleiding voor zelfverzekerde groei",
+      "Strategische kansen duidelijk in beeld gebracht",
+      "Doorlopende bijsturing om je bedrijf vooruit te blijven helpen"
+    ],
+    "image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop",
+    "imagePosition": "right"
+  }
+]
