@@ -16,12 +16,9 @@ export default function Footer() {
 
             {/* Logo */}
             <Link href="/" className="flex cursor-pointer items-center gap-2.5 sm:gap-3 group" aria-label="SalFin Home">
-
-              <Link href="/" className="flex items-center gap-2.5 sm:gap-3 mb-5 sm:mb-6">
               <div className="h-12 flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
                   <Image src="/logo.png" alt="SalFin" width={120} height={120} />
                 </div>
-            </Link>
             </Link>
 
             {/* Description */}
