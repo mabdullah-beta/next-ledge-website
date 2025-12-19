@@ -19,37 +19,181 @@ import time
 import asyncpg
 import traceback
 from urllib.parse import urljoin
-from pymongo import MongoClient
 from datetime import datetime, timezone
-from bson import ObjectId
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
 # Chargement des variables d'environnement
 load_dotenv()
 
-# Récupération des variables d'environnement MongoDB
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "admin")
-
-# Récupération des variables d'environnement MongoDB
-DATABASE_URL=os.getenv("DATABASE_URL_UNPOOLED")
+# Récupération des variables d'environnement PostgreSQL
+DATABASE_URL = os.getenv("DATABASE_URL_UNPOOLED")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 async def get_pg_pool():
-    if not hasattr(get_pg_pool, "pool"):
-        get_pg_pool.pool = await asyncpg.create_pool(
-            dsn=DATABASE_URL,
-            max_size=10
-        )
+    """Get or create PostgreSQL connection pool"""
+    if not hasattr(get_pg_pool, "pool") or get_pg_pool.pool is None:
+        print("[DEBUG] Creating new PostgreSQL connection pool...")
+        try:
+            get_pg_pool.pool = await asyncpg.create_pool(
+                dsn=DATABASE_URL,
+                min_size=1,
+                max_size=5,
+                timeout=30,
+                command_timeout=60
+            )
+            print("[DEBUG] ✅ Connection pool created successfully")
+        except Exception as e:
+            print(f"[ERROR] Failed to create connection pool: {e}")
+            raise
     return get_pg_pool.pool
 
 async def generate_embedding(text: str):
-    client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    """Generate embedding for text using OpenAI"""
+    client = AsyncOpenAI(api_key=OPENAI_API_KEY)
     response = await client.embeddings.create(
         model="text-embedding-3-small",
         input=text
     )
     return response.data[0].embedding
+
+async def translate_to_english(text: str, max_retries: int = 3) -> str:
+    """
+    Translate any text to English using OpenAI API.
+    Handles large content by splitting into chunks if needed.
+
+    Args:
+        text: Text to translate (can be in any language)
+        max_retries: Maximum number of retry attempts
+
+    Returns:
+        Translated English text
+    """
+    if not text or len(text.strip()) < 10:
+        return text
+
+    try:
+        client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+
+        print(f"[TRANSLATION] Processing {len(text)} characters with LLM (auto-detect language)...")
+
+        # For very long content, split into chunks
+        max_chunk_length = 8000  # Safe limit for GPT-3.5
+        if len(text) > max_chunk_length:
+            print(f"[TRANSLATION] Content too long, splitting into chunks...")
+            chunks = []
+            words = text.split()
+            current_chunk = []
+            current_length = 0
+
+            for word in words:
+                word_length = len(word) + 1
+                if current_length + word_length > max_chunk_length:
+                    chunks.append(' '.join(current_chunk))
+                    current_chunk = [word]
+                    current_length = word_length
+                else:
+                    current_chunk.append(word)
+                    current_length += word_length
+
+            if current_chunk:
+                chunks.append(' '.join(current_chunk))
+
+            print(f"[TRANSLATION] Split into {len(chunks)} chunks")
+
+            # Translate each chunk
+            translated_chunks = []
+            for i, chunk in enumerate(chunks, 1):
+                print(f"[TRANSLATION] Translating chunk {i}/{len(chunks)}...")
+
+                for attempt in range(max_retries):
+                    try:
+                        response = await client.chat.completions.create(
+                            model="gpt-3.5-turbo",
+                            messages=[
+                                {
+                                    "role": "system",
+                                    "content": """You are a professional translator. Your task:
+
+1. If the text is already in English: Return it EXACTLY as-is, no changes.
+2. If the text is in another language: Translate it to clean, natural English.
+
+IMPORTANT RULES:
+- Do NOT add any extra content, explanations, or notes
+- Do NOT add phrases like "Here is the translation:" or "Translation:"
+- Keep the same structure and paragraphs
+- Clean up excessive whitespace and formatting
+- Preserve the original meaning exactly
+- Output ONLY the translated/cleaned text, nothing else"""
+                                },
+                                {
+                                    "role": "user",
+                                    "content": chunk
+                                }
+                            ],
+                            temperature=0.3,
+                            max_tokens=4000
+                        )
+                        translated_chunk = response.choices[0].message.content.strip()
+                        translated_chunks.append(translated_chunk)
+                        break
+                    except Exception as e:
+                        if attempt < max_retries - 1:
+                            print(f"[WARNING] Translation attempt {attempt + 1} failed: {e}, retrying...")
+                            await asyncio.sleep(2)
+                        else:
+                            print(f"[ERROR] Translation failed after {max_retries} attempts: {e}")
+                            translated_chunks.append(chunk)  # Use original if translation fails
+
+            translated_text = '\n\n'.join(translated_chunks)
+            print(f"[TRANSLATION] ✓ Successfully translated all chunks")
+            return translated_text
+
+        else:
+            # Single translation for shorter content
+            for attempt in range(max_retries):
+                try:
+                    response = await client.chat.completions.create(
+                        model="gpt-3.5-turbo",
+                        messages=[
+                            {
+                                "role": "system",
+                                "content": """You are a professional translator. Your task:
+
+1. If the text is already in English: Return it EXACTLY as-is, no changes.
+2. If the text is in another language: Translate it to clean, natural English.
+
+IMPORTANT RULES:
+- Do NOT add any extra content, explanations, or notes
+- Do NOT add phrases like "Here is the translation:" or "Translation:"
+- Keep the same structure and paragraphs
+- Clean up excessive whitespace and formatting
+- Preserve the original meaning exactly
+- Output ONLY the translated/cleaned text, nothing else"""
+                            },
+                            {
+                                "role": "user",
+                                "content": text
+                            }
+                        ],
+                        temperature=0.3,
+                        max_tokens=4000
+                    )
+                    translated_text = response.choices[0].message.content.strip()
+                    print(f"[TRANSLATION] ✓ Successfully processed with LLM")
+                    return translated_text
+                except Exception as e:
+                    if attempt < max_retries - 1:
+                        print(f"[WARNING] Translation attempt {attempt + 1} failed: {e}, retrying...")
+                        await asyncio.sleep(2)
+                    else:
+                        print(f"[ERROR] Translation failed after {max_retries} attempts: {e}")
+                        return text  # Return original if all retries fail
+
+    except Exception as e:
+        print(f"[ERROR] Translation error: {e}")
+        traceback.print_exc()
+        return text  # Return original text if translation fails
 
 
 # -----------------------------------------------------------------------
@@ -271,7 +415,7 @@ def filter_urls_by_language(urls: list[str]) -> list[str]:
         # S'assurer que toutes les URLs avec '/en/' sont bien exclues
         filtered_urls = [url for url in filtered_urls if '/en/' not in url]
     
-    print(f"[+] Filtrage par langue: {len(urls)} URLs -> {len(filtered_urls)} URLs (conservées: FR + sans langue)")
+    print(f"[+] Language filtering: {len(urls)} URLs -> {len(filtered_urls)} URLs (kept: FR + no language code)")
     return filtered_urls
 
 def get_sitemap_urls(url: str) -> list[str]:
@@ -332,7 +476,7 @@ def get_sitemap_urls(url: str) -> list[str]:
 
     # 6. S'assurer que toutes les URLs sont absolues avant de les retourner
     final_urls = []
-    for url in all_urls[:100]:  # Changé de 40 à 100 URLs
+    for url in all_urls[:70]:  # Limited to 70 URLs for optimal processing
         if not url.startswith(('http://', 'https://')):
             # Si c'est une URL relative, la convertir en absolue
             url = urljoin(base_url + '/', url)
@@ -355,6 +499,20 @@ def clean_markdown_content(content: str, verbose: bool = False) -> str:
         print(f"[DEBUG] Début du nettoyage du contenu Markdown")
         print(f"[DEBUG] Taille du contenu avant nettoyage: {len(content)} caractères")
 
+    # Remove cookie consent blocks (common patterns)
+    cookie_patterns = [
+        r'(?i)consent.*?details.*?about.*?cookies.*?(?:show details|details)',
+        r'(?i)necessary\s+\d+\s+necessary cookies.*?(?:type:|maximum storage)',
+        r'(?i)maximum storage duration.*?type:.*?cookie',
+        r'(?i)cookies to personalise content.*?analytics partners',
+        r'(?i)\[#IABV2SETTINGS#\]',
+        r'(?i)this website uses cookies.*?(?:show details|accept|reject)',
+        r'(?i)cookie.*?preference.*?statistic.*?marketing',
+    ]
+
+    for pattern in cookie_patterns:
+        content = re.sub(pattern, '', content, flags=re.DOTALL)
+
     # Conserve le texte des ancres en supprimant les URLs
     content = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', content)
 
@@ -362,19 +520,36 @@ def clean_markdown_content(content: str, verbose: bool = False) -> str:
     content = re.sub(r'<https?://[^>]+>', ' ', content)
 
     # Supprime les balises d'images Markdown et les remplace par des espaces
-    # Amélioration pour gérer les caractères spéciaux ou échappés
     content = re.sub(r'!\[.*?\]\(.*?\)', ' ', content)
 
     # Réduit les sauts de ligne multiples (3 ou plus) à seulement deux
     content = re.sub(r'\n{3,}', '\n\n', content)
 
-    # Traite ligne par ligne pour préserver celles commençant par '## Page'
+    # Traite ligne par ligne pour filtrer les lignes répétitives et cookie-related
     cleaned_lines = []
+    prev_line = ""
+    cookie_keywords = ['cookie', 'consent', 'maximum storage duration', 'pixel tracker',
+                      'http cookie', 'html local storage', 'necessary cookies',
+                      'preference cookies', 'statistic cookies', 'marketing cookies']
+
     for line in content.splitlines():
-        if line.startswith('## Page'):
-            cleaned_lines.append(line)
-        else:
-            cleaned_lines.append(line)
+        line_stripped = line.strip()
+        line_lower = line_stripped.lower()
+
+        # Skip cookie-related lines
+        if any(keyword in line_lower for keyword in cookie_keywords):
+            continue
+
+        # Skip duplicate consecutive lines
+        if line_lower == prev_line.lower():
+            continue
+
+        # Skip very short lines (likely noise)
+        if len(line_stripped) > 0 and len(line_stripped) < 3:
+            continue
+
+        cleaned_lines.append(line)
+        prev_line = line_stripped
 
     # Prépare le contenu nettoyé
     cleaned_content = '\n'.join(cleaned_lines)
@@ -387,225 +562,158 @@ def clean_markdown_content(content: str, verbose: bool = False) -> str:
 
 
 def chunk_text_markdown(text: str, max_tokens: int = 500):
+    """
+    Enhanced chunking with deduplication and cookie content filtering
+    """
     chunks = []
     words = text.split()
     current = []
+    seen_chunks = set()  # Track unique chunks by hash
+    cookie_keywords = ['cookie', 'consent', 'privacy policy', 'gdpr', 'advertising',
+                      'personalization', 'maximum storage', 'pixel tracker']
 
     for word in words:
         current.append(word)
         if len(current) >= max_tokens:
-            chunks.append(" ".join(current))
+            chunk_text = " ".join(current)
+
+            # Deduplicate: Skip if chunk is too similar to existing ones
+            chunk_hash = hash(chunk_text[:200])  # Hash first 200 chars for comparison
+            if chunk_hash not in seen_chunks:
+                # Filter out chunks that are mostly cookie/consent text
+                chunk_lower = chunk_text.lower()
+                cookie_count = sum(1 for keyword in cookie_keywords if keyword in chunk_lower)
+                word_count = len(chunk_text.split())
+
+                # Skip if >30% of keywords are cookie-related AND chunk is short
+                if not (cookie_count > 0 and (cookie_count / max(word_count, 1)) > 0.3 and word_count < 100):
+                    chunks.append(chunk_text)
+                    seen_chunks.add(chunk_hash)
+
             current = []
 
     if current:
-        chunks.append(" ".join(current))
+        chunk_text = " ".join(current)
+        chunk_hash = hash(chunk_text[:200])
+
+        if chunk_hash not in seen_chunks:
+            chunk_lower = chunk_text.lower()
+            cookie_count = sum(1 for keyword in cookie_keywords if keyword in chunk_lower)
+            word_count = len(chunk_text.split())
+
+            if not (cookie_count > 0 and (cookie_count / max(word_count, 1)) > 0.3 and word_count < 100):
+                chunks.append(chunk_text)
 
     return chunks
 
 
 
-async def save_chunks_to_postgres(url: str, content: str, assistant_id: int, status: str = "success"):
+async def save_chunks_to_postgres(url: str, content: str, assistant_id: int, status: str = "success", language: str = "unknown"):
     """
-    Splits extracted content into chunks, embeds them, and saves
-    into the documentchunks table in Neon.
+    Cleans, translates to English, splits into chunks, embeds, and saves to PostgreSQL.
+
+    Workflow:
+    1. Clean markdown content
+    2. Translate to English (if not already)
+    3. Split into chunks
+    4. Generate embeddings for English chunks
+    5. Store in documentchunks table
+
+    Args:
+        url: Source URL
+        content: Raw scraped content
+        assistant_id: Agent/Assistant ID
+        status: Processing status
+        language: Detected language of content
+
+    Returns:
+        Number of chunks saved
     """
     try:
+        print(f"[DEBUG] Getting database connection pool...")
         pool = await get_pg_pool()
-        print("[DEBUG] START SAVING CHUNKS *********** ")
-        
+        print(f"[DEBUG] Processing content for {url[:50]}...")
+
         if status == "success":
+            # Step 1: Clean the content
+            print(f"[STEP 1/4] Cleaning markdown content...")
             cleaned_content = clean_markdown_content(content)
+
+            # Step 2: Translate to English
+            print(f"[STEP 2/4] Translating to English...")
+            english_content = await translate_to_english(cleaned_content)
+
+            # Step 3: Split into chunks
+            print(f"[STEP 3/4] Splitting into chunks...")
+            chunks = chunk_text_markdown(english_content, max_tokens=350)
+            print(f"[DEBUG] Created {len(chunks)} chunks")
         else:
             cleaned_content = content
-        
-        # Split into chunks
-        chunks = chunk_text_markdown(cleaned_content, max_tokens=350)
+            chunks = chunk_text_markdown(cleaned_content, max_tokens=350)
+
+        # Step 4: Generate embeddings and save
+        print(f"[STEP 4/4] Generating embeddings and saving to PostgreSQL...")
         async with pool.acquire() as conn:
             async with conn.transaction():
                 for i, chunk in enumerate(chunks):
+                    # Generate embedding for English chunk
                     emb = await generate_embedding(chunk)
 
                     # Convert to JSON strings for postgres JSONB
                     json_emb = json.dumps(emb)
-                    json_metadata = json.dumps({"source_url": url})
-
+                    json_metadata = json.dumps({
+                        "source_url": url,
+                        "language": "en",  # Always English after translation
+                        "original_language": language,
+                        "chunk_index": i,
+                        "total_chunks": len(chunks)
+                    })
 
                     await conn.execute("""
-                        INSERT INTO documentchunks 
+                        INSERT INTO documentchunks
                             (agent_id, document_name, chunk_text, chunk_number, embeddings, metadata, created_at)
                         VALUES ($1, $2, $3, $4, $5, $6, NOW())
-                    """, 
+                    """,
                     assistant_id,
                     url,            # document_name
-                    chunk,          # chunk_text
+                    chunk,          # chunk_text (English)
                     i,              # chunk number
                     json_emb,       # JSONB embedding
-                    json_metadata  # metadata JSONB
+                    json_metadata   # metadata JSONB
                     )
 
-        print(f"[+] Saved {len(chunks)} chunks for {url}")
+        print(f"[+] ✓ Saved {len(chunks)} English chunks for {url}")
         return len(chunks)
     except Exception as e:
-        print("[ERROR] SAVING CHUNKS *********** ", e)
-        return
-
-def save_to_mongodb(url: str, content: str, assistant_id: int, status: str = "success"):
-    """
-    Sauvegarde les résultats du scraping dans MongoDB.
-
-    Args:
-        url: L'URL scrappée
-        content: Le contenu extrait
-        assistant_id: L'ID de l'assistant associé
-        status: L'état du traitement (par défaut: "success")
-
-    Returns:
-        L'ID du document créé ou None en cas d'erreur
-    """
-    try:
-        # Nettoyer le contenu avant la sauvegarde (seulement si succès)
-        if status == "success":
-            cleaned_content = clean_markdown_content(content)
-        else:
-            cleaned_content = content
-
-        # Connexion à MongoDB en utilisant les variables d'environnement
-        client = MongoClient(MONGO_URI, maxPoolSize=50, minPoolSize=10)  # Pool de connexions optimisé
-        db = client[MONGO_DB_NAME]  # Utilisation de la notation indexée pour accéder à la base de données
-        collection = db.scrappedurls  # Nom de collection en minuscules pour correspondre au schéma Mongoose
-        
-        # Création d'un nouvel ObjectId pour assistant_id s'il est fourni sous forme de chaîne
-        assistant_id_obj = None
-        if assistant_id:
-            try:
-                assistant_id_obj = ObjectId(assistant_id)
-                print(f"[DEBUG] ID d'assistant converti en ObjectId: {assistant_id_obj}")
-            except Exception as e:
-                print(f"[ERROR] Impossible de convertir assistant_id '{assistant_id}' en ObjectId: {e}")
-                # Si l'ID n'est pas valide, on continue sans assistant_id
-        
-        # Génération des dates
-        current_time = datetime.now(timezone.utc)
-        
-        # Vérification de contenu non None
-        if cleaned_content is None:
-            cleaned_content = f"[Contenu vide pour {url}]"
-        
-        # Création du document
-        document = {
-            "url": url,
-            "assistant_id": assistant_id_obj,
-            "content": cleaned_content,
-            "status": status,
-            "createdAt": current_time,
-            "updatedAt": current_time
-        }
-        
-        # Insertion dans la collection
-        result = collection.insert_one(document)
-        
-        print(f"[+] Document sauvegardé dans MongoDB avec ID: {result.inserted_id}")
-        return result.inserted_id
-        
-    except Exception as e:
-        print(f"[-] Erreur lors de la sauvegarde dans MongoDB: {e}")
-        # Afficher plus de détails sur l'erreur
+        print(f"[ERROR] SAVING CHUNKS for {url}: {e}")
         traceback.print_exc()
-        return None
+        return 0
+
+# MongoDB functions removed - using only PostgreSQL
 
 
 async def save_chunks_batch_to_postgres(items: list[tuple], assistant_id: int):
     """
-    items = [ (url, cleaned_content, status) ]
+    Process and save multiple URLs to PostgreSQL in batch.
+    Each item is cleaned, translated to English, chunked, embedded, and stored.
+
+    Args:
+        items: List of tuples (url, content, status)
+        assistant_id: Agent/Assistant ID
+
+    Returns:
+        Total number of chunks saved
     """
     total_chunks = 0
     for url, content, status in items:
         if status != "success":
             continue
         chunks_saved = await save_chunks_to_postgres(url, content, assistant_id, status)
-        total_chunks += chunks_saved
+        if chunks_saved:  # Safety check
+            total_chunks += chunks_saved
 
-    print(f"[+] Total chunks saved to Postgres: {total_chunks}")
+    print(f"[+] ✓ Total English chunks saved to PostgreSQL: {total_chunks}")
     return total_chunks
-
-
-async def save_to_mongodb_batch(items: list[tuple], assistant_id: int):
-    """
-    Sauvegarde un lot de résultats dans MongoDB de manière optimisée.
-
-    Args:
-        items: Liste de tuples (url, content, status)
-        assistant_id: L'ID de l'assistant
-
-    Returns:
-        Nombre de documents sauvegardés avec succès
-    """
-    if not items:
-        return 0
-
-    saved_count = 0
-    try:
-        start_time = time.time()
-
-        # Fonction pour nettoyer le contenu de manière asynchrone
-        async def clean_content_async(item):
-            url, content, status = item
-            if status == "success" and content:
-                # Exécuter le nettoyage dans un thread pour ne pas bloquer
-                loop = asyncio.get_event_loop()
-                cleaned_content = await loop.run_in_executor(
-                    None,
-                    clean_markdown_content,
-                    content,
-                    False  # verbose=False pour éviter les logs excessifs
-                )
-                return (url, cleaned_content, status)
-            else:
-                return (url, content, status)
-
-        # Nettoyer tous les contenus en parallèle
-        print(f"[+] Nettoyage de {len(items)} contenus en parallèle...")
-        cleaning_tasks = [clean_content_async(item) for item in items]
-        cleaned_items = await asyncio.gather(*cleaning_tasks)
-
-        cleaning_time = time.time() - start_time
-        print(f"[+] Nettoyage terminé en {cleaning_time:.2f} secondes")
-
-        # Connexion unique à MongoDB pour le lot
-        client = MongoClient(MONGO_URI, maxPoolSize=50, minPoolSize=10)
-        db = client[MONGO_DB_NAME]
-        collection = db.scrappedurls
-
-        # Préparer tous les documents
-        documents = []
-        current_time = datetime.now(timezone.utc)
-        assistant_id_obj = ObjectId(assistant_id) if assistant_id else None
-
-        for url, cleaned_content, status in cleaned_items:
-            if cleaned_content is None:
-                cleaned_content = f"[Contenu vide pour {url}]"
-
-            documents.append({
-                "url": url,
-                "assistant_id": assistant_id_obj,
-                "content": cleaned_content,
-                "status": status,
-                "createdAt": current_time,
-                "updatedAt": current_time
-            })
-
-        # Insertion en lot
-        if documents:
-            result = collection.insert_many(documents)
-            saved_count = len(result.inserted_ids)
-            print(f"[+] {saved_count} documents sauvegardés en lot dans MongoDB")
-
-        client.close()
-
-    except Exception as e:
-        print(f"[-] Erreur lors de la sauvegarde en lot dans MongoDB: {e}")
-
-    return saved_count
 
 async def crawl_urls(urls: list[str], assistant_id: int = None, existing_results: list = None, job_id: str = None) -> list:
     """
@@ -621,12 +729,69 @@ async def crawl_urls(urls: list[str], assistant_id: int = None, existing_results
         Liste des résultats du crawl
     """
 
-    # IMPORTANT: Si on a déjà des résultats, les retourner directement (évite double crawling)
-    if existing_results:
-        print(f"[DEBUG] Réutilisation de {len(existing_results)} résultats existants - PAS de double crawling")
-        return existing_results
+    # Filter out file URLs (PDF, Office docs, images, etc.) before crawling
+    excluded_extensions = (
+        ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
+        ".zip", ".rar", ".7z", ".tar", ".gz", ".bz2",
+        ".jpeg", ".jpg", ".png", ".gif", ".webp", ".svg", ".ico",
+        ".mp4", ".avi", ".mov", ".wmv", ".flv", ".mp3", ".wav",
+        ".xml", ".json", ".csv", ".txt"
+    )
 
-    print(f"[DEBUG] Démarrage du crawl parallèle pour {len(urls)} URLs")
+    filtered_urls = []
+    skipped_count = 0
+    for url in urls:
+        url_lower = url.lower()
+        if any(url_lower.endswith(ext) for ext in excluded_extensions):
+            skipped_count += 1
+            print(f"[SKIP] Skipping file URL: {url}")
+            continue
+        filtered_urls.append(url)
+
+    if skipped_count > 0:
+        print(f"[INFO] Filtered out {skipped_count} file URLs, {len(filtered_urls)} URLs remaining to crawl")
+
+    urls = filtered_urls
+
+    # IMPORTANT: If we have existing SUCCESSFUL results, save them and return
+    # If results are failed, ignore them and proceed with crawling
+    if existing_results:
+        print(f"[DEBUG] Processing {len(existing_results)} existing crawled results")
+
+        # Extract and save the results to database
+        batch_to_save = []
+        successful_count = 0
+        for result in existing_results:
+            if hasattr(result, 'success') and result.success:
+                successful_count += 1
+                # Extract content
+                content = None
+                if hasattr(result, 'extracted_content') and result.extracted_content:
+                    content = result.extracted_content
+                elif hasattr(result, 'markdown_v2') and result.markdown_v2 and hasattr(result.markdown_v2, 'raw_markdown'):
+                    content = result.markdown_v2.raw_markdown
+                elif hasattr(result, 'markdown') and result.markdown:
+                    content = result.markdown
+
+                if content:
+                    url = result.url if hasattr(result, 'url') else 'unknown'
+                    batch_to_save.append((url, content, "success"))
+
+        # Only return early if we have SUCCESSFUL results
+        if successful_count > 0:
+            # Save to database
+            if batch_to_save and assistant_id:
+                print(f"[+] Saving {len(batch_to_save)} successful results to database...")
+                saved_count = await save_chunks_batch_to_postgres(batch_to_save, assistant_id)
+                print(f"[+] Saved {saved_count} chunks to PostgreSQL")
+
+            print(f"[+] Using {successful_count} existing successful results, skipping re-crawl")
+            return existing_results
+        else:
+            print(f"[!] All {len(existing_results)} existing results failed, will crawl URLs normally")
+            # Continue to normal crawling below
+
+    print(f"[DEBUG] Starting parallel crawl for {len(urls)} URLs")
 
     browser_config = BrowserConfig(
         verbose=True,
@@ -637,17 +802,36 @@ async def crawl_urls(urls: list[str], assistant_id: int = None, existing_results
 
     run_config = CrawlerRunConfig(
         exclude_external_links=True,
-        excluded_tags=['form', 'nav', 'sidebar', 'menu', 'ads', 'footer', 'cookiebanner', 'cmplz-cookiebanner',
-                      'comment', 'share', 'related', 'recommended', 'popular', 'trending', 'cookie', 'cookie-policy'],
+        excluded_tags=['form', 'nav', 'sidebar', 'menu', 'ads', 'footer',
+                      'cookiebanner', 'cmplz-cookiebanner', 'cookie-banner', 'cookie-consent',
+                      'cookie-notice', 'gdpr-banner', 'consent-banner', 'cookie-policy-banner',
+                      'comment', 'share', 'related', 'recommended', 'popular', 'trending',
+                      'advertisement', 'social-share', 'newsletter'],
         markdown_generator=DefaultMarkdownGenerator(
-            content_filter=PruningContentFilter(threshold=0.48, threshold_type="fixed", min_word_threshold=0)
+            content_filter=PruningContentFilter(threshold=0.55, threshold_type="fixed", min_word_threshold=20)
         ),
         process_iframes=False,
         remove_forms=True,
         only_text=True,
         exclude_external_images=True,
         exclude_social_media_links=True,
-        cache_mode=CacheMode.BYPASS
+        cache_mode=CacheMode.BYPASS,
+        page_timeout=120000,  # 2 minutes for slow/dynamic sites
+        wait_until="networkidle",  # Wait until network is idle (no more requests)
+        delay_before_return_html=5.0,  # Wait 5 seconds for JavaScript to fully render
+        js_code=[
+            """
+            (function() {
+                // Dismiss Cookiebot
+                const acceptBtn = document.querySelector('[id*="Accept"], [class*="accept"], button[id*="cookie"]');
+                if (acceptBtn) acceptBtn.click();
+
+                // Hide cookie overlays
+                const overlays = document.querySelectorAll('[id*="cookie"], [class*="cookie"], [id*="consent"], [class*="consent"], [id*="Cookiebot"], [class*="onetrust"]');
+                overlays.forEach(el => el.style.display = 'none');
+            })();
+            """
+        ]
     )
 
     monitor = CrawlerMonitor(
@@ -659,41 +843,67 @@ async def crawl_urls(urls: list[str], assistant_id: int = None, existing_results
     saved_urls_count = 0
     print("[DEBUG] Démarrage du crawl avec AsyncWebCrawler")
 
-    # Fonction pour crawler une URL individuelle avec semaphore
-    async def crawl_single_url(crawler, url, index, semaphore):
+    # Fonction pour crawler une URL individuelle avec retry logic
+    async def crawl_single_url(crawler, url, index, semaphore, max_retries=2):
         async with semaphore:  # Limite la concurrence
             print(f"[DEBUG] Crawling URL {index}/{len(urls)}: {url}")
-            try:
-                result = await crawler.arun(url=url, config=run_config, browser_config=browser_config)
 
-                # Extraction du contenu pour MongoDB
-                content = None
-                status = "failed"
+            last_error = None
+            for attempt in range(max_retries + 1):
+                try:
+                    if attempt > 0:
+                        print(f"[RETRY] Attempt {attempt + 1}/{max_retries + 1} for URL {index}")
+                        await asyncio.sleep(3 * attempt)  # Increasing delay between retries
 
-                if result.success:
-                    status = "success"
-                    if hasattr(result, 'extracted_content') and result.extracted_content is not None:
-                        content = result.extracted_content
-                    elif hasattr(result, 'markdown_v2') and result.markdown_v2 and hasattr(result.markdown_v2, 'raw_markdown'):
-                        content = result.markdown_v2.raw_markdown
-                    elif hasattr(result, 'markdown') and result.markdown:
-                        content = result.markdown
+                    result = await crawler.arun(url=url, config=run_config, browser_config=browser_config)
+
+                    # Extraction du contenu
+                    content = None
+                    status = "failed"
+
+                    if result.success:
+                        status = "success"
+                        if hasattr(result, 'extracted_content') and result.extracted_content is not None:
+                            content = result.extracted_content
+                        elif hasattr(result, 'markdown_v2') and result.markdown_v2 and hasattr(result.markdown_v2, 'raw_markdown'):
+                            content = result.markdown_v2.raw_markdown
+                        elif hasattr(result, 'markdown') and result.markdown:
+                            content = result.markdown
+                        else:
+                            content = f"[Contenu non disponible pour {url}]"
+                            status = "partial"
+
+                        if status == "success" and content and len(content.strip()) > 100:
+                            print(f"[SUCCESS] URL {index} completed ({len(content)} chars)")
+                            return result, (url, content, status)
+                        else:
+                            # Content too short, treat as failure and retry
+                            print(f"[WARNING] URL {index} content too short ({len(content) if content else 0} chars), retrying...")
+                            last_error = "Content too short"
+                            continue
                     else:
-                        content = f"[Contenu non disponible pour {url}]"
-                        status = "partial"
-                else:
-                    content = f"[Échec du crawling pour {url}]"
+                        error_msg = result.error_message if hasattr(result, 'error_message') else 'Unknown error'
+                        print(f"[FAIL] URL {index} failed: {error_msg}")
+                        last_error = error_msg
+                        if attempt < max_retries:
+                            continue  # Retry
+                        else:
+                            content = f"[Échec du crawling pour {url}]: {error_msg}"
+                            return result, (url, content, "failed")
 
-                print(f"[DEBUG] URL {index} terminée")
-                # Retourner les données pour sauvegarde en lot
-                return result, (url, content, status)
-            except Exception as e:
-                print(f"[ERROR] Exception crawling URL {index}: {str(e)}")
-                return None, None
+                except Exception as e:
+                    last_error = str(e)
+                    print(f"[ERROR] Exception crawling URL {index} (attempt {attempt + 1}): {last_error}")
+                    if attempt < max_retries:
+                        continue  # Retry
+
+            # All retries exhausted
+            print(f"[FAILED] URL {index} failed after {max_retries + 1} attempts: {last_error}")
+            return None, None
 
     # Traitement parallèle avec semaphore pour limiter la concurrence
-    BATCH_SIZE = 15  # Traiter 15 URLs à la fois
-    MAX_CONCURRENT = 10  # Mais seulement 20 s'exécutent simultanément
+    BATCH_SIZE = 10  # Smaller batches for better reliability
+    MAX_CONCURRENT = 4  # Lower concurrency to avoid rate limiting (was 8)
 
     async with AsyncWebCrawler(config=browser_config, monitor=monitor, run_config=run_config) as crawler:
         # Traiter les URLs par lots
@@ -716,6 +926,9 @@ async def crawl_urls(urls: list[str], assistant_id: int = None, existing_results
             # Attendre que ce lot se termine
             batch_results = await asyncio.gather(*tasks, return_exceptions=True)
 
+            # Add longer delay between batches to avoid rate limiting
+            await asyncio.sleep(5)  # 5 second delay between batches (was 2)
+
             # Collecter les données pour sauvegarde en lot
             batch_to_save = []
             for result_tuple in batch_results:
@@ -734,33 +947,16 @@ async def crawl_urls(urls: list[str], assistant_id: int = None, existing_results
             if batch_to_save and assistant_id:
                 saved_count = await save_chunks_batch_to_postgres(batch_to_save, assistant_id)
                 saved_urls_count += saved_count
-                print(f"[DEBUG] {saved_count} URLs sauvegardées en lot dans MongoDB")
+                print(f"[DEBUG] {saved_count} chunks saved to PostgreSQL")
 
-            # Update job status if job_id is provided
+            # Progress logging
             if job_id:
-                try:
-                    # Direct MongoDB update to avoid circular import
-                    client = MongoClient(MONGO_URI)
-                    db = client[MONGO_DB_NAME]
-                    db["scraping_jobs"].update_one(
-                        {"_id": ObjectId(job_id)},
-                        {"$set": {
-                            "processing_step": 3,
-                            "step_message": f"Extraction en cours: {len(results)}/{len(urls)} pages...",
-                            "urls_crawled": len(results),
-                            "urls_saved": saved_urls_count,
-                            "updatedAt": datetime.now(timezone.utc)
-                        }}
-                    )
-                    client.close()
-                    print(f"[JOB UPDATE] Step 3: {len(results)}/{len(urls)} pages crawled")
-                except Exception as e:
-                    print(f"[WARNING] Could not update job status: {str(e)}")
+                print(f"[PROGRESS] {len(results)}/{len(urls)} pages crawled, {saved_urls_count} chunks saved")
 
             print(f"[DEBUG] Lot {batch_start+1}-{batch_end} terminé, {len(results)} URLs traitées au total")
 
     print(f"[DEBUG] Crawl parallèle terminé avec {len(results)} résultats")
-    print(f"[DEBUG] {saved_urls_count}/{len(urls)} URLs sauvegardées dans MongoDB")
+    print(f"[DEBUG] {saved_urls_count} chunks saved to PostgreSQL")
     return results
 
 def save_to_markdown(results: list, output_file: str):
@@ -910,10 +1106,10 @@ async def crawl_without_sitemap(base_url: str, job_id: str = None) -> tuple[list
         # Configuration d'une stratégie BestFirstCrawling avec une profondeur plus grande
         # pour assurer une meilleure couverture du site
         strategy_params = {
-            "max_depth": 2,  # 2 niveaux pour meilleure couverture du site (IMPORTANT)
+            "max_depth": 3,  # 3 niveaux pour meilleure couverture du site (INCREASED from 2)
             "include_external": False,
             "url_scorer": scorer,  # Utilisation active du scorer
-            "max_pages": 100,  # Jusqu'à 100 URLs pour scrape_site
+            "max_pages": 70,  # Limited to 70 URLs for optimal processing
             # BestFirstCrawlingStrategy va découvrir les URLs
         }
 
@@ -921,32 +1117,49 @@ async def crawl_without_sitemap(base_url: str, job_id: str = None) -> tuple[list
         if filter_chain is not None:
             strategy_params["filter_chain"] = filter_chain
 
-        # Keep max_pages at 100 for full discovery
-        strategy_params["max_pages"] = 100  # Max 100 pages
+        # Keep max_pages at 70 for optimal discovery
+        strategy_params["max_pages"] = 70  # Max 70 pages
         strategy = BestFirstCrawlingStrategy(**strategy_params)
 
-        # Configuration du crawler pour DÉCOUVERTE SEULEMENT (pas de crawling complet)
-        # IMPORTANT: On configure pour extraire les liens rapidement sans traitement lourd
+        # Configuration du crawler pour découverte et extraction complète
         run_config = CrawlerRunConfig(
             deep_crawl_strategy=strategy,
             exclude_external_links=True,
-            excluded_tags=['form', 'nav', 'sidebar', 'menu', 'ads', 'footer', 'cookiebanner', 'cmplz-cookiebanner',
-                          'comment', 'share', 'related', 'recommended', 'popular', 'trending', 'cookie', 'cookie-policy'],
+            excluded_tags=['form', 'nav', 'sidebar', 'menu', 'ads', 'footer',
+                          'cookiebanner', 'cmplz-cookiebanner', 'cookie-banner', 'cookie-consent',
+                          'cookie-notice', 'gdpr-banner', 'consent-banner', 'cookie-policy-banner',
+                          'comment', 'share', 'related', 'recommended', 'popular', 'trending',
+                          'advertisement', 'social-share', 'newsletter'],
             # IMPORTANT: Need markdown_generator for deep_crawl_strategy to work properly
             markdown_generator=DefaultMarkdownGenerator(
-                content_filter=PruningContentFilter(threshold=0.48, threshold_type="fixed", min_word_threshold=0)
+                content_filter=PruningContentFilter(threshold=0.55, threshold_type="fixed", min_word_threshold=20)
             ),
             process_iframes=False,
             remove_forms=True,
-            only_text=True,  # Changed to True like in working crawler.py
+            only_text=True,
             exclude_external_images=True,
             exclude_social_media_links=True,
             cache_mode=CacheMode.BYPASS,
-            # IMPORTANT: Limiter le traitement pour accélérer la découverte
+            page_timeout=120000,  # 2 minutes for slow/dynamic sites
+            wait_until="networkidle",  # Wait until network is idle
+            delay_before_return_html=5.0,  # Wait 5 seconds for JavaScript to render
             wait_for_images=False,
             screenshot=False,
             pdf=False,
-            remove_overlay_elements=False
+            remove_overlay_elements=False,
+            js_code=[
+                """
+                (function() {
+                    // Dismiss Cookiebot
+                    const acceptBtn = document.querySelector('[id*="Accept"], [class*="accept"], button[id*="cookie"]');
+                    if (acceptBtn) acceptBtn.click();
+
+                    // Hide cookie overlays
+                    const overlays = document.querySelectorAll('[id*="cookie"], [class*="cookie"], [id*="consent"], [class*="consent"], [id*="Cookiebot"], [class*="onetrust"]');
+                    overlays.forEach(el => el.style.display = 'none');
+                })();
+                """
+            ]
         )
         
         browser_config = BrowserConfig(
@@ -1001,22 +1214,8 @@ async def crawl_without_sitemap(base_url: str, job_id: str = None) -> tuple[list
                             # Estimate URLs being discovered (rough estimate based on time)
                             urls_found_estimate = min(urls_found_estimate + 2, 100)
 
-                            try:
-                                client = MongoClient(MONGO_URI)
-                                db = client[MONGO_DB_NAME]
-                                db["scraping_jobs"].update_one(
-                                    {"_id": ObjectId(job_id)},
-                                    {"$set": {
-                                        "processing_step": 2,  # Keep at Step 2
-                                        "step_message": f"Collection des liens internes - {current_message}",
-                                        "urls_found": urls_found_estimate,
-                                        "updatedAt": datetime.now(timezone.utc)
-                                    }}
-                                )
-                                client.close()
-                                print(f"[STATUS] Step 2: {current_message}")
-                            except Exception as e:
-                                print(f"[WARNING] Could not update progress: {str(e)}")
+                            # Progress logging
+                            print(f"[STATUS] Step 2: {current_message} (~{urls_found_estimate} URLs estimated)")
                             message_index += 1
 
                 # Start progress messages
@@ -1073,32 +1272,17 @@ async def crawl_without_sitemap(base_url: str, job_id: str = None) -> tuple[list
 
                         # Convert crawled_results dict to list format
                         results_list = list(results.crawled_results.values())
-                        return discovered_urls[:100], results_list[:100]
+                        return discovered_urls[:70], results_list[:70]
 
                     # Check for visited_urls attribute as another possibility
                     if hasattr(results, 'visited_urls') and results.visited_urls:
                         print(f"[DEBUG] Found visited_urls attribute with {len(results.visited_urls)} URLs")
-                        discovered_urls = list(results.visited_urls)[:100]
+                        discovered_urls = list(results.visited_urls)[:70]
 
                         # No status update - let main flow handle it
-                        if False:  # Disabled
-                            try:
-                                client = MongoClient(MONGO_URI)
-                                db = client[MONGO_DB_NAME]
-                                db["scraping_jobs"].update_one(
-                                    {"_id": ObjectId(job_id)},
-                                    {"$set": {
-                                        "processing_step": 2,
-                                        "step_message": f"{len(discovered_urls)} URLs découvertes et crawlées",
-                                        "urls_found": len(discovered_urls),
-                                        "urls_crawled": len(discovered_urls),
-                                        "updatedAt": datetime.now(timezone.utc)
-                                    }}
-                                )
-                                client.close()
-                                print(f"[JOB UPDATE] Updated: {len(discovered_urls)} URLs found via visited_urls")
-                            except Exception as e:
-                                print(f"[WARNING] Could not update job status: {str(e)}")
+                        # Job status logging (PostgreSQL tracking can be added here if needed)
+                        if job_id:
+                            print(f"[PROGRESS] {len(discovered_urls)} URLs discovered")
 
                         # If we have results as a single object with markdown content, create a list
                         if hasattr(results, 'url') and hasattr(results, 'success'):
@@ -1110,88 +1294,39 @@ async def crawl_without_sitemap(base_url: str, job_id: str = None) -> tuple[list
                     if hasattr(results, 'crawled_urls'):
                         crawled_urls = results.crawled_urls if isinstance(results.crawled_urls, list) else list(results.crawled_urls)
                         print(f"[DEBUG] Found crawled_urls: {len(crawled_urls)} URLs")
+                        crawled_urls = crawled_urls[:70]  # Limit to 70 URLs
 
-                        # No status update - let main flow handle it
-                        if False:  # Disabled
-                            try:
-                                client = MongoClient(MONGO_URI)
-                                db = client[MONGO_DB_NAME]
-                                db["scraping_jobs"].update_one(
-                                    {"_id": ObjectId(job_id)},
-                                    {"$set": {
-                                        "processing_step": 2,
-                                        "step_message": f"{len(crawled_urls)} URLs découvertes et crawlées",
-                                        "urls_found": len(crawled_urls),
-                                        "urls_crawled": len(crawled_urls),
-                                        "updatedAt": datetime.now(timezone.utc)
-                                    }}
-                                )
-                                client.close()
-                                print(f"[JOB UPDATE] Updated: {len(crawled_urls)} URLs via crawled_urls")
-                            except Exception as e:
-                                print(f"[WARNING] Could not update job status: {str(e)}")
+                        # Job status logging
+                        if job_id:
+                            print(f"[PROGRESS] {len(crawled_urls)} URLs crawled")
 
-                        return crawled_urls[:100], [results] if hasattr(results, 'success') else []
+                        return crawled_urls[:70], [results] if hasattr(results, 'success') else []
 
                 # Check if results is a list of crawled results
                 if isinstance(results, list) and results:
                     # We received crawled results directly
-                    discovered_urls = [r.url for r in results if hasattr(r, 'url')][:100]
+                    discovered_urls = [r.url for r in results if hasattr(r, 'url')][:70]
                     print(f"[+] {len(discovered_urls)} URLs extracted from crawled results")
                     print(f"[✓] Crawled results will be REUSED - no double crawling!")
 
-                    # Update job status with ACTUAL discovered and crawled URLs count
+                    # Progress logging
                     if job_id and discovered_urls:
-                        try:
-                            client = MongoClient(MONGO_URI)
-                            db = client[MONGO_DB_NAME]
-                            # Since we already have the crawled results, update both found AND crawled counts
-                            db["scraping_jobs"].update_one(
-                                {"_id": ObjectId(job_id)},
-                                {"$set": {
-                                    "processing_step": 2,  # Move to step 2 since discovery and crawling are done
-                                    "step_message": f"{len(discovered_urls)} URLs découvertes et crawlées",
-                                    "urls_found": len(discovered_urls),
-                                    "urls_crawled": len(discovered_urls),  # Already crawled by BestFirstStrategy
-                                    "updatedAt": datetime.now(timezone.utc)
-                                }}
-                            )
-                            client.close()
-                            print(f"[JOB UPDATE] Status updated: {len(discovered_urls)} URLs discovered and crawled")
-                        except Exception as e:
-                            print(f"[WARNING] Could not update job status: {str(e)}")
+                        print(f"[PROGRESS] {len(discovered_urls)} URLs discovered and crawled")
 
-                    return discovered_urls[:100], results[:100]
+                    return discovered_urls[:70], results[:70]
 
                 # Check if results has a list of results inside
                 if hasattr(results, 'results') and isinstance(results.results, list):
                     crawled_results = results.results
-                    discovered_urls = [r.url for r in crawled_results if hasattr(r, 'url')][:100]
+                    discovered_urls = [r.url for r in crawled_results if hasattr(r, 'url')][:70]
                     print(f"[+] {len(discovered_urls)} URLs extracted from results.results")
                     print(f"[✓] Crawled results will be REUSED - no double crawling!")
 
-                    # Update job status with ACTUAL discovered and crawled URLs count
+                    # Progress logging
                     if job_id and discovered_urls:
-                        try:
-                            client = MongoClient(MONGO_URI)
-                            db = client[MONGO_DB_NAME]
-                            # Since we already have the crawled results, update both found AND crawled counts
-                            db["scraping_jobs"].update_one(
-                                {"_id": ObjectId(job_id)},
-                                {"$set": {
-                                    "processing_step": 2,  # Move to step 2 since discovery and crawling are done
-                                    "step_message": f"{len(discovered_urls)} URLs découvertes et crawlées",
-                                    "urls_found": len(discovered_urls),
-                                    "urls_crawled": len(discovered_urls),  # Already crawled by BestFirstStrategy
-                                    "updatedAt": datetime.now(timezone.utc)
-                                }}
-                            )
-                            client.close()
-                            print(f"[JOB UPDATE] Status updated: {len(discovered_urls)} URLs discovered and crawled")
-                        except Exception as e:
-                            print(f"[WARNING] Could not update job status: {str(e)}")
+                        print(f"[PROGRESS] {len(discovered_urls)} URLs discovered and crawled")
 
-                    return discovered_urls[:100], crawled_results[:100]
+                    return discovered_urls[:70], crawled_results[:70]
 
                 # Try other attributes - check links attribute which is most common
                 if hasattr(results, 'links') and results.links:
@@ -1207,13 +1342,13 @@ async def crawl_without_sitemap(base_url: str, job_id: str = None) -> tuple[list
                             if isinstance(value, (list, set)):
                                 all_links.extend(value)
 
-                    discovered_urls = all_links[:100]
+                    discovered_urls = all_links[:70]
                     print(f"[+] {len(discovered_urls)} URLs découvertes via links attribute")
                 elif hasattr(results, 'discovered_links'):
-                    discovered_urls = list(results.discovered_links)[:100]
+                    discovered_urls = list(results.discovered_links)[:70]
                     print(f"[+] {len(discovered_urls)} URLs découvertes via discovered_links")
                 elif hasattr(results, 'urls'):
-                    discovered_urls = results.urls[:100]
+                    discovered_urls = results.urls[:70]
                     print(f"[+] {len(discovered_urls)} URLs découvertes via urls")
                 else:
                     # Last resort - if it's a single crawl result, at least return that URL
@@ -1247,7 +1382,7 @@ async def crawl_without_sitemap(base_url: str, job_id: str = None) -> tuple[list
 
                         # Filter to keep only URLs from same domain
                         base_domain = extract_base_url(base_url)
-                        discovered_urls = [url for url in all_extracted if base_domain in url][:100]
+                        discovered_urls = [url for url in all_extracted if base_domain in url][:70]
 
                         if discovered_urls:
                             print(f"[+] Extracted {len(discovered_urls)} URLs from markdown content")
@@ -1370,12 +1505,24 @@ async def crawl_without_sitemap(base_url: str, job_id: str = None) -> tuple[list
             print(f"[+] {len(discovered_urls)} URLs restantes après filtrage par langue")
         
         # Filtrer à nouveau pour exclure les pages juridiques et autres non pertinentes
+        # ET exclure les fichiers (PDF, Office docs, etc.)
+        excluded_file_extensions = (
+            ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
+            ".zip", ".rar", ".7z", ".tar", ".gz", ".bz2",
+            ".jpeg", ".jpg", ".png", ".gif", ".webp", ".svg", ".ico",
+            ".mp4", ".avi", ".mov", ".wmv", ".flv", ".mp3", ".wav"
+        )
+
         filtered_urls = []
         for url in discovered_urls:
             url_lower = url.lower()
             # Exclure les patterns non désirés
-            if not any(pattern in url_lower for pattern in excluded_patterns):
-                filtered_urls.append(url)
+            if any(pattern in url_lower for pattern in excluded_patterns):
+                continue
+            # Exclure les fichiers
+            if any(url_lower.endswith(ext) for ext in excluded_file_extensions):
+                continue
+            filtered_urls.append(url)
         
         # Éliminer les doublons exacts et les variantes proches
         final_urls = []
@@ -1396,10 +1543,10 @@ async def crawl_without_sitemap(base_url: str, job_id: str = None) -> tuple[list
             final_urls.insert(0, base_url)
         
         # No final status update - let main flow handle it
-        print(f"[DEBUG] Returning {len(final_urls[:100])} URLs to main flow")
+        print(f"[DEBUG] Returning {len(final_urls[:70])} URLs to main flow")
 
         # Retourner les URLs sans résultats (ils seront crawlés en parallèle)
-        return final_urls[:100], []  # Retourne tuple (URLs, liste vide pour forcer le crawling parallèle)
+        return final_urls[:70], []  # Retourne tuple (URLs, liste vide pour forcer le crawling parallèle)
 
     except Exception as e:
         print(f"[-] Erreur globale dans crawl_without_sitemap: {e}")
@@ -1426,16 +1573,11 @@ async def crawling(url: str, assistant_id: int = None):
     current_dir = os.path.dirname(os.path.abspath(__file__))
     output_file = os.path.join(current_dir, 'output.md')
     
-    print(f"[+] Démarrage du crawling pour {url} avec assistant_id: {assistant_id}")
+    print(f"[+] Starting crawling for {url} with assistant_id: {assistant_id}")
     
     # Vérifier l'ID de l'assistant
     if assistant_id:
         print(f"[DEBUG] Assistant ID reçu: {assistant_id}")
-        try:
-            ObjectId(assistant_id)  # Validation que l'ID est un ObjectId valide
-            print(f"[DEBUG] Assistant ID valide")
-        except Exception as e:
-            print(f"[WARNING] Assistant ID invalide: {e}")
     else:
         print("[WARNING] Aucun assistant_id fourni pour le crawling")
     
@@ -1446,19 +1588,19 @@ async def crawling(url: str, assistant_id: int = None):
     url = url.rstrip('/')
     
     # 2. Récupération des URLs avec la stratégie BestFirstCrawlingStrategy améliorée
-    print(f"[+] Récupération des URLs depuis {url} avec BestFirstCrawlingStrategy")
-    urls = await crawl_without_sitemap(url)
-    
-    # 3. Si aucune URL n'est trouvée, tenter la récupération via sitemap/robots.txt
+    print(f"[+] Retrieving URLs from {url} with BestFirstCrawlingStrategy")
+    urls, existing_results = await crawl_without_sitemap(url)
+
+    # 3. If no URLs found, try via sitemap/robots.txt
     if not urls or (len(urls) == 1 and urls[0] == url):
         print("[+] Tentative alternative via sitemap ou robots.txt...")
         sitemap_urls = get_sitemap_urls(url)
-        
+
         # Si des URLs sont trouvées via sitemap, les utiliser
         if sitemap_urls:
             print(f"[+] {len(sitemap_urls)} URLs trouvées via sitemap/robots.txt")
             # Fusionner les deux ensembles d'URLs (avec suppression des doublons)
-            all_urls = urls.copy()  # Commencer avec les URLs de BestFirstCrawling
+            all_urls = urls.copy() if urls else []  # Commencer avec les URLs de BestFirstCrawling
             for sitemap_url in sitemap_urls:
                 # Normaliser pour la comparaison
                 normalized_url = sitemap_url.rstrip('/').lower()
@@ -1476,9 +1618,9 @@ async def crawling(url: str, assistant_id: int = None):
         print("[-] Aucune URL n'a pu être trouvée. Création d'un fichier vide.")
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(f"# Crawling de {url}\n\nAucune URL n'a pu être trouvée sur ce site. Veuillez vérifier l'URL ou essayer un crawling manuel.")
-        # Sauvegarde de l'échec dans MongoDB
+        # Sauvegarde de l'échec dans PostgreSQL
         if assistant_id:
-            save_chunks_to_postgres(url, f"# Crawling de {url}\n\nAucune URL n'a pu être trouvée sur ce site.", assistant_id, "failed")
+            await save_chunks_to_postgres(url, f"# Crawling de {url}\n\nAucune URL n'a pu être trouvée sur ce site.", assistant_id, "failed")
         return output_file
     
     # 5. Appliquer un filtrage final pour s'assurer de la qualité des URLs
@@ -1488,52 +1630,73 @@ async def crawling(url: str, assistant_id: int = None):
     excluded_patterns = [
         "mentions-legales", "politique-de-cookies", "conditions-generales-de-vente",
         "cgv", "politique-de-confidentialite", "privacy-policy", "legal-notice",
-        "terms-of-service", "terms-and-conditions", "confidentialite", 
+        "terms-of-service", "terms-and-conditions", "confidentialite",
         "cookies", "cgu", "gdpr", "rgpd", "legal", "terms-of-use", "terms-of-sale",
         "notice-legale", "mentions-obligatoires", "datenschutz", "impressum",
         "terms-of-services.html", "privacy-policy.html", "cookie-policy", "cookie-notice"
     ]
-    urls = [url for url in urls if not any(pattern in url for pattern in excluded_patterns)]
+
+    # Filtrer les fichiers (PDF, Office, etc.)
+    excluded_file_extensions = (
+        ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
+        ".zip", ".rar", ".7z", ".tar", ".gz", ".bz2",
+        ".jpeg", ".jpg", ".png", ".gif", ".webp", ".svg", ".ico"
+    )
+
+    # Appliquer les filtres
+    filtered_urls = []
+    for url in urls:
+        url_lower = url.lower()
+        # Exclure patterns juridiques
+        if any(pattern in url_lower for pattern in excluded_patterns):
+            continue
+        # Exclure fichiers
+        if any(url_lower.endswith(ext) for ext in excluded_file_extensions):
+            continue
+        filtered_urls.append(url)
+
+    urls = filtered_urls
     
     # S'assurer que l'URL de base est toujours incluse en première position
     base_url = url
     if base_url not in urls and base_url.rstrip('/') not in urls and base_url+'/' not in urls:
         urls.insert(0, base_url)
     
-    # Limiter aux 50 premières URLs
-    urls = urls[:50]
+    # Limiter aux 70 premières URLs
+    urls = urls[:70]
     
     print(f"[+] {len(urls)} URLs finales à crawler")
     
-    # 6. Crawl des URLs
-    print("[+] Démarrage du crawl")
-    results = await crawl_urls(urls, assistant_id)
-    
-    # 7. Vérifier si des résultats ont été obtenus
+    # 6. Crawl the URLs
+    print("[+] Starting crawl")
+    results = await crawl_urls(urls, assistant_id, existing_results=existing_results)
+
+    # 7. Check if results were obtained
     if not results:
         print("[-] Aucun résultat obtenu du crawl. Création d'un fichier vide.")
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(f"# Crawling de {url}\n\nLe crawl n'a pas pu générer de résultats exploitables. Veuillez vérifier l'URL ou essayer un crawling manuel.")
-        # Sauvegarde de l'échec dans MongoDB
+        # Sauvegarde de l'échec dans PostgreSQL
         if assistant_id:
-            save_chunks_to_postgres(url, f"# Crawling de {url}\n\nLe crawl n'a pas pu générer de résultats exploitables.", assistant_id, "failed")
+            await save_chunks_to_postgres(url, f"# Crawling de {url}\n\nLe crawl n'a pas pu générer de résultats exploitables.", assistant_id, "failed")
         return output_file
     
-    # 8. Sauvegarde des résultats
-    # print(f"[+] Sauvegarde des résultats dans {output_file}")
-    # save_to_markdown(results, output_file)
+    # 8. Save results to markdown file for preview
+    print(f"[+] Saving results to markdown file: {output_file}")
+    save_to_markdown(results, output_file)
 
-    # 9. Nettoyage du contenu
-    print("[+] Nettoyage du contenu")
-    # with open(output_file, 'r', encoding='utf-8') as f:
-    #     content = f.read()
-    # cleaned_content = clean_markdown_content(content)
-    
-    # 10. Sauvegarde du contenu nettoyé dans le fichier
-    print("[+] Sauvegarde du contenu nettoyé")
-    # with open(output_file, 'w', encoding='utf-8') as f:
-        # f.write(cleaned_content)
+    # 9. Content cleaning
+    print("[+] Cleaning markdown content")
+    with open(output_file, 'r', encoding='utf-8') as f:
+        content = f.read()
+    cleaned_content = clean_markdown_content(content)
 
-    print(f"[+] Crawling terminé, fichier disponible à {output_file}")
+    # 10. Save cleaned content to file
+    print("[+] Saving cleaned content to file")
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(cleaned_content)
+
+    print(f"[+] Crawling completed, file available at {output_file}")
+    print(f"[+] Data saved to PostgreSQL database (documentchunks table) for agent_id: {assistant_id}")
     # Retourner le chemin absolu du fichier
     return output_file

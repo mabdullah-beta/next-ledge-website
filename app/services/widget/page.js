@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send, X } from "lucide-react";
 import Lottie from "lottie-react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 import botAnimation from "@/public/animations/Fox-Programmer.json";
 import Image from "next/image";
@@ -277,7 +279,56 @@ const ChatWidget = () => {
                                                         : "bg-slate-100 text-slate-900"
                                                     }`}
                                             >
-                                                {msg.content}
+                                                {msg.role === "user" ? (
+                                                    // User messages - plain text
+                                                    msg.content
+                                                ) : (
+                                                    // Assistant messages - render markdown with tables
+                                                    <ReactMarkdown
+                                                        remarkPlugins={[remarkGfm]}
+                                                        components={{
+                                                            // Wrapper for horizontal scroll
+                                                            table: ({ node, ...props }) => (
+                                                                <div className="overflow-x-auto my-2 -mx-2">
+                                                                    <table className="min-w-full border-collapse" {...props} />
+                                                                </div>
+                                                            ),
+                                                            thead: ({ node, ...props }) => (
+                                                                <thead className="bg-slate-200" {...props} />
+                                                            ),
+                                                            th: ({ node, ...props }) => (
+                                                                <th className="border border-slate-300 px-2 py-1.5 text-xs font-semibold text-left whitespace-nowrap" {...props} />
+                                                            ),
+                                                            td: ({ node, ...props }) => (
+                                                                <td className="border border-slate-300 px-2 py-1.5 text-xs" {...props} />
+                                                            ),
+                                                            tbody: ({ node, ...props }) => (
+                                                                <tbody className="bg-white" {...props} />
+                                                            ),
+                                                            // Style other markdown elements
+                                                            p: ({ node, ...props }) => (
+                                                                <p className="mb-2 last:mb-0" {...props} />
+                                                            ),
+                                                            ul: ({ node, ...props }) => (
+                                                                <ul className="list-disc ml-4 mb-2 space-y-1" {...props} />
+                                                            ),
+                                                            ol: ({ node, ...props }) => (
+                                                                <ol className="list-decimal ml-4 mb-2 space-y-1" {...props} />
+                                                            ),
+                                                            li: ({ node, ...props }) => (
+                                                                <li className="text-sm" {...props} />
+                                                            ),
+                                                            strong: ({ node, ...props }) => (
+                                                                <strong className="font-semibold" {...props} />
+                                                            ),
+                                                            em: ({ node, ...props }) => (
+                                                                <em className="italic" {...props} />
+                                                            ),
+                                                        }}
+                                                    >
+                                                        {msg.content}
+                                                    </ReactMarkdown>
+                                                )}
                                             </div>
                                         </div>
                                     ))}
