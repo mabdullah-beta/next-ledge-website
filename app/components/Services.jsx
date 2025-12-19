@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const services = [
   {
@@ -11,6 +12,7 @@ const services = [
       'Nauwkeurig, volgens de regels en altijd up to date. We verzorgen je boekhouding, btw aangiften, jaarrekeningen en alle andere administratieve taken met precisie. We gaan verder dan de basis en helpen je je cijfers te begrijpen zodat je ziet hoe gezond je bedrijf echt is.',
     image:
       'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop',
+    href: '/services/accounting-financial-administration'
   },
   {
     id: 2,
@@ -19,6 +21,7 @@ const services = [
       'Efficiëntie door slimme technologie. We analyseren waar automatisering en IT je financiële processen kunnen vereenvoudigen, tijd kunnen besparen en handmatig werk kunnen verminderen. Ons doel is om je bij te laten blijven met ontwikkelingen in AI en digitale tools zodat je bedrijf soepeler draait en meer datagedreven wordt.',
     image:
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+    href: '/services/automation-it-integration'
   },
   {
     id: 3,
@@ -27,14 +30,16 @@ const services = [
       'Duidelijkheid die betere beslissingen stimuleert. We maken van financiële data heldere inzichten via visuele rapportages en prestatie dashboards. Met de juiste informatie op het juiste moment kun je de gezondheid van je bedrijf volgen en met vertrouwen beslissingen nemen.',
     image:
       'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
+    href: '/services/financial-insights-reporting'
   },
   {
     id: 4,
     title: 'Budgettering en Forecasting',
     description:
-      'Plan vandaag met morgen in gedachten. We helpen je realistische budgetten op te stellen, financiële prognoses te maken en verschillende groeiscenario’s te verkennen zodat je voorbereid bent op wat komt.',
+      'Plan vandaag met morgen in gedachten. We helpen je realistische budgetten op te stellen, financiele prognoses te maken en verschillende groeiscenarios te verkennen zodat je voorbereid bent op wat komt.',
     image:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
+    href: '/services/budgeting-forecasting'
   },
   {
     id: 5,
@@ -43,6 +48,7 @@ const services = [
       'Je partner in elke groeifase. We werken met je samen om resultaten te analyseren, uitdagingen te bespreken en kansen te identificeren. Ons doel is om je duidelijkheid en vertrouwen te geven om de volgende stap te zetten, ondersteund door data in plaats van giswerk.',
     image:
       'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
+    href: '/services/advisory-business-support'
   },
 ];
 
@@ -123,27 +129,29 @@ export default function ServicesCarousel() {
                         : `calc(${100 / cardsToShow}% - 21px)`,
                   }}
                 >
-                  <div className="h-[380px] sm:h-[400px] md:h-[420px] lg:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl relative group cursor-pointer bg-white">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                  <Link href={service.href} className="block">
+                    <div className="h-[380px] sm:h-[400px] md:h-[420px] lg:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl relative group cursor-pointer bg-white hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
 
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
 
-                    {/* Text */}
-                    <div className="absolute bottom-0 p-4 sm:p-5 md:p-6 text-white">
-                      <h3 className="text-[17px] sm:text-[18px] md:text-[19px] lg:text-xl font-semibold mb-2 leading-snug">
-                        {service.title}
-                      </h3>
-                      <p className="text-white/85 text-[13px] sm:text-[14px] md:text-sm leading-relaxed line-clamp-4 sm:line-clamp-none">
-                        {service.description}
-                      </p>
+                      {/* Text */}
+                      <div className="absolute bottom-0 p-4 sm:p-5 md:p-6 text-white">
+                        <h3 className="text-[17px] sm:text-[18px] md:text-[19px] lg:text-xl font-semibold mb-2 leading-snug group-hover:text-blue-200 transition-colors duration-200">
+                          {service.title}
+                        </h3>
+                        <p className="text-white/85 text-[13px] sm:text-[14px] md:text-sm leading-relaxed line-clamp-4 sm:line-clamp-none">
+                          {service.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>

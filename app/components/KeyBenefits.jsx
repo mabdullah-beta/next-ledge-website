@@ -3,42 +3,49 @@
 import { MessageCircle, Cloud, Globe, Database, Headphones, Zap } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Link from 'next/link';
 const benefits = [
   {
     id: 1,
     icon: MessageCircle,
     title: 'Flexibele consultaties',
-    description: 'Eenvoudige toegang tot administratieve ondersteuning wanneer je duidelijkheid of begeleiding nodig hebt.'
+    description: 'Eenvoudige toegang tot administratieve ondersteuning wanneer je duidelijkheid of begeleiding nodig hebt.',
+    href: '/features/flexible-consultations'
   },
   {
     id: 2,
     icon: Cloud,
     title: 'Maatwerk administratieve oplossingen',
-    description: 'Workflows en instellingen afgestemd op de behoeften van jouw bedrijf, van dagelijkse boekhouding tot gestructureerde financiële processen.'
+    description: 'Workflows en instellingen afgestemd op de behoeften van jouw bedrijf, van dagelijkse boekhouding tot gestructureerde financiële processen.',
+    href: '/features/tailored-administrative-solutions'
   },
   {
     id: 3,
     icon: Globe,
     title: 'Praktische financiële inzichten',
-    description: 'Duidelijke uitleg en overzichtelijke weergaven die je helpen je cijfers te begrijpen en de controle te houden.'
+    description: 'Duidelijke uitleg en overzichtelijke weergaven die je helpen je cijfers te begrijpen en de controle te houden.',
+    href: '/features/practical-financial-insights'
   },
   {
     id: 4,
     icon: Database,
     title: 'Data en controle strategieën',
-    description: 'Goed gestructureerde rapportages die beter overzicht bieden en je helpen weloverwogen beslissingen te nemen.'
+    description: 'Goed gestructureerde rapportages die beter overzicht bieden en je helpen weloverwogen beslissingen te nemen.',
+    href: '/features/data-control-strategies'
   },
   {
     id: 5,
     icon: Headphones,
     title: 'Doorlopende administratieve ondersteuning',
-    description: 'Consistente opvolging en communicatie gedurende het hele jaar zodat je administratie georganiseerd en up to date blijft.'
+    description: 'Consistente opvolging en communicatie gedurende het hele jaar zodat je administratie georganiseerd en up to date blijft.',
+    href: '/features/ongoing-administrative-support'
   },
   {
     id: 6,
     icon: Zap,
     title: 'Efficiënte automatisering en IT ondersteuning',
-    description: 'Implementatie van handige tools en automatiseringen die je administratieve werk stroomlijnen en handmatige taken verminderen.'
+    description: 'Implementatie van handige tools en automatiseringen die je administratieve werk stroomlijnen en handmatige taken verminderen.',
+    href: '/features/efficient-automation-it-support'
   }
 ];
 
@@ -79,7 +86,7 @@ export default function KeyBenefits() {
               return (
                 <motion.div
                   key={benefit.id}
-                  className="text-center px-2"
+                  className="text-center hover:scale-105 hover:transition-all hover:duration-200 px-2"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isFirstRowInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                   transition={{
@@ -88,20 +95,22 @@ export default function KeyBenefits() {
                     delay: index * 0.1
                   }}
                 >
-                  {/* Icon */}
-                  <div className="inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl mb-4 sm:mb-5 md:mb-6">
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
-                  </div>
+                  <Link href={benefit.href} className="block group cursor-pointer">
+                    {/* Icon */}
+                    <div className="inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl mb-4 sm:mb-5 md:mb-6 group-hover:bg-blue-600 transition-colors duration-200">
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
+                    </div>
 
-                  {/* Title */}
-                  <h3 className="text-[19px] sm:text-[20px] md:text-[22px] font-medium text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
-                    {benefit.title}
-                  </h3>
+                    {/* Title */}
+                    <h3 className="text-[19px] sm:text-[20px] md:text-[22px] font-medium text-gray-900 mb-2 sm:mb-2.5 md:mb-3 group-hover:text-primary transition-colors duration-200">
+                      {benefit.title}
+                    </h3>
 
-                  {/* Description */}
-                  <p className="text-gray-600 text-[14px] sm:text-[15px] md:text-base leading-relaxed max-w-[320px] sm:max-w-[280px] mx-auto">
-                    {benefit.description}
-                  </p>
+                    {/* Description */}
+                    <p className="text-gray-600 text-[14px] sm:text-[15px] md:text-base leading-relaxed max-w-[320px] sm:max-w-[280px] mx-auto">
+                      {benefit.description}
+                    </p>
+                  </Link>
                 </motion.div>
               );
             })}
@@ -118,7 +127,7 @@ export default function KeyBenefits() {
                 <motion.div
                   id="how-it-works"
                   key={benefit.id}
-                  className="text-center px-2"
+                  className="text-center hover:scale-105 hover:transition-all hover:duration-200 px-2"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isSecondRowInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                   transition={{
@@ -127,20 +136,22 @@ export default function KeyBenefits() {
                     delay: index * 0.1
                   }}
                 >
-                  {/* Icon */}
-                  <div className="inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl mb-4 sm:mb-5 md:mb-6">
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
-                  </div>
+                  <Link href={benefit.href} className="block group cursor-pointer">
+                    {/* Icon */}
+                    <div className="inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-xl sm:rounded-2xl mb-4 sm:mb-5 md:mb-6 group-hover:bg-blue-600 transition-colors duration-200">
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
+                    </div>
 
-                  {/* Title */}
-                  <h3 className="text-[19px] sm:text-[20px] md:text-[22px] font-medium text-gray-900 mb-2 sm:mb-2.5 md:mb-3">
-                    {benefit.title}
-                  </h3>
+                    {/* Title */}
+                    <h3 className="text-[19px] sm:text-[20px] md:text-[22px] font-medium text-gray-900 mb-2 sm:mb-2.5 md:mb-3 group-hover:text-primary transition-colors duration-200">
+                      {benefit.title}
+                    </h3>
 
-                  {/* Description */}
-                  <p className="text-gray-600 text-[14px] sm:text-[15px] md:text-base leading-relaxed max-w-[320px] sm:max-w-[280px] mx-auto">
-                    {benefit.description}
-                  </p>
+                    {/* Description */}
+                    <p className="text-gray-600 text-[14px] sm:text-[15px] md:text-base leading-relaxed max-w-[320px] sm:max-w-[280px] mx-auto">
+                      {benefit.description}
+                    </p>
+                  </Link>
                 </motion.div>
               );
             })}
