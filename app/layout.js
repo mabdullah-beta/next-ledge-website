@@ -18,8 +18,27 @@ export const metadata = {
   description: 'SalFin combineert professionele boekhouding met slimme IT oplossingen. We maken je administratie efficiënt, je cijfers duidelijk, en je bedrijf klaar voor groei.',
   keywords: 'boekhouding, administratie, IT oplossingen, financiële diensten, Nederland',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
     shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/manifest.json',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   openGraph: {
     title: 'SalFin - Moderne Boekhouding & IT Oplossingen',
@@ -28,6 +47,14 @@ export const metadata = {
     siteName: 'SalFin',
     locale: 'nl_NL',
     type: 'website',
+    images: [
+      {
+        url: '/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'SalFin Logo',
+      },
+    ],
   }
 };
 
