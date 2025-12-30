@@ -232,7 +232,7 @@ const ChatWidget = () => {
 
             {/* Chat widget */}
             {isOpen && (
-                <div ref={widgetRef} className="fixed bottom-24 right-6 w-[360px] max-w-[95%] z-[150]">
+                <div ref={widgetRef} className="fixed bottom-24 right-6 w-[380px] max-w-[95%] z-[150]">
                     <div className="rounded-2xl bg-white shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
                         {/* Header */}
                         <div className="flex items-center justify-between px-4 py-2 border-b border-slate-100 bg-slate-50">
@@ -261,7 +261,7 @@ const ChatWidget = () => {
                                         >
                                             {/* Assistant avatar */}
                                             {msg.role !== "user" && (
-                                                <div className="mt-1 h-8 w-8 rounded-full overflow-hidden flex items-center justify-center">
+                                                <div className="mt-1 h-8 w-8 rounded-full overflow-hidden flex items-center justify-center shrink-0">
                                                     <Image
                                                         src="/fox.png"
                                                         alt="Finance Fox"
@@ -273,7 +273,7 @@ const ChatWidget = () => {
                                             )}
 
                                             <div
-                                                className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed max-w-[80%]
+                                                className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed max-w-full min-w-0 break-words hyphens-auto
                                                 ${msg.role === "user"
                                                         ? "bg-blue-100 text-blue-900"
                                                         : "bg-slate-100 text-slate-900"
@@ -300,14 +300,14 @@ const ChatWidget = () => {
                                                                 <th className="border border-slate-300 px-2 py-1.5 text-xs font-semibold text-left whitespace-nowrap" {...props} />
                                                             ),
                                                             td: ({ node, ...props }) => (
-                                                                <td className="border border-slate-300 px-2 py-1.5 text-xs" {...props} />
+                                                                <td className="border border-slate-300 px-2 py-1.5 text-xs break-words" {...props} />
                                                             ),
                                                             tbody: ({ node, ...props }) => (
                                                                 <tbody className="bg-white" {...props} />
                                                             ),
                                                             // Style other markdown elements
                                                             p: ({ node, ...props }) => (
-                                                                <p className="mb-2 last:mb-0" {...props} />
+                                                                <p className="mb-2 last:mb-0 break-words" {...props} />
                                                             ),
                                                             ul: ({ node, ...props }) => (
                                                                 <ul className="list-disc ml-4 mb-2 space-y-1" {...props} />
@@ -316,7 +316,7 @@ const ChatWidget = () => {
                                                                 <ol className="list-decimal ml-4 mb-2 space-y-1" {...props} />
                                                             ),
                                                             li: ({ node, ...props }) => (
-                                                                <li className="text-sm" {...props} />
+                                                                <li className="text-sm break-words" {...props} />
                                                             ),
                                                             strong: ({ node, ...props }) => (
                                                                 <strong className="font-semibold" {...props} />
