@@ -17,28 +17,28 @@ const Header = () => {
   const services = [
     {
       id: 1,
-      title: "Boekhouding & Financiële Administratie",
-      href: "/services/accounting-financial-administration",
+      title: "Salarisadministratie & HR",
+      href: "/services/salarisadministratie-hr",
     },
     {
       id: 2,
-      title: "Automatisering & IT-integratie",
-      href: "/services/automation-it-integration",
+      title: "Boekhouding & Financiële Rapportages",
+      href: "/services/boekhouding-financiele-rapportages",
     },
     {
       id: 3,
-      title: "Financiële Inzichten & Rapportages",
-      href: "/services/financial-insights-reporting",
+      title: "Accounting, Jaarrekening & Financiële Planning",
+      href: "/services/accounting-jaarrekening-financiele-planning",
     },
     {
       id: 4,
-      title: "Budgettering & Prognoses",
-      href: "/services/budgeting-forecasting",
+      title: "Automatisering & IT-oplossingen",
+      href: "/services/automatisering-it-oplossingen",
     },
     {
       id: 5,
-      title: "Advies & Bedrijfsondersteuning",
-      href: "/services/advisory-business-support",
+      title: "Interim-oplossingen",
+      href: "/services/interim-oplossingen",
     },
   ];
 

@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import Comparison from "./components/Comparison";
 import Slider from "./components/Services";
 import TestimonialSection from "./components/Testimonial";
+import AboutSalFin from "./components/AboutSalFin";
 import KeyBenefits from "./components/KeyBenefits";
 import HowItWorksSection from "./components/HowItWorks";
 import ImpactSection from "./components/Impact";
@@ -36,14 +37,15 @@ export default function Home() {
       <Hero />
       <Comparison />
       <Slider />
-      <TestimonialSection />
+      {/* <TestimonialSection /> */}
+      <AboutSalFin />
       <KeyBenefits />
       {/* <PricingPlans /> */}
       <HowItWorksSection />
-      <ImpactSection />
+      {/* <ImpactSection /> */}
       {/* <TeamSection /> */}
       {/* <FlowchartSection /> */}
-      <FAQSection />
+      {/* <FAQSection /> */}
       <ChatWidget />
       <ContactSection />
       <Footer />

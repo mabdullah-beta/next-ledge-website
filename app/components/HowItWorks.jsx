@@ -1,50 +1,60 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowRight, CheckCircle, Clock, Users, TrendingUp } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock, Users, TrendingUp, Handshake, Settings, PlayCircle, BarChart3, Zap } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 
 const steps = [
   {
     id: '01',
-    title: 'Eenvoudig en efficiënt',
-    abt: 'Makkelijke en soepele planning',
-    description: 'Plan moeiteloos een consult om je doelen, behoeften en uitdagingen te bespreken. We luisteren, analyseren je situatie en bepalen waar automatisering en optimalisatie de grootste impact kunnen hebben zodat we snel en effectief kunnen starten.',
+    title: 'Kennismaking & inventarisatie',
+    abt: 'We starten met een kennismaking',
+    description: 'We starten met een kennismaking waarin we jouw situatie bespreken. We brengen in kaart welke ondersteuning nodig is: salaris, HR, boekhouding, accounting, planning of interim. Samen bepalen we de scope, aanpak en verwachtingen.',
     image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
     imagePosition: 'left',
-    icon: Clock,
-    benefits: ['Snelle intake', 'Duidelijke planning', 'Persoonlijk advies']
+    icon: Handshake,
+    benefits: ['Korte intake', 'Duidelijke doelen en afspraken', 'Vast aanspreekpunt']
   },
   {
     id: '02',
-    title: 'Automatiseren waar het telt',
-    abt: 'Minder handmatig werk, meer duidelijkheid',
-    description: "Automatisering betekent niet dat de menselijke betrokkenheid verdwijnt. We blijven nauw betrokken, geven proactief advies en denken met je mee bij belangrijke beslissingen. Je krijgt een vaste expert die jouw bedrijf echt begrijpt.",
+    title: 'Inrichting & overdracht',
+    abt: 'Praktische inrichting van de samenwerking',
+    description: 'We richten de samenwerking praktisch in. Systemen, toegang en werkwijze worden afgestemd en waar nodig verbeteren we processen met gerichte automatisering die direct helpt.',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
     imagePosition: 'right',
-    icon: CheckCircle,
-    benefits: ['Slimme automatisering', 'Menselijke expertise', 'Proactief advies']
+    icon: Settings,
+    benefits: ['Heldere werkafspraken', 'IT-koppelingen en automatisering waar logisch', 'Soepele start']
   },
   {
     id: '03',
-    title: 'Persoonlijke begeleiding',
-    abt: 'Altijd een expert aan je zijde',
-    description: 'Van implementatie tot optimalisatie bieden we doorlopende begeleiding en aanpassingen om langdurige groei voor jou te verzekeren.',
+    title: 'Uitvoering & ondersteuning',
+    abt: 'Doorlopende dienstverlening',
+    description: 'We voeren de afgesproken diensten uit en houden alles actueel. Je hebt overzicht, vaste contactmomenten en korte lijnen bij vragen of wijzigingen.',
     image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop',
     imagePosition: 'left',
-    icon: Users,
-    benefits: ['Vaste contactpersoon', 'Continue optimalisatie', 'Langdurige groei']
+    icon: PlayCircle,
+    benefits: ['Doorlopende verwerking', 'Snelle afstemming bij mutaties', 'Duidelijke communicatie']
   },
   {
     id: '04',
-    title: 'Groeien met vertrouwen',
-    abt: 'Van cijfers naar strategie',
-    description: 'Met duidelijke cijfers en slimme financiële inzichten helpen we je stevige, strategische keuzes te maken. Of je nu wilt opschalen, investeren of efficiënter wilt werken, SalFin geeft je de helderheid om vooruit te komen.',
+    title: 'Inzicht, sturing & vooruitblik',
+    abt: 'Van cijfers naar richting',
+    description: 'We vertalen cijfers naar inzicht en richting. Met rapportages, dashboards en – waar passend – begrotingen helpen we je vooruit te kijken en bij te sturen op basis van actuele informatie.',
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imagePosition: 'right',
-    icon: TrendingUp,
-    benefits: ['Strategische inzichten', 'Datagedreven beslissingen', 'Duurzame groei']
+    icon: BarChart3,
+    benefits: ['Inzicht in cijfers', 'Planning en begroting', 'Concrete aanbevelingen']
+  },
+  {
+    id: '05',
+    title: 'Opschalen, tijdelijk invullen of afronden',
+    abt: 'Flexibele ondersteuning',
+    description: 'Bij uitval, groei of tijdelijke behoefte schalen we op met interim inzet binnen finance, salaris of HR. Is ondersteuning niet meer nodig, dan bouwen we de samenwerking helder en netjes af.',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
+    imagePosition: 'left',
+    icon: Zap,
+    benefits: ['Flexibele inzet', 'Heldere overdracht', 'Duidelijke afspraken']
   }
 ];
 
@@ -349,31 +359,17 @@ export default function HowItWorksSection() {
             transition={{ duration: 0.6 }}
           >
             <div className="dot-indicator bg-primary rounded-full"></div>
-            <span className="font-inter text-sm-custom sm:text-body-base font-semibold text-primary">Hoe het werkt</span>
+            <span className="font-inter text-sm-custom sm:text-body-base font-semibold text-primary">Hoe wij werken</span>
           </motion.div>
           
           <motion.h2 
-            className="font-hedvig text-heading-lg-mobile md:text-heading-lg text-heading leading-tight mb-6 sm:mb-7 md:mb-8 max-w-2xl mx-auto px-4"
+            className="font-hedvig text-heading-lg-mobile md:text-heading-lg text-heading leading-tight mb-6 sm:mb-7 md:mb-8 max-w-3xl mx-auto px-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Een bewezen proces om je grootste doelen te bereiken
+            Van kennismaking tot langdurige samenwerking
           </motion.h2>
-          
-          <motion.button 
-            className="inline-flex items-center gap-2 sm:gap-3 bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 group shadow-lg hover:shadow-xl hover:bg-primary-light"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="font-semibold text-sm-custom sm:text-body-base">Neem contact op</span>
-            <div className="w-6 h-6 sm:w-7 sm:h-7 bg-white rounded-full flex items-center justify-center">
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:translate-x-0.5 transition-transform" />
-            </div>
-          </motion.button>
         </div>
 
         {/* Progress Indicator */}
@@ -387,6 +383,45 @@ export default function HowItWorksSection() {
             ))}
           </div>
         </div>
+
+        {/* CTA Section */}
+        <motion.div 
+          className="text-center mt-16 sm:mt-20 md:mt-24"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <div className="max-w-2xl mx-auto mb-8 sm:mb-10">
+            <h3 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-heading mb-4 sm:mb-6">
+              Klaar om te starten?
+            </h3>
+            <p className="text-body text-base sm:text-lg leading-relaxed px-4">
+              Plan een kennismaking en ontdek hoe wij uw organisatie kunnen ondersteunen.
+            </p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4">
+            <motion.button 
+              className="inline-flex items-center gap-2 sm:gap-3 bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 group shadow-lg hover:shadow-xl hover:bg-primary-light w-full sm:w-auto"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="font-semibold text-sm-custom sm:text-body-base">Plan een kennismaking</span>
+              <div className="w-6 h-6 sm:w-7 sm:h-7 bg-white rounded-full flex items-center justify-center">
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </motion.button>
+            
+            <motion.button 
+              className="inline-flex items-center gap-2 sm:gap-3 bg-white text-primary border-2 border-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 group hover:bg-primary hover:text-white shadow-lg hover:shadow-xl w-full sm:w-auto"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="font-semibold text-sm-custom sm:text-body-base">Bekijk onze diensten</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-0.5 transition-transform" />
+            </motion.button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

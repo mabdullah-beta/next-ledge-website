@@ -17,7 +17,7 @@ const ChatWidget = () => {
     const [messages, setMessages] = useState([
         {
             role: "assistant",
-            content: "Hi! I’m your finance fox. Ask me anything!",
+            content: "Hi, stel je vraag over salarisadministratie, boekhouding of accounting. Wij denken mee op basis van actuele marktontwikkelingen en relevante financiële informatie.",
         },
     ]);
 
@@ -199,7 +199,7 @@ const ChatWidget = () => {
                 <div className="fixed bottom-32 -right-10 bg-white shadow-lg p-3 rounded-2xl text-sm 
                     border border-slate-200 animate-fade-in z-[200] max-w-[230px] transform -translate-x-1/2">
                     <div className="relative">
-                        Hi 👋 I'm your finance fox. Ask me anything!
+                        Hi, stel je vraag over salarisadministratie, boekhouding of accounting. Wij denken mee op basis van actuele marktontwikkelingen en relevante financiële informatie.
                         {/* Thought bubble tail */}
                         
                         <div className="absolute -bottom-4 left-1/2 transform -translate-x-3">
@@ -348,7 +348,7 @@ const ChatWidget = () => {
                             <div className="flex items-center gap-2 rounded-xl bg-slate-50 border border-slate-200 px-3 py-2">
                                 <textarea
                                     ref={textareaRef}
-                                    placeholder="Ask something…"
+                                    placeholder="Stel hier je vraag"
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                     onKeyDown={handleKeyDown}

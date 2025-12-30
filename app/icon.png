@@ -1,0 +1,7 @@
+This would be your PNG favicon file. Since I cannot generate actual image files, you'll need to:
+
+1. Create a 32x32 PNG version of your favicon and save it as app/icon.png
+2. Create a 180x180 PNG version for Apple devices and save it as app/apple-touch-icon.png
+3. Optionally create a 192x192 PNG version and save it as app/icon-192.png for Android devices
+
+For best results, use a simple, recognizable logo that works well at small sizes.

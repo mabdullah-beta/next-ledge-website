@@ -24,20 +24,32 @@ const Comparison = () => {
 
   const withStratex = [
     {
-      title: "Persoonlijke boekhouding",
-      description: "Elk bedrijf is anders. We richten je administratie in op basis van jouw doelen en manier van werken.",
+      title: "Gedreven door ondernemerschap",
+      description: "SalFin wordt gerund door ondernemers uit verschillende sectoren. We begrijpen de praktijk achter de cijfers en weten wat er speelt binnen organisaties.",
     },
     {
-      title: "Persoonlijke boekhouding",
-      description: "We gaan verder dan de cijfers en helpen je je resultaten te begrijpen en met vertrouwen te plannen.",
+      title: "Verder dan doorsnee accountancy",
+      description: "Wij gaan verder waar standaard accountancykantoren stoppen. Niet alleen administratie, maar meedenken, doorvragen en overzicht creëren waar het nodig is.",
     },
     {
-      title: "Gedreven door technologie en inzicht",
-      description: "Bij SalFin gebruiken we IT, AI en automatisering om kansen te herkennen, efficiëntie te verbeteren en je meer controle te geven. We vinden dat onze klanten goed geïnformeerd moeten blijven en voordeel moeten hebben van de nieuwste tools die de toekomst van bedrijven vormgeven.",
+      title: "Out-of-the-box denken, scherp doorvragen",
+      description: "We werken niet vanuit vaste formats. Door goed door te vragen brengen we de echte hulpvraag in beeld en stemmen onze aanpak daarop af.",
     },
     {
-      title: "Transparante prijzen",
-      description: "Eerlijk, duidelijk en overzichtelijk, zonder verborgen verrassingen.",
+      title: "Inzicht, sturing en vooruitkijken",
+      description: "SalFin vervult waar nodig de rol van business controller. Samen met klanten stellen we begrotingen op, kijken we vooruit en geven we sturing op basis van cijfers. We vertalen inzichten naar concrete aanbevelingen die helpen bij het maken van keuzes.",
+    },
+    {
+      title: "Data-driven met slimme IT-oplossingen",
+      description: "Onze IT-oplossingen zijn gericht op het data-driven maken van organisaties. We passen automatisering toe waar het waarde toevoegt, zodat informatie actueel, toegankelijk en bruikbaar is.",
+    },
+    {
+      title: "Flexibele inzet wanneer het nodig is",
+      description: "SalFin fungeert als flexibele schil bij ziekte, zwangerschapsverlof of tijdelijke capaciteitsbehoefte. Wij vullen een rol in voor een afgesproken periode, zonder ingewikkelde voorwaarden. Is onze inzet niet langer nodig, dan stopt de interim- of deta-invulling na 30 dagen.",
+    },
+    {
+      title: "Een partner die naast u staat",
+      description: "Geen kleine letters, geen ruis. Duidelijke afspraken en ondersteuning die past bij de situatie.",
     },
   ];
 
@@ -79,10 +91,10 @@ const Comparison = () => {
                   <Check size={18} className="text-gray-400 sm:w-5 sm:h-5" strokeWidth={2} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-[17px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-semibold text-black mb-1.5 sm:mb-2">
+                  <h4 className="text-[17px] sm:text-[18px] md:text-[20px] font-semibold text-black mb-1.5 sm:mb-2">
                     {item.title}
                   </h4>
-                  <p className="text-[14px] sm:text-[15px] md:text-[16px] font-normal text-gray-600 leading-relaxed">
+                  <p className="text-[14px] sm:text-[15px] font-normal text-gray-600 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -104,10 +116,10 @@ const Comparison = () => {
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-[17px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-semibold text-black mb-1.5 sm:mb-2">
+                  <h4 className="text-[17px] sm:text-[18px] md:text-[20px] font-semibold text-black mb-1.5 sm:mb-2">
                     {item.title}
                   </h4>
-                  <p className="text-[14px] sm:text-[15px] md:text-[16px] font-normal text-gray-600 leading-relaxed">
+                  <p className="text-[14px] sm:text-[15px] font-normal text-gray-600 leading-relaxed">
                     {item.description}
                   </p>
                 </div>

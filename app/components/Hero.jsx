@@ -51,12 +51,12 @@ const Hero = () => {
 
               {/* Heading */}
               <h1 className="font-hedvig text-[28px] sm:text-[36px] md:text-[42px] lg:text-[49px] font-normal text-white leading-[1.2] sm:leading-[1.15] tracking-tight mb-4 sm:mb-5 md:mb-6">
-                Moderne boekhouding, echte inzichten, toekomstige groei.
+                Salarisadministratie & HR, boekhouding en accounting.<br />Praktisch ingericht, ondersteund door IT.
               </h1>
 
               {/* Description */}
-              <p className="font-inter text-[15px] sm:text-[16px] md:text-[17px] lg:text-[19px] font-normal text-white/80 leading-relaxed mb-6 sm:mb-7 md:mb-8 max-w-[520px]">
-                SalFin combineert professionele boekhouding met slimme IT oplossingen. We maken je administratie efficiënt, je cijfers duidelijk, en je bedrijf klaar voor de volgende stap.
+              <p className="font-inter text-[14px] sm:text-[15px] md:text-[16px] font-normal text-white/80 leading-relaxed mb-6 sm:mb-7 md:mb-8 max-w-[520px]">
+                SalFin ondersteunt organisaties met salarisadministratie & HR van eenvoudig tot complex, boekhouding van dagelijkse verwerking tot rapportage en accounting voor inzicht en sturing. Deze diensten sluiten naadloos op elkaar aan en vormen samen één overzichtelijk financieel geheel. Op basis van actuele cijfers denken wij mee, signaleren we ontwikkelingen en helpen we vooruitkijken waar dat nodig is, ondersteund door praktische IT-oplossingen.
               </p>
 
               {/* CTA Buttons */}
@@ -65,7 +65,7 @@ const Hero = () => {
                   href="#contact"
                   className="bg-white text-black pl-4 pr-1.5 py-1 rounded-full text-[15px] sm:text-[16px] font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center justify-between sm:justify-start gap-3 shadow-sm group w-full sm:w-auto"
                 >
-                  <span>Neem contact op</span>
+                  <span>Plan een kennismaking</span>
                   <span className="w-8 h-8 sm:w-9 sm:h-9 bg-primary rounded-full flex items-center justify-center text-white overflow-hidden relative flex-shrink-0">
                     <ArrowRight size={18} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />
                     <ArrowRight size={18} strokeWidth={2.5} className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
@@ -75,7 +75,7 @@ const Hero = () => {
                   href="#services"
                   className="font-inter bg-transparent px-5 text-white py-2.5 sm:py-2 rounded-full text-[15px] sm:text-[16px] md:text-lg font-semibold hover:bg-white/10 transition-all duration-200 border border-white/20 hover:border-white/30 text-center w-full sm:w-auto"
                 >
-                  Wat we doen
+                  Onze diensten
                 </Link>
               </div>
             </motion.div>

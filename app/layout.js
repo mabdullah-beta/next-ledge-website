@@ -17,6 +17,10 @@ export const metadata = {
   title: 'SalFin - Moderne Boekhouding & IT Oplossingen',
   description: 'SalFin combineert professionele boekhouding met slimme IT oplossingen. We maken je administratie efficiënt, je cijfers duidelijk, en je bedrijf klaar voor groei.',
   keywords: 'boekhouding, administratie, IT oplossingen, financiële diensten, Nederland',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+  },
   openGraph: {
     title: 'SalFin - Moderne Boekhouding & IT Oplossingen',
     description: 'Professionele boekhouding met slimme IT oplossingen voor efficiënte administratie en bedrijfsgroei.',

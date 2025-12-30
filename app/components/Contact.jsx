@@ -8,9 +8,10 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    date: '',
+    phone: '',
+    companyName: '',
     service: '',
-    budget: '',
+    companySize: '',
     message: ''
   });
 
@@ -38,11 +39,14 @@ export default function ContactSection() {
             <div className="mb-8 sm:mb-10 md:mb-12 text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4 sm:mb-5 md:mb-6">
                 <div className="w-2 h-2 bg-white rounded-full"></div>
-                <span className="text-xs sm:text-sm font-medium text-white/80">Neem contact met ons op</span>
+                <span className="text-xs sm:text-sm font-medium text-white/80">Contact opnemen met SalFin</span>
               </div>
-              <h2 className="font-hedvig text-[28px] sm:text-[32px] md:text-[36px] lg:text-[38px] text-white leading-tight max-w-sm mx-auto lg:mx-0">
-                Neem contact op met ons expertenteam
+              <h2 className="font-hedvig text-[28px] sm:text-[32px] md:text-[36px] lg:text-[38px] text-white leading-tight max-w-lg mx-auto lg:mx-0 mb-4">
+                Plan eenvoudig een kennismaking
               </h2>
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed max-w-md mx-auto lg:mx-0">
+                Vertel kort waar je hulp bij nodig hebt, dan nemen wij contact met je op.
+              </p>
             </div>
 
             {/* Form */}
@@ -53,10 +57,10 @@ export default function ContactSection() {
                   <input
                     type="text"
                     name="fullName"
-                    placeholder="Volledige naam"
+                    placeholder="Naam (voor- en achternaam)"
                     value={formData.fullName}
                     onChange={handleChange}
-                    className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white focus:outline focus:outline-white transition-colors"
+                    className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white/80 focus:outline focus:outline-white transition-colors"
                     required
                   />
                 </div>
@@ -67,26 +71,38 @@ export default function ContactSection() {
                     placeholder="E-mailadres"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white focus:outline focus:outline-white transition-colors"
+                    className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white/80 focus:outline focus:outline-white transition-colors"
                     required
                   />
                 </div>
               </div>
 
-              {/* Row 2: Date and Service */}
+              {/* Row 2: Phone and Company Name */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
                 <div>
                   <input
-                    type="date"
-                    name="date"
-                    placeholder="dd/mm/jjjj"
-                    value={formData.date}
+                    type="tel"
+                    name="phone"
+                    placeholder="Telefoonnummer (optioneel)"
+                    value={formData.phone}
                     onChange={handleChange}
-                    className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white focus:outline focus:outline-white transition-colors font-medium"
-                    style={{ colorScheme: 'dark' }}
-                    required
+                    className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white/80 focus:outline focus:outline-white transition-colors"
                   />
                 </div>
+                <div>
+                  <input
+                    type="text"
+                    name="companyName"
+                    placeholder="Bedrijfsnaam (optioneel)"
+                    value={formData.companyName}
+                    onChange={handleChange}
+                    className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-white/80 focus:outline focus:outline-white transition-colors"
+                  />
+                </div>
+              </div>
+
+              {/* Row 3: Service and Company Size */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
                 <div>
                   <select
                     name="service"
@@ -103,49 +119,51 @@ export default function ContactSection() {
                     }}
                     required
                   >
-                    <option value="" style={{ color: '#ffffff' }}>Dienst...</option>
-                    <option value="consulting" style={{ color: '#ffffff' }}>Bedrijfsadvies</option>
-                    <option value="strategy" style={{ color: '#ffffff' }}>Strategie ontwikkeling</option>
-                    <option value="analytics" style={{ color: '#ffffff' }}>Data analyse</option>
-                    <option value="transformation" style={{ color: '#ffffff' }}>Digitale transformatie</option>
+                    <option value="" style={{ color: '#ffffff' }}>Waar kunnen we je bij helpen?</option>
+                    <option value="salarisondersteuning" style={{ color: '#ffffff' }}>Salarisondersteuning</option>
+                    <option value="hr-ondersteuning" style={{ color: '#ffffff' }}>HR-ondersteuning</option>
+                    <option value="boekhouding" style={{ color: '#ffffff' }}>Boekhouding & financiële administratie</option>
+                    <option value="accounting" style={{ color: '#ffffff' }}>Accounting & inzichten</option>
+                    <option value="planning" style={{ color: '#ffffff' }}>Financiële planning & sturing</option>
+                    <option value="automatisering" style={{ color: '#ffffff' }}>Automatisering & IT-oplossingen</option>
+                    <option value="interim" style={{ color: '#ffffff' }}>Interim-oplossingen</option>
+                    <option value="anders" style={{ color: '#ffffff' }}>Anders / nog niet zeker</option>
                   </select>
                 </div>
-              </div>
-
-              {/* Row 3: Budget */}
-              <div>
-                <select
-                  name="budget"
-                  value={formData.budget}
-                  onChange={handleChange}
-                  className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline focus:outline-white transition-colors font-medium appearance-none"
-                  style={{
-                    color: '#ffffff',
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'right 0.75rem center',
-                    backgroundSize: '1em 1em',
-                    paddingRight: '2.5rem'
-                  }}
-                  required
-                >
-                  <option value="" style={{ color: '#ffffff' }}>Budget...</option>
-                  <option value="5k-10k" style={{ color: '#ffffff' }}>$5,000 tot $10,000</option>
-                  <option value="10k-25k" style={{ color: '#ffffff' }}>$10,000 tot $25,000</option>
-                  <option value="25k-50k" style={{ color: '#ffffff' }}>$25,000 tot $50,000</option>
-                  <option value="50k+" style={{ color: '#ffffff' }}>$50,000 of meer</option>
-                </select>
+                <div>
+                  <select
+                    name="companySize"
+                    value={formData.companySize}
+                    onChange={handleChange}
+                    className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline focus:outline-white transition-colors font-medium appearance-none"
+                    style={{
+                      color: '#ffffff',
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 0.75rem center',
+                      backgroundSize: '1em 1.5em',
+                      paddingRight: '2.5rem'
+                    }}
+                    required
+                  >
+                    <option value="" style={{ color: '#ffffff' }}>Omvang van de organisatie</option>
+                    <option value="zzp" style={{ color: '#ffffff' }}>ZZP / eenmanszaak</option>
+                    <option value="2-10" style={{ color: '#ffffff' }}>2–10 medewerkers</option>
+                    <option value="11-50" style={{ color: '#ffffff' }}>11–50 medewerkers</option>
+                    <option value="50+" style={{ color: '#ffffff' }}>50+ medewerkers</option>
+                  </select>
+                </div>
               </div>
 
               {/* Row 4: Message */}
               <div>
                 <textarea
                   name="message"
-                  placeholder="Hoe kunnen we helpen?"
+                  placeholder="Korte toelichting (waar loop je tegenaan of wat wil je verbeteren?)"
                   value={formData.message}
                   onChange={handleChange}
                   rows="4"
-                  className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder-white focus:outline focus:outline-white transition-colors resize-none"
+                  className="w-full bg-primary-light/30 rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-3 sm:py-4 text-sm sm:text-base text-white placeholder-white/80 focus:outline focus:outline-white transition-colors resize-none"
                 ></textarea>
               </div>
 
@@ -155,11 +173,14 @@ export default function ContactSection() {
                   type="submit"
                   className="w-full sm:w-auto inline-flex cursor-pointer items-center justify-center sm:justify-start gap-2 sm:gap-3 bg-primary-light/30 text-white font-semibold pl-4 sm:pl-5 md:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full hover:bg-secondary-dark transition-colors text-sm sm:text-base"
                 >
-                  <span>Verstuur je formulier</span>
+                  <span>Verstuur aanvraag</span>
                   <span className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-primary flex-shrink-0">
                     <ArrowRight size={18} className="sm:w-5 sm:h-5" strokeWidth={2.5} />
                   </span>
                 </button>
+                <p className="text-white/60 text-xs sm:text-sm mt-3 text-center sm:text-left">
+                  Na ontvangst nemen we contact met je op om de vraag te bespreken en te bepalen hoe we kunnen ondersteunen.
+                </p>
               </div>
             </form>
           </div>

@@ -7,48 +7,48 @@ import Link from 'next/link';
 const services = [
   {
     id: 1,
-    title: 'Boekhouding en Financiële Administratie',
+    title: 'Salarisadministratie & HR',
     description:
-      'Nauwkeurig, volgens de regels en altijd up to date. We verzorgen je boekhouding, btw aangiften, jaarrekeningen en alle andere administratieve taken met precisie. We gaan verder dan de basis en helpen je je cijfers te begrijpen zodat je ziet hoe gezond je bedrijf echt is.',
+      'Salarisadministratie van eenvoudig tot complex. Wij verzorgen loonverwerking, mutaties, aangiftes en afstemming met wet- en regelgeving, passend bij de inrichting van uw organisatie.',
     image:
-      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop',
-    href: '/services/accounting-financial-administration'
+      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
+    href: '/services/salarisadministratie-hr'
   },
   {
     id: 2,
-    title: 'Automatisering en IT Integratie',
+    title: 'Boekhouding & Financiële Rapportages',
     description:
-      'Efficiëntie door slimme technologie. We analyseren waar automatisering en IT je financiële processen kunnen vereenvoudigen, tijd kunnen besparen en handmatig werk kunnen verminderen. Ons doel is om je bij te laten blijven met ontwikkelingen in AI en digitale tools zodat je bedrijf soepeler draait en meer datagedreven wordt.',
+      'Volledige financiële administratie van dagelijkse verwerking tot periodieke afsluitingen. Inclusief btw-, IB- en VPB-aangiften en het opstellen van jaarrekeningen.',
     image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-    href: '/services/automation-it-integration'
+      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop',
+    href: '/services/boekhouding-financiele-rapportages'
   },
   {
     id: 3,
-    title: 'Financiële Inzichten en Rapportage',
+    title: 'Accounting, Jaarrekening & Financiële Planning',
     description:
-      'Duidelijkheid die betere beslissingen stimuleert. We maken van financiële data heldere inzichten via visuele rapportages en prestatie dashboards. Met de juiste informatie op het juiste moment kun je de gezondheid van je bedrijf volgen en met vertrouwen beslissingen nemen.',
+      'Vertaling van financiële data naar heldere rapportages en dashboards. Inzicht in resultaten, trends en afwijkingen als basis voor onderbouwde keuzes.',
     image:
       'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
-    href: '/services/financial-insights-reporting'
+    href: '/services/accounting-jaarrekening-financiele-planning'
   },
   {
     id: 4,
-    title: 'Budgettering en Forecasting',
+    title: 'Automatisering & IT-oplossingen',
     description:
-      'Plan vandaag met morgen in gedachten. We helpen je realistische budgetten op te stellen, financiele prognoses te maken en verschillende groeiscenarios te verkennen zodat je voorbereid bent op wat komt.',
+      'Inzet van IT-oplossingen om financiële, salaris- en HR-processen te automatiseren en organisaties data-driven te laten werken.',
     image:
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
-    href: '/services/budgeting-forecasting'
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+    href: '/services/automatisering-it-oplossingen'
   },
   {
     id: 5,
-    title: 'Advies en Bedrijfsondersteuning',
+    title: 'Interim-oplossingen',
     description:
-      'Je partner in elke groeifase. We werken met je samen om resultaten te analyseren, uitdagingen te bespreken en kansen te identificeren. Ons doel is om je duidelijkheid en vertrouwen te geven om de volgende stap te zetten, ondersteund door data in plaats van giswerk.',
+      'Tijdelijke ondersteuning binnen finance, salaris en HR bij uitval, projecten of extra capaciteitsbehoefte, met duidelijke afspraken.',
     image:
       'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
-    href: '/services/advisory-business-support'
+    href: '/services/interim-oplossingen'
   },
 ];
 
