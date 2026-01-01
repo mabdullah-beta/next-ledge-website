@@ -21,7 +21,7 @@ const Hero = () => {
     >
       <div className="max-w-full mx-auto px-4 sm:px-6 md:px-10 lg:px-20 xl:px-30">
         {/* Background container - loads immediately */}
-        <div className="relative bg-primary rounded-2xl sm:rounded-3xl md:rounded-4xl overflow-hidden">
+        <div className="relative bg-white md:bg-primary rounded-2xl sm:rounded-3xl md:rounded-4xl overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-0 items-center">
 
             {/* Left Content - Scale up animation */}
@@ -31,31 +31,14 @@ const Hero = () => {
               animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
             >
-              {/* Rating Badge */}
-              <div className="inline-flex items-center gap-2 sm:gap-2.5 mb-5 sm:mb-7 md:mb-8 lg:mb-10">
-                <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-4 h-4 sm:w-5 sm:h-5 text-white fill-current"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <span className="text-sm sm:text-[15px] font-normal text-white">
-                  Beoordeeld met 4,9 van 5
-                </span>
-              </div>
-
+              
               {/* Heading */}
-              <h1 className="font-hedvig text-[28px] sm:text-[36px] md:text-[42px] lg:text-[49px] font-normal text-white leading-[1.2] sm:leading-[1.15] tracking-tight mb-4 sm:mb-5 md:mb-6">
+              <h1 className="font-hedvig text-[28px] sm:text-[36px] md:text-[42px] lg:text-[49px] font-normal text-black md:text-white leading-[1.2] sm:leading-[1.15] tracking-tight mb-4 sm:mb-5 md:mb-6">
                 Salarisadministratie & HR, boekhouding en accounting.<br />Praktisch ingericht, ondersteund door IT.
               </h1>
 
               {/* Description */}
-              <p className="font-inter text-[14px] sm:text-[15px] md:text-[16px] font-normal text-white/80 leading-relaxed mb-6 sm:mb-7 md:mb-8 max-w-[520px]">
+              <p className="font-inter text-[14px] sm:text-[15px] md:text-[16px] font-normal text-black md:text-white/80 leading-relaxed mb-6 sm:mb-7 md:mb-8 max-w-[520px]">
                 SalFin ondersteunt organisaties met salarisadministratie & HR van eenvoudig tot complex, boekhouding van dagelijkse verwerking tot rapportage en accounting voor inzicht en sturing. Deze diensten sluiten naadloos op elkaar aan en vormen samen één overzichtelijk financieel geheel. Op basis van actuele cijfers denken wij mee, signaleren we ontwikkelingen en helpen we vooruitkijken waar dat nodig is, ondersteund door praktische IT-oplossingen.
               </p>
 
@@ -73,7 +56,7 @@ const Hero = () => {
                 </Link>
                 <Link
                   href="#services"
-                  className="font-inter bg-transparent px-5 text-white py-2.5 sm:py-2 rounded-full text-[15px] sm:text-[16px] md:text-lg font-semibold hover:bg-white/10 transition-all duration-200 border border-white/20 hover:border-white/30 text-center w-full sm:w-auto"
+                  className="font-inter bg-transparent px-5 text-black md:text-white py-2.5 sm:py-2 rounded-full text-[15px] sm:text-[16px] md:text-lg font-semibold hover:bg-white/10 transition-all duration-200 border border-black/20 md:border-white/20 hover:border-white/30 text-center w-full sm:w-auto"
                 >
                   Onze diensten
                 </Link>

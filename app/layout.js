@@ -14,9 +14,9 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'SalFin - Moderne Boekhouding & IT Oplossingen',
-  description: 'SalFin combineert professionele boekhouding met slimme IT oplossingen. We maken je administratie efficiënt, je cijfers duidelijk, en je bedrijf klaar voor groei.',
-  keywords: 'boekhouding, administratie, IT oplossingen, financiële diensten, Nederland',
+  title: 'SalFin - Ondersteuning bij salaris, HR en finance',
+  description: 'SalFin ondersteunt organisaties bij salarisadministratie, HR en financiële processen door te werken vanuit samenhang, zorgvuldige inrichting en waar nodig interim-oplossingen.',
+  keywords: 'salarisadministratie, HR, financiële processen, interim-oplossingen, Nederland',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -41,8 +41,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'SalFin - Moderne Boekhouding & IT Oplossingen',
-    description: 'Professionele boekhouding met slimme IT oplossingen voor efficiënte administratie en bedrijfsgroei.',
+    title: 'SalFin - Ondersteuning bij salaris, HR en finance',
+    description: 'SalFin ondersteunt organisaties bij salarisadministratie, HR en financiële processen door te werken vanuit samenhang, zorgvuldige inrichting en waar nodig interim-oplossingen.',
     url: 'https://salfin.com',
     siteName: 'SalFin',
     locale: 'nl_NL',

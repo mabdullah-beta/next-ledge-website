@@ -5,12 +5,12 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 const principles = [
-  {
-    id: 1,
-    icon: Target,
-    title: 'Praktijkervaring',
-    description: 'Gerund door ondernemers uit verschillende sectoren die weten hoe het is om beslissingen te moeten nemen op basis van cijfers.'
-  },
+  // {
+  //   id: 1,
+  //   icon: Target,
+  //   title: 'Praktijkervaring',
+  //   description: 'Gerund door ondernemers uit verschillende sectoren die weten hoe het is om beslissingen te moeten nemen op basis van cijfers.'
+  // },
   {
     id: 2,
     icon: Lightbulb,

@@ -15,10 +15,47 @@ export default function ContactSection() {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        // Reset form after successful submission
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          companyName: '',
+          service: '',
+          companySize: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+        console.error('Form submission error:', result.error);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -171,13 +208,35 @@ export default function ContactSection() {
               <div>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex cursor-pointer items-center justify-center sm:justify-start gap-2 sm:gap-3 bg-primary-light/30 text-white font-semibold pl-4 sm:pl-5 md:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full hover:bg-secondary-dark transition-colors text-sm sm:text-base"
+                  disabled={isSubmitting}
+                  className={`w-full sm:w-auto inline-flex cursor-pointer items-center justify-center sm:justify-start gap-2 sm:gap-3 bg-primary-light/30 text-white font-semibold pl-4 sm:pl-5 md:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full hover:bg-secondary-dark transition-colors text-sm sm:text-base ${
+                    isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                  }`}
                 >
-                  <span>Verstuur aanvraag</span>
+                  <span>{isSubmitting ? 'Bezig met verzenden...' : 'Verstuur aanvraag'}</span>
                   <span className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center text-primary flex-shrink-0">
                     <ArrowRight size={18} className="sm:w-5 sm:h-5" strokeWidth={2.5} />
                   </span>
                 </button>
+
+                {/* Success Message */}
+                {submitStatus === 'success' && (
+                  <div className="mt-4 p-3 bg-green-500/20 border border-green-500/30 rounded-xl">
+                    <p className="text-green-100 text-sm font-medium">
+                      ✅ Bedankt! Je aanvraag is succesvol verzonden. We nemen zo snel mogelijk contact met je op.
+                    </p>
+                  </div>
+                )}
+
+                {/* Error Message */}
+                {submitStatus === 'error' && (
+                  <div className="mt-4 p-3 bg-red-500/20 border border-red-500/30 rounded-xl">
+                    <p className="text-red-100 text-sm font-medium">
+                      ❌ Er is iets misgegaan bij het verzenden. Probeer het opnieuw of neem direct contact met ons op.
+                    </p>
+                  </div>
+                )}
+
                 <p className="text-white/60 text-xs sm:text-sm mt-3 text-center sm:text-left">
                   Na ontvangst nemen we contact met je op om de vraag te bespreken en te bepalen hoe we kunnen ondersteunen.
                 </p>

@@ -30,21 +30,21 @@ export default function AboutSalFin() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
-              SalFin is ontstaan vanuit de praktijk van het ondernemen. Wij worden gerund door ondernemers uit verschillende sectoren en weten hoe het is om beslissingen te moeten nemen op basis van cijfers die nog niet altijd compleet zijn. Juist daar ging het vaak mis: administratie die wel werd opgeleverd, maar onvoldoende houvast gaf om echt keuzes te maken.
+              SalFin is ontstaan vanuit de praktijk van het ondernemen. Ondernemen vraagt om keuzes, vaak op momenten waarop cijfers nog niet volledig zijn of verschillende signalen afgeven. In die situaties blijkt administratie regelmatig onvoldoende: correct verwerkt, maar niet bruikbaar voor sturing.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
             >
-              Daarom geloven wij dat administratie meer moet zijn dan verwerken en afronden. Cijfers moeten helpen om richting te bepalen, risico's te herkennen en vooruit te kijken. Vanuit die overtuiging is SalFin gestart.
+              Daarom werkt SalFin anders. Wij richten processen zo in dat informatie niet alleen klopt, maar ook richting geeft. Door salarisadministratie, HR en finance met elkaar te verbinden ontstaat overzicht, voorspelbaarheid en ruimte om gecontroleerd te handelen.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
             >
-              Wij ondersteunen organisaties met salarisadministratie, HR-ondersteuning, boekhouding, accounting en financiële sturing. Dat doen we nuchter en praktisch. We werken niet vanuit vaste formats, maar sluiten aan op hoe een organisatie daadwerkelijk werkt.
+              Onze rol is niet uitvoerend alleen, maar structurerend en ondersteunend in besluitvorming. SalFin brengt rust in organisaties waar geld en mensen samenkomen.
             </motion.p>
           </div>
         </motion.div>

@@ -16,12 +16,12 @@ import ChatWidget from "./services/widget/page";
 import { defaultFaqs } from "@/data/Faqs";
 
 export const metadata = {
-  title: 'SalFin - Moderne Boekhouding & IT Oplossingen',
-  description: 'SalFin combineert professionele boekhouding met slimme IT oplossingen. We maken je administratie efficiënt, je cijfers duidelijk, en je bedrijf klaar voor groei.',
-  keywords: 'boekhouding, administratie, IT oplossingen, financiële diensten, Nederland',
+  title: 'SalFin - Ondersteuning bij salaris, HR en finance',
+  description: 'SalFin ondersteunt organisaties bij salarisadministratie, HR en financiële processen door te werken vanuit samenhang, zorgvuldige inrichting en waar nodig interim-oplossingen.',
+  keywords: 'salarisadministratie, HR, financiële processen, interim-oplossingen, Nederland',
   openGraph: {
-    title: 'SalFin - Moderne Boekhouding & IT Oplossingen',
-    description: 'Professionele boekhouding met slimme IT oplossingen voor efficiënte administratie en bedrijfsgroei.',
+    title: 'SalFin - Ondersteuning bij salaris, HR en finance',
+    description: 'SalFin ondersteunt organisaties bij salarisadministratie, HR en financiële processen door te werken vanuit samenhang, zorgvuldige inrichting en waar nodig interim-oplossingen.',
     url: 'https://salfin.com',
     siteName: 'SalFin',
     locale: 'nl_NL',
@@ -35,11 +35,12 @@ export default function Home() {
     <div className="overflow-x-hidden w-full">
       <Header />
       <Hero />
+      <AboutSalFin />
       <Comparison />
       <Slider />
       {/* <TestimonialSection /> */}
-      <AboutSalFin />
-      <KeyBenefits />
+      
+      
       {/* <PricingPlans /> */}
       <HowItWorksSection />
       {/* <ImpactSection /> */}
@@ -47,6 +48,7 @@ export default function Home() {
       {/* <FlowchartSection /> */}
       {/* <FAQSection /> */}
       <ChatWidget />
+      <KeyBenefits />
       <ContactSection />
       <Footer />
     </div>

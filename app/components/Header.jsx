@@ -47,11 +47,6 @@ const Header = () => {
   ========================== */
   const features = [
     {
-      id: 1,
-      title: "Flexibele consultaties",
-      href: "/features/flexible-consultations",
-    },
-    {
       id: 2,
       title: "Op maat gemaakte administratieve oplossingen",
       href: "/features/tailored-administrative-solutions",
