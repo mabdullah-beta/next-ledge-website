@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -187,7 +187,17 @@ const Header = () => {
           </Link>
 
           {/* Mobile toggle */}
-          <button onClick={handleMobileMenuToggle} className="md:hidden w-10 h-10 bg-gray-100 rounded-full" />
+          <button 
+            onClick={handleMobileMenuToggle} 
+            className="md:hidden w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+            aria-label="Toggle mobile menu"
+          >
+            {isMobileMenuOpen ? (
+              <X size={20} className="text-gray-700" />
+            ) : (
+              <Menu size={20} className="text-gray-700" />
+            )}
+          </button>
         </nav>
       </div>
 
