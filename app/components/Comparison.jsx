@@ -48,7 +48,7 @@ const Comparison = () => {
   return (
     <section
       ref={sectionRef}
-      className="font-inter relative py-12 sm:py-16 md:py-20 lg:py-24 bg-white"
+      className="font-inter relative py-12 sm:py-16 md:py-20 lg:py-24 bg-blue-50/30"
       aria-label="Comparison Section"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">

@@ -121,7 +121,7 @@ export default function TeamSection() {
   };
 
   return (
-    <section ref={sectionRef} className="w-full bg-white py-10 md:py-20 sm:py-12 md:px-4" id="team">
+    <section ref={sectionRef} className="w-full bg-blue-50/30 py-10 md:py-20 sm:py-12 md:px-4" id="team">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="font-hedvig text-center mb-16 md:mb-16 sm:mb-12">

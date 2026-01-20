@@ -84,7 +84,7 @@ export default function ServicesCarousel() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8"
+      className="w-full bg-blue-50/30 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8"
       id="services"
     >
       <div className="max-w-7xl mx-auto">
@@ -130,7 +130,7 @@ export default function ServicesCarousel() {
                   }}
                 >
                   <Link href={service.href} className="block">
-                    <div className="h-[380px] sm:h-[400px] md:h-[420px] lg:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl relative group cursor-pointer bg-white hover:shadow-2xl transition-shadow duration-300">
+                    <div className="h-[380px] sm:h-[400px] md:h-[420px] lg:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden hover:shadow-3xl relative group cursor-pointer bg-white transition-all duration-500 hover:shadow-lg hover:-translate-y-2">
                       <Image
                         src={service.image}
                         alt={service.title}

@@ -18,7 +18,7 @@ export default function ImpactSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
   return (
-    <section ref={sectionRef} className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <section ref={sectionRef} className="w-full bg-blue-50/30 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}

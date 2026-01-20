@@ -8,7 +8,7 @@ export default function AboutSalFin() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="about" className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
+    <section id="about" className="w-full bg-blue-50/30 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           ref={ref}

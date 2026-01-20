@@ -167,7 +167,7 @@ function StepItem({ step, index, onInView }) {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <div className="relative w-[85%] lg:w-[80%] h-[240px] lg:h-[295px] rounded-2xl lg:rounded-3xl overflow-hidden ml-auto">
+                <div className="relative w-[85%] lg:w-[80%] h-[240px] lg:h-[295px] rounded-2xl lg:rounded-3xl overflow-hidden ml-auto shadow-2xl hover:shadow-3xl transition-shadow duration-500">
                   <Image
                     src={step.image}
                     alt={step.title}
@@ -232,7 +232,7 @@ function StepItem({ step, index, onInView }) {
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
               >
-                <div className="relative w-[85%] lg:w-[80%] h-[240px] lg:h-[295px] rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl">
+                <div className="relative w-[85%] lg:w-[80%] h-[240px] lg:h-[295px] rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
                   <Image
                     src={step.image}
                     alt={step.title}
@@ -278,7 +278,7 @@ function StepItem({ step, index, onInView }) {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="relative w-full h-[240px] sm:h-[280px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl">
+          <div className="relative w-full h-[240px] sm:h-[280px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
             <Image
               src={step.image}
               alt={step.title}
@@ -338,7 +338,7 @@ export default function HowItWorksSection() {
   };
 
   return (
-    <section className="tracking-tight font-inter w-full bg-linear-to-br from-gray-50 to-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 relative overflow-hidden">
+    <section className="tracking-tight font-inter w-full bg-blue-50/30 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />

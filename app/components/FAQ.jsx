@@ -119,7 +119,7 @@ export default function FAQSection({
 
   return (
     <section
-      className={`w-full bg-white py-12 sm:py-16 md:py-20 lg:py-5 px-4 sm:px-6 md:px-8 ${className}`}
+      className={`w-full bg-blue-50/30 py-12 sm:py-16 md:py-20 lg:py-5 px-4 sm:px-6 md:px-8 ${className}`}
     >
       <div className="max-w-3xl mx-auto">
         {/* Header */}

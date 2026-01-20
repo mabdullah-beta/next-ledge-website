@@ -12,7 +12,7 @@ export default function TestimonialSection() {
   return (
     <section
       ref={sectionRef}
-      className="font-hedvig w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8"
+      className="font-hedvig w-full bg-blue-50/30 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8"
       id="testimonial"
     >
       <div className="max-w-2xl mx-auto text-center">

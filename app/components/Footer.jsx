@@ -44,7 +44,7 @@ export default function Footer() {
               <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-5 sm:mb-6">Menu</h3>
               <ul className="space-y-3 sm:space-y-4">
                 <li>
-                  <Link href="#about" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                  <Link href="/about" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
                     Over SalFin
                   </Link>
                 </li>
@@ -141,7 +141,7 @@ export default function Footer() {
             <h3 className="text-[18px] sm:text-[20px] font-semibold text-gray-900 mb-4 sm:mb-5">Menu</h3>
             <ul className="space-y-3 sm:space-y-4">
               <li>
-                <Link href="#about" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
+                <Link href="/about" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
                   Over SalFin
                 </Link>
               </li>

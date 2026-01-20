@@ -55,7 +55,7 @@ export default function KeyBenefits() {
   const isSecondRowInView = useInView(secondRowRef, { once: true, amount: 0.3 });
 
   return (
-    <section id="principles" className="w-full bg-gray-50 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
+    <section id="principles" className="w-full bg-blue-50/30 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="font-hedvig text-center mb-12 sm:mb-16 md:mb-20">

@@ -46,6 +46,7 @@ const Header = () => {
   ========================== */
   const navItems = [
     { label: "Diensten", hasDropdown: true, dropdownType: "services" },
+    { label: "Over ons", href: "/about" },
     // { label: "Prijzen", href: "/Pricing" },
     { label: "Hoe het werkt", href: "/#howitworks" },
   ];
@@ -80,7 +81,7 @@ const Header = () => {
     <header
       ref={headerRef}
       onMouseLeave={closeAllDropdowns}
-      className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-200 ${isScrolled ? "shadow-md" : ""
+      className={`fixed top-0 left-0 right-0 z-50 bg-blue-50/30 transition-all duration-200 ${isScrolled ? "shadow-md" : ""
         }`}
     >
       <div className="max-w-full mx-auto px-5 md:px-12">

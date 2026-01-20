@@ -54,7 +54,7 @@ export default function PricingPlans() {
     return (
         <div>
             <Header />
-            <section ref={sectionRef} className="w-full bg-white py-30 px-4" id="pricing">
+            <section ref={sectionRef} className="w-full bg-blue-50/30 py-30 px-4" id="pricing">
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}
                     <div className="font-hedvig text-center mb-16">

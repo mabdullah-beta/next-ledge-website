@@ -10,7 +10,7 @@ export default function FlowchartSection() {
   
 
   return (
-    <section ref={ref} className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8" aria-labelledby="flowchart-title">
+    <section ref={ref} className="w-full bg-blue-50/30 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8" aria-labelledby="flowchart-title">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}

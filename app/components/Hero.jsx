@@ -16,7 +16,7 @@ const Hero = () => {
 
   return (
     <section
-      className="relative pt-16 pb-8 md:pt-24 md:pb-16 lg:pt-[90px] lg:pb-20 bg-white"
+      className="relative pt-16 pb-8 md:pt-24 md:pb-16 lg:pt-[90px] lg:pb-20 bg-blue-50/30"
       aria-label="Hero Section"
     >
       <div className="max-w-full mx-auto px-4 sm:px-6 md:px-10 lg:px-20 xl:px-30">
@@ -70,7 +70,7 @@ const Hero = () => {
               animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2, ease: "easeOut", delay: 0.10 }}
             >
-              <div className="relative w-full lg:w-[85%] xl:w-[80%] h-full rounded-2xl sm:rounded-2xl md:rounded-3xl overflow-hidden lg:ml-auto">
+              <div className="relative w-full lg:w-[85%] xl:w-[80%] h-full rounded-2xl sm:rounded-2xl md:rounded-3xl overflow-hidden lg:ml-auto shadow-2xl hover:shadow-3xl transition-shadow duration-500">
                 <Image
                   src="/image.png"
                   alt="Business consulting professional"
