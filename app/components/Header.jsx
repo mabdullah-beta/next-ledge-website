@@ -8,7 +8,6 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
   const headerRef = useRef(null);
 
   /* =========================
@@ -43,42 +42,10 @@ const Header = () => {
   ];
 
   /* =========================
-     Features (NL + static paths)
-  ========================== */
-  const features = [
-    {
-      id: 2,
-      title: "Op maat gemaakte administratieve oplossingen",
-      href: "/features/tailored-administrative-solutions",
-    },
-    {
-      id: 3,
-      title: "Praktische financiële inzichten",
-      href: "/features/practical-financial-insights",
-    },
-    {
-      id: 4,
-      title: "Data- & controlestrategieën",
-      href: "/features/data-control-strategies",
-    },
-    {
-      id: 5,
-      title: "Doorlopende administratieve ondersteuning",
-      href: "/features/ongoing-administrative-support",
-    },
-    {
-      id: 6,
-      title: "Efficiënte automatisering & IT-support",
-      href: "/features/efficient-automation-it-support",
-    },
-  ];
-
-  /* =========================
      Navigation labels (NL)
   ========================== */
   const navItems = [
     { label: "Diensten", hasDropdown: true, dropdownType: "services" },
-    { label: "Features", hasDropdown: true, dropdownType: "features" },
     // { label: "Prijzen", href: "/Pricing" },
     { label: "Hoe het werkt", href: "/#howitworks" },
   ];
@@ -92,7 +59,6 @@ const Header = () => {
   // Helper functions
   const closeAllDropdowns = () => {
     setIsServicesOpen(false);
-    setIsFeaturesOpen(false);
   };
 
   const handleItemClick = () => {
@@ -107,10 +73,6 @@ const Header = () => {
   const handleMobileDropdownToggle = (dropdownType) => {
     if (dropdownType === "services") {
       setIsServicesOpen(!isServicesOpen);
-      setIsFeaturesOpen(false);
-    } else {
-      setIsFeaturesOpen(!isFeaturesOpen);
-      setIsServicesOpen(false);
     }
   };
 
@@ -138,9 +100,9 @@ const Header = () => {
                 {item.hasDropdown ? (
                   <div
                     onMouseEnter={() => {
-                      item.dropdownType === "services"
-                        ? (setIsServicesOpen(true), setIsFeaturesOpen(false))
-                        : (setIsFeaturesOpen(true), setIsServicesOpen(false));
+                      if (item.dropdownType === "services") {
+                        setIsServicesOpen(true);
+                      }
                     }}
                   >
                     <button className="flex items-center gap-1.5 font-medium text-heading hover:text-primary">
@@ -148,11 +110,10 @@ const Header = () => {
                       <ChevronDown size={15} />
                     </button>
 
-                    {(item.dropdownType === "services" && isServicesOpen) ||
-                      (item.dropdownType === "features" && isFeaturesOpen) ? (
+                    {item.dropdownType === "services" && isServicesOpen ? (
                       <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 bg-white rounded-xl shadow-lg border">
                         <div className="p-3">
-                          {(item.dropdownType === "services" ? services : features).map((s) => (
+                          {services.map((s) => (
                             <Link
                               key={s.id}
                               href={s.href}
@@ -216,9 +177,9 @@ const Header = () => {
                       {item.label}
                       <ChevronDown />
                     </button>
-                    {(item.dropdownType === "services" ? isServicesOpen : isFeaturesOpen) && (
+                    {item.dropdownType === "services" && isServicesOpen && (
                       <div className="pl-4 pb-4 space-y-2">
-                        {(item.dropdownType === "services" ? services : features).map((s) => (
+                        {services.map((s) => (
                           <Link
                             key={s.id}
                             href={s.href}
