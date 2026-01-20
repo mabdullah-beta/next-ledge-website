@@ -34,12 +34,12 @@ const Hero = () => {
               
               {/* Heading */}
               <h1 className="font-hedvig text-[28px] sm:text-[36px] md:text-[42px] lg:text-[49px] font-normal text-black md:text-white leading-[1.2] sm:leading-[1.15] tracking-tight mb-4 sm:mb-5 md:mb-6">
-                Salarisadministratie & HR, boekhouding en accounting.<br />Praktisch ingericht, ondersteund door IT.
+                Salarisadministratie & HR, boekhouding en accounting.<br />Praktisch, efficiënt, IT-ondersteund.
               </h1>
 
               {/* Description */}
               <p className="font-inter text-[14px] sm:text-[15px] md:text-[16px] font-normal text-black md:text-white/80 leading-relaxed mb-6 sm:mb-7 md:mb-8 max-w-[520px]">
-                SalFin ondersteunt organisaties met salarisadministratie & HR van eenvoudig tot complex, boekhouding van dagelijkse verwerking tot rapportage en accounting voor inzicht en sturing. Deze diensten sluiten naadloos op elkaar aan en vormen samen één overzichtelijk financieel geheel. Op basis van actuele cijfers denken wij mee, signaleren we ontwikkelingen en helpen we vooruitkijken waar dat nodig is, ondersteund door praktische IT-oplossingen.
+                SalFin biedt complete financiële dienstverlening: van salarisadministratie & HR tot boekhouding en accounting. Onze diensten vormen één naadloos geheel, ondersteund door praktische IT-oplossingen. We denken proactief mee op basis van actuele cijfers en helpen u vooruitkijken.
               </p>
 
               {/* CTA Buttons */}
@@ -49,7 +49,7 @@ const Hero = () => {
                   className="bg-white text-black pl-4 pr-1.5 py-1 rounded-full text-[15px] sm:text-[16px] font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center justify-between sm:justify-start gap-3 shadow-sm group w-full sm:w-auto"
                 >
                   <span>Plan een kennismaking</span>
-                  <span className="w-8 h-8 sm:w-9 sm:h-9 bg-primary rounded-full flex items-center justify-center text-white overflow-hidden relative flex-shrink-0">
+                  <span className="w-8 h-8 sm:w-9 sm:h-9 bg-primary rounded-full flex items-center justify-center text-white overflow-hidden relative shrink-0">
                     <ArrowRight size={18} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-6" />
                     <ArrowRight size={18} strokeWidth={2.5} className="absolute -translate-x-6 transition-transform duration-300 group-hover:translate-x-0" />
                   </span>

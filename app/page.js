@@ -35,8 +35,8 @@ export default function Home() {
     <div className="overflow-x-hidden w-full">
       <Header />
       <Hero />
-      <AboutSalFin />
       <Comparison />
+      <AboutSalFin />
       <Slider />
       {/* <TestimonialSection /> */}
       

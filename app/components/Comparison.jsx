@@ -10,46 +10,38 @@ const Comparison = () => {
   const otherFirms = [
     {
       title: "Service die voor iedereen hetzelfde is",
-      description: "Standaard boekhouding met weinig ruimte voor maatgericht advies of vooruitdenken.",
+      description: "Standaard boekhouding zonder maatwerk of strategisch advies.",
     },
     {
       title: "Reactieve ondersteuning",
-      description: "Hulp komt pas wanneer je erom vraagt, niet wanneer je echt begeleiding nodig hebt.",
+      description: "Hulp alleen op verzoek, geen proactieve begeleiding.",
     },
     {
-      title: "Onduidelike prijzen",
-      description: "Onverwachte extra kosten die het lastig maken om te budgetteren.",
+      title: "Onduidelijke prijzen",
+      description: "Onverwachte meerkosten maken budgettering lastig.",
     },
   ];
 
   const withStratex = [
     {
-      title: "Gedreven door ondernemerschap",
-      description: "SalFin wordt gerund door ondernemers uit verschillende sectoren. We begrijpen de praktijk achter de cijfers en weten wat er speelt binnen organisaties.",
+      title: "Maatwerk op basis van ondernemerschap",
+      description: "Persoonlijke aanpak afgestemd op uw specifieke bedrijfssituatie.",
     },
     {
-      title: "Verder dan doorsnee accountancy",
-      description: "Wij gaan verder waar standaard accountancykantoren stoppen. Niet alleen administratie, maar meedenken, doorvragen en overzicht creëren waar het nodig is.",
+      title: "Proactieve strategische begeleiding",
+      description: "We denken vooruit en adviseren proactief voor uw groei.",
     },
     {
-      title: "Out-of-the-box denken, scherp doorvragen",
-      description: "We werken niet vanuit vaste formats. Door goed door te vragen brengen we de echte hulpvraag in beeld en stemmen onze aanpak daarop af.",
-    },
-    {
-      title: "Inzicht, sturing en vooruitkijken",
-      description: "SalFin vervult waar nodig de rol van business controller. Samen met klanten stellen we begrotingen op, kijken we vooruit en geven we sturing op basis van cijfers. We vertalen inzichten naar concrete aanbevelingen die helpen bij het maken van keuzes.",
+      title: "Transparante prijsafspraken",
+      description: "Duidelijke tarieven zonder verrassingen of verborgen kosten.",
     },
     {
       title: "Data-driven met slimme IT-oplossingen",
-      description: "Onze IT-oplossingen zijn gericht op het data-driven maken van organisaties. We passen automatisering toe waar het waarde toevoegt, zodat informatie actueel, toegankelijk en bruikbaar is.",
+      description: "Automatisering en technologie voor actuele, toegankelijke informatie.",
     },
     {
-      title: "Flexibele inzet wanneer het nodig is",
-      description: "SalFin fungeert als flexibele schil bij ziekte, zwangerschapsverlof of tijdelijke capaciteitsbehoefte. Wij vullen een rol in voor een afgesproken periode, zonder ingewikkelde voorwaarden. Is onze inzet niet langer nodig, dan stopt de interim- of deta-invulling na 30 dagen.",
-    },
-    {
-      title: "Een partner die naast u staat",
-      description: "Geen kleine letters, geen ruis. Duidelijke afspraken en ondersteuning die past bij de situatie.",
+      title: "Flexibele partner die naast u staat",
+      description: "Ondersteuning wanneer nodig, eenvoudig te beëindigen binnen 30 dagen.",
     },
   ];
 
@@ -67,13 +59,13 @@ const Comparison = () => {
             <span className="font-inter text-sm sm:text-base font-semimedium text-primary">Waarom voor ons kiezen</span>
           </div>
           <h1 className="font-hedvig text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 leading-tight max-w-2xl mx-auto px-4">
-            Meer dan accountants, partners in je zakelijke reis
+            Meer dan accountants, partners in uw zakelijke reis
           </h1>
         </div>
 
         {/* Comparison Grid */}
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-gradient-to-b from-primary-light/5 to-primary-light/20 border-2 border-primary/20 rounded-2xl sm:rounded-3xl overflow-hidden p-1 sm:p-1.5"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-linear-to-b from-primary-light/5 to-primary-light/20 border-2 border-primary/20 rounded-2xl sm:rounded-3xl overflow-hidden p-1 sm:p-1.5"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
@@ -87,7 +79,7 @@ const Comparison = () => {
 
             {otherFirms.map((item, index) => (
               <div key={index} className="flex gap-3 sm:gap-4 items-start">
-                <div className="flex-shrink-0 mt-0.5 sm:mt-1">
+                <div className="shrink-0 mt-0.5 sm:mt-1">
                   <Check size={18} className="text-gray-400 sm:w-5 sm:h-5" strokeWidth={2} />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -110,7 +102,7 @@ const Comparison = () => {
 
             {withStratex.map((item, index) => (
               <div key={index} className="flex gap-3 sm:gap-4 items-start">
-                <div className="flex-shrink-0 mt-0.5 sm:mt-1">
+                <div className="shrink-0 mt-0.5 sm:mt-1">
                   <div className="w-[18px] h-[18px] sm:w-5 sm:h-5 bg-primary rounded-full flex items-center justify-center">
                     <Check size={12} className="text-white sm:w-[14px] sm:h-[14px]" strokeWidth={3} />
                   </div>

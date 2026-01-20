@@ -9,52 +9,47 @@ const steps = [
   {
     id: '01',
     title: 'Kennismaking & inventarisatie',
-    abt: 'We starten met een kennismaking',
-    description: 'We starten met een kennismaking waarin we jouw situatie bespreken. We brengen in kaart welke ondersteuning nodig is: salaris, HR, boekhouding, accounting, planning of interim. Samen bepalen we de scope, aanpak en verwachtingen.',
+    description: 'We bespreken uw situatie en brengen benodigde ondersteuning in kaart. Samen bepalen we scope en aanpak.',
     image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
     imagePosition: 'left',
     icon: Handshake,
-    benefits: ['Korte intake', 'Duidelijke doelen en afspraken', 'Vast aanspreekpunt']
+    benefits: ['Efficiënte intake', 'Heldere afspraken', 'Vast aanspreekpunt']
   },
   {
     id: '02',
     title: 'Inrichting & overdracht',
-    abt: 'Praktische inrichting van de samenwerking',
-    description: 'We richten de samenwerking praktisch in. Systemen, toegang en werkwijze worden afgestemd en waar nodig verbeteren we processen met gerichte automatisering die direct helpt.',
+    description: 'We richten systemen en werkwijze in. Processen optimaliseren we met gerichte automatisering.',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
     imagePosition: 'right',
     icon: Settings,
-    benefits: ['Heldere werkafspraken', 'IT-koppelingen en automatisering waar logisch', 'Soepele start']
+    benefits: ['Duidelijke werkafspraken', 'Slimme automatisering', 'Soepele implementatie']
   },
   {
     id: '03',
     title: 'Uitvoering & ondersteuning',
-    abt: 'Doorlopende dienstverlening',
-    description: 'We voeren de afgesproken diensten uit en houden alles actueel. Je hebt overzicht, vaste contactmomenten en korte lijnen bij vragen of wijzigingen.',
+    description: 'We voeren diensten uit en houden alles actueel. U heeft overzicht en directe lijnen bij vragen.',
     image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop',
     imagePosition: 'left',
     icon: PlayCircle,
-    benefits: ['Doorlopende verwerking', 'Snelle afstemming bij mutaties', 'Duidelijke communicatie']
+    benefits: ['Continue verwerking', 'Snelle reactie bij wijzigingen', 'Heldere communicatie']
   },
   {
     id: '04',
     title: 'Inzicht, sturing & vooruitblik',
-    abt: 'Van cijfers naar richting',
-    description: 'We vertalen cijfers naar inzicht en richting. Met rapportages, dashboards en – waar passend – begrotingen helpen we je vooruit te kijken en bij te sturen op basis van actuele informatie.',
+    description: 'We vertalen cijfers naar concrete inzichten voor vooruitkijken en bijsturen.',
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     imagePosition: 'right',
     icon: BarChart3,
-    benefits: ['Inzicht in cijfers', 'Planning en begroting', 'Concrete aanbevelingen']
+    benefits: ['Heldere rapportages', 'Strategische planning', 'Praktische aanbevelingen']
   },
   {
     id: '05',
     title: 'Opschalen, tijdelijk invullen of afronden',
-    abt: 'Flexibele ondersteuning',
-    description: 'Bij uitval, groei of tijdelijke behoefte schalen we op met interim inzet binnen finance, salaris of HR. Is ondersteuning niet meer nodig, dan bouwen we de samenwerking helder en netjes af.',
+    description: 'Bij uitval, groei of tijdelijke behoefte bieden we interim ondersteuning. Bij afronding zorgen we voor heldere overdracht.',
     image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
     imagePosition: 'left',
     icon: Zap,
-    benefits: ['Flexibele inzet', 'Heldere overdracht', 'Duidelijke afspraken']
+    benefits: ['Snelle opschaling', 'Professionele overdracht', 'Transparante afspraken']
   }
 ];
 
@@ -191,12 +186,9 @@ function StepItem({ step, index, onInView }) {
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
               >
                 <div className="bg-white/80 backdrop-blur-sm rounded-radius-card p-6 lg:p-8">
-                  <h3 className="font-hedvig text-heading-sm text-heading mb-3 tracking-tight">
+                  <h3 className="font-hedvig text-heading-sm text-heading mb-4 tracking-tight">
                     {step.title}
                   </h3>
-                  <h4 className='text-body-base font-semibold text-primary mb-4 tracking-tight'>
-                    {step.abt}
-                  </h4>
                   <p className="antialiased text-body text-body-base leading-relaxed mb-6">
                     {step.description}
                   </p>
@@ -217,12 +209,9 @@ function StepItem({ step, index, onInView }) {
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 <div className="bg-white/80 backdrop-blur-sm rounded-radius-card p-6 lg:p-8 text-right">
-                  <h3 className="font-hedvig text-heading-sm text-heading mb-3 tracking-tight">
+                  <h3 className="font-hedvig text-heading-sm text-heading mb-4 tracking-tight">
                     {step.title}
                   </h3>
-                  <h4 className='text-body-base font-semibold text-primary mb-4 tracking-tight'>
-                    {step.abt}
-                  </h4>
                   <p className="antialiased text-body text-body-base leading-relaxed mb-6">
                     {step.description}
                   </p>
@@ -307,12 +296,9 @@ function StepItem({ step, index, onInView }) {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
         >
           <div className="bg-white/80 backdrop-blur-sm rounded-radius-card p-5 sm:p-6 shadow-lg border border-gray-100">
-            <h3 className="font-hedvig text-card-title sm:text-heading-sm text-heading mb-2 sm:mb-3 tracking-tight">
+            <h3 className="font-hedvig text-card-title sm:text-heading-sm text-heading mb-3 sm:mb-4 tracking-tight">
               {step.title}
             </h3>
-            <h4 className='text-sm-custom sm:text-body-base font-semibold text-primary mb-3 sm:mb-4 tracking-tight'>
-              {step.abt}
-            </h4>
             <p className="antialiased text-body text-sm-custom sm:text-body-base leading-relaxed mb-4 sm:mb-5">
               {step.description}
             </p>
@@ -339,6 +325,16 @@ export default function HowItWorksSection() {
 
   const handleStepInView = (stepIndex) => {
     setCurrentStep(stepIndex);
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
   return (
@@ -396,7 +392,7 @@ export default function HowItWorksSection() {
               Klaar om te starten?
             </h3>
             <p className="text-body text-base sm:text-lg leading-relaxed px-4">
-              Plan een kennismaking en ontdek hoe wij uw organisatie kunnen ondersteunen.
+              Ontdek hoe wij uw organisatie kunnen ondersteunen met een vrijblijvende kennismaking.
             </p>
           </div>
           
@@ -405,6 +401,7 @@ export default function HowItWorksSection() {
               className="inline-flex items-center gap-2 sm:gap-3 bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 group shadow-lg hover:shadow-xl hover:bg-primary-light w-full sm:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection('contact')}
             >
               <span className="font-semibold text-sm-custom sm:text-body-base">Plan een kennismaking</span>
               <div className="w-6 h-6 sm:w-7 sm:h-7 bg-white rounded-full flex items-center justify-center">
@@ -416,6 +413,7 @@ export default function HowItWorksSection() {
               className="inline-flex items-center gap-2 sm:gap-3 bg-white text-primary border-2 border-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all duration-300 group hover:bg-primary hover:text-white shadow-lg hover:shadow-xl w-full sm:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection('services')}
             >
               <span className="font-semibold text-sm-custom sm:text-body-base">Bekijk onze diensten</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-0.5 transition-transform" />

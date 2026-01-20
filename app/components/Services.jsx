@@ -9,7 +9,7 @@ const services = [
     id: 1,
     title: 'Salarisadministratie & HR',
     description:
-      'Salarisadministratie van eenvoudig tot complex. Wij verzorgen loonverwerking, mutaties, aangiftes en afstemming met wet- en regelgeving, passend bij de inrichting van uw organisatie.',
+      'Complete salarisadministratie van eenvoudig tot complex. Loonverwerking, mutaties, aangiftes en compliance, afgestemd op uw organisatie.',
     image:
       'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
     href: '/services/salarisadministratie-hr'
@@ -18,7 +18,7 @@ const services = [
     id: 2,
     title: 'Boekhouding & Financiële Rapportages',
     description:
-      'Volledige financiële administratie van dagelijkse verwerking tot periodieke afsluitingen. Inclusief btw-, IB- en VPB-aangiften en het opstellen van jaarrekeningen.',
+      'Volledige financiële administratie van dagelijkse verwerking tot jaarafsluiting. Inclusief btw-, IB- en VPB-aangiften en jaarrekeningen.',
     image:
       'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop',
     href: '/services/boekhouding-financiele-rapportages'
@@ -27,7 +27,7 @@ const services = [
     id: 3,
     title: 'Accounting, Jaarrekening & Financiële Planning',
     description:
-      'Vertaling van financiële data naar heldere rapportages en dashboards. Inzicht in resultaten, trends en afwijkingen als basis voor onderbouwde keuzes.',
+      'Financiële data vertaald naar heldere rapportages en dashboards. Inzicht in resultaten, trends en afwijkingen voor onderbouwde beslissingen.',
     image:
       'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
     href: '/services/accounting-jaarrekening-financiele-planning'
@@ -36,7 +36,7 @@ const services = [
     id: 4,
     title: 'Automatisering & IT-oplossingen',
     description:
-      'Inzet van IT-oplossingen om financiële, salaris- en HR-processen te automatiseren en organisaties data-driven te laten werken.',
+      'IT-oplossingen voor automatisering van financiële, salaris- en HR-processen. Maak uw organisatie data-driven en efficiënter.',
     image:
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
     href: '/services/automatisering-it-oplossingen'
@@ -45,7 +45,7 @@ const services = [
     id: 5,
     title: 'Interim-oplossingen',
     description:
-      'Tijdelijke ondersteuning binnen finance, salaris en HR bij uitval, projecten of extra capaciteitsbehoefte, met duidelijke afspraken.',
+      'Flexibele interim ondersteuning binnen finance, salaris en HR bij uitval, projecten of extra capaciteit. Heldere afspraken gegarandeerd.',
     image:
       'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop',
     href: '/services/interim-oplossingen'
@@ -97,7 +97,7 @@ export default function ServicesCarousel() {
           </div>
 
           <h2 className="font-hedvig text-[26px] sm:text-[32px] md:text-[38px] lg:text-heading-lg text-gray-900 max-w-3xl mx-auto leading-tight px-4">
-            Betrouwbare expertise die jouw succes versterkt
+            Expertise die uw succes versterkt
           </h2>
         </div>
 
