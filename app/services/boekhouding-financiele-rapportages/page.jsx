@@ -1,247 +1,255 @@
-import { Metadata } from 'next';
+'use client';
+
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import {
+  BookOpen,
+  Layers,
+  Repeat,
+  Cpu,
+  BarChart3,
+  ShieldCheck,
+  Check,
+} from 'lucide-react';
 
-export const metadata = {
-  title: 'Boekhouding & Financiële Rapportages | SalFin',
-  description: 'Professionele boekhouding en financiële rapportages. SalFin zorgt voor correcte, actuele administratie en heldere financiële inzichten voor betere besluitvorming.',
-  keywords: 'boekhouding, financiële rapportages, administratie, balans, winst en verlies, btw aangiften',
-};
 
 export default function BoekhoudingFinancieleRapportagesPage() {
+  const handleContactClick = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = '/#contact';
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-blue-50/30">
       <Header />
-      {/* Hero Section */}
-      <section className="bg-primary text-white py-16 sm:py-20 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="w-2 h-2 bg-white rounded-full"></div>
-            <span className="text-sm sm:text-base font-medium text-white/80">Boekhouding & Financiële Rapportages</span>
+
+      {/* Hero */}
+      <section className="py-12 lg:py-20 md:mt-10">
+        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="font-hedvig text-heading-lg text-heading mb-4">
+              Boekhouding &
+              <br />
+              Financiële Rapportages
+            </h1>
+            <p className="text-body-lg text-body mb-6">
+              Boekhouding als fundament van de organisatie
+            </p>
+            <p className="text-body mb-8 leading-relaxed">
+              Correcte, actuele administratie vormt de basis voor betrouwbare
+              rapportages, fiscale verplichtingen en onderbouwde beslissingen.
+            </p>
+
+            <div className="space-y-3 mb-8">
+              {[
+                'Correct en up-to-date ingericht',
+                'Structuur, controle en overzicht',
+                'Heldere financiële inzichten',
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-3">
+                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center">
+                    <Check className="w-3 h-3 text-white" />
+                  </div>
+                  <span className="text-heading">{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={handleContactClick}
+              className="bg-primary hover:bg-primary-light text-white px-8 py-3 rounded-full font-medium transition-all shadow-sm"
+            >
+              Plan een kennismaking
+            </button>
           </div>
-          <h1 className="font-hedvig text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-            Boekhouding & Financiële Rapportages
-          </h1>
-          <p className="text-lg sm:text-xl leading-relaxed text-white/90 max-w-3xl">
-            Boekhouding als fundament van de organisatie
+
+          {/* Illustration card */}
+          <div className="bg-white rounded-2xl p-8 shadow-lg h-80 flex items-center justify-center relative">
+            <div className="absolute top-6 left-6 w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center">
+              <BookOpen className="text-primary" />
+            </div>
+            <div className="absolute bottom-6 right-6 w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center">
+              <BarChart3 className="text-green-600" />
+            </div>
+            <div className="w-28 h-28 bg-primary rounded-2xl flex items-center justify-center">
+              <Layers className="w-14 h-14 text-white" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why bookkeeping */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-hedvig text-heading-lg text-heading">
+              Waarom goede boekhouding essentieel is
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: Layers,
+                title: 'Structuur',
+                text: 'Logisch ingerichte administratie geeft overzicht',
+              },
+              {
+                icon: Repeat,
+                title: 'Continu inzicht',
+                text: 'Altijd actuele cijfers beschikbaar',
+              },
+              {
+                icon: ShieldCheck,
+                title: 'Betrouwbaarheid',
+                text: 'Correcte basis voor aangiftes en jaarrekening',
+              },
+              {
+                icon: BarChart3,
+                title: 'Besluitvorming',
+                text: 'Feitelijk inzicht in financiële positie',
+              },
+            ].map(({ icon: Icon, title, text }) => (
+              <div key={title} className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <Icon className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-semibold text-heading mb-2">{title}</h3>
+                <p className="text-body text-sm">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12">
+          {/* Inrichting */}
+          <div className="bg-white rounded-2xl p-8 shadow-sm">
+            <h3 className="font-hedvig text-heading-sm mb-6">
+              Inrichting van de boekhouding
+            </h3>
+            <ul className="space-y-3">
+              {[
+                'Grootboekschema',
+                'Kostenplaatsen',
+                'Kostendragers',
+                'Logische structuur van gegevens',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <Check className="text-green-500 w-4 h-4" />
+                  <span className="text-body">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Verwerking */}
+          <div className="bg-white rounded-2xl p-8 shadow-sm">
+            <h3 className="font-hedvig text-heading-sm mb-6">
+              Dagelijkse & periodieke verwerking
+            </h3>
+            <ul className="space-y-3">
+              {[
+                'Inkoop- en verkoopfacturen',
+                'Bank- en kasverwerking',
+                'Memoriaalboekingen',
+                'Loonjournaalposten',
+                'Periodieke afsluitingen',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <Check className="text-green-500 w-4 h-4" />
+                  <span className="text-body">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Automation & reporting */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12">
+          <div className="bg-white rounded-2xl p-8 shadow-sm">
+            <h3 className="font-hedvig text-heading-sm mb-6">
+              Slimme automatisering
+            </h3>
+            <p className="text-body leading-relaxed mb-4">
+              Automatisering ondersteunt het proces, zonder controle te
+              verliezen.
+            </p>
+            <ul className="space-y-3">
+              {[
+                'Minder handmatig werk',
+                'Minder fouten',
+                'Snellere informatievoorziening',
+                'Efficiëntere processen',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <Check className="text-green-500 w-4 h-4" />
+                  <span className="text-body">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-sm">
+            <h3 className="font-hedvig text-heading-sm mb-6">
+              Financiële rapportages
+            </h3>
+            <ul className="space-y-3">
+              {[
+                'Balans',
+                'Winst- en verliesrekening',
+                'Tussentijdse rapportages',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <Check className="text-green-500 w-4 h-4" />
+                  <span className="text-body">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Compliance */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="font-hedvig text-heading-lg text-heading mb-6">
+            Correcte administratie als basis
+          </h2>
+          <p className="text-body leading-relaxed">
+            Een strakke boekhouding is noodzakelijk voor btw-, IB- en
+            VPB-aangiften en de jaarrekening. Door de administratie actueel te
+            houden, blijven dossiers inzichtelijk en correcties beperkt.
           </p>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="py-16 sm:py-20 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
-          
-          {/* Boekhouding als fundament */}
-          <div className="mb-16">
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Boekhouding vormt de basis van iedere organisatie. Het is het gestructureerd vastleggen van financiële feiten, zodat op elk moment inzicht bestaat in de actuele financiële situatie. Alleen wanneer de boekhouding correct, volledig en up-to-date is, ontstaat een betrouwbaar beeld van waar de organisatie staat.
-              </p>
-              <p>
-                SalFin ondersteunt organisaties bij het zorgvuldig inrichten en bijhouden van de boekhouding. Wij zorgen voor structuur, consistentie en controle in de financiële administratie, zodat cijfers betrouwbaar zijn en gebruikt kunnen worden waarvoor ze bedoeld zijn.
-              </p>
-            </div>
-          </div>
-
-          {/* Inrichting van de boekhouding */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Inrichting van de boekhouding
-            </h2>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Een goede boekhouding begint bij een juiste inrichting. SalFin ondersteunt bij het opzetten en structureren van de financiële administratie, afgestemd op de organisatie en haar activiteiten.
-              </p>
-              <p>Dit omvat onder andere:</p>
-            </div>
-            <ul className="space-y-3 text-gray-600 mt-4">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Het opstellen en inrichten van het grootboekschema</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Het bepalen en toepassen van kostenplaatsen</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Het vastleggen van kostendragers</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Het logisch structureren van financiële gegevens</span>
-              </li>
-            </ul>
-            <p className="text-gray-600 leading-relaxed mt-6">
-              Een juiste inrichting voorkomt fouten, maakt inzicht mogelijk en zorgt voor overzicht in de administratie.
-            </p>
-          </div>
-
-          {/* Dagelijkse en periodieke verwerking */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Dagelijkse en periodieke verwerking
-            </h2>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Na inrichting verzorgen wij de verwerking van financiële transacties. Deze verwerking gebeurt gestructureerd en volgens vaste afspraken, zodat de administratie actueel en controleerbaar blijft.
-              </p>
-              <p>Onderdeel hiervan zijn onder andere:</p>
-            </div>
-            <ul className="space-y-3 text-gray-600 mt-4">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Verwerking van inkoop- en verkoopfacturen</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Bank- en kasverwerking</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Verwerking van memoriaalboekingen</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Loonjournaalposten</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Periodieke afsluitingen</span>
-              </li>
-            </ul>
-            <p className="text-gray-600 leading-relaxed mt-6">
-              Door de administratie continu bij te houden, blijven cijfers actueel en betrouwbaar.
-            </p>
-          </div>
-
-          {/* Automatisering als ondersteuning */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Automatisering als ondersteuning van het proces
-            </h2>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Om het werk voor ondernemers te vereenvoudigen, zet SalFin automatisering in waar dit toegevoegde waarde heeft. Denk aan het automatisch verwerken van facturen, banktransacties en koppelingen met andere systemen.
-              </p>
-              <p>Automatisering is bij ons geen doel op zich, maar een middel om:</p>
-            </div>
-            <ul className="space-y-3 text-gray-600 mt-4">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Handmatig werk te verminderen</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Fouten te beperken</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Processen efficiënter te laten verlopen</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Informatie sneller beschikbaar te maken</span>
-              </li>
-            </ul>
-            <p className="text-gray-600 leading-relaxed mt-6">
-              Waar nodig automatiseren wij processen, zonder de controle uit handen te geven. De kwaliteit van de boekhouding blijft altijd leidend.
-            </p>
-          </div>
-
-          {/* Financiële rapportages */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Financiële rapportages: inzicht in de huidige cijfers
-            </h2>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Een goed bijgehouden boekhouding maakt het mogelijk om financiële rapportages op te stellen. Deze rapportages geven inzicht in de huidige financiële positie van de organisatie.
-              </p>
-              <p>SalFin ondersteunt bij het opstellen van onder andere:</p>
-            </div>
-            <ul className="space-y-3 text-gray-600 mt-4">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Balans</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Winst- en verliesrekening</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Tussentijdse financiële overzichten</span>
-              </li>
-            </ul>
-            <p className="text-gray-600 leading-relaxed mt-6">
-              Deze rapportages zijn gebaseerd op actuele gegevens en geven een feitelijk beeld van de financiële situatie op dat moment.
-            </p>
-          </div>
-
-          {/* Correcte administratie als basis */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Correcte administratie als basis voor verplichtingen
-            </h2>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Een correcte boekhouding is noodzakelijk voor het voldoen aan wettelijke en fiscale verplichtingen. Vanuit de administratie worden onder andere btw-, IB- en VPB-aangiften opgesteld, evenals de jaarrekening.
-              </p>
-              <p>Door de administratie strak en actueel te houden:</p>
-            </div>
-            <ul className="space-y-3 text-gray-600 mt-4">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>zijn aangiften gebaseerd op juiste gegevens</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>wordt correctiewerk achteraf beperkt</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>blijven dossiers inzichtelijk en herleidbaar</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Waarom dit zo belangrijk is */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Waarom dit zo belangrijk is
-            </h2>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Administratie die achterloopt of onjuist is, leidt tot onduidelijkheid en risico's. Beslissingen worden dan genomen op basis van verouderde of onvolledige informatie.
-              </p>
-              <p>
-                SalFin is ontstaan vanuit ondernemerschap en begrijpt hoe belangrijk het is om te kunnen vertrouwen op cijfers. Daarom zien wij boekhouding niet als een administratieve verplichting, maar als een kernproces dat rust, overzicht en betrouwbaarheid moet bieden.
-              </p>
-              <p>
-                Wij zorgen dat de boekhouding klopt, actueel is en aansluit bij de organisatie. Dat maakt het werk voor ondernemers overzichtelijker en zorgt voor grip op de huidige financiële situatie.
-              </p>
-            </div>
-          </div>
-
-          {/* CTA Section */}
-          <div className="bg-primary rounded-2xl p-8 sm:p-12 text-center">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-white mb-6">
-              Kennismaken
-            </h2>
-            <p className="text-white/90 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-              Wil je een boekhouding die correct is ingericht, actueel wordt bijgehouden en ondersteund wordt door slimme automatisering?
-            </p>
-            <a 
-              href="#contact" 
-              className="inline-flex items-center gap-3 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Neem contact op met SalFin voor een kennismakingsgesprek
-            </a>
-          </div>
+      {/* Final CTA */}
+      <section className="py-16 bg-primary">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="font-hedvig text-heading-lg text-white mb-6">
+            Grip op je cijfers?
+          </h2>
+          <p className="text-white/80 text-body-lg mb-8">
+            Wij zorgen voor een boekhouding die klopt en rust geeft.
+          </p>
+          <button
+            onClick={handleContactClick}
+            className="bg-white text-primary px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition"
+          >
+            Plan een kennismakingsgesprek
+          </button>
         </div>
       </section>
+
       <Footer />
     </div>
   );

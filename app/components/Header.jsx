@@ -85,6 +85,7 @@ const Header = () => {
     >
       <div className="max-w-full mx-auto px-5 md:px-12">
         <nav className="h-20 flex items-center justify-between">
+          
           {/* Logo */}
           <Link href="/" className="flex cursor-pointer items-center gap-3 group" aria-label="Stratex Home">
 

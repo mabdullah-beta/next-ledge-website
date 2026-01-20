@@ -1,289 +1,253 @@
-import { Metadata } from 'next';
+'use client';
+
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-export const metadata = {
-  title: 'Accounting, Jaarrekening & Financiële Planning | SalFin',
-  description: 'Van correcte vastlegging naar inzicht en overzicht. SalFin ondersteunt bij accounting, jaarrekeningen en financiële planning voor betere bedrijfssturing.',
-  keywords: 'accounting, jaarrekening, financiële planning, managementrapportages, begrotingen, scenario planning',
-};
+import {
+  BarChart3,
+  FileText,
+  TrendingUp,
+  Layers,
+  ShieldCheck,
+  Check,
+} from 'lucide-react';
+
 
 export default function AccountingJaarrekeningFinancielePlanningPage() {
+  const handleContactClick = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = '/#contact';
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-blue-50/30">
       <Header />
-      {/* Hero Section */}
-      <section className="bg-primary text-white py-16 sm:py-20 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="w-2 h-2 bg-white rounded-full"></div>
-            <span className="text-sm sm:text-base font-medium text-white/80">Accounting, Jaarrekening & Financiële Planning</span>
-          </div>
-          <h1 className="font-hedvig text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-            Accounting, Jaarrekening & Financiële Planning
-          </h1>
-          <p className="text-lg sm:text-xl leading-relaxed text-white/90 max-w-3xl">
-            Van correcte vastlegging naar inzicht en overzicht
-          </p>
-        </div>
-      </section>
 
-      {/* Main Content */}
-      <section className="py-16 sm:py-20 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
-          
-          {/* Intro */}
-          <div className="mb-16">
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Wanneer de boekhouding op orde is, ontstaat ruimte voor verdieping. Accounting en financiële planning bouwen voort op een correcte administratie en richten zich op inzicht, duiding en samenhang. Daarnaast vraagt iedere organisatie om formele financiële verantwoording, zoals de jaarrekening.
-              </p>
-              <p>
-                SalFin ondersteunt organisaties bij deze vervolgstappen: van financiële analyse en rapportages tot het opstellen van de jaarrekening en het bieden van structuur in financiële planning.
-              </p>
-            </div>
-          </div>
-
-          {/* Accounting & Financiële Inzichten */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Accounting & Financiële Inzichten
-            </h2>
-            <h3 className="font-hedvig text-xl sm:text-2xl text-gray-900 mb-4">
-              Begrijpen wat de cijfers betekenen
-            </h3>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Accounting richt zich op het analyseren en interpreteren van financiële gegevens die voortkomen uit de boekhouding. Het doel is inzicht krijgen in prestaties, kostenstructuren en financiële ontwikkelingen.
-              </p>
-              <p>
-                SalFin ondersteunt bij het vertalen van cijfers naar heldere inzichten die begrijpelijk zijn voor de organisatie.
-              </p>
-            </div>
-
-            <h4 className="font-hedvig text-lg sm:text-xl text-gray-900 mb-4 mt-8">
-              Werkzaamheden binnen accounting & inzichten
-            </h4>
-            <ul className="space-y-3 text-gray-600">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Analyse van financiële resultaten</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Inzicht in kosten, marges en opbrengsten</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Signaleren en toelichten van afwijkingen</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Periodieke managementrapportages</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Uitleg en duiding van financiële cijfers</span>
-              </li>
-            </ul>
-            <p className="text-gray-600 leading-relaxed mt-6">
-              De focus ligt op het heden en recente verleden: wat laten de cijfers zien en hoe zijn deze te verklaren?
+      {/* Hero */}
+      <section className="py-12 lg:py-20 md:mt-10">
+        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="font-hedvig text-heading-lg text-heading mb-4">
+              Accounting, Jaarrekening
+              <br />
+              & Financiële Planning
+            </h1>
+            <p className="text-body-lg text-body mb-6">
+              Van correcte vastlegging naar inzicht en overzicht
             </p>
-          </div>
-
-          {/* Jaarrekening & Formele Verantwoording */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Jaarrekening & Formele Verantwoording
-            </h2>
-            <h3 className="font-hedvig text-xl sm:text-2xl text-gray-900 mb-4">
-              Vastlegging en verantwoording van het boekjaar
-            </h3>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Een belangrijk onderdeel van financiële verslaglegging is het opstellen van de jaarrekening. Dit document geeft een formeel overzicht van de financiële positie en resultaten over een boekjaar en vormt de basis voor verantwoording richting onder andere de Belastingdienst en andere belanghebbenden.
-              </p>
-              <p>SalFin ondersteunt bij:</p>
-            </div>
-            <ul className="space-y-3 text-gray-600 mt-4">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Het samenstellen van de jaarrekening</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Toelichting op balans en winst- en verliesrekening</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Afstemming van cijfers met de gevoerde administratie</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Voorbereiding en aanlevering van informatie voor externe partijen</span>
-              </li>
-            </ul>
-            <p className="text-gray-600 leading-relaxed mt-6">
-              De jaarrekening vormt het sluitstuk van een correct gevoerde administratie.
+            <p className="text-body mb-8 leading-relaxed">
+              Wanneer de administratie op orde is, ontstaat ruimte voor
+              verdieping. Accounting, jaarrekening en financiële planning
+              brengen samenhang, duiding en structuur in cijfers.
             </p>
-          </div>
 
-          {/* Financiële Planning & Sturing */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Financiële Planning & Sturing
-            </h2>
-            <h3 className="font-hedvig text-xl sm:text-2xl text-gray-900 mb-4">
-              Structuur aanbrengen in vooruitkijken
-            </h3>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                Financiële planning & sturing richt zich op het vooruitkijken en het volgen van financiële doelstellingen. Op basis van actuele cijfers ondersteunt SalFin bij het opstellen van financiële plannen en het monitoren van de voortgang.
-              </p>
-              <p>
-                Deze dienstverlening is ondersteunend en adviserend van aard en helpt organisaties om grip te houden op hun financiële koers.
-              </p>
+            <div className="space-y-3 mb-8">
+              {[
+                'Inzicht in prestaties en ontwikkelingen',
+                'Formele verantwoording en vastlegging',
+                'Structuur in vooruitkijken en sturen',
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-3">
+                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center">
+                    <Check className="w-3 h-3 text-white" />
+                  </div>
+                  <span className="text-heading">{item}</span>
+                </div>
+              ))}
             </div>
 
-            <h4 className="font-hedvig text-lg sm:text-xl text-gray-900 mb-4 mt-8">
-              Werkzaamheden binnen financiële planning & sturing
-            </h4>
-            <ul className="space-y-3 text-gray-600">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Opstellen van begrotingen</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Uitwerken van financiële scenario's</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Vergelijken van planning en realisatie</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Signaleren van afwijkingen ten opzichte van de begroting</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Aandachtspunten en aanbevelingen op basis van cijfers</span>
-              </li>
-            </ul>
-            <p className="text-gray-600 leading-relaxed mt-6">
-              Besluitvorming en eindverantwoordelijkheid blijven bij de organisatie.
-            </p>
-          </div>
-
-          {/* Hoe deze diensten elkaar aanvullen */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Hoe deze diensten elkaar aanvullen
-            </h2>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>Deze onderdelen vormen samen een logisch geheel:</p>
-            </div>
-            <ul className="space-y-3 text-gray-600 mt-4">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Accounting & inzichten zorgen voor begrip van de cijfers</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Jaarrekening zorgt voor formele vastlegging en verantwoording</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Financiële planning & sturing gebruikt inzichten om vooruit te kijken en te volgen</span>
-              </li>
-            </ul>
-            <p className="text-gray-600 leading-relaxed mt-6">
-              Door deze samenhang ontstaat consistentie in cijfers, overzicht in prestaties en structuur in financiële processen.
-            </p>
-          </div>
-
-          {/* Werken met duidelijke rollen */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Werken met duidelijke rollen en afspraken
-            </h2>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                SalFin ondersteunt organisaties binnen afgesproken kaders en verantwoordelijkheden. Wij leveren analyses, rapportages en ondersteuning, zonder bestuurlijke of eindverantwoordelijkheid over te nemen.
-              </p>
-              <p>Dit betekent:</p>
-            </div>
-            <ul className="space-y-3 text-gray-600 mt-4">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Heldere rolverdeling</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Transparante werkwijze</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Vast aanspreekpunt</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Consistente financiële informatie</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Waarom SalFin */}
-          <div className="mb-16">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-6">
-              Waarom SalFin
-            </h2>
-            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
-              <p>
-                SalFin is ontstaan vanuit ondernemerschap en begrijpt dat cijfers pas waarde krijgen wanneer ze correct zijn vastgelegd én goed worden begrepen. Wij werken gestructureerd, nuchter en zonder onnodige complexiteit.
-              </p>
-              <p>Onze kracht ligt in het verbinden van:</p>
-            </div>
-            <ul className="space-y-3 text-gray-600 mt-4">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Correcte administratie</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Heldere inzichten</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Formele verantwoording</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                <span>Realistische financiële planning</span>
-              </li>
-            </ul>
-            <p className="text-gray-600 leading-relaxed mt-6">
-              Altijd afgestemd op de organisatie en haar manier van werken.
-            </p>
-          </div>
-
-          {/* CTA Section */}
-          <div className="bg-primary rounded-2xl p-8 sm:p-12 text-center">
-            <h2 className="font-hedvig text-2xl sm:text-3xl md:text-4xl text-white mb-6">
-              Kennismaken
-            </h2>
-            <p className="text-white/90 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-              Wil je ondersteuning bij accounting, jaarrekening en financiële planning, met duidelijke afspraken en één vast aanspreekpunt?
-            </p>
-            <a 
-              href="#contact" 
-              className="inline-flex items-center gap-3 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+            <button
+              onClick={handleContactClick}
+              className="bg-primary hover:bg-primary-light text-white px-8 py-3 rounded-full font-medium transition-all shadow-sm"
             >
-              Neem contact op met SalFin voor een kennismakingsgesprek
-            </a>
+              Plan een kennismaking
+            </button>
+          </div>
+
+          {/* Visual card */}
+          <div className="bg-white rounded-2xl p-8 shadow-lg h-80 flex items-center justify-center relative">
+            <div className="absolute top-6 left-6 w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center">
+              <FileText className="text-primary" />
+            </div>
+            <div className="absolute bottom-6 right-6 w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center">
+              <TrendingUp className="text-green-600" />
+            </div>
+            <div className="w-28 h-28 bg-primary rounded-2xl flex items-center justify-center">
+              <BarChart3 className="w-14 h-14 text-white" />
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Overview grid */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-hedvig text-heading-lg text-heading">
+              Samenhang in cijfers en sturing
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: BarChart3,
+                title: 'Accounting',
+                text: 'Analyse en duiding van cijfers',
+              },
+              {
+                icon: FileText,
+                title: 'Jaarrekening',
+                text: 'Formele vastlegging en verantwoording',
+              },
+              {
+                icon: TrendingUp,
+                title: 'Planning',
+                text: 'Begroten en vooruitkijken',
+              },
+              {
+                icon: Layers,
+                title: 'Samenhang',
+                text: 'Consistent financieel beeld',
+              },
+            ].map(({ icon: Icon, title, text }) => (
+              <div key={title} className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <Icon className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="font-semibold text-heading mb-2">{title}</h3>
+                <p className="text-body text-sm">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Accounting */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12">
+          <div className="bg-white rounded-2xl p-8 shadow-sm">
+            <h3 className="font-hedvig text-heading-sm mb-6">
+              Accounting & financiële inzichten
+            </h3>
+            <p className="text-body leading-relaxed mb-4">
+              Accounting richt zich op het begrijpen van cijfers: prestaties,
+              kostenstructuren en ontwikkelingen binnen de organisatie.
+            </p>
+            <ul className="space-y-3">
+              {[
+                'Analyse van financiële resultaten',
+                'Inzicht in kosten, marges en opbrengsten',
+                'Signaleren en toelichten van afwijkingen',
+                'Periodieke managementrapportages',
+                'Uitleg en duiding van cijfers',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <Check className="text-green-500 w-4 h-4" />
+                  <span className="text-body">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Jaarrekening */}
+          <div className="bg-white rounded-2xl p-8 shadow-sm">
+            <h3 className="font-hedvig text-heading-sm mb-6">
+              Jaarrekening & verantwoording
+            </h3>
+            <p className="text-body leading-relaxed mb-4">
+              De jaarrekening vormt het formele sluitstuk van een boekjaar en is
+              de basis voor verantwoording richting externe partijen.
+            </p>
+            <ul className="space-y-3">
+              {[
+                'Samenstellen van de jaarrekening',
+                'Toelichting op balans en resultaat',
+                'Afstemming met administratie',
+                'Voorbereiding voor externe partijen',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <Check className="text-green-500 w-4 h-4" />
+                  <span className="text-body">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Planning */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12">
+          <div className="bg-white rounded-2xl p-8 shadow-sm">
+            <h3 className="font-hedvig text-heading-sm mb-6">
+              Financiële planning & sturing
+            </h3>
+            <p className="text-body leading-relaxed mb-4">
+              Financiële planning helpt bij het vooruitkijken en het volgen van
+              doelstellingen op basis van actuele cijfers.
+            </p>
+            <ul className="space-y-3">
+              {[
+                'Opstellen van begrotingen',
+                'Uitwerken van scenario’s',
+                'Vergelijken van planning en realisatie',
+                'Signaleren van afwijkingen',
+                'Aanbevelingen op basis van cijfers',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <Check className="text-green-500 w-4 h-4" />
+                  <span className="text-body">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Roles */}
+          <div className="bg-white rounded-2xl p-8 shadow-sm">
+            <h3 className="font-hedvig text-heading-sm mb-6">
+              Duidelijke rollen & afspraken
+            </h3>
+            <ul className="space-y-3">
+              {[
+                'Heldere rolverdeling',
+                'Transparante werkwijze',
+                'Vast aanspreekpunt',
+                'Consistente financiële informatie',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <ShieldCheck className="text-primary w-4 h-4" />
+                  <span className="text-body">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-16 bg-primary">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="font-hedvig text-heading-lg text-white mb-6">
+            Grip op cijfers en koers
+          </h2>
+          <p className="text-white/80 text-body-lg mb-8">
+            Ondersteuning bij accounting, jaarrekening en financiële planning —
+            met duidelijke afspraken en structuur.
+          </p>
+          <button
+            onClick={handleContactClick}
+            className="bg-white text-primary px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition"
+          >
+            Plan een kennismakingsgesprek
+          </button>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
