@@ -400,7 +400,7 @@ export default function SalarisadministratieHRPage() {
             Wil je je salaris- en HR-processen optimaliseren?
           </h2>
           <p className="text-white/80 text-body-lg mb-8">
-            Of bel direct +31 123 456 789
+            Of bel direct 0852126475 
           </p>
           <button 
             onClick={handleContactClick}

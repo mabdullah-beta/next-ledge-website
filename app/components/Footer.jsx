@@ -98,13 +98,13 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+31657992155" className="text-[14px] sm:text-[15px] text-gray-500 hover:text-gray-900 transition-colors">
-                    06 57 99 21 55
+                  <a href="tel:0852126475" className="text-[14px] sm:text-[15px] text-gray-500 hover:text-gray-900 transition-colors">
+                    0852126475
                   </a>
                 </li>
                 <li>
                   <span className="text-[15px] sm:text-[16px] text-gray-500">
-                    Amsterdam, NL
+                    Herikerbergweg 32, 1101 CM Amsterdam
                   </span>
                 </li>
               </ul>
@@ -195,13 +195,13 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="tel:+31657992155" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
-                  06 57 99 21 55
+                <a href="tel:0852126475" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
+                  0852126475
                 </a>
               </li>
               <li>
                 <span className="text-[15px] sm:text-[16px] text-gray-600">
-                  Amsterdam, NL
+                  Herikerbergweg 32, 1101 CM Amsterdam
                 </span>
               </li>
             </ul>

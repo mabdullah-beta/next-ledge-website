@@ -205,7 +205,7 @@ export default function AboutPage() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <MapPin className="w-5 h-5 text-primary" />
-                  <span className="text-heading">Amsterdam, Nederland</span>
+                  <span className="text-heading">Herikerbergweg 32, 1101 CM Amsterdam</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Users className="w-5 h-5 text-primary" />
