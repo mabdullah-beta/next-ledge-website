@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, MapPin, Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -93,19 +93,28 @@ export default function Footer() {
               <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-5 sm:mb-6">Contact</h3>
               <ul className="space-y-3 sm:space-y-4">
                 <li>
-                  <a href="mailto:support@salfin.nl" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
-                    support@salfin.nl
-                  </a>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-gray-400" />
+                    <span className="text-[15px] sm:text-[16px] text-gray-500">
+                      Herikerbergweg 32, 1101 CM Amsterdam
+                    </span>
+                  </div>
                 </li>
                 <li>
-                  <a href="tel:0852126475" className="text-[14px] sm:text-[15px] text-gray-500 hover:text-gray-900 transition-colors">
-                    0852126475
-                  </a>
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-gray-400" />
+                    <a href="tel:0852126475" className="text-[14px] sm:text-[15px] text-gray-500 hover:text-gray-900 transition-colors">
+                      0852126475
+                    </a>
+                  </div>
                 </li>
                 <li>
-                  <span className="text-[15px] sm:text-[16px] text-gray-500">
-                    Herikerbergweg 32, 1101 CM Amsterdam
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4 text-gray-400" />
+                    <a href="mailto:support@salfin.nl" className="text-[15px] sm:text-[16px] text-gray-500 hover:text-gray-900 transition-colors">
+                      support@salfin.nl
+                    </a>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -190,19 +199,28 @@ export default function Footer() {
             <h3 className="text-[18px] sm:text-[20px] font-semibold text-gray-900 mb-4 sm:mb-5">Contact</h3>
             <ul className="space-y-3 sm:space-y-4">
               <li>
-                <a href="mailto:support@salfin.nl" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
-                  support@salfin.nl
-                </a>
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-gray-400" />
+                  <span className="text-[15px] sm:text-[16px] text-gray-600">
+                    Herikerbergweg 32, 1101 CM Amsterdam
+                  </span>
+                </div>
               </li>
               <li>
-                <a href="tel:0852126475" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
-                  0852126475
-                </a>
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-gray-400" />
+                  <a href="tel:0852126475" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
+                    0852126475
+                  </a>
+                </div>
               </li>
               <li>
-                <span className="text-[15px] sm:text-[16px] text-gray-600">
-                  Herikerbergweg 32, 1101 CM Amsterdam
-                </span>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-gray-400" />
+                  <a href="mailto:support@salfin.nl" className="text-[15px] sm:text-[16px] text-gray-600 hover:text-gray-900 transition-colors">
+                    support@salfin.nl
+                  </a>
+                </div>
               </li>
             </ul>
           </div>
