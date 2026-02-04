@@ -26,12 +26,6 @@ export default function Footer() {
               <p className="text-sm sm:text-base font-medium text-gray-700 mb-2">
                 Salaris • Finance • HR
               </p>
-              <p className="text-base sm:text-lg antialiased font-inter text-body leading-relaxed mb-3">
-                Salarisadministratie, boekhouding en accounting in samenhang.
-              </p>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                Ondersteund door IT-oplossingen en gericht op inzicht, sturing en continuïteit.
-              </p>
             </div>
 
 
@@ -135,12 +129,6 @@ export default function Footer() {
               <p className="text-sm font-medium text-gray-700 mb-2">
                 Salaris • Finance • HR
               </p>
-              <p className="text-[15px] sm:text-[16px] text-gray-600 leading-relaxed mb-2">
-                Salarisadministratie, boekhouding en accounting in samenhang.
-              </p>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Ondersteund door IT-oplossingen en gericht op inzicht, sturing en continuïteit.
-              </p>
             </div>
 
           </div>
@@ -232,10 +220,6 @@ export default function Footer() {
             <span>© SalFin — Salaris, Finance & HR</span>
           </div>
           <div className="flex items-center gap-4 sm:gap-6 text-[13px] sm:text-[14px]">
-            <Link href="/privacy" className="text-gray-600 hover:text-gray-900 transition-colors">
-              Privacyverklaring
-            </Link>
-            <span className="text-gray-400">•</span>
             <Link href="/terms" className="text-gray-600 hover:text-gray-900 transition-colors">
               Algemene voorwaarden
             </Link>
